@@ -48,3 +48,5 @@ body.dark .model-turn-hint{color:#b6b8af}
 body.dark .model-turn-arrow{background:#24262a;color:#c995a1;border-color:#45483f}
 body.dark .model-viewer:focus-visible{outline-color:#c995a1}
 body.dark .app-shell .today-first-actions .another-outfit{background:#24262a;color:#c995a1;border-color:#c995a1}
+/* Preserve the last fully decoded model during Today selection changes. */
+.app-shell #screen.screen-today>.page{animation:none}

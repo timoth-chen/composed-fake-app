@@ -54,3 +54,11 @@ Set `PLAYWRIGHT_MODULE` to an existing Playwright module path if using an instal
 The visual reference and original garment photography come from the Composed landing-page project. The app ships its active faceless mannequin cutouts, generated turn sheets, garment fronts/sides and shopping photographs. Obsolete local image iterations are excluded from Git.
 
 Retained third-party artifacts and their MIT license notices are documented in `dist/vendor/README.md`. The active rail uses the landing-page implementation; Embla is no longer loaded.
+
+## Today full-outfit selection and uninterrupted images
+
+The existing How you come across options select wardrobe-based looks per occasion, each with its own Why and wear steps. The original Confident picks preserve the Denim / Casual shorts / Date night order. Every alternate changes the top, bottom and shoes and toggles back to its first pick. All pieces come from the same 20-piece demo wardrobe.
+
+Today keeps the previous model element mounted until the complete replacement image set has decoded. A revision guard discards stale image loads during rapid changes. No tabs, options or buttons were added.
+
+`tests/full-outfit-browser.cjs` deliberately delays image requests for How you come across, alternate and occasion changes, checks that the old model remains mounted, and records `previews/today-full-outfit-swaps.webm`. The recorded check sampled 408 frames without a blank model. Comparison screenshots: `previews/today-confident-full.png`, `previews/today-relaxed-full.png`, `previews/today-alternate-full.png`.
