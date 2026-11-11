@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+node_modules/
+.cache/
+*.log
+# Retain obsolete image iterations locally; ship the active cutouts and turn sheets.
+dist/assets/model-*.webp
+dist/assets/mannequin-[0-9].jpg
+dist/assets/mannequin-cream-*.png
+dist/assets/denim.png
+dist/assets/shorts.png
+dist/assets/date-night.png

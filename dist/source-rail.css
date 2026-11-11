@@ -1,0 +1,104 @@
+/* Rail declarations extracted in cascade order from the landing-page stylesheets. */
+.landing-rail{--scr-ink:var(--ink);--scr-muted:var(--muted);--scr-line-strong:#b9b2a0;min-width:0}
+
+/* styles/components/wardrobe-demo.css */
+.landing-rail .photographic-rail{position:relative;overflow-x:auto;overflow-y:hidden;margin-top:28px;scrollbar-width:thin;scrollbar-color:var(--scr-line-strong) transparent;scroll-padding:20px;overscroll-behavior-x:contain;touch-action:pan-x pan-y;border-radius:7px;min-height:250px;outline-offset:3px}
+.landing-rail .photographic-rail-bar{position:absolute;top:28px;left:0;right:0;height:6px;border-radius:4px;background:#b1b4aa;box-shadow:inset 0 2px 1px #ffffff80,0 2px 2px #00000012}
+.landing-rail .hanger-track{display:flex;position:relative;width:max-content;min-width:100%;padding:24px 8px 12px;align-items:start}
+.landing-rail .hanger-button{position:relative;flex:0 0 68px;width:68px;height:210px;padding:0;border:0;background:transparent;color:var(--scr-ink);transition:width .4s ease,flex-basis .4s ease;cursor:pointer;perspective:700px;outline-offset:-2px;border-radius:7px}
+.landing-rail .hanger-button.face,.landing-rail .hanger-button:focus-visible{flex-basis:155px;width:155px;z-index:2}
+.landing-rail .hanger-button.face .wooden-hanger{transform:translateX(-50%) rotateY(0)}
+.landing-rail .rail-photographs{position:absolute;top:31px;left:0;width:100%;height:170px}
+.landing-rail .rail-photographs img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 0;filter:drop-shadow(2px 4px 4px #00000015);transition:opacity .25s ease,transform .4s ease}
+.landing-rail .rail-product-front{opacity:0;transform:rotateY(76deg)}
+.landing-rail .rail-product-side{opacity:1;transform:none}
+.landing-rail .hanger-button.face .rail-product-front{opacity:1;transform:rotateY(0)}
+.landing-rail .hanger-button.face .rail-product-side{opacity:0}
+@media(max-width:640px){.landing-rail .photographic-rail{min-height:220px;margin-top:20px}
+.landing-rail .hanger-button{height:190px;flex-basis:54px;width:54px}
+.landing-rail .hanger-button.face,.landing-rail .hanger-button:focus-visible{flex-basis:130px;width:130px}
+.landing-rail .rail-photographs{height:150px}}
+@media(prefers-reduced-motion:reduce){.landing-rail .hanger-button,.landing-rail .rail-photographs img{transition:none}}
+.landing-rail .rail-photographs img{width:170px;height:170px;left:50%;right:auto}
+.landing-rail .rail-product-front{transform:translateX(-50%) rotateY(76deg)}
+.landing-rail .rail-product-side{transform:translateX(-50%)}
+.landing-rail .hanger-button.face .rail-product-front{transform:translateX(-50%) rotateY(0)}
+@media(max-width:640px){.landing-rail .rail-photographs img{width:150px;height:150px}}
+.landing-rail .hanger-button>*{pointer-events:none}
+
+/* styles/components/menswear-refinements.css */
+.landing-rail .photographic-rail{min-height:270px;isolation:isolate}
+.landing-rail .hanger-track{padding-top:25px;padding-bottom:15px}
+.landing-rail .photographic-rail-bar{top:28px;left:0;right:0;z-index:0;height:5px;background:linear-gradient(180deg,#e2e7e7 0%,#929da3 55%,#bfc7c9 100%);box-shadow:0 1px 2px #00000020}
+.landing-rail .hanger-button{height:235px;overflow:visible}
+.landing-rail .hanger-button.face .silver-hanger{transform:translateX(-50%) rotateY(0)}
+.landing-rail .rail-photographs{top:20px;height:190px;z-index:2}
+.landing-rail .rail-photographs img{width:190px;height:190px;object-position:50% 0}
+.landing-rail .hanger-button[data-category=trousers] .rail-photographs,.landing-rail .hanger-button[data-category=jeans] .rail-photographs{top:30px}
+.landing-rail .hanger-button>*{pointer-events:none}
+@media(max-width:640px){.landing-rail .photographic-rail{min-height:245px}
+.landing-rail .hanger-button{height:215px}
+.landing-rail .rail-photographs{top:19px;height:175px}
+.landing-rail .rail-photographs img{width:175px;height:175px}
+.landing-rail .hanger-button[data-category=trousers] .rail-photographs,.landing-rail .hanger-button[data-category=jeans] .rail-photographs{top:27px}}
+.landing-rail .hanger-button[data-category=trousers] .silver-hanger,.landing-rail .hanger-button[data-category=jeans] .silver-hanger{z-index:3}
+.landing-rail .hanger-track{padding-left:65px;padding-right:65px}
+.landing-rail .rail-photographs{left:50%;width:190px;transform:translateX(-50%)}
+.landing-rail .rail-photographs img{width:100%}
+@media(max-width:640px){.landing-rail .hanger-track{padding-left:56px;padding-right:56px}
+.landing-rail .rail-photographs{width:175px}
+.landing-rail .rail-photographs img{width:100%}}
+
+/* styles/components/connected-previews.css */
+.landing-rail .hanger-button.face .silver-hanger{transform:translateX(-50%)}
+.landing-rail .hanger-button.face .hanger-front-wire{opacity:1}
+.landing-rail .hanger-button.face .hanger-edge-wire{opacity:0}
+.landing-rail .hanger-track{padding-top:43px}
+.landing-rail .photographic-rail-bar{top:46px}
+.landing-rail .rail-group-label{position:absolute;top:-28px;left:10px;white-space:nowrap;font-size:8px;letter-spacing:.1em;color:var(--scr-muted)}
+.landing-rail .rail-group-start{margin-left:52px}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs{top:30px}
+.landing-rail .hanger-button[data-category=shorts] .silver-hanger{z-index:3}
+@media(max-width:640px){.landing-rail .rail-group-start{margin-left:35px}
+.landing-rail .rail-group-label{font-size:7px;left:4px}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs{top:27px}}
+.landing-rail .photographic-rail-bar{display:none}
+.landing-rail .photographic-rail{min-height:250px}
+.landing-rail .hanger-track{padding-top:38px}
+.landing-rail .hanger-button .rail-photographs,.landing-rail .hanger-button[data-category=trousers] .rail-photographs,.landing-rail .hanger-button[data-category=jeans] .rail-photographs,.landing-rail .hanger-button[data-category=shorts] .rail-photographs{top:0}
+.landing-rail .rail-group-label{top:-25px}
+@media(max-width:640px){.landing-rail .photographic-rail{min-height:225px}}
+
+/* styles/components/compact-previews.css */
+.landing-rail .photographic-rail-bar{display:block;top:31px}
+.landing-rail .hanger-track{padding-top:41px}
+.landing-rail .rail-group-label{top:-31px}
+.landing-rail .hanger-button .rail-photographs,.landing-rail .hanger-button[data-category=trousers] .rail-photographs,.landing-rail .hanger-button[data-category=jeans] .rail-photographs{top:0}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs{top:0;width:116px;height:112px}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs img{width:116px;height:112px}
+@media(max-width:640px){.landing-rail .hanger-button[data-category=shorts] .rail-photographs{width:102px;height:98px}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs img{width:102px;height:98px}}
+
+/* styles/components/compact-wardrobe.css */
+.landing-rail .photographic-rail{margin-top:15px;min-height:210px}
+.landing-rail .hanger-track{padding-left:53px;padding-right:53px}
+.landing-rail .hanger-button{height:168px;width:60px;flex-basis:60px}
+.landing-rail .hanger-button.face,.landing-rail .hanger-button:focus-visible{width:136px;flex-basis:136px}
+.landing-rail .rail-photographs{width:150px;height:150px}
+.landing-rail .rail-photographs img{width:150px;height:150px}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs{width:96px;height:90px}
+.landing-rail .hanger-button[data-category=shorts] .rail-photographs img{width:96px;height:90px}
+@media(max-width:640px){.landing-rail .hanger-button{width:51px;flex-basis:51px}
+.landing-rail .hanger-button.face,.landing-rail .hanger-button:focus-visible{width:120px;flex-basis:120px}}
+
+/* styles/components/live-refinements.css */
+body.dark .landing-rail .photographic-rail{background:#DAD5CB;border:1px solid #AAA497}
+body.dark .landing-rail .rail-photographs{background:transparent;border:0;border-radius:0}
+body.dark .landing-rail .rail-group-label{color:#4A4D4A}
+@media(prefers-color-scheme:dark){body.dark .landing-rail .photographic-rail{background:#DAD5CB;border:1px solid #AAA497}
+body.dark .landing-rail .rail-photographs{background:transparent;border:0;border-radius:0}
+body.dark .landing-rail .rail-group-label{color:#4A4D4A}}
+
+/* Preserve app controls outside the source photographic strip. */
+.landing-rail .hanger-button{min-height:0}.landing-rail .hanger-button>*{pointer-events:none}.landing-rail .rail-photographs>span{display:none}
+.today-flow>section+section{border-top:1px solid var(--line);padding-top:28px;margin-top:30px}.flow-chapter{font-size:10px;letter-spacing:1px;color:var(--accent);margin:0 0 12px}.today-flow .daily-outfit .pick-heading>span{display:none}.today-flow .daily-why{padding-bottom:24px}

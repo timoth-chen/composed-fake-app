@@ -1,0 +1,50 @@
+/* Limited to Today's first screen plus the explicit recording controls. */
+#record-mode{font-size:11px;min-height:36px;padding:7px 10px;border:1px solid var(--line);border-radius:5px}
+.app-shell #screen.screen-today{background:#f3f0e9;color:#1b1d1f}
+.app-shell #screen.screen-today>.page{padding-top:10px;--paper:#f3f0e9;--ink:#1b1d1f;--muted:#6e7268;--line:#e4ddce;--accent:#7a263f}
+.app-shell .screen-today .daily-outfit .topline{font-size:10px;line-height:1.4}
+.app-shell .screen-today .daily-outfit .morning-greeting{margin:7px 0 2px;line-height:1.4}
+.app-shell .screen-today .daily-outfit h2{margin:3px 0 5px;font-size:26px;line-height:1.15}
+.app-shell .screen-today .daily-outfit>p.sub{margin:5px 0 8px;line-height:1.5}
+.app-shell .screen-today .daily-outfit .controls{margin:9px 0;gap:12px}
+.app-shell .screen-today .daily-outfit .controls label{line-height:1.4}
+.app-shell .screen-today .daily-outfit .controls select{margin-top:4px;min-height:42px;padding:8px 6px}
+.app-shell .screen-today .daily-outfit .purpose-weather{margin:0 0 6px;gap:8px}
+.app-shell .screen-today .daily-outfit .purpose-weather>div{gap:2px;font-size:10px;line-height:1.4}
+.app-shell .screen-today .daily-outfit .energy-pill{padding:4px 7px}
+.app-shell .screen-today .daily-outfit .photo-wrap,.app-shell .screen-today .daily-outfit .outfit-photo{background:#f3f0e9!important;background-image:none!important;border-radius:0}
+.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 570px),420px);max-height:none;width:100%;object-fit:contain}
+.today-first-actions{padding-top:8px}.app-shell .today-first-actions .another-outfit{display:block;width:100%;min-height:44px;padding:10px 12px;border:1px solid #7a263f;color:#7a263f;background:#fff;border-radius:6px;font-size:13px;font-weight:500}
+.app-shell .today-first-actions .actions{margin:8px 0 0;gap:8px}.app-shell .today-first-actions .actions button{min-height:44px;margin:0;font-size:12px}
+.app-shell .screen-today .daily-outfit .pick-heading{margin-top:20px}
+body.record-mode .prototype-badge,body.record-mode .demo-label,body.record-mode .app-shell>footer{display:none!important}
+body.record-mode{background:#f3f0e9}body.record-mode .app-shell.phone{max-width:440px!important;margin:0 auto!important;border:0!important;outline:0!important;box-shadow:none!important}
+body.record-mode #record-mode{opacity:0}body.record-mode #record-mode:hover,body.record-mode #record-mode:focus-visible{opacity:1}
+@media(min-width:700px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(160px,calc(100dvh - 510px),440px)}}
+@media(max-height:650px){.app-shell .screen-today .daily-outfit .controls{margin:6px 0}.app-shell .screen-today .daily-outfit .purpose-weather{margin-bottom:3px}.app-shell .screen-today .daily-outfit .outfit-photo{height:110px}}
+@media(max-height:650px){.app-shell .screen-today .daily-outfit .outfit-photo{height:82px}}
+.app-shell #screen.screen-today{overflow-anchor:none;scroll-behavior:auto}
+@media(max-width:699px) and (min-height:651px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 520px),420px)}}
+.model-viewer{position:relative;touch-action:pan-y;user-select:none;cursor:grab}.model-viewer:active{cursor:grabbing}.model-viewer:focus-visible{outline:2px solid #7a263f;outline-offset:3px}.model-turn-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;background:#f3f0e9}.model-turn-overlay[hidden]{display:none}.model-turn-clip{height:calc(100% - 22px);aspect-ratio:.5;overflow:hidden;position:relative;max-width:80%}.model-turn-sheet{position:absolute;top:0;left:0;width:400%;max-width:none;height:100%;object-fit:fill;display:block;will-change:transform}.model-turn-arrow{position:absolute;top:calc(50% - 22px);height:44px;width:36px;min-height:44px;padding:0;border:1px solid #e4ddce;border-radius:5px;background:#fff;color:#7a263f;font-size:25px;z-index:2}.model-turn-prev{left:0}.model-turn-next{right:0}.model-turn-hint{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);font-size:9px;line-height:1.5;color:#6e7268;white-space:nowrap;pointer-events:none;background:#f3f0e9;padding:1px 5px}
+.model-viewer img{pointer-events:none;-webkit-user-drag:none}
+/* Respect the app theme while retaining the requested fixed cream model canvas. */
+body.dark .app-shell #screen.screen-today{background:#191b1e;color:#efeae0}
+body.dark .app-shell #screen.screen-today>.page{--paper:#191b1e;--ink:#efeae0;--muted:#b6b8af;--line:#45483f;--accent:#c995a1}
+body.dark.record-mode{background:#191b1e}
+.app-shell .screen-today .daily-outfit .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.app-shell .screen-today .daily-outfit .controls label{font-size:12px;letter-spacing:0;line-height:1.4;min-width:0}
+.app-shell .screen-today .daily-outfit .controls select{height:52px;min-height:52px;width:100%;font-size:16px;line-height:1.4;padding:12px 9px;color:var(--ink);background:var(--paper);border-color:var(--line);color-scheme:light}
+.app-shell .screen-today .daily-outfit .controls select option{font-size:16px;background:var(--paper);color:var(--ink)}
+body.dark .app-shell .screen-today .daily-outfit .controls select{color-scheme:dark}
+@media(max-width:699px) and (min-height:651px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 555px),420px)}}
+@media(max-height:650px){.app-shell .screen-today .daily-outfit .outfit-photo{height:50px}.app-shell .screen-today .daily-outfit .controls label{font-size:11px}}
+@media(max-height:650px){.app-shell #screen.screen-today>.page{padding-top:2px}.app-shell .screen-today .daily-outfit .morning-greeting{margin-top:3px}}
+@media(min-width:700px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(160px,calc(100dvh - 530px),420px)}}
+/* The model canvas and its controls follow the selected theme. */
+body.dark .app-shell .screen-today .daily-outfit .photo-wrap,
+body.dark .app-shell .screen-today .daily-outfit .outfit-photo{background:#191b1e!important;background-image:none!important}
+body.dark .model-turn-overlay,body.dark .model-turn-hint{background:#191b1e}
+body.dark .model-turn-hint{color:#b6b8af}
+body.dark .model-turn-arrow{background:#24262a;color:#c995a1;border-color:#45483f}
+body.dark .model-viewer:focus-visible{outline-color:#c995a1}
+body.dark .app-shell .today-first-actions .another-outfit{background:#24262a;color:#c995a1;border-color:#c995a1}

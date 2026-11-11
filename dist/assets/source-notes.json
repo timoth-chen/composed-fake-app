@@ -1,0 +1,37 @@
+{
+  "dateNight": {
+    "source": "data/demo/outfits.js",
+    "itemIds": [
+      "outer-02",
+      "top-01",
+      "bottom-05",
+      "shoe-03"
+    ],
+    "weather": {
+      "temperature": 16,
+      "feelsLike": 15,
+      "condition": "Cool evening"
+    },
+    "reasons": [
+      [
+        "Colour",
+        "Your everyday overshirt, with pleated trousers and loafers."
+      ],
+      [
+        "Shape",
+        "The white tee keeps the layers light and easy."
+      ],
+      [
+        "Finish",
+        "The loafers give familiar pieces an evening feel."
+      ]
+    ],
+    "tips": [
+      "Overshirt open.",
+      "Tee short and fully untucked.",
+      "Trousers clear of the loafers."
+    ],
+    "insight": "Open layers and a polished shoe."
+  },
+  "landingPage": "composed-landing-page"
+}
