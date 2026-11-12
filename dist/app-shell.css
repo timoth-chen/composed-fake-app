@@ -34,3 +34,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--paper
 .screen-log .mix-total{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:12px;margin-top:auto;font-size:12px}.screen-log .mix-total strong{font-variant-numeric:tabular-nums}
 .screen-log .mix-empty{font-size:12px;line-height:1.6;color:var(--muted)}
 @media(max-width:650px){.screen-log .mix-breakdowns{grid-template-columns:1fr}.screen-log .mix-breakdown{padding:16px}.screen-log .mix-total{margin-top:10px}.screen-log .mix-row{padding:6px 0;font-size:13px}}
+
+/* Count-based donuts use the existing muted app palette. */
+.screen-log .mix-donut-wrap{display:flex;justify-content:center;padding:2px 0 12px}
+.screen-log .mix-donut{display:block;width:148px;height:148px;max-width:100%;overflow:visible}
+.screen-log .mix-donut-number{fill:var(--ink);font-family:inherit;font-size:25px;font-weight:600;font-variant-numeric:tabular-nums}
+.screen-log .mix-donut-unit{fill:var(--muted);font-family:inherit;font-size:10px}
+.screen-log .mix-donut-segment{stroke-linecap:butt}
+.screen-log .mix-breakdown:has(.mix-empty) .mix-empty{text-align:center;margin:8px 0 12px}
