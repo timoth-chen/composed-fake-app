@@ -70,3 +70,13 @@ Stone suede loafers remain in the 20-piece owned wardrobe. Shopping's third cand
 Today tags name the actual shown outfit. Wore it derives its checked state from that outfit's in-memory log, avoids duplicate taps, and resets with Log on reload. An embedded preview of the original model is visible on first load/reload while full-size model images decode; it uses the same retained-model swap mechanism as later outfit changes.
 
 `tests/consistency-browser.cjs` supports `APP_URL` and `CAPTURE_DIR` to verify the deployed app directly. It delays first-load, reload and swap images and records screenshots and a video covering the nine requested fixes.
+
+## Demo audit corrections
+
+The 21 occasion / How you come across contexts now have 42 distinct first picks and alternates. Original Confident picks retain their order. New combinations reuse the existing photographed mannequin top, bottom and shoe components in all four views; they do not introduce new garments. Every alternate changes all three slots. Small-change controls are explicitly **notes**, not outfit mutations, and cannot change what Wore it records. Logging waits until replacement model images decode.
+
+Log shows every worn piece and its wear count, with no cost figures. Both entry types use occasion headings and derive their pressed state from the same session log. Weather is the stable 17° cool-day demo condition; greeting uses the browser's local time. Wardrobe metadata persists locally; log and saved fits reset on reload.
+
+Clean recording hides prototype labels and the footer without changing viewport width or hiding navigation. Export produces the wardrobe JSON download and confirmation. Nigel critique remains in a dismissible panel. Build-a-fit retains List order and updates the active saved fit after piece changes from either Rack or List. Shopping uses consistent ordered sections and identifies duplicate items as “Good style match, already owned”.
+
+Run `node tests/flows.cjs`, `node tests/rack-complete.cjs`, and `node tests/demo-audit-browser.cjs` (with `PLAYWRIGHT_MODULE` if needed). The audit browser check supports `APP_URL` and `CAPTURE_DIR`, exercises all 42 selections, delays image loading, verifies downloads, and captures desktop/phone evidence. Earlier screenshots and browser scripts document prior versions; the audit suite covers the current selection and recording behavior.
