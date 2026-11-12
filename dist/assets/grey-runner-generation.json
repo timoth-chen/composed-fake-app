@@ -1,0 +1,18 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "file": "grey-nb-996-runner.png",
+      "prompt": "Use case: product-mockup. Replace the reference cream pair with a PAIR of GREY New Balance 996 style retro runners. Three-quarter pair product view, same centered composition and scale, clean catalogue studio photography and transparent background. Shoe design MUST be clearly recognisable as a grey New Balance 996-style runner: medium cool GREY suede overlay panels, darker GREY breathable mesh toe box and side panels, prominent silver/light-grey side N logo on the outer shoe, grey laces, bulky padded running-shoe collar, substantially thicker sculpted layered grey/off-grey wedge midsole with black rubber outsole tread. A chunky retro running silhouette, visibly more substantial than a slim white leather tennis sneaker at tiny thumbnail size. Shoes overall GREY, not white, not cream, not off-white. Show side N logo clearly in three-quarter view. Both shoes completely visible, no cropping, no extra props, no text labels, no bright colours, no neon. Actual transparent background for displaying on the warm cream wardrobe page. Preserve the reference camera, soft lighting and amount of frame filled; replace the shoe design entirely."
+    },
+    {
+      "file": "look-grey-runner-casual.png",
+      "prompt": "Use case: precise-object-edit. Image 1 is the target four-view faceless mannequin outfit sprite. Image 2 is the new GREY New Balance 996 runner product reference. Change ONLY the shoes on all four mannequin views from the cream minimal runners to exactly the grey New Balance 996-style runners in image 2: grey suede overlays, dark grey mesh, grey laces, visible side N logo, thicker chunky sculpted layered grey wedge running sole and black rubber outsole. GREY shoes, no cream/off-white shoe upper. Preserve EVERYTHING ELSE from image 1 exactly: the black crewneck knit, trousers fabric/colour/shape/details, mannequin body/head/hands, pose, lighting, proportions, four-view arrangement, original canvas aspect ratio and baseline. Do not add any garment or alter the existing outfit. Keep all four poses front/right/back/left in same positions. Genuine transparent background. Shoes same natural foot scale but chunkier shape than old low-top sneakers. No added text, no bright colours."
+    },
+    {
+      "file": "look-grey-runner-everyday.png",
+      "prompt": "Use case: precise-object-edit. Image 1 is the target four-view faceless mannequin outfit sprite. Image 2 is the new GREY New Balance 996 runner product reference. Change ONLY the shoes on all four mannequin views from the cream minimal runners to exactly the grey New Balance 996-style runners in image 2: grey suede overlays, dark grey mesh, grey laces, visible side N logo, thicker chunky sculpted layered grey wedge running sole and black rubber outsole. GREY shoes, no cream/off-white shoe upper. Preserve EVERYTHING ELSE from image 1 exactly: the black crewneck knit, trousers fabric/colour/shape/details, mannequin body/head/hands, pose, lighting, proportions, four-view arrangement, original canvas aspect ratio and baseline. Do not add any garment or alter the existing outfit. Keep all four poses front/right/back/left in same positions. Genuine transparent background. Shoes same natural foot scale but chunkier shape than old low-top sneakers. No added text, no bright colours."
+    }
+  ],
+  "scope": "Existing item 20 renamed only; original shoe order, 21 wardrobe pieces, five pairs, Everyday tag, all outfit IDs and non-runner images preserved."
+}
