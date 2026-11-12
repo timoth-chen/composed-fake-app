@@ -1,6 +1,6 @@
 # Composed
 
-A phone-first static wardrobe prototype built with HTML, CSS and vanilla JavaScript. No build step, backend, account or database.
+A phone-first static wardrobe prototype built with HTML, CSS and vanilla JavaScript. No framework build, backend, account or database. Run `node scripts/prepare-static.cjs` after source changes and before browser checks or publishing; `dist/app.js` and the original CSS files are canonical sources. The helper writes content-versioned asset filenames to prevent stale Render CDN scripts.
 
 ## Run locally
 
@@ -15,7 +15,7 @@ Open http://localhost:4173. To use a phone on the same Wi-Fi, replace localhost 
 - **Today:** one continuous Outfit → Wear → Why flow, occasion and “How you come across” controls, one context-preserving alternate, wear logging, and faceless mannequin turn views.
 - **Wardrobe:** photographic rail adapted from the Composed landing page, shoe drawer, list view, outfit builder, clothing tags and editing, and JSON export.
 - **Shopping:** three illustrative purchase checks with qualitative matches, photographs and styling advice. No purchase links or percentages.
-- **Log:** wears and rejections, logging streak, closet use, illustrative cost-per-wear and Owned/Worn/Liked style mix.
+- **Log:** wears and rejections, logging streak, closet use, piece wear counts and Owned/Worn/Liked Style Mix with style, colour and clothing type.
 
 Light/dark themes apply to the app, model canvas and controls. Record mode hides the prototype labels and footer; the Record control reappears on hover or keyboard focus to exit.
 
@@ -25,7 +25,7 @@ Clothing edits save in this browser's localStorage. Logs, likes and saved fits r
 
 Create a separate **Static Site** connected to this repository:
 
-- Build command: leave blank.
+- Build command: `node scripts/prepare-static.cjs`.
 - Publish directory: `dist`.
 - No environment variables, persistent disk or server required.
 
@@ -112,3 +112,13 @@ Run `node tests/clean-models.cjs` for catalogue/weather and unchanged-surface ch
 Seven pieces formerly used their front photo rotated with CSS, making them appear flat and stretched. Sage cotton shirt, Black crewneck knit, Oatmeal cardigan, Washed denim shirt, Navy chore jacket, Grey cotton sweatshirt and Stone straight trousers now use dedicated natural side/three-quarter product photos with rounded volume, matching the black bomber's display style. No simulated side-view flattening remains.
 
 Original front photographs, List thumbnails, all 42 Today outfits, piece data, shoe drawer, names and counts remain unchanged. Prompt/asset records: `dist/assets/rack/side/generation.json`. `tests/rack-depth.cjs` checks those invariants, and `tests/rack-depth-browser.cjs` checks transparent side-photo silhouettes without horizontal squashing, front selection, all rail filters and phone/desktop views.
+
+## Expanded Style Mix (Log only)
+
+Style Mix shows three parallel count breakdowns for Owned, Worn and Liked: primary style, main colour and clothing type. Owned totals 21 in each breakdown: Tops 7 / Bottoms 5 / Layers 4 / Shoes 5. The most common owned colour is Black (5 pieces). Styles with no pieces in the selected cohort are omitted; clothing-type rows retain zero counts for clarity.
+
+The existing demo piece records have the legacy Everyday / Considered / Relaxed bucket, not the requested named style tags. Log therefore uses a clearly labelled, prepared inference of one primary style per existing garment (Minimalist, East Asian Minimalist, Smart casual, Streetwear, Classic or Sporty for this set). Real `primaryStyle` / `styleTags` values take precedence if present. The original item records and wardrobe tags are not mutated, and no style quiz or preferences form is introduced. Quiet luxury and Creative are not invented for this demo set.
+
+Colour comes from the existing editable colour field, with demo hex values resolved to their garment colour names; clothing type comes directly from each piece's current category. Worn preserves the existing occurrence-based method: each garment counts once per logged wear, so repeat wears influence the result. The section states the piece-wear total and distinct-piece count separately. Rejected outfits do not enter Worn. Liked counts the current liked set once per piece. All three breakdown totals match the selected cohort.
+
+Run `node scripts/prepare-static.cjs`, `node tests/style-mix.cjs` and `node tests/style-mix-browser.cjs`. The browser test creates real wear/like events and captures Owned 21, Worn 6 piece wears across 5 distinct pieces, and Liked 4. These are QA examples, not extra seeded user activity. The unit test proves unchanged Today (all 42 looks), Wardrobe, Shopping, wardrobe data, and all Log content outside Style Mix.

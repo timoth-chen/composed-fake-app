@@ -16,3 +16,21 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--paper
 
 /* Wardrobe shoe drawer: compare all five pairs in one row on desktop. */
 @media(min-width:1100px){.app-shell #screen.screen-wardrobe .shoe-drawer .shoe-shelf{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}}
+
+/* Log-only wardrobe insights. */
+.screen-log .style-mix-panel{margin:30px 0;padding-top:24px;border-top:1px solid var(--line)}
+.screen-log .style-mix-panel h3{font-size:24px;margin:0 0 8px;line-height:1.3}
+.screen-log .style-mix-panel>.sub{margin:0 0 14px}
+.screen-log .style-mix-panel .segmented{gap:24px;margin-bottom:18px}
+.screen-log .mix-summary{padding:14px 16px;background:var(--soft);border-radius:6px}
+.screen-log .mix-summary>strong{font-size:14px}.screen-log .mix-summary p{margin:5px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+.screen-log .mix-dominant-colour{display:flex;flex-wrap:wrap;gap:6px 12px;margin:16px 0;font-size:12px;line-height:1.6}.screen-log .mix-dominant-colour strong{font-weight:500}.screen-log .mix-dominant-colour span{color:var(--muted)}
+.screen-log .mix-breakdowns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
+.screen-log .mix-breakdown{min-width:0;border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column}
+.screen-log .mix-breakdown h4{font-size:10px;letter-spacing:1px;font-weight:500;margin:0 0 10px;color:var(--muted)}
+.screen-log .mix-row{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.5;margin:0;padding:7px 0;min-width:0}
+.screen-log .mix-name{min-width:0;overflow-wrap:anywhere}.screen-log .mix-count{margin-left:auto;font-variant-numeric:tabular-nums;flex:none;color:var(--ink)}
+.screen-log .mix-colour-dot{width:10px;height:10px;border-radius:50%;border:1px solid #8886;flex:none}
+.screen-log .mix-total{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:12px;margin-top:auto;font-size:12px}.screen-log .mix-total strong{font-variant-numeric:tabular-nums}
+.screen-log .mix-empty{font-size:12px;line-height:1.6;color:var(--muted)}
+@media(max-width:650px){.screen-log .mix-breakdowns{grid-template-columns:1fr}.screen-log .mix-breakdown{padding:16px}.screen-log .mix-total{margin-top:10px}.screen-log .mix-row{padding:6px 0;font-size:13px}}

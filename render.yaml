@@ -2,5 +2,5 @@ services:
   - type: web
     name: composed-prototype
     runtime: static
-    buildCommand: ''
+    buildCommand: node scripts/prepare-static.cjs
     staticPublishPath: ./dist
