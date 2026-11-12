@@ -61,8 +61,9 @@ body.record-mode #record-explanation{display:block;margin:5px 24px;font-size:11p
 .nigel-critique{padding:18px;border:1px solid var(--accent);margin-top:18px;background:var(--paper)}
 #toast{bottom:110px;max-width:calc(100vw - 36px);box-sizing:border-box}
 .composed-form{display:flex!important;align-items:center;justify-content:center;padding-bottom:20px;box-sizing:border-box}
-.rail-photographs{background:var(--paper)}
-.rail-photographs:has(img:not(.photo-ready)){background:linear-gradient(90deg,transparent 25%,var(--soft) 25%,var(--soft) 75%,transparent 75%)}
+/* Photo canvases overlap on the rail, so they must remain transparent. */
+.rail-photographs{background:transparent}
+.rail-photographs:has(img:not(.photo-ready))::before{content:"";position:absolute;top:10%;left:50%;width:24px;height:80%;transform:translateX(-50%);border-radius:5px;background:var(--soft);opacity:.45;pointer-events:none}
 
 .component-model{position:relative;aspect-ratio:.5;height:100%;max-width:100%}
 .model-slice{position:absolute;inset:0;overflow:hidden}
