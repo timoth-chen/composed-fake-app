@@ -1,0 +1,479 @@
+[
+  {
+    "key": "0:Confident:0",
+    "ids": [
+      0,
+      1,
+      2
+    ],
+    "sheet": "assets/turn-denim.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "1:Confident:0",
+    "ids": [
+      3,
+      19,
+      5,
+      11
+    ],
+    "sheet": "assets/clean-outfits/1-confident-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Confident:0",
+    "ids": [
+      15,
+      6,
+      8,
+      16
+    ],
+    "sheet": "assets/turn-date.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "0:Approachable:0",
+    "ids": [
+      6,
+      7,
+      2,
+      13
+    ],
+    "sheet": "assets/clean-outfits/0-approachable-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Polished:0",
+    "ids": [
+      0,
+      8,
+      17
+    ],
+    "sheet": "assets/look-polished.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "0:Relaxed:0",
+    "ids": [
+      9,
+      19,
+      5
+    ],
+    "sheet": "assets/look-relaxed.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "0:Sharp:0",
+    "ids": [
+      10,
+      7,
+      17
+    ],
+    "sheet": "assets/look-sharp.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "0:Low-key:0",
+    "ids": [
+      3,
+      1,
+      2,
+      13
+    ],
+    "sheet": "assets/clean-outfits/0-low-key-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Not sure:0",
+    "ids": [
+      12,
+      8,
+      5
+    ],
+    "sheet": "assets/look-not-sure.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "1:Approachable:0",
+    "ids": [
+      3,
+      7,
+      16,
+      11
+    ],
+    "sheet": "assets/clean-outfits/1-approachable-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Polished:0",
+    "ids": [
+      6,
+      8,
+      17,
+      11
+    ],
+    "sheet": "assets/clean-outfits/1-polished-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Relaxed:0",
+    "ids": [
+      10,
+      1,
+      20
+    ],
+    "sheet": "assets/look-grey-runner-casual.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "1:Sharp:0",
+    "ids": [
+      10,
+      1,
+      5
+    ],
+    "sheet": "assets/clean-outfits/1-sharp-0.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Low-key:0",
+    "ids": [
+      12,
+      19,
+      16
+    ],
+    "sheet": "assets/clean-outfits/1-low-key-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Not sure:0",
+    "ids": [
+      0,
+      7,
+      17
+    ],
+    "sheet": "assets/clean-outfits/1-not-sure-0.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Approachable:0",
+    "ids": [
+      3,
+      8,
+      17,
+      15
+    ],
+    "sheet": "assets/clean-outfits/2-approachable-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Polished:0",
+    "ids": [
+      6,
+      19,
+      2,
+      15
+    ],
+    "sheet": "assets/clean-outfits/2-polished-0.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Relaxed:0",
+    "ids": [
+      9,
+      1,
+      5
+    ],
+    "sheet": "assets/clean-outfits/2-relaxed-0.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Sharp:0",
+    "ids": [
+      10,
+      7,
+      16
+    ],
+    "sheet": "assets/clean-outfits/2-sharp-0.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Low-key:0",
+    "ids": [
+      12,
+      7,
+      17
+    ],
+    "sheet": "assets/clean-outfits/2-low-key-0.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Not sure:0",
+    "ids": [
+      0,
+      8,
+      2
+    ],
+    "sheet": "assets/clean-outfits/2-not-sure-0.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Confident:1",
+    "ids": [
+      3,
+      7,
+      5,
+      13
+    ],
+    "sheet": "assets/clean-outfits/0-confident-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Approachable:1",
+    "ids": [
+      3,
+      8,
+      5,
+      13
+    ],
+    "sheet": "assets/clean-outfits/0-approachable-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Polished:1",
+    "ids": [
+      6,
+      7,
+      16,
+      13
+    ],
+    "sheet": "assets/clean-outfits/0-polished-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Relaxed:1",
+    "ids": [
+      10,
+      8,
+      20
+    ],
+    "sheet": "assets/look-grey-runner-everyday.png",
+    "changedWeather": false,
+    "wholePhoto": true
+  },
+  {
+    "key": "0:Sharp:1",
+    "ids": [
+      12,
+      19,
+      2
+    ],
+    "sheet": "assets/clean-outfits/0-sharp-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Low-key:1",
+    "ids": [
+      12,
+      7,
+      5
+    ],
+    "sheet": "assets/clean-outfits/0-low-key-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "0:Not sure:1",
+    "ids": [
+      0,
+      7,
+      16
+    ],
+    "sheet": "assets/clean-outfits/0-not-sure-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Confident:1",
+    "ids": [
+      0,
+      7,
+      2
+    ],
+    "sheet": "assets/clean-outfits/1-confident-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Approachable:1",
+    "ids": [
+      6,
+      8,
+      2,
+      11
+    ],
+    "sheet": "assets/clean-outfits/1-approachable-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Polished:1",
+    "ids": [
+      9,
+      19,
+      16
+    ],
+    "sheet": "assets/clean-outfits/1-polished-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Relaxed:1",
+    "ids": [
+      9,
+      19,
+      17
+    ],
+    "sheet": "assets/clean-outfits/1-relaxed-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Sharp:1",
+    "ids": [
+      12,
+      19,
+      17
+    ],
+    "sheet": "assets/clean-outfits/1-sharp-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Low-key:1",
+    "ids": [
+      0,
+      7,
+      5
+    ],
+    "sheet": "assets/clean-outfits/1-low-key-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "1:Not sure:1",
+    "ids": [
+      3,
+      8,
+      2,
+      11
+    ],
+    "sheet": "assets/clean-outfits/1-not-sure-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Confident:1",
+    "ids": [
+      0,
+      19,
+      17
+    ],
+    "sheet": "assets/clean-outfits/2-confident-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Approachable:1",
+    "ids": [
+      6,
+      19,
+      5,
+      15
+    ],
+    "sheet": "assets/clean-outfits/2-approachable-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Polished:1",
+    "ids": [
+      9,
+      1,
+      16
+    ],
+    "sheet": "assets/clean-outfits/2-polished-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Relaxed:1",
+    "ids": [
+      10,
+      7,
+      2
+    ],
+    "sheet": "assets/clean-outfits/2-relaxed-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Sharp:1",
+    "ids": [
+      12,
+      8,
+      17
+    ],
+    "sheet": "assets/clean-outfits/2-sharp-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Low-key:1",
+    "ids": [
+      0,
+      8,
+      5
+    ],
+    "sheet": "assets/clean-outfits/2-low-key-1.png",
+    "changedWeather": false,
+    "wholePhoto": false
+  },
+  {
+    "key": "2:Not sure:1",
+    "ids": [
+      3,
+      19,
+      5,
+      15
+    ],
+    "sheet": "assets/clean-outfits/2-not-sure-1.png",
+    "changedWeather": true,
+    "wholePhoto": false
+  }
+]

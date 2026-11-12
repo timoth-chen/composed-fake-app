@@ -1,0 +1,837 @@
+{
+  "tool": "Built-in image_gen",
+  "weather": "17\u00b0C \u00b7 Cool day",
+  "jobs": [
+    {
+      "key": "1:Confident:0",
+      "ids": [
+        3,
+        19,
+        5,
+        11
+      ],
+      "sheet": "assets/clean-outfits/1-confident-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Olive fatigue trousers",
+        "White leather sneakers",
+        "Oatmeal cardigan"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece White leather sneakers; Image 5: exact wardrobe piece Oatmeal cardigan. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Olive fatigue trousers; White leather sneakers; Oatmeal cardigan. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp",
+        "assets/rack/oatmeal-cardigan.png"
+      ]
+    },
+    {
+      "key": "0:Approachable:0",
+      "ids": [
+        6,
+        7,
+        2,
+        13
+      ],
+      "sheet": "assets/clean-outfits/0-approachable-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "White heavyweight T-shirt",
+        "Stone straight trousers",
+        "Black suede clogs",
+        "Navy chore jacket"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece White heavyweight T-shirt; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black suede clogs; Image 5: exact wardrobe piece Navy chore jacket. Dress the mannequin in EXACTLY these existing wardrobe pieces together: White heavyweight T-shirt; Stone straight trousers; Black suede clogs; Navy chore jacket. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-01-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-04-front-960.webp",
+        "assets/rack/navy-chore.png"
+      ]
+    },
+    {
+      "key": "0:Low-key:0",
+      "ids": [
+        3,
+        1,
+        2,
+        13
+      ],
+      "sheet": "assets/clean-outfits/0-low-key-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Dark indigo straight jeans",
+        "Black suede clogs",
+        "Navy chore jacket"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Dark indigo straight jeans; Image 4: exact wardrobe piece Black suede clogs; Image 5: exact wardrobe piece Navy chore jacket. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Dark indigo straight jeans; Black suede clogs; Navy chore jacket. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/wardrobe/bottom-03-front-960.webp",
+        "assets/wardrobe/shoe-04-front-960.webp",
+        "assets/rack/navy-chore.png"
+      ]
+    },
+    {
+      "key": "1:Approachable:0",
+      "ids": [
+        3,
+        7,
+        16,
+        11
+      ],
+      "sheet": "assets/clean-outfits/1-approachable-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Stone straight trousers",
+        "Black leather loafers",
+        "Oatmeal cardigan"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black leather loafers; Image 5: exact wardrobe piece Oatmeal cardigan. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Stone straight trousers; Black leather loafers; Oatmeal cardigan. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-03-front-960.webp",
+        "assets/rack/oatmeal-cardigan.png"
+      ]
+    },
+    {
+      "key": "1:Polished:0",
+      "ids": [
+        6,
+        8,
+        17,
+        11
+      ],
+      "sheet": "assets/clean-outfits/1-polished-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "White heavyweight T-shirt",
+        "Slate pleated trousers",
+        "Stone suede loafers",
+        "Oatmeal cardigan"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece White heavyweight T-shirt; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece Stone suede loafers; Image 5: exact wardrobe piece Oatmeal cardigan. Dress the mannequin in EXACTLY these existing wardrobe pieces together: White heavyweight T-shirt; Slate pleated trousers; Stone suede loafers; Oatmeal cardigan. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-01-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/stone-loafers-owned.png",
+        "assets/rack/oatmeal-cardigan.png"
+      ]
+    },
+    {
+      "key": "1:Sharp:0",
+      "ids": [
+        10,
+        1,
+        5
+      ],
+      "sheet": "assets/clean-outfits/1-sharp-0.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Black crewneck knit",
+        "Dark indigo straight jeans",
+        "White leather sneakers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Black crewneck knit; Image 3: exact wardrobe piece Dark indigo straight jeans; Image 4: exact wardrobe piece White leather sneakers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Black crewneck knit; Dark indigo straight jeans; White leather sneakers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-sharp.png",
+        "assets/rack/black-knit.png",
+        "assets/wardrobe/bottom-03-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp"
+      ]
+    },
+    {
+      "key": "1:Low-key:0",
+      "ids": [
+        12,
+        19,
+        16
+      ],
+      "sheet": "assets/clean-outfits/1-low-key-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Washed denim shirt",
+        "Olive fatigue trousers",
+        "Black leather loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Washed denim shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Black leather loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Washed denim shirt; Olive fatigue trousers; Black leather loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-not-sure.png",
+        "assets/rack/denim-shirt.png",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-03-front-960.webp"
+      ]
+    },
+    {
+      "key": "1:Not sure:0",
+      "ids": [
+        0,
+        7,
+        17
+      ],
+      "sheet": "assets/clean-outfits/1-not-sure-0.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Stone straight trousers",
+        "Stone suede loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Stone suede loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Stone straight trousers; Stone suede loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/stone-loafers-owned.png"
+      ]
+    },
+    {
+      "key": "2:Approachable:0",
+      "ids": [
+        3,
+        8,
+        17,
+        15
+      ],
+      "sheet": "assets/clean-outfits/2-approachable-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Slate pleated trousers",
+        "Stone suede loafers",
+        "Olive cotton overshirt"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece Stone suede loafers; Image 5: exact wardrobe piece Olive cotton overshirt. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Slate pleated trousers; Stone suede loafers; Olive cotton overshirt. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/stone-loafers-owned.png",
+        "assets/wardrobe/outer-02-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Polished:0",
+      "ids": [
+        6,
+        19,
+        2,
+        15
+      ],
+      "sheet": "assets/clean-outfits/2-polished-0.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "White heavyweight T-shirt",
+        "Olive fatigue trousers",
+        "Black suede clogs",
+        "Olive cotton overshirt"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece White heavyweight T-shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Black suede clogs; Image 5: exact wardrobe piece Olive cotton overshirt. Dress the mannequin in EXACTLY these existing wardrobe pieces together: White heavyweight T-shirt; Olive fatigue trousers; Black suede clogs; Olive cotton overshirt. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-01-front-960.webp",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-04-front-960.webp",
+        "assets/wardrobe/outer-02-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Relaxed:0",
+      "ids": [
+        9,
+        1,
+        5
+      ],
+      "sheet": "assets/clean-outfits/2-relaxed-0.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Sage cotton shirt",
+        "Dark indigo straight jeans",
+        "White leather sneakers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Sage cotton shirt; Image 3: exact wardrobe piece Dark indigo straight jeans; Image 4: exact wardrobe piece White leather sneakers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Sage cotton shirt; Dark indigo straight jeans; White leather sneakers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-relaxed.png",
+        "assets/rack/sage-shirt.png",
+        "assets/wardrobe/bottom-03-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Sharp:0",
+      "ids": [
+        10,
+        7,
+        16
+      ],
+      "sheet": "assets/clean-outfits/2-sharp-0.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Black crewneck knit",
+        "Stone straight trousers",
+        "Black leather loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Black crewneck knit; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black leather loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Black crewneck knit; Stone straight trousers; Black leather loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-sharp.png",
+        "assets/rack/black-knit.png",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-03-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Low-key:0",
+      "ids": [
+        12,
+        7,
+        17
+      ],
+      "sheet": "assets/clean-outfits/2-low-key-0.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Washed denim shirt",
+        "Stone straight trousers",
+        "Stone suede loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Washed denim shirt; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Stone suede loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Washed denim shirt; Stone straight trousers; Stone suede loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-not-sure.png",
+        "assets/rack/denim-shirt.png",
+        "assets/rack/stone-trousers.png",
+        "assets/stone-loafers-owned.png"
+      ]
+    },
+    {
+      "key": "2:Not sure:0",
+      "ids": [
+        0,
+        8,
+        2
+      ],
+      "sheet": "assets/clean-outfits/2-not-sure-0.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Slate pleated trousers",
+        "Black suede clogs"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece Black suede clogs. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Slate pleated trousers; Black suede clogs. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/wardrobe/shoe-04-front-960.webp"
+      ]
+    },
+    {
+      "key": "0:Confident:1",
+      "ids": [
+        3,
+        7,
+        5,
+        13
+      ],
+      "sheet": "assets/clean-outfits/0-confident-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Stone straight trousers",
+        "White leather sneakers",
+        "Navy chore jacket"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece White leather sneakers; Image 5: exact wardrobe piece Navy chore jacket. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Stone straight trousers; White leather sneakers; Navy chore jacket. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-01-front-960.webp",
+        "assets/rack/navy-chore.png"
+      ]
+    },
+    {
+      "key": "0:Approachable:1",
+      "ids": [
+        3,
+        8,
+        5,
+        13
+      ],
+      "sheet": "assets/clean-outfits/0-approachable-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Slate pleated trousers",
+        "White leather sneakers",
+        "Navy chore jacket"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece White leather sneakers; Image 5: exact wardrobe piece Navy chore jacket. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Slate pleated trousers; White leather sneakers; Navy chore jacket. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp",
+        "assets/rack/navy-chore.png"
+      ]
+    },
+    {
+      "key": "0:Polished:1",
+      "ids": [
+        6,
+        7,
+        16,
+        13
+      ],
+      "sheet": "assets/clean-outfits/0-polished-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "White heavyweight T-shirt",
+        "Stone straight trousers",
+        "Black leather loafers",
+        "Navy chore jacket"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece White heavyweight T-shirt; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black leather loafers; Image 5: exact wardrobe piece Navy chore jacket. Dress the mannequin in EXACTLY these existing wardrobe pieces together: White heavyweight T-shirt; Stone straight trousers; Black leather loafers; Navy chore jacket. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-01-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-03-front-960.webp",
+        "assets/rack/navy-chore.png"
+      ]
+    },
+    {
+      "key": "0:Sharp:1",
+      "ids": [
+        12,
+        19,
+        2
+      ],
+      "sheet": "assets/clean-outfits/0-sharp-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Washed denim shirt",
+        "Olive fatigue trousers",
+        "Black suede clogs"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Washed denim shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Black suede clogs. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Washed denim shirt; Olive fatigue trousers; Black suede clogs. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-not-sure.png",
+        "assets/rack/denim-shirt.png",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-04-front-960.webp"
+      ]
+    },
+    {
+      "key": "0:Low-key:1",
+      "ids": [
+        12,
+        7,
+        5
+      ],
+      "sheet": "assets/clean-outfits/0-low-key-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Washed denim shirt",
+        "Stone straight trousers",
+        "White leather sneakers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Washed denim shirt; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece White leather sneakers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Washed denim shirt; Stone straight trousers; White leather sneakers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-not-sure.png",
+        "assets/rack/denim-shirt.png",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-01-front-960.webp"
+      ]
+    },
+    {
+      "key": "0:Not sure:1",
+      "ids": [
+        0,
+        7,
+        16
+      ],
+      "sheet": "assets/clean-outfits/0-not-sure-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Stone straight trousers",
+        "Black leather loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black leather loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Stone straight trousers; Black leather loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-03-front-960.webp"
+      ]
+    },
+    {
+      "key": "1:Confident:1",
+      "ids": [
+        0,
+        7,
+        2
+      ],
+      "sheet": "assets/clean-outfits/1-confident-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Stone straight trousers",
+        "Black suede clogs"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black suede clogs. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Stone straight trousers; Black suede clogs. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-04-front-960.webp"
+      ]
+    },
+    {
+      "key": "1:Approachable:1",
+      "ids": [
+        6,
+        8,
+        2,
+        11
+      ],
+      "sheet": "assets/clean-outfits/1-approachable-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "White heavyweight T-shirt",
+        "Slate pleated trousers",
+        "Black suede clogs",
+        "Oatmeal cardigan"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece White heavyweight T-shirt; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece Black suede clogs; Image 5: exact wardrobe piece Oatmeal cardigan. Dress the mannequin in EXACTLY these existing wardrobe pieces together: White heavyweight T-shirt; Slate pleated trousers; Black suede clogs; Oatmeal cardigan. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-01-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/wardrobe/shoe-04-front-960.webp",
+        "assets/rack/oatmeal-cardigan.png"
+      ]
+    },
+    {
+      "key": "1:Polished:1",
+      "ids": [
+        9,
+        19,
+        16
+      ],
+      "sheet": "assets/clean-outfits/1-polished-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Sage cotton shirt",
+        "Olive fatigue trousers",
+        "Black leather loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Sage cotton shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Black leather loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Sage cotton shirt; Olive fatigue trousers; Black leather loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-relaxed.png",
+        "assets/rack/sage-shirt.png",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-03-front-960.webp"
+      ]
+    },
+    {
+      "key": "1:Relaxed:1",
+      "ids": [
+        9,
+        19,
+        17
+      ],
+      "sheet": "assets/clean-outfits/1-relaxed-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Sage cotton shirt",
+        "Olive fatigue trousers",
+        "Stone suede loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Sage cotton shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Stone suede loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Sage cotton shirt; Olive fatigue trousers; Stone suede loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-relaxed.png",
+        "assets/rack/sage-shirt.png",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/stone-loafers-owned.png"
+      ]
+    },
+    {
+      "key": "1:Sharp:1",
+      "ids": [
+        12,
+        19,
+        17
+      ],
+      "sheet": "assets/clean-outfits/1-sharp-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Washed denim shirt",
+        "Olive fatigue trousers",
+        "Stone suede loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Washed denim shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Stone suede loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Washed denim shirt; Olive fatigue trousers; Stone suede loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-not-sure.png",
+        "assets/rack/denim-shirt.png",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/stone-loafers-owned.png"
+      ]
+    },
+    {
+      "key": "1:Low-key:1",
+      "ids": [
+        0,
+        7,
+        5
+      ],
+      "sheet": "assets/clean-outfits/1-low-key-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Stone straight trousers",
+        "White leather sneakers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece White leather sneakers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Stone straight trousers; White leather sneakers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-01-front-960.webp"
+      ]
+    },
+    {
+      "key": "1:Not sure:1",
+      "ids": [
+        3,
+        8,
+        2,
+        11
+      ],
+      "sheet": "assets/clean-outfits/1-not-sure-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Slate pleated trousers",
+        "Black suede clogs",
+        "Oatmeal cardigan"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece Black suede clogs; Image 5: exact wardrobe piece Oatmeal cardigan. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Slate pleated trousers; Black suede clogs; Oatmeal cardigan. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/wardrobe/shoe-04-front-960.webp",
+        "assets/rack/oatmeal-cardigan.png"
+      ]
+    },
+    {
+      "key": "2:Confident:1",
+      "ids": [
+        0,
+        19,
+        17
+      ],
+      "sheet": "assets/clean-outfits/2-confident-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Olive fatigue trousers",
+        "Stone suede loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece Stone suede loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Olive fatigue trousers; Stone suede loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/stone-loafers-owned.png"
+      ]
+    },
+    {
+      "key": "2:Approachable:1",
+      "ids": [
+        6,
+        19,
+        5,
+        15
+      ],
+      "sheet": "assets/clean-outfits/2-approachable-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "White heavyweight T-shirt",
+        "Olive fatigue trousers",
+        "White leather sneakers",
+        "Olive cotton overshirt"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece White heavyweight T-shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece White leather sneakers; Image 5: exact wardrobe piece Olive cotton overshirt. Dress the mannequin in EXACTLY these existing wardrobe pieces together: White heavyweight T-shirt; Olive fatigue trousers; White leather sneakers; Olive cotton overshirt. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-01-front-960.webp",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp",
+        "assets/wardrobe/outer-02-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Polished:1",
+      "ids": [
+        9,
+        1,
+        16
+      ],
+      "sheet": "assets/clean-outfits/2-polished-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Sage cotton shirt",
+        "Dark indigo straight jeans",
+        "Black leather loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Sage cotton shirt; Image 3: exact wardrobe piece Dark indigo straight jeans; Image 4: exact wardrobe piece Black leather loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Sage cotton shirt; Dark indigo straight jeans; Black leather loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-relaxed.png",
+        "assets/rack/sage-shirt.png",
+        "assets/wardrobe/bottom-03-front-960.webp",
+        "assets/wardrobe/shoe-03-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Relaxed:1",
+      "ids": [
+        10,
+        7,
+        2
+      ],
+      "sheet": "assets/clean-outfits/2-relaxed-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Black crewneck knit",
+        "Stone straight trousers",
+        "Black suede clogs"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Black crewneck knit; Image 3: exact wardrobe piece Stone straight trousers; Image 4: exact wardrobe piece Black suede clogs. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Black crewneck knit; Stone straight trousers; Black suede clogs. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-sharp.png",
+        "assets/rack/black-knit.png",
+        "assets/rack/stone-trousers.png",
+        "assets/wardrobe/shoe-04-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Sharp:1",
+      "ids": [
+        12,
+        8,
+        17
+      ],
+      "sheet": "assets/clean-outfits/2-sharp-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Washed denim shirt",
+        "Slate pleated trousers",
+        "Stone suede loafers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Washed denim shirt; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece Stone suede loafers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Washed denim shirt; Slate pleated trousers; Stone suede loafers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-not-sure.png",
+        "assets/rack/denim-shirt.png",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/stone-loafers-owned.png"
+      ]
+    },
+    {
+      "key": "2:Low-key:1",
+      "ids": [
+        0,
+        8,
+        5
+      ],
+      "sheet": "assets/clean-outfits/2-low-key-1.png",
+      "changedWeather": false,
+      "wholePhoto": false,
+      "names": [
+        "Burgundy knit polo",
+        "Slate pleated trousers",
+        "White leather sneakers"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Burgundy knit polo; Image 3: exact wardrobe piece Slate pleated trousers; Image 4: exact wardrobe piece White leather sneakers. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Burgundy knit polo; Slate pleated trousers; White leather sneakers. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified top untucked. Do NOT add any layer or undershirt. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/turn-denim.png",
+        "assets/wardrobe/top-09-front-960.webp",
+        "assets/wardrobe/bottom-05-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp"
+      ]
+    },
+    {
+      "key": "2:Not sure:1",
+      "ids": [
+        3,
+        19,
+        5,
+        15
+      ],
+      "sheet": "assets/clean-outfits/2-not-sure-1.png",
+      "changedWeather": true,
+      "wholePhoto": false,
+      "names": [
+        "Ink navy heavyweight T-shirt",
+        "Olive fatigue trousers",
+        "White leather sneakers",
+        "Olive cotton overshirt"
+      ],
+      "prompt": "Use case: identity-preserve wardrobe outfit photo. Image 1 is a reference for the SAME faceless men's mannequin, photographic lighting, body proportions, upright pose and four-view sprite layout. Image 2: exact wardrobe piece Ink navy heavyweight T-shirt; Image 3: exact wardrobe piece Olive fatigue trousers; Image 4: exact wardrobe piece White leather sneakers; Image 5: exact wardrobe piece Olive cotton overshirt. Dress the mannequin in EXACTLY these existing wardrobe pieces together: Ink navy heavyweight T-shirt; Olive fatigue trousers; White leather sneakers; Olive cotton overshirt. Produce ONE coherent complete photograph sheet with FOUR equal-width panels, full-body Front, Right side, Back, Left side, in that order. Match the reference wide canvas ratio about 2:1 (each full mannequin view about 1:2). Every panel must show the complete identical outfit. This is NOT a collage: naturally continuous garment boundaries, top hem cleanly OVER the trouser waistband, no mismatched belt or waistband stripe, no exposed skin at waist, no slices, seams, extra trousers, floating hands, duplicate shoes, leftover footwear or extra clothing. Long trouser hems meet shoes naturally with a small clean break. Wear the specified light layer OPEN over the specified tee; both pieces visible. Do not add any other layer. All pieces must retain the exact colours, material and silhouette from their product references. No new clothing, no styling changes. No belt. No bright accents. No logos except the existing N on the grey New Balance runner if specified.  Neutral faceless mannequin, no face/eyes/hair. Soft clean studio photographic lighting. Genuinely transparent background. Preserve generous clear space around all four bodies, aligned feet/baseline, no cropping, no text or labels. Displayed weather is 17\u00b0C, cool day; clothing as specified already accounts for the weather.",
+      "references": [
+        "assets/look-approachable.png",
+        "assets/wardrobe/top-11-front-960.webp",
+        "assets/wardrobe/bottom-04-front-960.webp",
+        "assets/wardrobe/shoe-01-front-960.webp",
+        "assets/wardrobe/outer-02-front-960.webp"
+      ]
+    }
+  ],
+  "backgroundRepairs": [
+    {
+      "file": "2-confident-1.png",
+      "tool": "Built-in image_gen",
+      "prompt": "Use case: background-extraction. Remove ONLY the white studio background and all background shadows from this four-view mannequin sheet. Output a genuine RGBA transparent cutout with fully transparent alpha=0 pixels everywhere outside the mannequin/clothes/shoes silhouettes, including gaps between limbs and between all four figures. Do NOT keep any white, cream, grey, checkerboard, texture or studio backdrop in the actual image. Preserve every mannequin, the burgundy knit polo, olive fatigue trousers, stone suede loafers, all fabric/colours/details, poses, lighting, dimensions, four-view order and positions EXACTLY. No changes to the outfit, no cropping or new shadows. The result must work cleanly over a very dark background with no pale rectangle or halo. Transparent background is essential."
+    }
+  ]
+}
