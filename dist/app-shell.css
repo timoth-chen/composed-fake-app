@@ -42,3 +42,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--paper
 .screen-log .mix-donut-unit{fill:var(--muted);font-family:inherit;font-size:10px}
 .screen-log .mix-donut-segment{stroke-linecap:butt}
 .screen-log .mix-breakdown:has(.mix-empty) .mix-empty{text-align:center;margin:8px 0 12px}
+
+/* Match the Shoe drawer disclosure while keeping Log detail closed initially. */
+.screen-log .mix-disclosure{border:1px solid var(--line);border-radius:7px;background:var(--soft)}
+.screen-log .mix-disclosure>summary{min-height:46px;box-sizing:border-box;padding:13px 14px;font-size:12px;line-height:20px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:9px}
+.screen-log .mix-disclosure>summary::-webkit-details-marker{display:none}
+.screen-log .mix-disclosure>summary::before{content:'▶';font-size:10px;flex:none}
+.screen-log .mix-disclosure[open]>summary::before{content:'▼'}
+.screen-log .mix-detail{border-top:1px solid var(--line);padding:12px;background:var(--paper)}
