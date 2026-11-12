@@ -1,0 +1,700 @@
+{
+  "pieces": [
+    {
+      "id": 0,
+      "name": "Burgundy knit polo",
+      "cat": "tops",
+      "color": "#722c40",
+      "style": "Considered",
+      "cost": 95,
+      "imageKey": "burgundy knit polo",
+      "colour": "#722c40",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 1,
+      "name": "Dark indigo straight jeans",
+      "cat": "bottoms",
+      "color": "#202c3d",
+      "style": "Everyday",
+      "cost": 120,
+      "imageKey": "dark indigo straight jeans",
+      "colour": "#202c3d",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "name": "Black suede clogs",
+      "cat": "shoes",
+      "color": "#292823",
+      "style": "Relaxed",
+      "cost": 110,
+      "imageKey": "black suede clogs",
+      "colour": "#292823",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Ink navy heavyweight T-shirt",
+      "cat": "tops",
+      "color": "#202939",
+      "style": "Everyday",
+      "cost": 55,
+      "imageKey": "ink navy heavyweight t-shirt",
+      "colour": "#202939",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Black tailored shorts",
+      "cat": "bottoms",
+      "color": "#252724",
+      "style": "Considered",
+      "cost": 85,
+      "imageKey": "black tailored shorts",
+      "colour": "#252724",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "name": "White leather sneakers",
+      "cat": "shoes",
+      "color": "#e6e6df",
+      "style": "Everyday",
+      "cost": 130,
+      "imageKey": "white leather sneakers",
+      "colour": "#e6e6df",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "name": "White heavyweight T-shirt",
+      "cat": "tops",
+      "color": "#eeece5",
+      "style": "Everyday",
+      "cost": 45,
+      "imageKey": "white heavyweight t-shirt",
+      "colour": "#eeece5",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "name": "Stone straight trousers",
+      "cat": "bottoms",
+      "color": "#b8ae97",
+      "style": "Considered",
+      "cost": 115,
+      "imageKey": "stone straight trousers",
+      "colour": "#b8ae97",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "name": "Slate pleated trousers",
+      "cat": "bottoms",
+      "color": "#53565a",
+      "style": "Considered",
+      "cost": 140,
+      "imageKey": "slate pleated trousers",
+      "colour": "#53565a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "name": "Sage cotton shirt",
+      "cat": "tops",
+      "color": "#919b83",
+      "style": "Relaxed",
+      "cost": 90,
+      "imageKey": "sage cotton shirt",
+      "colour": "#919b83",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "name": "Black crewneck knit",
+      "cat": "tops",
+      "color": "#2b2d28",
+      "style": "Considered",
+      "cost": 105,
+      "imageKey": "black crewneck knit",
+      "colour": "#2b2d28",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "name": "Oatmeal cardigan",
+      "cat": "layers",
+      "color": "#c2b89f",
+      "style": "Relaxed",
+      "cost": 130,
+      "imageKey": "oatmeal cardigan",
+      "colour": "#c2b89f",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "name": "Washed denim shirt",
+      "cat": "tops",
+      "color": "#70828a",
+      "style": "Everyday",
+      "cost": 95,
+      "imageKey": "washed denim shirt",
+      "colour": "#70828a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 13,
+      "name": "Navy chore jacket",
+      "cat": "layers",
+      "color": "#303c46",
+      "style": "Everyday",
+      "cost": 150,
+      "imageKey": "navy chore jacket",
+      "colour": "#303c46",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 14,
+      "name": "Black bomber",
+      "cat": "layers",
+      "color": "#30332d",
+      "style": "Everyday",
+      "cost": 160,
+      "imageKey": "black bomber",
+      "colour": "#30332d",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 15,
+      "name": "Olive cotton overshirt",
+      "cat": "layers",
+      "color": "#6d7453",
+      "style": "Relaxed",
+      "cost": 125,
+      "imageKey": "olive cotton overshirt",
+      "colour": "#6d7453",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 16,
+      "name": "Black leather loafers",
+      "cat": "shoes",
+      "color": "#292823",
+      "style": "Considered",
+      "cost": 165,
+      "imageKey": "black leather loafers",
+      "colour": "#292823",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 17,
+      "name": "Stone suede loafers",
+      "cat": "shoes",
+      "color": "#b2a38a",
+      "style": "Considered",
+      "cost": 145,
+      "imageKey": "stone suede loafers",
+      "colour": "#b2a38a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 18,
+      "name": "Grey cotton sweatshirt",
+      "cat": "tops",
+      "color": "#999a92",
+      "style": "Relaxed",
+      "cost": 75,
+      "imageKey": "grey cotton sweatshirt",
+      "colour": "#999a92",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 19,
+      "name": "Olive fatigue trousers",
+      "cat": "bottoms",
+      "color": "#74785e",
+      "style": "Relaxed",
+      "cost": 110,
+      "imageKey": "olive fatigue trousers",
+      "colour": "#74785e",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 20,
+      "name": "Grey New Balance 996 runner",
+      "cat": "shoes",
+      "color": "#82858a",
+      "style": "Everyday",
+      "imageKey": "grey new balance 996 runner",
+      "colour": "#82858a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    }
+  ],
+  "pool": [
+    {
+      "key": "0:Confident:0",
+      "ids": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "key": "1:Confident:0",
+      "ids": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "key": "2:Confident:0",
+      "ids": [
+        15,
+        6,
+        8,
+        16
+      ]
+    },
+    {
+      "key": "0:Approachable:0",
+      "ids": [
+        6,
+        7,
+        2
+      ]
+    },
+    {
+      "key": "0:Polished:0",
+      "ids": [
+        0,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "0:Relaxed:0",
+      "ids": [
+        9,
+        19,
+        5
+      ]
+    },
+    {
+      "key": "0:Sharp:0",
+      "ids": [
+        10,
+        7,
+        17
+      ]
+    },
+    {
+      "key": "0:Low-key:0",
+      "ids": [
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "key": "0:Not sure:0",
+      "ids": [
+        12,
+        8,
+        5
+      ]
+    },
+    {
+      "key": "1:Approachable:0",
+      "ids": [
+        3,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "1:Polished:0",
+      "ids": [
+        6,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "1:Relaxed:0",
+      "ids": [
+        9,
+        19,
+        2
+      ]
+    },
+    {
+      "key": "1:Sharp:0",
+      "ids": [
+        10,
+        1,
+        5
+      ]
+    },
+    {
+      "key": "1:Low-key:0",
+      "ids": [
+        12,
+        4,
+        16
+      ]
+    },
+    {
+      "key": "1:Not sure:0",
+      "ids": [
+        0,
+        7,
+        17
+      ]
+    },
+    {
+      "key": "2:Approachable:0",
+      "ids": [
+        3,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "2:Polished:0",
+      "ids": [
+        6,
+        19,
+        2
+      ]
+    },
+    {
+      "key": "2:Relaxed:0",
+      "ids": [
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "key": "2:Sharp:0",
+      "ids": [
+        10,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "2:Low-key:0",
+      "ids": [
+        12,
+        7,
+        17
+      ]
+    },
+    {
+      "key": "2:Not sure:0",
+      "ids": [
+        0,
+        8,
+        2
+      ]
+    },
+    {
+      "key": "0:Confident:1",
+      "ids": [
+        3,
+        7,
+        5
+      ]
+    },
+    {
+      "key": "0:Approachable:1",
+      "ids": [
+        3,
+        8,
+        5
+      ]
+    },
+    {
+      "key": "0:Polished:1",
+      "ids": [
+        6,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "0:Relaxed:1",
+      "ids": [
+        10,
+        8,
+        20
+      ]
+    },
+    {
+      "key": "0:Sharp:1",
+      "ids": [
+        12,
+        19,
+        2
+      ]
+    },
+    {
+      "key": "0:Low-key:1",
+      "ids": [
+        12,
+        7,
+        5
+      ]
+    },
+    {
+      "key": "0:Not sure:1",
+      "ids": [
+        0,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "1:Confident:1",
+      "ids": [
+        0,
+        7,
+        2
+      ]
+    },
+    {
+      "key": "1:Approachable:1",
+      "ids": [
+        6,
+        8,
+        2
+      ]
+    },
+    {
+      "key": "1:Polished:1",
+      "ids": [
+        9,
+        19,
+        16
+      ]
+    },
+    {
+      "key": "1:Relaxed:1",
+      "ids": [
+        10,
+        1,
+        20
+      ]
+    },
+    {
+      "key": "1:Sharp:1",
+      "ids": [
+        12,
+        4,
+        17
+      ]
+    },
+    {
+      "key": "1:Low-key:1",
+      "ids": [
+        0,
+        7,
+        5
+      ]
+    },
+    {
+      "key": "1:Not sure:1",
+      "ids": [
+        3,
+        8,
+        2
+      ]
+    },
+    {
+      "key": "2:Confident:1",
+      "ids": [
+        0,
+        19,
+        17
+      ]
+    },
+    {
+      "key": "2:Approachable:1",
+      "ids": [
+        6,
+        19,
+        5
+      ]
+    },
+    {
+      "key": "2:Polished:1",
+      "ids": [
+        9,
+        1,
+        16
+      ]
+    },
+    {
+      "key": "2:Relaxed:1",
+      "ids": [
+        10,
+        7,
+        2
+      ]
+    },
+    {
+      "key": "2:Sharp:1",
+      "ids": [
+        12,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "2:Low-key:1",
+      "ids": [
+        0,
+        8,
+        5
+      ]
+    },
+    {
+      "key": "2:Not sure:1",
+      "ids": [
+        3,
+        19,
+        5
+      ]
+    }
+  ],
+  "surfaces": {
+    "Wardrobe/Rack/All": "b98332adec0e4cf0dec01215c6d527f03f1b6810f7995c2f5c05ae35f1ed76cf",
+    "Wardrobe/Rack/Tops": "178f9e95547eaacf54d7e36b1eb5064e733e1175f41edf5a0cab1ed9fb3f4752",
+    "Wardrobe/Rack/Bottoms": "124ed14e090a642beca773db5d7d07f728a085b0b8ffff54d7f57dfdd6f79cbe",
+    "Wardrobe/Rack/Shoes": "ee3570d1db741c04662d884979787abecbd643b9935cc1a8f8cea65edcd47c2f",
+    "Wardrobe/Rack/Layers": "f0ceacf74f1e4bd12e3011ecce2409b381bc867685df2842fe5ff7acac6daf22",
+    "Wardrobe/List/All": "6c2c442d2f8ea92ffabdf512565de5a6dd02f903840ae54b768cf5f7396c932c",
+    "Wardrobe/List/Tops": "44a6b86f425a1897f3807670befba0ff13284bfb133436f1227e8660e4e975af",
+    "Wardrobe/List/Bottoms": "9e302386e2f8f18d89b6658c7effbc83e577f56a99175357f40bdf3b9a8201eb",
+    "Wardrobe/List/Shoes": "5976faf5d8b501a1e97af10081165e01000bd0b7a2ca239bb403bcbaeaba886b",
+    "Wardrobe/List/Layers": "e8d9c6760f06188135dc27dccc321aaf25f563e08c584a09207a611ed92eaab5",
+    "Shopping/0": "ab74c6adf9cf40b9747a531d5e6a3bfc338bd1be478c75c79b507fdcc8219b1e",
+    "Shopping/1": "6f0fb2035b95729e4a9eeb8ca8dfcb48829478698632459e5727c2b79e77f484",
+    "Shopping/2": "31816124417e70c4e0a07df17abff229599397ed364d1955adaacd494772396b",
+    "Log": "26a66a1107dee23f67039c103c804001f45a5b6ca965e71fe16e6797bde6a095"
+  },
+  "photos": {
+    "grey-nb-996-runner.png": "b50df3984d682eaa05cd4da1512b1750b3e065bb6dff8301d420d2aa39b90b03",
+    "look-grey-runner-casual.png": "6c810287b0bd2d2efb40bfe427902f95b3e0cd92a4697363896016b2a14536b5",
+    "look-grey-runner-everyday.png": "a29ad2e970cdf80a8164d0bfef151f72c91586b05d32b227e643451ee0b72633",
+    "wardrobe/shoe-01-front-320.webp": "5571bc0662ef50e4287988ef38577b4c1d33d2e076471c70b217b1c0c4dcf847"
+  }
+}

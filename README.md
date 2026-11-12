@@ -90,3 +90,9 @@ Wardrobe contains 21 pieces: the original 16 rail garments and five pairs in the
 The new product image and two coherent four-view runner outfits were made with the built-in image generation tool. Asset paths, references and prompts are recorded in `dist/assets/runner-generation.json`. Existing image files remain unchanged.
 
 The former Off-white minimal runner is now Grey New Balance 996 runner, at the same item ID and shoe-drawer position with the same Everyday tag. The grey suede/mesh, side N logo and thicker sole distinguish it from the unchanged white leather sneaker photo. Only its two existing casual outfit images receive the new shoes; all outfit IDs and counts remain unchanged. Desktop shoe drawers show the five pairs together. Old browser-saved default runner names and cream colour migrate without clearing other edits. Current image-generation prompts and assets: `dist/assets/grey-runner-generation.json`.
+
+## Today runner first pick
+
+Casual afternoon / Relaxed now starts with Black crewneck knit, Dark indigo straight jeans and Grey New Balance 996 runner. Its Why, wear steps and Nigel note describe that outfit. The alternate is Sage cotton shirt, Olive fatigue trousers and Stone suede loafers: the old first pick with a different shoe, and all three slots differ from the new first pick. Everyday / Relaxed retains Black crewneck knit, Slate pleated trousers and Grey New Balance 996 runner as its alternate. These are the runner’s only two catalogue uses.
+
+All 42 looks remain unique. All piece data, image bytes, counts, Wardrobe filters, Shopping and Log remain unchanged. `node tests/runner-first-pick.cjs` verifies those invariants; `node tests/runner-first-browser.cjs` captures the first pick and alternate on desktop/phone and writes the complete runner-use list. The browser check accepts `APP_URL` and `CAPTURE_DIR` for live verification.
