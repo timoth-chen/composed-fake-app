@@ -1,0 +1,806 @@
+{
+  "pieces": [
+    {
+      "id": 0,
+      "name": "Burgundy knit polo",
+      "cat": "tops",
+      "color": "#722c40",
+      "style": "Considered",
+      "cost": 95,
+      "imageKey": "burgundy knit polo",
+      "colour": "#722c40",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 1,
+      "name": "Dark indigo straight jeans",
+      "cat": "bottoms",
+      "color": "#202c3d",
+      "style": "Everyday",
+      "cost": 120,
+      "imageKey": "dark indigo straight jeans",
+      "colour": "#202c3d",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "name": "Black suede clogs",
+      "cat": "shoes",
+      "color": "#292823",
+      "style": "Relaxed",
+      "cost": 110,
+      "imageKey": "black suede clogs",
+      "colour": "#292823",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Ink navy heavyweight T-shirt",
+      "cat": "tops",
+      "color": "#202939",
+      "style": "Everyday",
+      "cost": 55,
+      "imageKey": "ink navy heavyweight t-shirt",
+      "colour": "#202939",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Black tailored shorts",
+      "cat": "bottoms",
+      "color": "#252724",
+      "style": "Considered",
+      "cost": 85,
+      "imageKey": "black tailored shorts",
+      "colour": "#252724",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "name": "White leather sneakers",
+      "cat": "shoes",
+      "color": "#e6e6df",
+      "style": "Everyday",
+      "cost": 130,
+      "imageKey": "white leather sneakers",
+      "colour": "#e6e6df",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "name": "White heavyweight T-shirt",
+      "cat": "tops",
+      "color": "#eeece5",
+      "style": "Everyday",
+      "cost": 45,
+      "imageKey": "white heavyweight t-shirt",
+      "colour": "#eeece5",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "name": "Stone straight trousers",
+      "cat": "bottoms",
+      "color": "#b8ae97",
+      "style": "Considered",
+      "cost": 115,
+      "imageKey": "stone straight trousers",
+      "colour": "#b8ae97",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "name": "Slate pleated trousers",
+      "cat": "bottoms",
+      "color": "#53565a",
+      "style": "Considered",
+      "cost": 140,
+      "imageKey": "slate pleated trousers",
+      "colour": "#53565a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "name": "Sage cotton shirt",
+      "cat": "tops",
+      "color": "#919b83",
+      "style": "Relaxed",
+      "cost": 90,
+      "imageKey": "sage cotton shirt",
+      "colour": "#919b83",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "name": "Black crewneck knit",
+      "cat": "tops",
+      "color": "#2b2d28",
+      "style": "Considered",
+      "cost": 105,
+      "imageKey": "black crewneck knit",
+      "colour": "#2b2d28",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "name": "Oatmeal cardigan",
+      "cat": "layers",
+      "color": "#c2b89f",
+      "style": "Relaxed",
+      "cost": 130,
+      "imageKey": "oatmeal cardigan",
+      "colour": "#c2b89f",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "name": "Washed denim shirt",
+      "cat": "tops",
+      "color": "#70828a",
+      "style": "Everyday",
+      "cost": 95,
+      "imageKey": "washed denim shirt",
+      "colour": "#70828a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 13,
+      "name": "Navy chore jacket",
+      "cat": "layers",
+      "color": "#303c46",
+      "style": "Everyday",
+      "cost": 150,
+      "imageKey": "navy chore jacket",
+      "colour": "#303c46",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 14,
+      "name": "Black bomber",
+      "cat": "layers",
+      "color": "#30332d",
+      "style": "Everyday",
+      "cost": 160,
+      "imageKey": "black bomber",
+      "colour": "#30332d",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 15,
+      "name": "Olive cotton overshirt",
+      "cat": "layers",
+      "color": "#6d7453",
+      "style": "Relaxed",
+      "cost": 125,
+      "imageKey": "olive cotton overshirt",
+      "colour": "#6d7453",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 16,
+      "name": "Black leather loafers",
+      "cat": "shoes",
+      "color": "#292823",
+      "style": "Considered",
+      "cost": 165,
+      "imageKey": "black leather loafers",
+      "colour": "#292823",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 17,
+      "name": "Stone suede loafers",
+      "cat": "shoes",
+      "color": "#b2a38a",
+      "style": "Considered",
+      "cost": 145,
+      "imageKey": "stone suede loafers",
+      "colour": "#b2a38a",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 18,
+      "name": "Grey cotton sweatshirt",
+      "cat": "tops",
+      "color": "#999a92",
+      "style": "Relaxed",
+      "cost": 75,
+      "imageKey": "grey cotton sweatshirt",
+      "colour": "#999a92",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    },
+    {
+      "id": 19,
+      "name": "Olive fatigue trousers",
+      "cat": "bottoms",
+      "color": "#74785e",
+      "style": "Relaxed",
+      "cost": 110,
+      "imageKey": "olive fatigue trousers",
+      "colour": "#74785e",
+      "material": "Not tagged",
+      "fit": "Not tagged",
+      "pattern": "Plain",
+      "seasons": [],
+      "occasions": [],
+      "notes": ""
+    }
+  ],
+  "pool": [
+    {
+      "key": "0:Confident:0",
+      "ids": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "key": "1:Confident:0",
+      "ids": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "key": "2:Confident:0",
+      "ids": [
+        15,
+        6,
+        8,
+        16
+      ]
+    },
+    {
+      "key": "0:Approachable:0",
+      "ids": [
+        6,
+        7,
+        2
+      ]
+    },
+    {
+      "key": "0:Polished:0",
+      "ids": [
+        0,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "0:Relaxed:0",
+      "ids": [
+        9,
+        19,
+        5
+      ]
+    },
+    {
+      "key": "0:Sharp:0",
+      "ids": [
+        10,
+        7,
+        17
+      ]
+    },
+    {
+      "key": "0:Low-key:0",
+      "ids": [
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "key": "0:Not sure:0",
+      "ids": [
+        12,
+        8,
+        5
+      ]
+    },
+    {
+      "key": "1:Approachable:0",
+      "ids": [
+        3,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "1:Polished:0",
+      "ids": [
+        6,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "1:Relaxed:0",
+      "ids": [
+        9,
+        19,
+        2
+      ]
+    },
+    {
+      "key": "1:Sharp:0",
+      "ids": [
+        10,
+        1,
+        5
+      ]
+    },
+    {
+      "key": "1:Low-key:0",
+      "ids": [
+        12,
+        4,
+        16
+      ]
+    },
+    {
+      "key": "1:Not sure:0",
+      "ids": [
+        0,
+        7,
+        17
+      ]
+    },
+    {
+      "key": "2:Approachable:0",
+      "ids": [
+        3,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "2:Polished:0",
+      "ids": [
+        6,
+        19,
+        2
+      ]
+    },
+    {
+      "key": "2:Relaxed:0",
+      "ids": [
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "key": "2:Sharp:0",
+      "ids": [
+        10,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "2:Low-key:0",
+      "ids": [
+        12,
+        7,
+        17
+      ]
+    },
+    {
+      "key": "2:Not sure:0",
+      "ids": [
+        0,
+        8,
+        2
+      ]
+    },
+    {
+      "key": "0:Confident:1",
+      "ids": [
+        3,
+        7,
+        5
+      ]
+    },
+    {
+      "key": "0:Approachable:1",
+      "ids": [
+        3,
+        8,
+        5
+      ]
+    },
+    {
+      "key": "0:Polished:1",
+      "ids": [
+        6,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "0:Relaxed:1",
+      "ids": [
+        10,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "0:Sharp:1",
+      "ids": [
+        12,
+        19,
+        2
+      ]
+    },
+    {
+      "key": "0:Low-key:1",
+      "ids": [
+        12,
+        7,
+        5
+      ]
+    },
+    {
+      "key": "0:Not sure:1",
+      "ids": [
+        0,
+        7,
+        16
+      ]
+    },
+    {
+      "key": "1:Confident:1",
+      "ids": [
+        0,
+        7,
+        2
+      ]
+    },
+    {
+      "key": "1:Approachable:1",
+      "ids": [
+        6,
+        8,
+        2
+      ]
+    },
+    {
+      "key": "1:Polished:1",
+      "ids": [
+        9,
+        19,
+        16
+      ]
+    },
+    {
+      "key": "1:Relaxed:1",
+      "ids": [
+        10,
+        1,
+        16
+      ]
+    },
+    {
+      "key": "1:Sharp:1",
+      "ids": [
+        12,
+        4,
+        17
+      ]
+    },
+    {
+      "key": "1:Low-key:1",
+      "ids": [
+        0,
+        7,
+        5
+      ]
+    },
+    {
+      "key": "1:Not sure:1",
+      "ids": [
+        3,
+        8,
+        2
+      ]
+    },
+    {
+      "key": "2:Confident:1",
+      "ids": [
+        0,
+        19,
+        17
+      ]
+    },
+    {
+      "key": "2:Approachable:1",
+      "ids": [
+        6,
+        19,
+        5
+      ]
+    },
+    {
+      "key": "2:Polished:1",
+      "ids": [
+        9,
+        1,
+        16
+      ]
+    },
+    {
+      "key": "2:Relaxed:1",
+      "ids": [
+        10,
+        7,
+        2
+      ]
+    },
+    {
+      "key": "2:Sharp:1",
+      "ids": [
+        12,
+        8,
+        17
+      ]
+    },
+    {
+      "key": "2:Low-key:1",
+      "ids": [
+        0,
+        8,
+        5
+      ]
+    },
+    {
+      "key": "2:Not sure:1",
+      "ids": [
+        3,
+        19,
+        5
+      ]
+    }
+  ],
+  "shopping": [
+    "<div class=\"shopping-workspace\"><h2>Worth it?</h2><p class=\"sub\">Check it against your wardrobe.</p><div class=\"shopping-options\" role=\"group\" aria-label=\"Possible purchase\"><button class=\"active\" data-purchase=\"0\" aria-pressed=\"true\">Jacket</button><button class=\"\" data-purchase=\"1\" aria-pressed=\"false\">Overshirt</button><button class=\"\" data-purchase=\"2\" aria-pressed=\"false\">Slip-ons</button></div><div class=\"shopping-body\"><div class=\"verdict-image purchase-photo\"><img src=\"assets/purchase-0.webp\" alt=\"Black bomber, photographed in store\" width=\"1122\" height=\"1402\"><span class=\"store-photo-label\">On the hanger</span></div><div class=\"shopping-answer\"><h3 class=\"verdict-word \">Skip it</h3><span class=\"match\">Good style match, already owned</span><h4>Black bomber</h4><div class=\"detail\"><strong>Why</strong>Yes, it fits your style. Short hem balances your longer torso, clean shape fits Japanese minimal, and black fits your cool, deep winter colours.</div><div class=\"detail\"><strong>What it adds</strong>No new wardrobe role.</div><div class=\"detail\"><strong>Already covered by</strong>You already own a black bomber with this shape and colour, so this one would duplicate it.</div><div class=\"detail\"><strong>Try instead</strong>Wear your black bomber instead of adding a second one.</div><div class=\"detail\"><strong>Wear it with</strong>Your white heavyweight T-shirt and dark indigo straight jeans.</div></div></div><div class=\"shopping-bottom\"><p class=\"sub\">Sample wardrobe advice. No live photo analysis.</p></div></div>",
+    "<div class=\"shopping-workspace\"><h2>Worth it?</h2><p class=\"sub\">Check it against your wardrobe.</p><div class=\"shopping-options\" role=\"group\" aria-label=\"Possible purchase\"><button class=\"\" data-purchase=\"0\" aria-pressed=\"false\">Jacket</button><button class=\"active\" data-purchase=\"1\" aria-pressed=\"true\">Overshirt</button><button class=\"\" data-purchase=\"2\" aria-pressed=\"false\">Slip-ons</button></div><div class=\"shopping-body\"><div class=\"verdict-image purchase-photo\"><img src=\"assets/purchase-1.webp\" alt=\"Olive cotton overshirt, photographed in store\" width=\"1122\" height=\"1402\"><span class=\"store-photo-label\">On the hanger</span></div><div class=\"shopping-answer\"><h3 class=\"verdict-word \">Skip it</h3><span class=\"match\">Good style match, already owned</span><h4>Olive cotton overshirt</h4><div class=\"detail\"><strong>Why</strong>The olive cotton overshirt works as an open layer over your white heavyweight tee, with slate pleated trousers and black leather loafers for Date night.</div><div class=\"detail\"><strong>What it adds</strong>No new wardrobe role.</div><div class=\"detail\"><strong>Already covered by</strong>You already own this olive cotton overshirt and use it in Date night outfits. Another one would repeat that role.</div><div class=\"detail\"><strong>Try instead</strong>Use the olive cotton overshirt you already own for Date night.</div><div class=\"detail\"><strong>Wear it with</strong>Your white heavyweight T-shirt, slate pleated trousers and black leather loafers.</div></div></div><div class=\"shopping-bottom\"><p class=\"sub\">Sample wardrobe advice. No live photo analysis.</p></div></div>",
+    "<div class=\"shopping-workspace\"><h2>Worth it?</h2><p class=\"sub\">Check it against your wardrobe.</p><div class=\"shopping-options\" role=\"group\" aria-label=\"Possible purchase\"><button class=\"\" data-purchase=\"0\" aria-pressed=\"false\">Jacket</button><button class=\"\" data-purchase=\"1\" aria-pressed=\"false\">Overshirt</button><button class=\"active\" data-purchase=\"2\" aria-pressed=\"true\">Slip-ons</button></div><div class=\"shopping-body\"><div class=\"verdict-image purchase-photo\"><img src=\"assets/purchase-light-canvas.png\" alt=\"Light grey canvas slip-ons, photographed in store\" width=\"1122\" height=\"1402\"><span class=\"store-photo-label\">On display</span></div><div class=\"shopping-answer\"><h3 class=\"verdict-word accent\">Worth trying on</h3><span class=\"match\">Good style match</span><h4>Light grey canvas slip-ons</h4><div class=\"detail\"><strong>Why</strong>A low-profile canvas slip-on suits your relaxed outfits. Light grey keeps the colour quiet, and the simple shape works with straight trousers or tailored shorts.</div><div class=\"detail\"><strong>What it adds</strong>A light canvas shoe you do not own. Your stone suede loafers cover a smarter finish; these add a breathable casual option.</div><div class=\"detail\"><strong>Already covered by</strong>Your stone suede loafers cover a smarter finish; these canvas slip-ons serve a different, casual role.</div><div class=\"detail\"><strong>Try instead</strong>Try your white leather sneakers first to see whether you need another light casual shoe.</div><div class=\"detail\"><strong>Wear it with</strong>The ink navy heavyweight T-shirt and black tailored shorts, or your dark indigo straight jeans.</div><div class=\"detail\"><strong>Try-on check</strong>Walk a few steps: your heel should stay secure without rubbing, and the canvas should not press across your toes.</div></div></div><div class=\"shopping-bottom\"><p class=\"sub\">Sample wardrobe advice. No live photo analysis.</p></div></div>"
+  ],
+  "outfits": [
+    {
+      "name": "The everyday, elevated.",
+      "short": "Denim",
+      "ids": [
+        0,
+        1,
+        2
+      ],
+      "weather": "17° · Cool afternoon",
+      "image": "assets/mannequin-cutout-0.png",
+      "why": "A textured knit brings softness to straight denim. The dark clogs keep the whole line grounded.",
+      "line": "A little texture. An easy silhouette. Entirely you.",
+      "steps": [
+        "Polo open at the collar.",
+        "Keep the knit short and untucked.",
+        "Jeans just over the clogs."
+      ],
+      "goal": "Goal: longer lines, without dressing up.",
+      "style": "Relaxed minimal",
+      "subtitle": "Burgundy & indigo",
+      "reasonGroups": [
+        {
+          "title": "Colour, kept simple",
+          "itemIds": [
+            "top-09"
+          ],
+          "text": "A short burgundy knit brings colour and balances your longer torso."
+        },
+        {
+          "title": "One clean line",
+          "itemIds": [
+            "bottom-03"
+          ],
+          "text": "Straight indigo denim keeps the leg line clean and unbroken."
+        },
+        {
+          "title": "Keep the line going",
+          "itemIds": [
+            "shoe-04"
+          ],
+          "text": "Dark clogs blend into the jeans and keep the finish relaxed."
+        }
+      ]
+    },
+    {
+      "name": "An easier kind of afternoon.",
+      "short": "Casual shorts",
+      "ids": [
+        3,
+        4,
+        5
+      ],
+      "weather": "23° · Warm afternoon",
+      "image": "assets/mannequin-cutout-1.png",
+      "why": "Tailored shorts with a heavyweight navy tee. White sneakers lighten the dark outfit.",
+      "line": "Dark on top, light at the feet. Easy proportions.",
+      "steps": [
+        "Tee untucked, at upper hip.",
+        "Shorts just above the knee.",
+        "Low socks with the sneakers."
+      ],
+      "goal": "Goal: a taller-looking line, kept casual.",
+      "style": "Japanese minimal",
+      "subtitle": "Navy & black",
+      "reasonGroups": [
+        {
+          "title": "A clearer waistline",
+          "itemIds": [
+            "top-11"
+          ],
+          "text": "A short navy tee balances your longer torso and keeps the palette understated."
+        },
+        {
+          "title": "A cleaner leg line",
+          "itemIds": [
+            "bottom-06"
+          ],
+          "text": "Black shorts above the knee leave more leg visible, with a relaxed fit."
+        },
+        {
+          "title": "A light finish",
+          "itemIds": [
+            "shoe-01"
+          ],
+          "text": "White leather sneakers add contrast and keep the finish casual."
+        }
+      ]
+    },
+    {
+      "name": "Olive layers",
+      "short": "Date night",
+      "ids": [
+        15,
+        6,
+        8,
+        16
+      ],
+      "weather": "16° · Cool evening",
+      "image": "assets/mannequin-cutout-2.png",
+      "why": "Your everyday overshirt, with pleated trousers and loafers. The white tee keeps the layers light and easy.",
+      "line": "Open layers and a polished shoe.",
+      "steps": [
+        "Overshirt open.",
+        "Tee short and fully untucked.",
+        "Trousers clear of the loafers."
+      ],
+      "requireLayer": true,
+      "stylistNote": "The loafers give familiar pieces an evening feel.",
+      "goal": "Goal: a taller-looking line for date night.",
+      "style": "Soft tailoring",
+      "subtitle": "Olive layers",
+      "reasonGroups": [
+        {
+          "title": "Layers that frame",
+          "itemIds": [
+            "outer-02",
+            "top-01"
+          ],
+          "text": "Open layers create a vertical line; a short tee clears the waist."
+        },
+        {
+          "title": "A straighter silhouette",
+          "itemIds": [
+            "bottom-05"
+          ],
+          "text": "Straight pleats continue the line without clinging."
+        },
+        {
+          "title": "An evening finish",
+          "itemIds": [
+            "shoe-03"
+          ],
+          "text": "Dark loafers continue that line and suit date night."
+        }
+      ]
+    }
+  ]
+}

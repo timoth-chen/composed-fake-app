@@ -80,3 +80,11 @@ Log shows every worn piece and its wear count, with no cost figures. Both entry 
 Clean recording hides prototype labels and the footer without changing viewport width or hiding navigation. Export produces the wardrobe JSON download and confirmation. Nigel critique remains in a dismissible panel. Build-a-fit retains List order and updates the active saved fit after piece changes from either Rack or List. Shopping uses consistent ordered sections and identifies duplicate items as “Good style match, already owned”.
 
 Run `node tests/flows.cjs`, `node tests/rack-complete.cjs`, and `node tests/demo-audit-browser.cjs` (with `PLAYWRIGHT_MODULE` if needed). The audit browser check supports `APP_URL` and `CAPTURE_DIR`, exercises all 42 selections, delays image loading, verifies downloads, and captures desktop/phone evidence. Earlier screenshots and browser scripts document prior versions; the audit suite covers the current selection and recording behavior.
+
+## Off-white minimal runner
+
+Wardrobe contains 21 pieces: the original 16 rail garments and five pairs in the Shoe drawer. The new runner is Everyday, making Style Mix Owned 8 Everyday / 7 Considered / 6 Relaxed. Both wardrobe and Log totals derive from the item count. Existing piece IDs, first picks, Shopping and the other 40 outfit selections are unchanged. Only the Everyday / Relaxed and Casual afternoon / Relaxed alternates receive the runner; Date night, Polished and Sharp selections retain their shoes. Build-a-fit marks the runner compatible with casual denim, tees, shirts, shorts and relaxed trousers, rather than Date night layers or smart pleated-trouser fits.
+
+`node tests/runner.cjs` checks preservation against the previous wardrobe and catalogue. `node tests/runner-browser.cjs` verifies desktop/phone drawer, List, outfit, four model views, Build-a-fit and counts. It supports `APP_URL` / `CAPTURE_DIR` for live evidence.
+
+The new product image and two coherent four-view runner outfits were made with the built-in image generation tool. Asset paths, references and prompts are recorded in `dist/assets/runner-generation.json`. Existing image files remain unchanged.

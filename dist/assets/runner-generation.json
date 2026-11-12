@@ -1,0 +1,23 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "file": "off-white-minimal-runner.png",
+      "prompt": "Use case: product-mockup. Generate ONE wardrobe catalogue product photograph of a PAIR of men's off-white minimal runners, three-quarter front angle, same composition, scale, camera, soft studio lighting and clean cutout photographic style as reference. New shoe design: low-profile simple casual runner, warm off-white / cream textile with subtle matching suede panels, modest slim cream running sole, cream laces. Quiet everyday casual shoe, distinctly a minimal runner rather than a plain leather tennis shoe. No bright athletic styling, no bright colours, no big logo, no visible branding or text. Pair centered with ample transparent margin on a square image, fully visible, same sizing as reference. Genuinely transparent background for displaying on the app's warm cream surface. Do not include the reference white leather sneakers; create the new off-white runner pair only."
+    },
+    {
+      "file": "look-runner-casual.png",
+      "prompt": "Use case: precise-object-edit. Image 1 is the target four-view faceless mannequin sheet. Image 2 is the exact new off-white minimal runner shoe pair. Image 3 is the exact existing dark indigo straight jeans product reference. In image 1, replace ONLY the stone trousers with the dark indigo straight jeans from image 3, and replace ONLY the stone loafers with the cream/off-white minimal runners from image 2. Keep the exact black crewneck knit unchanged, no extra layer or shirt, no belt added. Preserve mannequin head, body, proportions, poses, positions and the four views front/right/back/left, original wide canvas layout and baseline. All four views show exactly black crewneck knit, dark indigo straight jeans, off-white minimal runners. Trouser waistband meets the black knit hem naturally with no exposed waist and no stone/beige trouser fabric anywhere. Runners are quiet cream, low-profile casual suede/textile, no big logo, no bright colours. Genuine transparent background, same photographic lighting and scale, no text."
+    },
+    {
+      "file": "look-runner-everyday.png",
+      "prompt": "Use case: precise-object-edit. Image 1 is the target four-view faceless mannequin sheet. Image 2 is the exact new off-white minimal runner shoe pair. Image 3 is the exact existing slate pleated trousers product reference. In image 1, replace ONLY the stone trousers with the slate pleated trousers from image 3, and replace ONLY the stone loafers with the cream/off-white minimal runners from image 2. Keep the exact black crewneck knit unchanged, no extra layer or shirt, no belt added. Preserve mannequin head, body, proportions, poses, positions and the four views front/right/back/left, original wide canvas layout and baseline. All four views show exactly black crewneck knit, slate pleated trousers, off-white minimal runners. Trouser waistband meets the black knit hem naturally with no exposed waist and no stone/beige trouser fabric anywhere. Runners are quiet cream, low-profile casual suede/textile, no big logo, no bright colours. Genuine transparent background, same photographic lighting and scale, no text."
+    }
+  ],
+  "references": [
+    "wardrobe/shoe-01-front-320.webp",
+    "look-sharp.png",
+    "wardrobe/bottom-03-front-960.webp",
+    "wardrobe/bottom-05-front-960.webp"
+  ]
+}
