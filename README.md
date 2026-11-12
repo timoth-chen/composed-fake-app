@@ -62,3 +62,11 @@ The existing How you come across options select wardrobe-based looks per occasio
 Today keeps the previous model element mounted until the complete replacement image set has decoded. A revision guard discards stale image loads during rapid changes. No tabs, options or buttons were added.
 
 `tests/full-outfit-browser.cjs` deliberately delays image requests for How you come across, alternate and occasion changes, checks that the old model remains mounted, and records `previews/today-full-outfit-swaps.webm`. The recorded check sampled 408 frames without a blank model. Comparison screenshots: `previews/today-confident-full.png`, `previews/today-relaxed-full.png`, `previews/today-alternate-full.png`.
+
+## Live consistency fixes
+
+Stone suede loafers remain in the 20-piece owned wardrobe. Shopping's third candidate is now **Light grey canvas slip-ons**, which are not owned. The owned stone loafers use a photographic thumbnail with visible suede detail and a dark sole in both Rack and List. The olive overshirt has a **Good** match and is skipped because it is already owned, consistent with its Date night use. Bomber copy explains the duplicate directly.
+
+Today tags name the actual shown outfit. Wore it derives its checked state from that outfit's in-memory log, avoids duplicate taps, and resets with Log on reload. An embedded preview of the original model is visible on first load/reload while full-size model images decode; it uses the same retained-model swap mechanism as later outfit changes.
+
+`tests/consistency-browser.cjs` supports `APP_URL` and `CAPTURE_DIR` to verify the deployed app directly. It delays first-load, reload and swap images and records screenshots and a video covering the nine requested fixes.
