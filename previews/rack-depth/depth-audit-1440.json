@@ -1,0 +1,51 @@
+[
+  {
+    "id": 7,
+    "src": "assets/rack/side/stone-trousers.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.285
+  },
+  {
+    "id": 9,
+    "src": "assets/rack/side/sage-shirt.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.375
+  },
+  {
+    "id": 10,
+    "src": "assets/rack/side/black-knit.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.3826530612244898
+  },
+  {
+    "id": 11,
+    "src": "assets/rack/side/oatmeal-cardigan.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.39285714285714285
+  },
+  {
+    "id": 12,
+    "src": "assets/rack/side/denim-shirt.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.39285714285714285
+  },
+  {
+    "id": 13,
+    "src": "assets/rack/side/navy-chore.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.41450777202072536
+  },
+  {
+    "id": 18,
+    "src": "assets/rack/side/grey-sweatshirt.png",
+    "horizontalScale": 1,
+    "cornerAlpha": 0,
+    "bodyAspect": 0.37948717948717947
+  }
+]

@@ -106,3 +106,9 @@ The weather basis is the app’s displayed **17°C · Cool day**, not a live wea
 `dist/clean-outfits.json` records the complete catalogue, reused/new photo paths and weather changes. The exact built-in image-generation prompts and references are in `dist/assets/clean-outfits/generation.json`. Model preloading is limited to the current first pick and alternate; the previous complete model stays visible until its replacement decodes.
 
 Run `node tests/clean-models.cjs` for catalogue/weather and unchanged-surface checks. `node tests/clean-model-browser.cjs` inspects all **42 looks / 168 rendered views**, checks transparent backgrounds, writes contact sheets and an audit JSON, and verifies dark-mode phone rendering and slow-swap continuity. It accepts `APP_URL` / `CAPTURE_DIR` for live evidence.
+
+## Rounded natural rack side views
+
+Seven pieces formerly used their front photo rotated with CSS, making them appear flat and stretched. Sage cotton shirt, Black crewneck knit, Oatmeal cardigan, Washed denim shirt, Navy chore jacket, Grey cotton sweatshirt and Stone straight trousers now use dedicated natural side/three-quarter product photos with rounded volume, matching the black bomber's display style. No simulated side-view flattening remains.
+
+Original front photographs, List thumbnails, all 42 Today outfits, piece data, shoe drawer, names and counts remain unchanged. Prompt/asset records: `dist/assets/rack/side/generation.json`. `tests/rack-depth.cjs` checks those invariants, and `tests/rack-depth-browser.cjs` checks transparent side-photo silhouettes without horizontal squashing, front selection, all rail filters and phone/desktop views.
