@@ -72,3 +72,18 @@ body.record-mode #record-explanation{display:block;margin:5px 24px;font-size:11p
 .model-slice-bottoms{clip-path:inset(49% 0 7%);z-index:1}
 .model-slice-shoes{clip-path:inset(93% 0 0);z-index:3}
 @media(max-width:650px){.app-header-tools{gap:8px}.app-shell #record-mode{font-size:10px;line-height:1.15;padding:6px 7px;min-height:36px}}
+
+/* Today timing and viewport-pinned wear actions, above the navigation. */
+.app-shell .today-timing{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.app-shell .today-timing button{min-height:40px;margin:0;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.app-shell .today-timing button.active{border-color:var(--accent);color:var(--accent);background:var(--soft)}
+.app-shell .today-locked .controls[hidden]{display:none}
+.app-shell .tomorrow-lock{border:1px solid var(--line);border-radius:6px;padding:20px;margin-top:18px;background:var(--paper)}
+.app-shell .tomorrow-lock h3{margin-top:0}.app-shell .tomorrow-lock p{font-size:13px;line-height:1.6}
+.app-shell #today-wear-bar{flex:none;position:relative;z-index:3;background:#f3f0e9;border-top:1px solid #e4ddce;padding:8px max(18px,calc((100% - 624px)/2));color:#1b1d1f}
+.app-shell #today-wear-bar .actions{display:flex;gap:8px;margin:0}
+.app-shell #today-wear-bar button{flex:1;min-height:44px;margin:0;font-size:12px}
+.app-shell #screen.today-has-wear-bar>.page{padding-bottom:90px}
+body.dark .app-shell #today-wear-bar{background:#191b1e;border-color:#45483f;color:#efeae0}
+.app-shell .tomorrow-lock .text-button{margin-right:14px;min-height:36px}
+body:has(#today-wear-bar) #toast{bottom:180px}
