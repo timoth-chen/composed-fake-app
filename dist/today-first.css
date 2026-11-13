@@ -121,3 +121,11 @@ body.dark .app-shell .screen-today .today-first-actions .another-outfit{border-c
 
 body.record-mode:has(.screen-today) #record-explanation{display:none!important}
 .app-shell .screen-today #lock-tomorrow:disabled{opacity:.4;cursor:default}
+
+/* Camera presentation changes only while Clean recording is on. */
+body.record-mode #record-explanation,body.record-mode [data-recording-demo],body.record-mode #pretend-morning{display:none!important}
+body.record-mode,body.record-mode *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent}
+body.record-mode .tomorrow-lock-actions:has(#pretend-morning){grid-template-columns:1fr}
+body.record-mode .style-mix-panel:has([data-mix-selected-total="0"]) .mix-breakdowns{display:none}
+.app-shell #screen.today-has-wear-bar>.page{padding-bottom:160px}
+.app-shell #screen.screen-today{scroll-padding-top:20px;scroll-padding-bottom:100px}
