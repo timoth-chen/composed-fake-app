@@ -118,3 +118,6 @@ body.dark .app-shell #today-wear-bar button{--paper:#191b1e;--ink:#efeae0;--line
 body:has(.screen-today) .app-header-tools button{min-height:44px;min-width:44px}
 .app-shell .screen-today .daily-outfit .controls[hidden]{display:none!important}
 body.dark .app-shell .screen-today .today-first-actions .another-outfit{border-color:var(--line);color:var(--ink);background:var(--paper)}
+
+body.record-mode:has(.screen-today) #record-explanation{display:none!important}
+.app-shell .screen-today #lock-tomorrow:disabled{opacity:.4;cursor:default}
