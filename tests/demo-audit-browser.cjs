@@ -1,5 +1,5 @@
-const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/private/tmp/composed-qa/node_modules/playwright'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const base=process.env.APP_URL||'http://localhost:4173',dir=process.env.CAPTURE_DIR||'previews/demo-audit';fs.mkdirSync(dir,{recursive:true});
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const base=process.env.APP_URL||'http://localhost:4173',dir=process.env.CAPTURE_DIR||'.cache/qa/demo-audit';fs.mkdirSync(dir,{recursive:true});
 (async()=>{const b=await chromium.launch({headless:true,channel:'chrome'});const errors=[];try{
 const p=await b.newPage({viewport:{width:1280,height:1050},timezoneId:'America/Toronto'});p.on('pageerror',e=>errors.push(e.message));await p.clock.install({time:new Date('2026-11-12T03:45:00Z')});await p.goto(base+'/?v=consistent-demo-11');await p.waitForSelector('#occasion');
 const ready=async()=>{await p.waitForFunction(()=>![...document.querySelectorAll('[data-log]')].some(b=>b.disabled));await p.locator('#model-viewer img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));};

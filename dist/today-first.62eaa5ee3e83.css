@@ -1,0 +1,196 @@
+/* Limited to Today's first screen plus the explicit recording controls. */
+#record-mode{font-size:11px;min-height:36px;padding:7px 10px;border:1px solid var(--line);border-radius:5px}
+.app-shell #screen.screen-today{background:#f3f0e9;color:#1b1d1f}
+.app-shell #screen.screen-today>.page{padding-top:10px;--paper:#f3f0e9;--ink:#1b1d1f;--muted:#6e7268;--line:#e4ddce;--accent:#7a263f}
+.app-shell .screen-today .daily-outfit .topline{font-size:10px;line-height:1.4}
+.app-shell .screen-today .daily-outfit .morning-greeting{margin:7px 0 2px;line-height:1.4}
+.app-shell .screen-today .daily-outfit h2{margin:3px 0 5px;font-size:26px;line-height:1.15}
+.app-shell .screen-today .daily-outfit>p.sub{margin:5px 0 8px;line-height:1.5}
+.app-shell .screen-today .daily-outfit .controls{margin:9px 0;gap:12px}
+.app-shell .screen-today .daily-outfit .controls label{line-height:1.4}
+.app-shell .screen-today .daily-outfit .controls select{margin-top:4px;min-height:42px;padding:8px 6px}
+.app-shell .screen-today .daily-outfit .purpose-weather{margin:0 0 6px;gap:8px}
+.app-shell .screen-today .daily-outfit .purpose-weather>div{gap:2px;font-size:10px;line-height:1.4}
+.app-shell .screen-today .daily-outfit .energy-pill{padding:4px 7px}
+.app-shell .screen-today .daily-outfit .photo-wrap,.app-shell .screen-today .daily-outfit .outfit-photo{background:#f3f0e9!important;background-image:none!important;border-radius:0}
+.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 570px),420px);max-height:none;width:100%;object-fit:contain}
+.today-first-actions{padding-top:8px}.app-shell .today-first-actions .another-outfit{display:block;width:100%;min-height:44px;padding:10px 12px;border:1px solid #7a263f;color:#7a263f;background:#fff;border-radius:6px;font-size:13px;font-weight:500}
+
+.app-shell .screen-today .daily-outfit .pick-heading{margin-top:20px}
+body.record-mode .prototype-badge,body.record-mode .demo-label,body.record-mode .app-shell>footer{display:none!important}
+body.record-mode{background:#f3f0e9}body.record-mode .app-shell.phone{max-width:440px!important;margin:0 auto!important;border:0!important;outline:0!important;box-shadow:none!important}
+body.record-mode #record-mode{opacity:0}body.record-mode #record-mode:hover,body.record-mode #record-mode:focus-visible{opacity:1}
+@media(min-width:700px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(160px,calc(100dvh - 510px),440px)}}
+@media(max-height:650px){.app-shell .screen-today .daily-outfit .controls{margin:6px 0}.app-shell .screen-today .daily-outfit .purpose-weather{margin-bottom:3px}.app-shell .screen-today .daily-outfit .outfit-photo{height:110px}}
+@media(max-height:650px){.app-shell .screen-today .daily-outfit .outfit-photo{height:82px}}
+.app-shell #screen.screen-today{overflow-anchor:none;scroll-behavior:auto}
+@media(max-width:699px) and (min-height:651px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 520px),420px)}}
+.model-viewer{position:relative;touch-action:pan-y;user-select:none;cursor:grab}.model-viewer:active{cursor:grabbing}.model-viewer:focus-visible{outline:2px solid #7a263f;outline-offset:3px}.model-turn-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;background:#f3f0e9}.model-turn-overlay[hidden]{display:none}.model-turn-clip{height:calc(100% - 22px);aspect-ratio:.5;overflow:hidden;position:relative;max-width:80%}.model-turn-sheet{position:absolute;top:0;left:0;width:400%;max-width:none;height:100%;object-fit:fill;display:block;will-change:transform}.model-turn-arrow{position:absolute;top:calc(50% - 22px);height:44px;width:36px;min-height:44px;padding:0;border:1px solid #e4ddce;border-radius:5px;background:#fff;color:#7a263f;font-size:25px;z-index:2}.model-turn-prev{left:0}.model-turn-next{right:0}.model-turn-hint{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);font-size:9px;line-height:1.5;color:#6e7268;white-space:nowrap;pointer-events:none;background:#f3f0e9;padding:1px 5px}
+.model-viewer img{pointer-events:none;-webkit-user-drag:none}
+/* Respect the app theme while retaining the requested fixed cream model canvas. */
+body.dark .app-shell #screen.screen-today{background:#191b1e;color:#efeae0}
+body.dark .app-shell #screen.screen-today>.page{--paper:#191b1e;--ink:#efeae0;--muted:#b6b8af;--line:#45483f;--accent:#c995a1}
+body.dark.record-mode{background:#191b1e}
+.app-shell .screen-today .daily-outfit .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.app-shell .screen-today .daily-outfit .controls label{font-size:12px;letter-spacing:0;line-height:1.4;min-width:0}
+.app-shell .screen-today .daily-outfit .controls select{height:52px;min-height:52px;width:100%;font-size:16px;line-height:1.4;padding:12px 9px;color:var(--ink);background:var(--paper);border-color:var(--line);color-scheme:light}
+.app-shell .screen-today .daily-outfit .controls select option{font-size:16px;background:var(--paper);color:var(--ink)}
+body.dark .app-shell .screen-today .daily-outfit .controls select{color-scheme:dark}
+@media(max-width:699px) and (min-height:651px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 555px),420px)}}
+@media(max-height:650px){.app-shell .screen-today .daily-outfit .outfit-photo{height:50px}.app-shell .screen-today .daily-outfit .controls label{font-size:11px}}
+@media(max-height:650px){.app-shell #screen.screen-today>.page{padding-top:2px}.app-shell .screen-today .daily-outfit .morning-greeting{margin-top:3px}}
+@media(min-width:700px){.app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(160px,calc(100dvh - 530px),420px)}}
+/* The model canvas and its controls follow the selected theme. */
+body.dark .app-shell .screen-today .daily-outfit .photo-wrap,
+body.dark .app-shell .screen-today .daily-outfit .outfit-photo{background:#191b1e!important;background-image:none!important}
+body.dark .model-turn-overlay,body.dark .model-turn-hint{background:#191b1e}
+body.dark .model-turn-hint{color:#b6b8af}
+body.dark .model-turn-arrow{background:#24262a;color:#c995a1;border-color:#45483f}
+body.dark .model-viewer:focus-visible{outline-color:#c995a1}
+body.dark .app-shell .today-first-actions .another-outfit{background:#24262a;color:#c995a1;border-color:#c995a1}
+/* Preserve the last fully decoded model during Today selection changes. */
+.app-shell #screen.screen-today>.page{animation:none}
+
+/* Recording preserves the same viewport and fixed navigation on desktop and phone. */
+body.record-mode .app-shell.phone{width:100%!important;max-width:none!important;height:100dvh!important;margin:0!important}
+body.record-mode #record-mode{opacity:1}
+body.record-mode #tabs{padding-left:18px;padding-right:18px;flex-shrink:0}
+body.record-mode #record-explanation{display:block;margin:5px 24px;font-size:11px;color:var(--muted)}
+#record-explanation{flex-shrink:0}
+.reason-cards .reason-card strong,.reason-cards .reason-card span{white-space:normal;overflow:visible;text-overflow:clip;width:100%;word-break:normal}
+.nigel-critique{padding:18px;border:1px solid var(--accent);margin-top:18px;background:var(--paper)}
+#toast{bottom:110px;max-width:calc(100vw - 36px);box-sizing:border-box}
+/* Photo canvases overlap on the rail, so they must remain transparent. */
+.rail-photographs{background:transparent}
+.rail-photographs:has(img:not(.photo-ready))::before{content:"";position:absolute;top:10%;left:50%;width:24px;height:80%;transform:translateX(-50%);border-radius:5px;background:var(--soft);opacity:.45;pointer-events:none}
+
+@media(max-width:650px){.app-header-tools{gap:8px}.app-shell #record-mode{font-size:10px;line-height:1.15;padding:6px 7px;min-height:36px}}
+
+/* Today timing and viewport-pinned wear actions, above the navigation. */
+.app-shell .today-timing{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.app-shell .today-timing button{min-height:40px;margin:0;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.app-shell .today-timing button.active{border-color:var(--accent);color:var(--accent);background:var(--soft)}
+.app-shell .today-locked .controls[hidden]{display:none}
+.app-shell .tomorrow-lock{border:1px solid var(--line);border-radius:6px;padding:20px;margin-top:18px;background:var(--paper)}
+.app-shell .tomorrow-lock h3{margin-top:0}.app-shell .tomorrow-lock p{font-size:13px;line-height:1.6}
+.app-shell #today-wear-bar{flex:none;position:relative;z-index:3;background:#f3f0e9;border-top:1px solid #e4ddce;padding:8px max(18px,calc((100% - 624px)/2));color:#1b1d1f}
+.app-shell #today-wear-bar .actions{display:flex;gap:8px;margin:0}
+.app-shell #today-wear-bar button{flex:1;min-height:44px;margin:0;font-size:12px}
+.app-shell #screen.today-has-wear-bar>.page{padding-bottom:90px}
+body.dark .app-shell #today-wear-bar{background:#191b1e;border-color:#45483f;color:#efeae0}
+
+body:has(#today-wear-bar) #toast{bottom:180px}
+
+/* One Today field/button system; richer reason cards may grow to fit their copy. */
+.app-shell .screen-today{--today-radius:6px;--today-gap:12px}
+.app-shell .screen-today button,.app-shell #today-wear-bar button{box-sizing:border-box;min-height:52px;min-width:52px;border:1px solid var(--line);border-radius:6px;padding:12px;font-family:inherit;font-size:17px;font-weight:500;line-height:1.25;text-decoration:none;background:var(--paper);color:var(--ink);margin:0;white-space:normal}
+.app-shell .screen-today button.primary,.app-shell #today-wear-bar button.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.app-shell .screen-today button.active,.app-shell .screen-today button[aria-pressed="true"],.app-shell .screen-today button:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--soft)}
+.app-shell .screen-today .daily-outfit .controls{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+.app-shell .screen-today .daily-outfit .controls label{position:relative;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:0}
+.app-shell .screen-today .daily-outfit .controls select{box-sizing:border-box;appearance:none;-webkit-appearance:none;height:52px;min-height:52px;border:1px solid var(--line);border-radius:6px;line-height:1.25;font-family:inherit;font-size:17px;font-weight:500;padding:12px 38px 12px 12px;margin-top:6px;background:var(--paper);color:var(--ink)}
+.app-shell .screen-today .daily-outfit .controls label::after{content:'';position:absolute;right:18px;bottom:23px;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);pointer-events:none}
+.app-shell .screen-today .daily-outfit .controls select:focus{border-color:var(--accent);color:var(--accent);background:var(--soft);outline:2px solid var(--accent);outline-offset:2px}
+.app-shell .screen-today .today-timing{gap:12px;margin:12px 0}
+.app-shell .screen-today .lock-tomorrow{display:block;width:100%;height:52px;margin-top:12px}
+.app-shell .screen-today .tomorrow-lock{padding:20px;border-radius:6px}
+.app-shell .screen-today .tomorrow-lock h3{font-size:16px;line-height:1.5}
+.app-shell .screen-today .tomorrow-lock p{font-size:13px;line-height:1.6}
+.app-shell .screen-today .tomorrow-lock-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.app-shell .screen-today .tomorrow-lock-actions button{height:52px;padding:6px}
+.app-shell .screen-today .today-first-actions .another-outfit{height:52px;font-size:17px;border-color:var(--line);color:var(--ink);background:var(--paper)}
+.app-shell .screen-today .swap{display:block;width:100%;margin:12px 0;min-height:52px}
+.app-shell .screen-today .model-turn-arrow{width:52px;height:52px;padding:0;top:calc(50% - 26px)}
+.app-shell .screen-today .reason-cards{gap:12px}
+.app-shell .screen-today .reason-card{padding:20px;text-align:left}
+.app-shell .screen-today .reason-card strong{font-size:16px;line-height:1.5}.app-shell .screen-today .reason-card span{font-size:13px;line-height:1.6}
+.app-shell #today-wear-bar .actions{gap:12px}
+.app-shell #today-wear-bar button{height:52px;--paper:#f3f0e9;--ink:#1b1d1f;--line:#e4ddce}
+body.dark .app-shell #today-wear-bar button{--paper:#191b1e;--ink:#efeae0;--line:#45483f}
+.app-shell .screen-today .tomorrow-preview{font-size:12px;line-height:1.5;margin:12px 0;color:var(--accent)}
+body:has(.screen-today) .app-header-tools button{min-height:44px;min-width:44px}
+.app-shell .screen-today .daily-outfit .controls[hidden]{display:none!important}
+body.dark .app-shell .screen-today .today-first-actions .another-outfit{border-color:var(--line);color:var(--ink);background:var(--paper)}
+
+body.record-mode:has(.screen-today) #record-explanation{display:none!important}
+.app-shell .screen-today #lock-tomorrow:disabled{opacity:.4;cursor:default}
+
+/* Camera presentation changes only while Clean recording is on. */
+body.record-mode #record-explanation,body.record-mode [data-recording-demo],body.record-mode #pretend-morning{display:none!important}
+body.record-mode,body.record-mode *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent}
+body.record-mode .tomorrow-lock-actions:has(#pretend-morning){grid-template-columns:1fr}
+body.record-mode .style-mix-panel:has([data-mix-selected-total="0"]) .mix-breakdowns{display:none}
+.app-shell #screen.today-has-wear-bar>.page{padding-bottom:160px}
+.app-shell #screen.screen-today{scroll-padding-top:20px;scroll-padding-bottom:100px}
+
+/* Light polish, following unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+   Existing images, image geometry, content and behavior remain unchanged. */
+.app-shell #screen>.page{animation:none}
+.app-shell .page .topline,.app-shell .page .section-label,.app-shell .page .flow-chapter{font-size:11px;letter-spacing:.4px;line-height:1.5}
+.app-shell #tabs button{font-size:11px;min-width:44px}
+.app-shell.phone>footer{font-size:11px;line-height:1.45;padding:4px 12px calc(4px + env(safe-area-inset-bottom))}
+.app-shell .demo-label,.app-shell .demo-label span{font-size:11px;letter-spacing:0;line-height:1.4}
+.app-shell .demo-label{margin:4px auto 8px;gap:12px}
+.app-shell .prototype-badge{font-size:11px;letter-spacing:0;line-height:1.2;max-width:88px;text-align:center;padding:4px 8px}
+.app-shell .app-header-tools{gap:12px}
+.app-shell .page button:focus-visible,.app-shell .page summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.app-shell .screen-today .daily-outfit .topline{font-size:11px}
+.app-shell .screen-today .daily-outfit .morning-greeting{margin:4px 0 0}
+.app-shell .screen-today .daily-outfit h2{margin:0 0 4px}
+.app-shell .screen-today .daily-outfit>p.sub{margin:4px 0;line-height:1.4}
+.app-shell .screen-today .daily-outfit .purpose-weather>div,.app-shell .screen-today .daily-outfit .energy-pill{font-size:11px}
+.app-shell .screen-today .model-turn-hint{font-size:11px}
+.app-shell .screen-today .outfit-piece-thumb span{font-size:12px;line-height:1.4}
+.app-shell .screen-wardrobe> .page>h2{margin:8px 0}
+.app-shell .screen-wardrobe> .page>p.sub{margin:8px 0 12px}
+.app-shell .screen-wardrobe .wardrobe-tools{margin-top:0;margin-bottom:12px}
+.app-shell .screen-wardrobe .wardrobe-tools span{font-size:11px;line-height:1.5}
+.app-shell .screen-wardrobe .wardrobe-view-toggle{margin:12px 0}
+.app-shell .screen-wardrobe .hint{padding:12px;margin:12px 0;font-size:12px;line-height:1.5}
+.app-shell .screen-wardrobe .filters{gap:8px;margin:12px 0}
+.app-shell .screen-wardrobe .filters button,.app-shell .screen-wardrobe .rail-controls button,.app-shell .screen-wardrobe .like{min-width:44px;min-height:44px}
+.app-shell .screen-wardrobe .rack-instruction{margin:8px 0;font-size:12px}
+.app-shell .screen-wardrobe .rail-group-label{font-size:11px;letter-spacing:0}
+.app-shell .screen-wardrobe .rail-caption{padding:16px 0}
+.app-shell .screen-wardrobe .rail-caption p,.app-shell .screen-wardrobe .shoe-drawer summary small{font-size:12px;line-height:1.5}
+.app-shell .screen-wardrobe .edit-piece{min-height:44px;min-width:44px;font-size:12px}
+.app-shell .screen-wardrobe .item-name{font-size:14px;line-height:1.4}
+.app-shell .screen-wardrobe .item small{font-size:12px;line-height:1.5}
+.app-shell .screen-shopping .shopping-options{gap:12px;margin:16px 0}
+.app-shell .screen-shopping .shopping-options button{font-size:14px}
+.app-shell .screen-shopping .store-photo-label{font-size:11px;line-height:1.4}
+.app-shell .screen-shopping .shopping-answer .detail{font-size:14px;line-height:1.65;padding:16px 0}
+.app-shell .screen-shopping .detail strong{font-size:12px;letter-spacing:0;line-height:1.5;margin-bottom:4px}
+.app-shell .screen-shopping .shopping-answer .match{font-size:12px;letter-spacing:0;line-height:1.5}
+.app-shell .screen-log .stats{gap:12px;margin:16px 0}
+.app-shell .screen-log .stat{padding:16px}
+.app-shell .screen-log .stat span{font-size:12px;line-height:1.5}
+.app-shell .screen-log .section-label{margin:16px 0 8px}
+.app-shell .screen-log .empty{padding:0;margin:8px 0 16px;font-size:13px;line-height:1.5}
+.app-shell .screen-log .style-mix-panel{margin-top:24px;padding-top:20px}
+.app-shell .screen-log [data-mix]{min-height:44px;min-width:44px;font-size:13px}
+.app-shell .screen-log .mix-breakdown h4{font-size:11px;letter-spacing:.4px}
+.app-shell .screen-log .mix-pie-callout text{font-size:16px}
+.app-shell .screen-log .mix-list-disclosure>summary{min-height:44px;box-sizing:border-box;display:flex;align-items:center;gap:8px;font-size:13px}
+.app-shell .screen-log .mix-list-disclosure>summary::before{content:'▶';font-size:10px}
+.app-shell .screen-log .mix-list-disclosure[open]>summary::before{content:'▼'}
+.app-shell .screen-log .mix-list-disclosure>summary{list-style:none}
+.app-shell .screen-log .mix-list-disclosure>summary::-webkit-details-marker{display:none}
+@media(max-width:650px){
+ .app-shell.phone>header{padding:8px 0;min-height:56px}
+ .app-shell .app-header-tools{gap:8px}
+ .app-shell #screen.screen-today>.page{padding-top:4px}
+ .app-shell .screen-today .purpose-weather{flex-wrap:wrap;gap:8px}
+ .app-shell .screen-wardrobe .wardrobe-tools{gap:8px;align-items:center;flex-wrap:wrap}
+ .app-shell .screen-wardrobe .filters button{font-size:12px;padding:8px}
+ .app-shell .screen-shopping> .page{padding-top:16px}
+ .app-shell .screen-shopping .shopping-workspace>h2{margin:0 0 8px}
+ .app-shell .screen-shopping .shopping-workspace>p.sub{margin:8px 0}
+}
+.app-shell .screen-today .daily-outfit{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:center}
+.app-shell .screen-today .daily-outfit>*{grid-column:1/-1;min-width:0}
+.app-shell .screen-today .daily-outfit>h2{grid-column:1;grid-row:2}
+.app-shell .screen-today .daily-outfit>.morning-greeting{grid-column:2;grid-row:2;font-size:12px;margin:0;text-align:right}
+.app-shell .screen-today .daily-outfit>.today-timing{margin-bottom:0}
+.app-shell .screen-wardrobe [data-like]{min-width:44px;min-height:44px}
+.app-shell .screen-today .daily-wear .step>span{font-size:11px}

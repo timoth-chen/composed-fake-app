@@ -1,124 +1,68 @@
 # Composed
 
-A phone-first static wardrobe prototype built with HTML, CSS and vanilla JavaScript. No framework build, backend, account or database. Run `node scripts/prepare-static.cjs` after source changes and before browser checks or publishing; `dist/app.js` and the original CSS files are canonical sources. The helper writes content-versioned asset filenames to prevent stale Render CDN scripts.
+A phone-first wardrobe prototype using HTML, CSS and vanilla JavaScript. It runs as a static site, without a backend or database.
 
 ## Run locally
 
 ```sh
-python3 -m http.server 4173 --directory dist
+npm install
+npm run build
+npm run dev
 ```
 
-Open http://localhost:4173. To use a phone on the same Wi-Fi, replace localhost with the computer's LAN IP.
+Open http://localhost:4173. A phone on the same Wi-Fi can use the computer's LAN IP instead of localhost. Installed Google Chrome is used by the browser checks.
 
-## App
+## Source and generated files
 
-- **Today:** one continuous Outfit → Wear → Why flow, occasion and “How you come across” controls, one context-preserving alternate, wear logging, and faceless mannequin turn views.
-- **Wardrobe:** photographic rail adapted from the Composed landing page, shoe drawer, list view, outfit builder, clothing tags and editing, and JSON export.
-- **Shopping:** three illustrative purchase checks with qualitative matches, photographs and styling advice. No purchase links or percentages.
-- **Log:** wears and rejections, logging streak, closet use, piece wear counts and Owned/Worn/Liked Style Mix with style, colour and clothing type.
+- `dist/app.js` and the six unversioned HTML/CSS files in `dist/` are the app source.
+- `dist/assets/` contains the clothing photography, four-view model sheets, fonts and provenance records. Keep these assets intact.
+- `scripts/prepare-static.cjs` writes hashed JS/CSS copies and updates `dist/index.html`. Run `npm run build` after editing source, before testing or publishing.
+- New hashed bundles are ignored to keep intermediate edits out of Git status. For a release, explicitly add only the generated files referenced by `dist/index.html` using `git add -f <paths>`, plus the canonical source and index. The build command prints the active paths.
+- Previously committed hashed bundles remain available because cached browser pages may still reference them. Do not remove them merely because the newest index uses another hash.
+- Browser checks write disposable captures into ignored `.cache/qa/`. Set `CAPTURE_DIR` to another directory when needed. `previews/` retains deliberately published historical evidence and audit reports; tests no longer overwrite those by default.
 
-Light/dark themes apply to the app, model canvas and controls. Record mode hides the prototype labels and footer; the Record control reappears on hover or keyboard focus to exit.
+## Current behavior
 
-Clothing edits save in this browser's localStorage. Logs, likes and saved fits reset on reload. There is no account sync, live weather, live photo analysis or AI service. Weather and advice are prepared demo content. The model viewer cycles through four generated views (front, right, back, left), not continuous 3D geometry. Google Fonts has system-font fallbacks.
+- **Today:** continuous Outfit → Wear → Why flow; occasion and come-across pickers; first pick and one full-outfit alternate; four model views. A complete next outfit is decoded before the model, pieces, labels and advice commit together. The wear bar is pinned above navigation for today's outfit, and hidden on tomorrow previews.
+- **Tomorrow:** choose occasion/come-across, explicitly lock, then Change to edit. Normal mode includes the testing-only morning preview. Normal fresh load remains Right now with the outfit visible.
+- **Clean recording:** the first entry from untouched Today starts with neutral timing buttons and a disabled schedule action. Once chosen, timing/plans/outfits survive entering and exiting recording. The action reads Show my outfit for Right now and Lock it in for tomorrow for tomorrow. Demo annotations, the morning testing button, text selection and empty Worn charts are hidden; navigation remains available.
+- **Wardrobe:** 21 pieces: Tops 7, Bottoms 5, Layers 4, Shoes 5. Sixteen garments appear on the photographic rail; shoes stay in their five-pair drawer. Rack/List, filters, turning, editing, JSON export and Build-a-fit use the same item records.
+- **Shopping:** three qualitative checks for Jacket, Overshirt and Slip-ons. All three photographs preload. Verdicts describe existing wardrobe overlap; no live analysis or purchase links.
+- **Log:** session wears/rejections, closet use, piece wear counts, and Owned/Worn/Liked Style Mix. Three full pies show style, colour and clothing type, with outside percentages. Piece-count lists are collapsed initially. Counts derive from the same wardrobe and log records; Worn counts garment occurrences in logged wears.
 
-## Deploy to Render
-
-Create a separate **Static Site** connected to this repository:
-
-- Build command: `node scripts/prepare-static.cjs`.
-- Publish directory: `dist`.
-- No environment variables, persistent disk or server required.
-
-`render.yaml` also declares the static service. Deployment is separate from the landing-page service.
+Light and dark modes use the existing cream/charcoal/burgundy palette. Clothing edits persist in browser localStorage. Logs, likes and saved fits reset on reload. The weather is a prepared 17°C cool-day example, not live weather. Model views are four photographs, not continuous 3D geometry. There is no account sync or AI service.
 
 ## Checks
 
-```sh
-node --check dist/app.js
-node tests/flows.cjs
-```
-
-Browser checks require Playwright and installed Chrome, with the local server running:
+With the local server running:
 
 ```sh
-npm install --no-save playwright
-node tests/context-turn-browser.cjs
-node tests/today-browser.cjs
-node tests/theme-controls-browser.cjs
+npm test
+npm run test:browser
 ```
 
-Set `PLAYWRIGHT_MODULE` to an existing Playwright module path if using an installation outside the project. These checks cover phone/desktop layouts, first-screen actions, alternate/back, preserved weather/style/occasion, model turning, Record mode, themes and dropdown sizing. Screenshots are in `previews/`.
+The maintained browser suite checks atomic delayed-image swaps in normal/Clean modes, all four views, alternate/back cycles, recording state and scheduling, preview behavior, Shopping images, Log empty states, rack turning and filters, five shoes and Rack/List parity on phone and desktop.
 
-## Assets and references
+`APP_URL` targets a deployed app; `CAPTURE_DIR` changes the evidence directory; `PLAYWRIGHT_MODULE` optionally selects another Playwright installation. Older scripts and fixtures in `tests/` document previous milestones; their historical UI expectations may differ from the current product.
 
-The visual reference and original garment photography come from the Composed landing-page project. The app ships its active faceless mannequin cutouts, generated turn sheets, garment fronts/sides and shopping photographs. Obsolete local image iterations are excluded from Git.
+## Deploy to Render
 
-Retained third-party artifacts and their MIT license notices are documented in `dist/vendor/README.md`. The active rail uses the landing-page implementation; Embla is no longer loaded.
+Use a Static Site connected to this repository:
 
-## Today full-outfit selection and uninterrupted images
+- Build command: `npm run build` (or `node scripts/prepare-static.cjs`; no dependencies are needed for the static build).
+- Publish directory: `dist`.
+- No server, environment variables or persistent disk required.
 
-The existing How you come across options select wardrobe-based looks per occasion, each with its own Why and wear steps. The original Confident picks preserve the Denim / Casual shorts / Date night order. Every alternate changes the top, bottom and shoes and toggles back to its first pick. All pieces come from the same 20-piece demo wardrobe.
+`render.yaml` declares the static service. Deployment remains separate from the landing-page service. Content-hashed filenames prevent stale CDN JS/CSS from mixing versions.
 
-Today keeps the previous model element mounted until the complete replacement image set has decoded. A revision guard discards stale image loads during rapid changes. No tabs, options or buttons were added.
+## Assets and attribution
 
-`tests/full-outfit-browser.cjs` deliberately delays image requests for How you come across, alternate and occasion changes, checks that the old model remains mounted, and records `previews/today-full-outfit-swaps.webm`. The recorded check sampled 408 frames without a blank model. Comparison screenshots: `previews/today-confident-full.png`, `previews/today-relaxed-full.png`, `previews/today-alternate-full.png`.
+The visual reference and original garment photography come from the Composed landing-page project. Photo provenance and generation records remain in:
 
-## Live consistency fixes
+- `dist/clean-outfits.json` and `dist/assets/clean-outfits/generation.json`
+- `dist/assets/runner-generation.json` and `dist/assets/grey-runner-generation.json`
+- `dist/assets/rack/side/generation.json`
 
-Stone suede loafers remain in the 20-piece owned wardrobe. Shopping's third candidate is now **Light grey canvas slip-ons**, which are not owned. The owned stone loafers use a photographic thumbnail with visible suede detail and a dark sole in both Rack and List. The olive overshirt has a **Good** match and is skipped because it is already owned, consistent with its Date night use. Bomber copy explains the duplicate directly.
+Retained third-party artifacts and MIT notices are documented in `dist/vendor/README.md`. The active rail uses the landing-page implementation; Embla is no longer loaded.
 
-Today tags name the actual shown outfit. Wore it derives its checked state from that outfit's in-memory log, avoids duplicate taps, and resets with Log on reload. An embedded preview of the original model is visible on first load/reload while full-size model images decode; it uses the same retained-model swap mechanism as later outfit changes.
-
-`tests/consistency-browser.cjs` supports `APP_URL` and `CAPTURE_DIR` to verify the deployed app directly. It delays first-load, reload and swap images and records screenshots and a video covering the nine requested fixes.
-
-## Demo audit corrections
-
-The 21 occasion / How you come across contexts now have 42 distinct first picks and alternates. Original Confident picks retain their order. New combinations reuse the existing photographed mannequin top, bottom and shoe components in all four views; they do not introduce new garments. Every alternate changes all three slots. Small-change controls are explicitly **notes**, not outfit mutations, and cannot change what Wore it records. Logging waits until replacement model images decode.
-
-Log shows every worn piece and its wear count, with no cost figures. Both entry types use occasion headings and derive their pressed state from the same session log. Weather is the stable 17° cool-day demo condition; greeting uses the browser's local time. Wardrobe metadata persists locally; log and saved fits reset on reload.
-
-Clean recording hides prototype labels and the footer without changing viewport width or hiding navigation. Export produces the wardrobe JSON download and confirmation. Nigel critique remains in a dismissible panel. Build-a-fit retains List order and updates the active saved fit after piece changes from either Rack or List. Shopping uses consistent ordered sections and identifies duplicate items as “Good style match, already owned”.
-
-Run `node tests/flows.cjs`, `node tests/rack-complete.cjs`, and `node tests/demo-audit-browser.cjs` (with `PLAYWRIGHT_MODULE` if needed). The audit browser check supports `APP_URL` and `CAPTURE_DIR`, exercises all 42 selections, delays image loading, verifies downloads, and captures desktop/phone evidence. Earlier screenshots and browser scripts document prior versions; the audit suite covers the current selection and recording behavior.
-
-## Grey New Balance 996 runner
-
-Wardrobe contains 21 pieces: the original 16 rail garments and five pairs in the Shoe drawer. The new runner is Everyday, making Style Mix Owned 8 Everyday / 7 Considered / 6 Relaxed. Both wardrobe and Log totals derive from the item count. Existing piece IDs, first picks, Shopping and the other 40 outfit selections are unchanged. Only the Everyday / Relaxed and Casual afternoon / Relaxed alternates receive the runner; Date night, Polished and Sharp selections retain their shoes. Build-a-fit marks the runner compatible with casual denim, tees, shirts, shorts and relaxed trousers, rather than Date night layers or smart pleated-trouser fits.
-
-`node tests/runner.cjs` checks preservation against the previous wardrobe and catalogue. `node tests/runner-browser.cjs` verifies desktop/phone drawer, List, outfit, four model views, Build-a-fit and counts. It supports `APP_URL` / `CAPTURE_DIR` for live evidence.
-
-The new product image and two coherent four-view runner outfits were made with the built-in image generation tool. Asset paths, references and prompts are recorded in `dist/assets/runner-generation.json`. Existing image files remain unchanged.
-
-The former Off-white minimal runner is now Grey New Balance 996 runner, at the same item ID and shoe-drawer position with the same Everyday tag. The grey suede/mesh, side N logo and thicker sole distinguish it from the unchanged white leather sneaker photo. Only its two existing casual outfit images receive the new shoes; all outfit IDs and counts remain unchanged. Desktop shoe drawers show the five pairs together. Old browser-saved default runner names and cream colour migrate without clearing other edits. Current image-generation prompts and assets: `dist/assets/grey-runner-generation.json`.
-
-## Today runner first pick
-
-Casual afternoon / Relaxed now starts with Black crewneck knit, Dark indigo straight jeans and Grey New Balance 996 runner. Its Why, wear steps and Nigel note describe that outfit. The alternate is Sage cotton shirt, Olive fatigue trousers and Stone suede loafers: the old first pick with a different shoe, and all three slots differ from the new first pick. Everyday / Relaxed retains Black crewneck knit, Slate pleated trousers and Grey New Balance 996 runner as its alternate. These are the runner’s only two catalogue uses.
-
-All 42 looks remain unique. All piece data, image bytes, counts, Wardrobe filters, Shopping and Log remain unchanged. `node tests/runner-first-pick.cjs` verifies those invariants; `node tests/runner-first-browser.cjs` captures the first pick and alternate on desktop/phone and writes the complete runner-use list. The browser check accepts `APP_URL` and `CAPTURE_DIR` for live verification.
-
-## Complete outfit photos and cool-day audit
-
-Today uses one complete four-view photograph per look. The former top/trouser/shoe image-slice compositor has been removed, so an unrelated waistband, trouser fragment or shoe cannot leak into another outfit. Eight existing complete photos are retained and 34 formerly assembled looks have new complete photos. Wardrobe product photos, all 21 item records, five shoe pairs, Shopping and Log are unchanged.
-
-The weather basis is the app’s displayed **17°C · Cool day**, not a live weather service. All 42 looks now use full-length trousers. Sixteen combinations were adjusted: shorts became trousers and tee-only looks received an existing light layer (navy chore jacket, oatmeal cardigan or olive overshirt). Their Why, wear steps and Nigel notes describe the actual layer and trousers shown. The Casual / Relaxed grey-runner first pick and Everyday / Relaxed grey-runner alternate retain their pieces and photographs. All 42 looks remain unique and every alternate changes the top, bottom and shoes.
-
-`dist/clean-outfits.json` records the complete catalogue, reused/new photo paths and weather changes. The exact built-in image-generation prompts and references are in `dist/assets/clean-outfits/generation.json`. Model preloading is limited to the current first pick and alternate; the previous complete model stays visible until its replacement decodes.
-
-Run `node tests/clean-models.cjs` for catalogue/weather and unchanged-surface checks. `node tests/clean-model-browser.cjs` inspects all **42 looks / 168 rendered views**, checks transparent backgrounds, writes contact sheets and an audit JSON, and verifies dark-mode phone rendering and slow-swap continuity. It accepts `APP_URL` / `CAPTURE_DIR` for live evidence.
-
-## Rounded natural rack side views
-
-Seven pieces formerly used their front photo rotated with CSS, making them appear flat and stretched. Sage cotton shirt, Black crewneck knit, Oatmeal cardigan, Washed denim shirt, Navy chore jacket, Grey cotton sweatshirt and Stone straight trousers now use dedicated natural side/three-quarter product photos with rounded volume, matching the black bomber's display style. No simulated side-view flattening remains.
-
-Original front photographs, List thumbnails, all 42 Today outfits, piece data, shoe drawer, names and counts remain unchanged. Prompt/asset records: `dist/assets/rack/side/generation.json`. `tests/rack-depth.cjs` checks those invariants, and `tests/rack-depth-browser.cjs` checks transparent side-photo silhouettes without horizontal squashing, front selection, all rail filters and phone/desktop views.
-
-## Expanded Style Mix (Log only)
-
-Style Mix shows three parallel count breakdowns for Owned, Worn and Liked: primary style, main colour and clothing type. Owned totals 21 in each breakdown: Tops 7 / Bottoms 5 / Layers 4 / Shoes 5. The most common owned colour is Black (5 pieces). Styles with no pieces in the selected cohort are omitted; clothing-type rows retain zero counts for clarity.
-
-The existing demo piece records have the legacy Everyday / Considered / Relaxed bucket, not the requested named style tags. Log therefore uses a clearly labelled, prepared inference of one primary style per existing garment (Minimalist, East Asian Minimalist, Smart casual, Streetwear, Classic or Sporty for this set). Real `primaryStyle` / `styleTags` values take precedence if present. The original item records and wardrobe tags are not mutated, and no style quiz or preferences form is introduced. Quiet luxury and Creative are not invented for this demo set.
-
-Colour comes from the existing editable colour field, with demo hex values resolved to their garment colour names; clothing type comes directly from each piece's current category. Worn preserves the existing occurrence-based method: each garment counts once per logged wear, so repeat wears influence the result. The section states the piece-wear total and distinct-piece count separately. Rejected outfits do not enter Worn. Liked counts the current liked set once per piece. All three breakdown totals match the selected cohort.
-
-Run `node scripts/prepare-static.cjs`, `node tests/style-mix.cjs` and `node tests/style-mix-browser.cjs`. The browser test creates real wear/like events and captures Owned 21, Worn 6 piece wears across 5 distinct pieces, and Liked 4. These are QA examples, not extra seeded user activity. The unit test proves unchanged Today (all 42 looks), Wardrobe, Shopping, wardrobe data, and all Log content outside Style Mix.
+The light visual polish follows [unslop by Damir Sokolovsky (@heydamir)](https://heydamir.design/unslop), CC BY 4.0. Its audit and before/after report are in `previews/unslop/REPORT.md`.

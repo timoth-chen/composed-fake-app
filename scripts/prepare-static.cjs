@@ -1,5 +1,40 @@
 // Canonical source stays in dist/app.js and the original CSS files.
-// Versioned filenames avoid Render's shared-cache handling of query strings.
-const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');const dir=path.join(__dirname,'..','dist');let html=fs.readFileSync(path.join(dir,'index.html'),'utf8');const sources=['app.js','style.css','landing-reference.css','source-rail.css','app-shell.css','today-first.css'];
-for(const source of sources){const bytes=fs.readFileSync(path.join(dir,source)),ext=path.extname(source),stem=source.slice(0,-ext.length),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,12),target=`${stem}.${hash}${ext}`,escaped=stem.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');fs.writeFileSync(path.join(dir,target),bytes);const pattern=source==='app.js'?/src="app(?:[.-][a-zA-Z0-9-]+)?\.js(?:\?[^\"]*)?"/:new RegExp('href="'+escaped+'(?:\\.[a-f0-9]{12})?\\'+ext+'(?:\\?[^\"]*)?"');if(!pattern.test(html))throw Error('Entry reference missing: '+source);html=html.replace(pattern,`${source==='app.js'?'src':'href'}="${target}"`);}
-fs.writeFileSync(path.join(dir,'index.html'),html);console.log('Prepared content-versioned browser entry and CSS.');
+// Content hashes avoid stale Render CDN assets. Keep previously published bundles
+// because cached HTML can still reference them.
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+
+const directory = path.join(__dirname, '..', 'dist');
+const entryPath = path.join(directory, 'index.html');
+const sources = [
+  'app.js',
+  'style.css',
+  'landing-reference.css',
+  'source-rail.css',
+  'app-shell.css',
+  'today-first.css',
+];
+let html = fs.readFileSync(entryPath, 'utf8');
+const assets = sources.map(source => {
+  const bytes = fs.readFileSync(path.join(directory, source));
+  const extension = path.extname(source);
+  const stem = path.basename(source, extension);
+  const hash = crypto.createHash('sha256').update(bytes).digest('hex').slice(0, 12);
+  const filename = `${stem}.${hash}${extension}`;
+  const escapedStem = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const reference = source === 'app.js'
+    ? /src="app(?:[.-][a-zA-Z0-9-]+)?\.js(?:\?[^\"]*)?"/
+    : new RegExp(`href="${escapedStem}(?:\\.[a-f0-9]{12})?\\${extension}(?:\\?[^\"]*)?"`);
+
+  if (!reference.test(html)) throw new Error(`Entry reference missing: ${source}`);
+  html = html.replace(reference, `${source === 'app.js' ? 'src' : 'href'}="${filename}"`);
+  return { filename, bytes };
+});
+
+// Validate every reference before writing anything.
+for (const { filename, bytes } of assets) {
+  fs.writeFileSync(path.join(directory, filename), bytes);
+}
+fs.writeFileSync(entryPath, html);
+console.log('Prepared browser assets:\n' + assets.map(asset => `  dist/${asset.filename}`).join('\n'));

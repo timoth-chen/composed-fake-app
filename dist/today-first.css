@@ -15,7 +15,7 @@
 .app-shell .screen-today .daily-outfit .photo-wrap,.app-shell .screen-today .daily-outfit .outfit-photo{background:#f3f0e9!important;background-image:none!important;border-radius:0}
 .app-shell .screen-today .daily-outfit .outfit-photo{height:clamp(110px,calc(100dvh - 570px),420px);max-height:none;width:100%;object-fit:contain}
 .today-first-actions{padding-top:8px}.app-shell .today-first-actions .another-outfit{display:block;width:100%;min-height:44px;padding:10px 12px;border:1px solid #7a263f;color:#7a263f;background:#fff;border-radius:6px;font-size:13px;font-weight:500}
-.app-shell .today-first-actions .actions{margin:8px 0 0;gap:8px}.app-shell .today-first-actions .actions button{min-height:44px;margin:0;font-size:12px}
+
 .app-shell .screen-today .daily-outfit .pick-heading{margin-top:20px}
 body.record-mode .prototype-badge,body.record-mode .demo-label,body.record-mode .app-shell>footer{display:none!important}
 body.record-mode{background:#f3f0e9}body.record-mode .app-shell.phone{max-width:440px!important;margin:0 auto!important;border:0!important;outline:0!important;box-shadow:none!important}
@@ -60,17 +60,10 @@ body.record-mode #record-explanation{display:block;margin:5px 24px;font-size:11p
 .reason-cards .reason-card strong,.reason-cards .reason-card span{white-space:normal;overflow:visible;text-overflow:clip;width:100%;word-break:normal}
 .nigel-critique{padding:18px;border:1px solid var(--accent);margin-top:18px;background:var(--paper)}
 #toast{bottom:110px;max-width:calc(100vw - 36px);box-sizing:border-box}
-.composed-form{display:flex!important;align-items:center;justify-content:center;padding-bottom:20px;box-sizing:border-box}
 /* Photo canvases overlap on the rail, so they must remain transparent. */
 .rail-photographs{background:transparent}
 .rail-photographs:has(img:not(.photo-ready))::before{content:"";position:absolute;top:10%;left:50%;width:24px;height:80%;transform:translateX(-50%);border-radius:5px;background:var(--soft);opacity:.45;pointer-events:none}
 
-.component-model{position:relative;aspect-ratio:.5;height:100%;max-width:100%}
-.model-slice{position:absolute;inset:0;overflow:hidden}
-.model-slice img{position:absolute;inset:0 auto auto 0;width:400%;max-width:none;height:100%;object-fit:fill}
-.model-slice-tops{clip-path:polygon(0 0,100% 0,100% 57%,70% 57%,70% 50%,30% 50%,30% 57%,0 57%);z-index:2}
-.model-slice-bottoms{clip-path:inset(49% 0 7%);z-index:1}
-.model-slice-shoes{clip-path:inset(93% 0 0);z-index:3}
 @media(max-width:650px){.app-header-tools{gap:8px}.app-shell #record-mode{font-size:10px;line-height:1.15;padding:6px 7px;min-height:36px}}
 
 /* Today timing and viewport-pinned wear actions, above the navigation. */
@@ -85,7 +78,7 @@ body.record-mode #record-explanation{display:block;margin:5px 24px;font-size:11p
 .app-shell #today-wear-bar button{flex:1;min-height:44px;margin:0;font-size:12px}
 .app-shell #screen.today-has-wear-bar>.page{padding-bottom:90px}
 body.dark .app-shell #today-wear-bar{background:#191b1e;border-color:#45483f;color:#efeae0}
-.app-shell .tomorrow-lock .text-button{margin-right:14px;min-height:36px}
+
 body:has(#today-wear-bar) #toast{bottom:180px}
 
 /* One Today field/button system; richer reason cards may grow to fit their copy. */
@@ -106,7 +99,7 @@ body:has(#today-wear-bar) #toast{bottom:180px}
 .app-shell .screen-today .tomorrow-lock-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .app-shell .screen-today .tomorrow-lock-actions button{height:52px;padding:6px}
 .app-shell .screen-today .today-first-actions .another-outfit{height:52px;font-size:17px;border-color:var(--line);color:var(--ink);background:var(--paper)}
-.app-shell .screen-today #alternate,.app-shell .screen-today .swap{display:block;width:100%;margin:12px 0;min-height:52px}
+.app-shell .screen-today .swap{display:block;width:100%;margin:12px 0;min-height:52px}
 .app-shell .screen-today .model-turn-arrow{width:52px;height:52px;padding:0;top:calc(50% - 26px)}
 .app-shell .screen-today .reason-cards{gap:12px}
 .app-shell .screen-today .reason-card{padding:20px;text-align:left}

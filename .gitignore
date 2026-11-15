@@ -11,3 +11,19 @@ dist/assets/mannequin-cream-*.png
 dist/assets/denim.png
 dist/assets/shorts.png
 dist/assets/date-night.png
+
+# Content-hashed build outputs; canonical sources above remain tracked.
+# Existing published bundles stay tracked for cached HTML compatibility.
+/dist/app.*.js
+/dist/style.*.css
+/dist/landing-reference.*.css
+/dist/source-rail.*.css
+/dist/app-shell.*.css
+/dist/today-first.*.css
+
+# Local QA evidence belongs in .cache/qa, not committed previews.
+/previews/*-live/
+/previews/*-normal/
+/previews/style-pies-detail/
+/previews/today-sync-recording/
+/previews/rack-now/
