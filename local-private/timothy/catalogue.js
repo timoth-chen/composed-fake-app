@@ -14,7 +14,7 @@ export const items = [
 ];
 items.forEach((item,index)=>{item.photoCell=index;});
 export const byId = Object.fromEntries(items.map(item=>[item.id,item]));
-export const occasions = ['Everyday / work','Casual afternoon','Date night'];
+export const occasions = ['Everyday / work','Casual','Date night'];
 export const comesAcross = ['Confident','Approachable','Polished','Relaxed','Sharp','Low-key','Not sure'];
 export const looks = {
  casual:{id:'casual',number:1,title:'Casual, with room to move',occasion:1,come:'Relaxed',pieces:['hoodie','light-jeans','runner'],
