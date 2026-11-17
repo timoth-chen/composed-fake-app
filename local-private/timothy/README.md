@@ -9,3 +9,6 @@ Included media is an explicit allowlist: four clothing-only turn sheets, two pro
 Built-in imagegen edit prompt set: remove only visible mannequin heads, necks, hands and wrists in all four views; preserve all clothing, shoes, fit, pose, scale, column alignment and transparency; use hollow natural neckline/cuff openings. Previous local references remain outside this branch.
 
 The Node server listens only on loopback; Render still builds/publishes the unchanged public `dist` app. No private assets are copied into `dist`.
+
+## Headless revision
+Active sheets now use `*-headless-v1.png`. Mannequin heads are removed; hands, wrists and short neutral neck stumps remain. Built-in imagegen edited only heads while preserving all outfit details and four-view alignment. Previous clothing-only sheets remain historical assets. No real face images are included.

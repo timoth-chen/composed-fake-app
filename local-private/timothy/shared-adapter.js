@@ -1,6 +1,6 @@
 // Private data adapter for the shared public app. Never shipped in public dist.
 function privateSelected(){return privatePick(state.occasion,state.alternate);}
-function privateSheet(o){return '/wardrobe-timothy/'+(o.id==='everyday'?'everyday-'+(o.pieces.includes('roger')?'roger':'clogs'):o.id)+'-ghost-v1.png';}
+function privateSheet(o){return '/wardrobe-timothy/'+(o.id==='everyday'?'everyday-'+(o.pieces.includes('roger')?'roger':'clogs'):o.id)+'-headless-v1.png';}
 function current(){const o=privateSelected();return {name:o.title,short:o.id==='casual'?'Casual':o.id==='date'?'Date night':'Everyday',ids:o.pieces.map(id=>privateIndex[id]),weather:weatherLabel(),image:privateSheet(o),sheet:privateSheet(o),isSheet:true,composed:false,why:o.why,line:o.why,steps:o.steps,stylistNote:o.note,goal:'Your own pieces, considered together.',style:items[privateIndex[o.pieces[0]]].style,requireLayer:false,reasonGroups:o.steps.slice(0,3).map((text,i)=>({title:['The top','The lower line','The finish'][i],text}))};}
 function garment(p){return `<img src="/__timothy/piece/${p.id}.svg" alt="${escapeHTML(p.name)}" width="320" height="320">`;}
 function railPhoto(p){return {front:`/__timothy/piece/${p.id}.svg`,side:`/__timothy/piece/${p.id}.svg`};}
