@@ -15,3 +15,6 @@ Active sheets now use `*-headless-v1.png`. Mannequin heads are removed; hands, w
 
 ## Separate Render Static Site
 Name: composed-timothy. Branch: timothy/garments-only. Root Directory: blank. Build Command: node scripts/build-timothy-static.cjs. Publish Directory: timothy-dist. No environment variables required. This produces a standalone Timothy app at the site root, including headless outfit views, rail, List, Build-a-fit, Log and Toronto weather. It does not modify the existing public dist or Render service. The new site is accessible to anyone with its URL; there is no login. Build output uses an explicit media allowlist, never original personal photos, videos or face images.
+
+## Recording outfit sequence
+Fresh load shows Casual / Relaxed (hoodie, light jeans, grey runners) with both day buttons unhighlighted. Choosing Tomorrow selects Date night / Polished (black outfit and plaid jacket); Show me another outfit changes it to the cream henley outfit. Returning to Today selects Casual / Relaxed. Day buttons highlight only after an explicit tap.
