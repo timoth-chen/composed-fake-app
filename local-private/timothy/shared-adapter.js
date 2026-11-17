@@ -18,3 +18,5 @@ function initialisePrivate(){
 }
 
 function today(){return public_today();}
+
+async function preloadShoppingImages(){return;}

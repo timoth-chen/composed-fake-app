@@ -12,3 +12,6 @@ The Node server listens only on loopback; Render still builds/publishes the unch
 
 ## Headless revision
 Active sheets now use `*-headless-v1.png`. Mannequin heads are removed; hands, wrists and short neutral neck stumps remain. Built-in imagegen edited only heads while preserving all outfit details and four-view alignment. Previous clothing-only sheets remain historical assets. No real face images are included.
+
+## Separate Render Static Site
+Name: composed-timothy. Branch: timothy/garments-only. Root Directory: blank. Build Command: node scripts/build-timothy-static.cjs. Publish Directory: timothy-dist. No environment variables required. This produces a standalone Timothy app at the site root, including headless outfit views, rail, List, Build-a-fit, Log and Toronto weather. It does not modify the existing public dist or Render service. The new site is accessible to anyone with its URL; there is no login. Build output uses an explicit media allowlist, never original personal photos, videos or face images.
