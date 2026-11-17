@@ -1,0 +1,4 @@
+@font-face{font-family:Archivo;font-style:normal;font-weight:400;src:url('/wardrobe-timothy/archivo-400.ttf')}@font-face{font-family:Archivo;font-style:normal;font-weight:500;src:url('/wardrobe-timothy/archivo-500.ttf')}@font-face{font-family:Archivo;font-style:normal;font-weight:600;src:url('/wardrobe-timothy/archivo-600.ttf')}@font-face{font-family:Archivo;font-style:normal;font-weight:700;src:url('/wardrobe-timothy/archivo-700.ttf')}
+/* Private rail uses the same front product cutout with a perspective side treatment. */
+.app-shell .landing-rail .rail-product-side{transform:scaleX(.38);transform-origin:center}
+.app-shell .landing-rail .hanger-button.face .rail-product-front{transform:none}

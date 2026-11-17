@@ -27,3 +27,17 @@ dist/assets/date-night.png
 /previews/style-pies-detail/
 /previews/today-sync-recording/
 /previews/rack-now/
+
+# Keep original personal media and superseded face/mannequin sheets untracked.
+/public/wardrobe-timothy/*
+
+!/public/wardrobe-timothy/casual-ghost-v1.png
+!/public/wardrobe-timothy/everyday-clogs-ghost-v1.png
+!/public/wardrobe-timothy/everyday-roger-ghost-v1.png
+!/public/wardrobe-timothy/date-ghost-v1.png
+!/public/wardrobe-timothy/pieces-atlas-v1.png
+!/public/wardrobe-timothy/trousers-fit-v2.png
+!/public/wardrobe-timothy/archivo-400.ttf
+!/public/wardrobe-timothy/archivo-500.ttf
+!/public/wardrobe-timothy/archivo-600.ttf
+!/public/wardrobe-timothy/archivo-700.ttf
