@@ -194,3 +194,15 @@ body.record-mode .style-mix-panel:has([data-mix-selected-total="0"]) .mix-breakd
 .app-shell .screen-today .daily-outfit>.today-timing{margin-bottom:0}
 .app-shell .screen-wardrobe [data-like]{min-width:44px;min-height:44px}
 .app-shell .screen-today .daily-wear .step>span{font-size:11px}
+
+/* Today and Tomorrow: the same immediate outfit flow at full model size. */
+.app-shell .screen-today .daily-outfit .controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.app-shell .screen-today .daily-outfit .controls label{font-size:11px;letter-spacing:0;min-width:0}
+.app-shell .screen-today .daily-outfit .controls select{width:100%;min-width:0;font-size:16px;padding-left:9px;padding-right:25px}
+.app-shell .screen-today .daily-outfit .today-timing{margin:12px 0;gap:12px;grid-template-columns:1fr 1fr}
+.app-shell .screen-today .daily-outfit .today-timing button{font-size:15px;min-height:52px}
+.app-shell .screen-today .daily-outfit .outfit-photo{height:550px!important;max-height:none!important}
+.app-shell .screen-today .daily-outfit .model-turn-overlay{height:550px}
+.app-shell .screen-today .outfit-day-label{display:flex;align-items:center;justify-content:space-between;margin:0;font-size:12px;color:var(--muted)}
+.app-shell .screen-today button.change-choices{min-height:44px;font-size:12px;padding:8px 12px}
+@media(max-width:650px){.app-shell .screen-today .daily-outfit .outfit-photo{height:470px!important}.app-shell .screen-today .daily-outfit .model-turn-overlay{height:470px}}
