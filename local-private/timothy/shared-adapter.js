@@ -17,17 +17,29 @@ function initialisePrivate(){
  outfitPool.clear();for(let i=0;i<3;i++)for(const impression of impressions)for(const alt of [0,1]){const o=privatePick(i,Boolean(alt));outfitPool.set(`${i}:${impression}:${alt}`,{ids:o.pieces.map(id=>privateIndex[id]),sheet:privateSheet(o)});}
 }
 
-function today(){return public_today();}
+function today(){
+ if(state.privateGenerated)return public_today();
+ const previous=state.view;state.view='Outfit';let header=todayView().replace(/<div class="segmented" aria-label="Today views">[\s\S]*?<\/div>/,'');state.view=previous;
+ header=header.slice(0,header.indexOf('<div class="purpose-weather">'));
+ return `<div class="today-flow"><section class="daily-outfit">${header}${todayTiming()}</section></div>`;
+}
+function outfitVisible(){return Boolean(state.privateGenerated);}
+function wearBarVisible(){return Boolean(state.privateGenerated)&&state.timing!=='tomorrow';}
+async function render(){const scroll=state.preserveScroll;state.preserveScroll=null;await public_render();if(scroll!==undefined&&scroll!==null)$('#screen').scrollTop=scroll;}
+
 
 async function preloadShoppingImages(){return;}
 
-function todayTiming(){return `<div class="today-timing" role="group" aria-label="Outfit day">${['now','tomorrow'].map(mode=>btn(mode==='now'?'Another outfit for today':'Outfit for tomorrow',`data-timing="${mode}" aria-pressed="${Boolean(state.privateTimingChosen&&state.timing===mode)}"`,state.privateTimingChosen&&state.timing===mode?'active':'')).join('')}</div><p class="outfit-day-label">${state.timing==='tomorrow'?"Tomorrow’s outfit":"Today’s outfit"} ${btn('Change choices','id="change-choices"','change-choices')}</p>`;}
+function todayTiming(){return `<div class="today-timing" role="group" aria-label="Outfit day">${['now','tomorrow'].map(mode=>btn(mode==='now'?'Another outfit for today':'Outfit for tomorrow',`data-timing="${mode}" aria-pressed="${Boolean(state.privateTimingChosen&&state.timing===mode)}"`,state.privateTimingChosen&&state.timing===mode?'active':'')).join('')}</div>${!state.privateGenerated?'':`<p class="outfit-day-label">${state.timing==='tomorrow'?"Tomorrow’s outfit":"Today’s outfit"} ${btn('Change choices','id="change-choices"','change-choices')}</p>`}`;}
 function bind(){
  public_bind();
+ if($('#occasion')){if(state.draftOccasion!==undefined)$('#occasion').value=String(state.draftOccasion);$('#occasion').onchange=e=>{state.draftOccasion=+e.target.value;state.todayTouched=true;};}
+ if($('#energy')){if(state.draftCome!==undefined)$('#energy').value=state.draftCome;$('#energy').onchange=e=>{state.draftCome=e.target.value;state.todayTouched=true;};}
+ if($('#another-outfit'))$('#another-outfit').onclick=()=>{state.preserveScroll=$('#screen').scrollTop;state.alternate=!state.alternate;state.modelAngle=0;state.swap=null;state.reasonIndex=0;render();};
  document.querySelectorAll('[data-timing]').forEach(button=>button.onclick=()=>{
   const mode=button.dataset.timing,repeat=state.privateTimingChosen&&state.timing===mode;
-  state.privateTimingChosen=true;state.todayTouched=true;state.timing=mode;state.morning=false;state.timingEditing=false;
-  state.occasion=mode==='tomorrow'?2:1;state.energy=mode==='tomorrow'?'Polished':'Relaxed';state.index=state.occasion;
+  state.privateGenerated=true;state.privateTimingChosen=true;state.todayTouched=true;state.timing=mode;state.morning=false;state.timingEditing=false;
+  state.occasion=state.draftOccasion??(mode==='tomorrow'?2:1);state.energy=state.draftCome??(mode==='tomorrow'?'Polished':'Relaxed');state.index=state.occasion;
   state.alternate=repeat?!state.alternate:false;state.modelAngle=0;state.swap=null;state.reasonIndex=0;
   render();$('#screen').scrollTop=0;
  });

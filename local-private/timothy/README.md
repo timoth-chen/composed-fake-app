@@ -18,3 +18,6 @@ Name: composed-timothy. Branch: timothy/garments-only. Root Directory: blank. Bu
 
 ## Recording outfit sequence
 Fresh load shows Casual / Relaxed (hoodie, light jeans, grey runners) with both day buttons unhighlighted. Choosing Tomorrow selects Date night / Polished (black outfit and plaid jacket); Show me another outfit changes it to the cream henley outfit. Returning to Today selects Casual / Relaxed. Day buttons highlight only after an explicit tap.
+
+## Explicit generation and scrolling
+Entry shows only the questions and neutral day buttons, with no outfit or wear bar. Question edits are drafts until a day button is pressed. Another-outfit swaps preserve Today scroll position after the new sheet decodes. The default Today choice remains hoodie; Tomorrow remains black with cream as its alternate.
