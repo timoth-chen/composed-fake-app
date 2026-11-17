@@ -21,3 +21,5 @@ Fresh load shows Casual / Relaxed (hoodie, light jeans, grey runners) with both 
 
 ## Explicit generation and scrolling
 Entry shows only the questions and neutral day buttons, with no outfit or wear bar. Question edits are drafts until a day button is pressed. Another-outfit swaps preserve Today scroll position after the new sheet decodes. The default Today choice remains hoodie; Tomorrow remains black with cream as its alternate.
+
+Latest entry behavior: grey hoodie outfit visible by default, both day buttons unhighlighted. Dropdown edits remain pending until a day button is tapped; alternate swaps keep scroll position.
