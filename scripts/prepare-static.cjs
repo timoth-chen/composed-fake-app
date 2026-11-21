@@ -14,6 +14,7 @@ const sources = [
   'source-rail.css',
   'app-shell.css',
   'today-first.css',
+  'composed-ui.css',
 ];
 let html = fs.readFileSync(entryPath, 'utf8');
 const assets = sources.map(source => {

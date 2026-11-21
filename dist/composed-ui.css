@@ -1,0 +1,179 @@
+/* Composed UI. Interface polish follows unslop by Damir Sokolovsky, CC BY 4.0. */
+:root {
+  --paper: #f7f8f6;
+  --surface: #fff;
+  --ink: #202522;
+  --muted: #57635d;
+  --line: #dce3dd;
+  --soft: #e6efe9;
+  --accent: #416b5b;
+  --action: #416b5b;
+  --action-text: #fff;
+  --preview: #eaf0eb;
+  --blue: #a8b8d3;
+  --coral: #db9478;
+  --gutter: 20px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body.dark {
+  --paper: #202723;
+  --surface: #26302a;
+  --ink: #edf3ee;
+  --muted: #bac8bf;
+  --line: #45544b;
+  --soft: #303f36;
+  --accent: #a9d0bc;
+  --action: #a9d0bc;
+  --action-text: #182720;
+  --preview: #303c34;
+}
+body.record-mode, body.dark.record-mode { background: var(--paper); }
+.app-shell { font: 400 15px/1.5 var(--font); }
+.app-shell :is(button, input, select, textarea) { font-family: var(--font); }
+.app-shell.phone > header { width: calc(100% - 2 * var(--gutter)); }
+.app-shell .demo-label { display: none; }
+.app-shell #screen.screen-today,
+body.dark .app-shell #screen.screen-today { background: var(--paper); color: var(--ink); }
+.app-shell #screen.screen-today > .page,
+body.dark .app-shell #screen.screen-today > .page {
+  --paper: inherit;
+  --ink: inherit;
+  --muted: inherit;
+  --line: inherit;
+  --accent: inherit;
+}
+.app-shell #screen > .page,
+.app-shell #screen.screen-today > .page,
+.app-shell #screen.screen-shopping > .page { padding: 16px var(--gutter) 24px; }
+.app-shell #screen.today-has-wear-bar > .page { padding-bottom: 24px; }
+.app-shell .page :is(h2, h3),
+.app-shell .screen-today .daily-outfit h2 {
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 650;
+  letter-spacing: -.025em;
+}
+.app-shell .page h2,
+.app-shell .screen-today .daily-outfit h2 { font-size: 26px; line-height: 1.2; }
+.app-shell .page :is(.sub, .note, .step p) { font-size: 15px; line-height: 1.5; }
+.app-shell .page :is(.topline, .section-label, label) { letter-spacing: 0; text-transform: none; }
+.app-shell .page button:not(.hanger-button), .app-shell #today-wear-bar button {
+  min-height: 44px;
+  border-radius: 12px;
+  font-weight: 550;
+  line-height: 1.3;
+}
+.app-shell .page :is(button, summary, select):focus-visible,
+.app-shell #tabs button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.app-shell .page button.primary,
+.app-shell .screen-today button.primary,
+.app-shell .screen-today .today-first-actions .another-outfit,
+body.dark .app-shell .screen-today .today-first-actions .another-outfit,
+.app-shell #today-wear-bar button.primary {
+  color: var(--action-text);
+  background: var(--action);
+  border-color: var(--action);
+  box-shadow: none;
+}
+.app-shell .screen-today button.active,
+.app-shell .screen-today button[aria-pressed="true"]:not(.primary) {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--soft);
+}
+.app-shell .screen-today .daily-outfit {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.app-shell .screen-today .daily-outfit > :is(.topline, h2, .purpose-weather, .outfit-day-label) { margin: 0; }
+.app-shell .screen-today .daily-outfit .topline { font-size: 12px; color: var(--muted); }
+.app-shell .screen-today .purpose-weather { color: var(--muted); align-items: center; }
+.app-shell .screen-today .dot { background: var(--accent); }
+.app-shell .screen-today .energy-pill { color: var(--accent); background: var(--soft); }
+.app-shell .screen-today .daily-outfit .controls { gap: 12px; margin: 12px 0 0; }
+.app-shell .screen-today .daily-outfit .controls select {
+  min-height: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface);
+  padding-block: 8px;
+}
+.app-shell .screen-today .daily-outfit .controls label::after { bottom: 20px; }
+.app-shell .screen-today .daily-outfit .today-timing { margin: 0; }
+.app-shell .screen-today .daily-outfit .today-timing button { min-height: 44px; padding: 8px 6px; }
+.app-shell .screen-today .daily-outfit .model-viewer,
+body.dark .app-shell .screen-today .daily-outfit .model-viewer {
+  --outfit-height: clamp(240px, 44dvh, 520px);
+  background: var(--preview) !important;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 4px 0 0;
+}
+.app-shell .screen-today .daily-outfit .outfit-photo,
+body.dark .app-shell .screen-today .daily-outfit .outfit-photo {
+  height: var(--outfit-height) !important;
+  background: transparent !important;
+}
+.app-shell .screen-today .daily-outfit .model-turn-overlay {
+  height: var(--outfit-height);
+  background: transparent;
+}
+.app-shell .screen-today .model-turn-hint { background: var(--preview); color: var(--muted); }
+.app-shell .screen-today .model-turn-arrow {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  top: calc(50% - 22px);
+  background: var(--surface);
+  color: var(--ink);
+}
+.app-shell .screen-today .preview-caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.app-shell .screen-today .today-first-actions { padding-top: 0; }
+.app-shell .screen-today .today-first-actions .another-outfit { min-height: 44px; height: auto; font-size: 15px; }
+.app-shell .screen-today .daily-outfit .pick-heading { margin: 8px 0 0; }
+.app-shell .screen-today .daily-outfit .wardrobe-source { margin: 0; color: var(--muted); }
+.app-shell .screen-today .daily-wear, .app-shell .screen-today .daily-why { margin-top: 24px; padding-top: 20px; }
+.app-shell .page .why-summary { border-inline-start: 3px solid var(--blue); padding-inline-start: 12px; }
+.app-shell :is(.why-details, .recording-choices) > summary { min-height: 44px; padding-block: 10px; color: var(--accent); cursor: pointer; }
+.app-shell #today-wear-bar,
+body.dark .app-shell #today-wear-bar {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--line);
+  padding-inline: max(var(--gutter), calc((100% - 640px)/2));
+}
+.app-shell #today-wear-bar button,
+body.dark .app-shell #today-wear-bar button {
+  --paper: inherit;
+  --ink: inherit;
+  --line: inherit;
+  flex: 1;
+  height: auto;
+  padding-block: 8px;
+}
+.app-shell #today-wear-bar .actions { display: flex; gap: 8px; }
+.app-shell .page :is(.stat, .reason-card, .shoe-drawer, .mix-disclosure, .mix-breakdown, .wardrobe-edit-panel, .tomorrow-lock) {
+  border-radius: 16px;
+}
+.app-shell #tabs { padding-bottom: env(safe-area-inset-bottom); }
+.app-shell #tabs button { min-height: 48px; }
+.app-shell #tabs button.active { color: var(--accent); }
+.app-shell .page button, .app-shell #tabs button {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+@media (max-width: 650px) {
+  :root { --gutter: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .page button, .app-shell #tabs button { transition: none; }
+}
