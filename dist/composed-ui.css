@@ -177,3 +177,27 @@ body.dark .app-shell #today-wear-bar button {
 @media (prefers-reduced-motion: reduce) {
   .app-shell .page button, .app-shell #tabs button { transition: none; }
 }
+
+
+/* Intent-led outfit rationale: stays inside each branch's existing wardrobe flow. */
+.app-shell .screen-today .personal-why {
+  padding: 14px 16px;
+  margin: 14px 0 10px;
+  background: var(--soft);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.app-shell .screen-today .personal-why strong {
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.app-shell .screen-today .personal-why p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
