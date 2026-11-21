@@ -30,9 +30,9 @@ export const looks = {
   steps:['Keep the black knit polo collar open and its hem sitting neatly at the hip.','Let the black wide trousers fall straight, with no fabric dragging beneath the shoes.','Wear the Barbour plaid jacket open so the black polo stays visible.','Finish with the cream and navy Onitsuka Tigers, with the trousers resting just above the soles.'],
   note:'Keep the jacket open. The dark inner line carries the proportions; the plaid and cream shoes add the detail.'},
 };
-export const primaryByOccasion = ['everyday','casual','date'];
+export const primaryByOccasion = ['everyday','casual','everyday'];
 // Full alternates use only Timothy's own pieces and change top, bottom and shoes.
-export const alternateByOccasion = ['date','everyday','everyday'];
+export const alternateByOccasion = ['date','everyday','date'];
 export function pick(occasion,alternate,whiteShoes=null){
  const base=looks[(alternate?alternateByOccasion:primaryByOccasion)[occasion]];
  const look={...base,pieces:[...base.pieces],steps:[...base.steps]};
