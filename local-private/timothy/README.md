@@ -13,13 +13,20 @@ The Node server listens only on loopback; Render still builds/publishes the unch
 ## Headless revision
 Active sheets now use `*-headless-v1.png`. Mannequin heads are removed; hands, wrists and short neutral neck stumps remain. Built-in imagegen edited only heads while preserving all outfit details and four-view alignment. Previous clothing-only sheets remain historical assets. No real face images are included.
 
-## Separate Render Static Site
-Name: composed-timothy. Branch: timothy/garments-only. Root Directory: blank. Build Command: node scripts/build-timothy-static.cjs. Publish Directory: timothy-dist. No environment variables required. This produces a standalone Timothy app at the site root, including headless outfit views, rail, List, Build-a-fit, Log and Toronto weather. It does not modify the existing public dist or Render service. The new site is accessible to anyone with its URL; there is no login. Build output uses an explicit media allowlist, never original personal photos, videos or face images.
+## Local recording
 
-## Recording outfit sequence
-Fresh load shows Casual / Relaxed (hoodie, light jeans, grey runners) with both day buttons unhighlighted. Choosing Tomorrow selects Date night / Polished (black outfit and plaid jacket); Show me another outfit changes it to the cream henley outfit. Returning to Today selects Casual / Relaxed. Day buttons highlight only after an explicit tap.
+Run `npm run dev:timothy` and open http://localhost:8000/?wardrobe=timothy&recording=1.
+This opens the cream henley with dark indigo trousers and black clogs. Select
+**Show me another outfit** for the black polo, black trousers, open Barbour plaid
+jacket and cream/navy Onitsuka sneakers. The model, wardrobe thumbnails and
+styling explanation update together. Scroll to **Why it works** for the short
+reason. The normal entry still opens the Casual hoodie.
 
-## Explicit generation and scrolling
-Entry shows only the questions and neutral day buttons, with no outfit or wear bar. Question edits are drafts until a day button is pressed. Another-outfit swaps preserve Today scroll position after the new sheet decodes. The default Today choice remains hoodie; Tomorrow remains black with cream as its alternate.
+The personal page uses the approved headless four-view illustrations. Original
+photos, videos and face images stay local and are excluded from the build.
 
-Latest entry behavior: grey hoodie outfit visible by default, both day buttons unhighlighted. Dropdown edits remain pending until a day button is tapped; alternate swaps keep scroll position.
+`npm run build:timothy` creates a separate `timothy-dist` for local verification.
+The bundle contains the personal catalogue and shared interface code. Public
+wardrobe definitions, outfit imagery and fallback paths are removed before it
+is served. The standalone output includes only its allowlisted media and shared
+branding.
