@@ -47,3 +47,7 @@ dist/assets/date-night.png
 !/public/wardrobe-timothy/date-headless-v1.png
 
 /timothy-dist/
+
+# Approved production artwork for the personal build only.
+!/public/wardrobe-timothy/rack/
+!/public/wardrobe-timothy/rotation/

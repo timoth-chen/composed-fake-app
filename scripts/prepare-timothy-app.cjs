@@ -22,6 +22,7 @@ function privateApp() {
     ['const garmentImages=', 'function btn('],
     ['function current(', '// Small changes'],
     ['function smallChanges(', 'let rackCarousel;'],
+    ['function availableImpressions(', 'function impressionOptions('],
     ['function compatible(', 'function complete('],
     ['const cases=', 'const styleMixNames='],
     ['const styleMixPieceTags=', 'function mixBreakdown('],
@@ -30,16 +31,12 @@ function privateApp() {
     ['let shoppingImagesReady;', '\npreloadShoppingImages();'],
   ];
   for (const [from, to, replacement] of sections) app = replaceSection(app, from, to, replacement);
-  for (const name of ['todayTiming', 'bind', 'wearBarVisible', 'render']) {
-    app = app.replace(`function ${name}(`, `function shared_${name}(`);
-  }
   app = app
     .replace("const metadataKey='composed.wardrobe.v1'", "const metadataKey='composed.private.timothy.v1'")
     .replaceAll('Casual afternoon', 'Casual')
     .replace('Faceless mannequin wearing', 'Outfit featuring')
     .replace('21-piece demo wardrobe', '11-piece wardrobe')
     .replace('o.sheet||`assets/turn-${turnSheets[state.index]}.png`', 'o.sheet')
-    .replace('new Set([0,3])', 'new Set()')
     .replace('preloadRail();', 'initialisePrivate();\npreloadRail();')
     .replace('replacement=shoe===5?17:5;', "replacement=items.find(p=>p.cat==='shoes'&&p.id!==shoe).id;");
 

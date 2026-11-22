@@ -9,53 +9,85 @@ function personalItems() {
  return privateItems.map((piece, id) => ({
   id, privateId: piece.id, name: piece.name, imageKey: piece.name.toLowerCase(), cat: piece.type.toLowerCase(),
   color: privateColours[piece.colour], colour: piece.colour, style: piece.style,
-  material: 'Not tagged', fit: 'Not tagged', pattern: 'Plain', seasons: [], occasions: [], notes: '',
+  material: piece.id==='runner'?'Suede and mesh':'Not tagged', fit: ['light-jeans','indigo-trousers','black-trousers'].includes(piece.id)?'Wide leg':'Not tagged', pattern: 'Plain', seasons: [], occasions: [], notes: '',
  }));
 }
-function privateSelected(){return privatePick(state.occasion,state.alternate);}
-function privateSheet(o){return '/wardrobe-timothy/'+(o.id==='everyday'?'everyday-'+(o.pieces.includes('roger')?'roger':'clogs'):o.id)+'-headless-v1.png';}
-function current(){const o=privateSelected();return {name:o.title,short:o.id==='casual'?'Casual':o.id==='date'?'Date night':'Everyday',ids:privateIds(o),weather:weatherLabel(),image:privateSheet(o),sheet:privateSheet(o),isSheet:true,composed:false,why:o.why,line:o.why,steps:o.steps,stylistNote:o.note,goal:'Your own pieces, considered together.',style:items[privateIndex[o.pieces[0]]].style,requireLayer:false,reasonGroups:[{title:'The combination',text:o.why.split('. ')[0].replace(/\.$/,'')+'.'},...o.steps.slice(0,2).map((text,i)=>({title:['The top','The lower line'][i],text}))]};}
-function garment(p){return `<img src="/__timothy/piece/${p.id}.svg" alt="${escapeHTML(p.name)}" width="320" height="320">`;}
-function railPhoto(p){return {front:`/__timothy/piece/${p.id}.svg`,side:`/__timothy/piece/${p.id}.svg`};}
-function mixPrimaryStyle(p){return p.style;}
-function mixMainColour(p){return p.colour;}
-function compatible(p){return state.fit.includes(p.id)||!state.fit.some(id=>items[id].cat===p.cat);}
+const rackArtwork = new Set(['hoodie','henley','shirt','jacket','light-jeans','indigo-trousers','black-trousers']);
+const portraitNames = {casual:'stussy',everyday:'henley',date:'barbour'};
+
+function availableImpressions(occasion) {
+ return [
+  ['Confident','Approachable','Relaxed'],
+  ['Relaxed','Approachable','Confident'],
+  ['Polished','Confident','Low-key'],
+ ][occasion];
+}
+
+function privateFrames(look) {
+ const name = portraitNames[look.id];
+ return ['front','facing-right','back','facing-left'].map(angle =>
+  `/wardrobe-timothy/rotation/${name}-${angle}.${name==='barbour'&&angle==='front'?'png':'webp'}`
+ );
+}
+
+function current() {
+ const look = privatePick(state.occasion,state.alternate);
+ return {name:look.title,short:look.title,ids:privateIds(look),frames:privateFrames(look),why:look.why,steps:look.steps};
+}
+
+function garment(piece) {
+ const src = `/wardrobe-timothy/rack/${piece.privateId}-front.webp`;
+ return `<img src="${src}" alt="${escapeHTML(piece.name)}" width="320" height="320">`;
+}
+
+function railPhoto(piece) {
+ if (piece.privateId==='polo') {
+  const front = '/wardrobe-timothy/rack/polo-front.webp';
+  return {front,side:front};
+ }
+ if (!rackArtwork.has(piece.privateId)) return null;
+ const prefix = `/wardrobe-timothy/rack/${piece.privateId}`;
+ return {front:`${prefix}-front.webp`,side:`${prefix}-side.webp`};
+}
+function mixPrimaryStyle(piece){return piece.style;}
+function mixMainColour(piece){return piece.colour;}
+function compatible(piece){return state.fit.includes(piece.id)||!state.fit.some(id=>items[id].cat===piece.cat);}
 function smallChanges(){return [];}
-function verdict(){return `<div class="shopping-workspace"><h2>Worth it?</h2><p class="sub">Check it against your wardrobe.</p><div class="reason-card"><h3>Insufficient</h3><p>No candidate item has been supplied for your private wardrobe.</p></div></div>`;}
-function preloadTodayModels(){for(const alternate of [false,true]){const image=new Image();image.src=privateSheet(privatePick(state.occasion,alternate));image.decode().catch(()=>{});}}
+
+const privateShopCases = [
+ {id:'runner', label:'Grey runners', verdict:'Already covered', why:'Your grey New Balance runners already fill this role. They work with the Stüssy hoodie and light-wash jeans for a soft, casual finish.'},
+ {id:'clogs', label:'Black clogs', verdict:'Skip it', why:'You already have black BEAMS clogs. They give the cream henley and pleated trousers an easy finish. A similar pair adds little to that combination.'},
+ {id:'tiger', label:'Court sneakers', verdict:'Worth trying on', why:'If you are replacing your current cream and navy pair, check that the low profile still works with your wide black trousers and that the fit is comfortable.'},
+];
+
+function verdict() {
+ const candidate = privateShopCases[state.verdict];
+ return `<section class="shopping-workspace"><h2>Nigel’s Buy Verdict</h2><p class="sub">Sample shopping advice using pieces from your wardrobe.</p>
+  <div class="pick-secondary">${privateShopCases.map(({label},index)=>btn(label,`data-purchase="${index}" aria-pressed="${state.verdict===index}"`,state.verdict===index?'active':'')).join('')}</div>
+  <div class="reason-card private-verdict"><h3>${candidate.verdict}</h3><div class="outfit-piece-thumb">${garment(items[privateIndex[candidate.id]])}<span>${escapeHTML(items[privateIndex[candidate.id]].name)}</span></div><p>${candidate.why}</p></div></section>`;
+}
+
+const privatePreloaded = new Map();
+function preloadTodayModels() {
+ if (!window.Image) return;
+ for (const src of current().frames) {
+  if (privatePreloaded.has(src)) continue;
+  const image = new Image();
+  image.src = src;
+  privatePreloaded.set(src,image);
+  image.decode().catch(()=>privatePreloaded.delete(src));
+ }
+}
+
 function initialisePrivate() {
  const query = new URLSearchParams(location.search);
  const occasion = Number(query.get('occasion'));
- state.recordingEntry = query.get('recording') === '1';
- state.occasion = state.recordingEntry ? 2 :
-  query.has('occasion') && Number.isInteger(occasion) && occasion >= 0 && occasion < 3 ? occasion : 1;
- state.privateTimingChosen = false;
- state.energy = ['Confident','Relaxed','Polished'][state.occasion];
- state.index = state.occasion;
-}
-function wearBarVisible(){return state.timing!=='tomorrow';}
-async function render(){
- const scroll = state.preserveScroll;
- state.preserveScroll = null;
- await shared_render();
- if (scroll != null) $('#screen').scrollTop = scroll;
+ if (query.has('occasion') && Number.isInteger(occasion) && occasion>=0 && occasion<3) {
+  state.occasion = occasion;
+  state.index = occasion;
+  state.energy = availableImpressions(occasion)[0];
+ }
+ if (query.get('recording')==='1') $('#record-mode')?.click();
 }
 
-async function preloadShoppingImages(){return;}
-
-function todayTiming(){return `<div class="today-timing" role="group" aria-label="Outfit day">${['now','tomorrow'].map(mode=>btn(mode==='now'?'Another outfit for today':'Outfit for tomorrow',`data-timing="${mode}" aria-pressed="${Boolean(state.privateTimingChosen&&state.timing===mode)}"`,state.privateTimingChosen&&state.timing===mode?'active':'')).join('')}</div>${`<p class="outfit-day-label">${state.timing==='tomorrow'?"Tomorrow’s outfit":"Today’s outfit"} ${btn('Change choices','id="change-choices"','change-choices')}</p>`}`;}
-function bind(){
- shared_bind();
- const choices = $('.recording-choices');
- if (choices) choices.ontoggle = () => { if (choices.isConnected) state.recordingChoicesOpen = choices.open; };
- if($('#occasion')){if(state.draftOccasion!==undefined)$('#occasion').value=String(state.draftOccasion);$('#occasion').onchange=e=>{state.draftOccasion=+e.target.value;state.todayTouched=true;};}
- if($('#energy')){if(state.draftCome!==undefined)$('#energy').value=state.draftCome;$('#energy').onchange=e=>{state.draftCome=e.target.value;state.todayTouched=true;};}
- if($('#another-outfit'))$('#another-outfit').onclick=()=>{state.preserveScroll=$('#screen').scrollTop;state.alternate=!state.alternate;state.modelAngle=0;state.swap=null;state.reasonIndex=0;render();};
- document.querySelectorAll('[data-timing]').forEach(button=>button.onclick=()=>{
-  const mode=button.dataset.timing,repeat=state.privateTimingChosen&&state.timing===mode;
-  state.privateTimingChosen=true;state.todayTouched=true;state.timing=mode;state.morning=false;state.timingEditing=false;
-  state.occasion=state.draftOccasion??(mode==='tomorrow'?2:1);state.energy=state.draftCome??(mode==='tomorrow'?'Polished':'Relaxed');state.index=state.occasion;
-  state.alternate=repeat?!state.alternate:false;state.modelAngle=0;state.swap=null;state.reasonIndex=0;
-  render();$('#screen').scrollTop=0;
- });
-}
+async function preloadShoppingImages(){}

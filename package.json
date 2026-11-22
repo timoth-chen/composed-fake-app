@@ -6,9 +6,10 @@
     "dev": "python3 -m http.server 4173 --directory dist",
     "build": "node scripts/prepare-static.cjs",
     "test": "node --check dist/app.js && node tests/today-timing-scope.cjs",
-    "test:browser": "node tests/private-timothy-browser.cjs",
+    "test:browser": "DEMO=personal node tests/demo-final-browser.cjs",
     "dev:timothy": "node scripts/serve-local-private.cjs",
-    "build:timothy": "node scripts/build-timothy-static.cjs"
+    "build:timothy": "node scripts/build-timothy-static.cjs",
+    "test:browser:legacy": "node tests/private-timothy-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.65.0"

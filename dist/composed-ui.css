@@ -177,3 +177,77 @@ body.dark .app-shell #today-wear-bar button {
 @media (prefers-reduced-motion: reduce) {
   .app-shell .page button, .app-shell #tabs button { transition: none; }
 }
+
+:root {
+  --paper: #f5f3ee;
+  --surface: #ffffff;
+  --ink: #171819;
+  --muted: #62676a;
+  --line: #dad8d2;
+  --soft: #e3e9ec;
+  --accent: #476578;
+  --action: #202426;
+  --preview: #e3e9ec;
+  --blue: #607e92;
+}
+body.dark {
+  --paper: #171819;
+  --surface: #202426;
+  --ink: #f5f3ee;
+  --muted: #b7c0c5;
+  --line: #454b4e;
+  --soft: #2d3b44;
+  --accent: #a8c3d6;
+  --action: #e3e9ec;
+  --action-text: #171819;
+  --preview: #262c30;
+}
+.app-shell .wordmark img { display: block; width: 52px; height: 52px; object-fit: contain; }
+.app-shell .wordmark .brand-dark, body.dark .app-shell .wordmark .brand-light { display: none; }
+body.dark .app-shell .wordmark .brand-dark { display: block; }
+.app-shell #theme-mobile { min-width: 44px; min-height: 44px; }
+.app-shell .stylist-intake { max-width: 520px; margin: 12px auto; padding: 24px 0; }
+.app-shell .stylist-intake h2 { font-size: clamp(34px, 8vw, 50px); margin: 8px 0; }
+.stylist-label, .pick-context, .stylist-tagline { color: var(--muted); margin: 0; }
+.stylist-label { font-weight: 600; }
+.app-shell .stylist-intake .today-timing { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
+.stylist-form { display: grid; gap: 8px; }
+.app-shell .stylist-form > select { width: 100%; min-height: 48px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 16px; }
+.stylist-form > select + label { margin-top: 8px; }
+.stylist-form > button { margin-top: 12px; }
+.stylist-tagline { margin-top: 32px; }
+.app-shell .stylist-pick .pick-context { font-size: 14px; }
+.app-shell .screen-today .stylist-pick .model-viewer { --outfit-height: clamp(320px, 54dvh, 560px); touch-action: pan-y; }
+.app-shell .stylist-pick .wardrobe-source { margin-top: 12px; font-weight: 600; }
+.app-shell .stylist-pick :is(.daily-why,.daily-wear,.pick-actions) { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 16px; }
+.app-shell .stylist-pick :is(h3,p) { overflow-wrap: anywhere; }
+.app-shell .stylist-pick h3 { margin: 0 0 8px; font-size: 20px; }
+.app-shell .stylist-pick details summary { min-height: 44px; padding: 10px 0; cursor: pointer; color: var(--accent); }
+.pick-actions { display: grid; gap: 8px; }
+.pick-secondary, .wear-confirmation { display: flex; flex-wrap: wrap; gap: 8px; }
+.wear-confirmation button { flex: 1; }
+.app-shell .wear-confirmation button[aria-pressed=true] { background: var(--soft); color: var(--accent); border-color: var(--accent); }
+.app-shell .rail-group-label { text-transform: capitalize; }
+@media (prefers-reduced-motion: reduce) {
+  .app-shell *, .app-shell *::before, .app-shell *::after { scroll-behavior: auto !important; }
+}
+.app-shell .app-header-tools #record-mode {
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  font: 500 12px/1.25 var(--font);
+}
+.app-shell .wordmark img { border-radius: 12px; }
+.app-shell .pick-actions > select { min-height: 44px; padding: 8px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.app-shell .stylist-pick .outfit-piece-thumb { min-width: 0; }
+.app-shell .stylist-pick .outfit-piece-thumb img { width: 42px; height: 42px; }
+.app-shell .stylist-pick .outfit-piece-thumb span { min-width: 0; overflow-wrap: anywhere; }
+.app-shell .stylist-pick :is(.daily-why,.daily-wear) p { margin: 0 0 8px; }
+.app-shell .stylist-pick .pick-actions button:disabled { opacity: .72; cursor: default; }
+.app-shell .shopping-workspace > .reason-card { margin-top: 16px; padding: 16px; }
+.app-shell .log-collection { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 16px; }
+.app-shell .log-collection .log-row { overflow-wrap: anywhere; }
+.app-shell .stylist-intake button:focus-visible, .app-shell .stylist-pick [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
