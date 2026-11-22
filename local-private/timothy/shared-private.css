@@ -17,7 +17,8 @@
 .app-shell .landing-rail .rail-product-side { transform: none; }
 /* No left view was supplied for the existing black knit polo. */
 .app-shell .landing-rail .rail-product-side[src$="/polo-front.webp"] {
-  transform: scaleX(.42);
+  transform: scale(.42,.82);
+  transform-origin:center top;
 }
 .app-shell .shopping-workspace .private-verdict {
   display: grid;
@@ -33,3 +34,15 @@
     --outfit-height: min(62dvh, calc((100vw - 2 * var(--gutter)) * 4 / 3));
   }
 }
+.app-shell .screen-today .stylist-pick .frame-viewer {
+ width:min(100%, 46.5dvh);
+ aspect-ratio:3 / 4;
+ border:0;
+}
+.app-shell .frame-viewer .outfit-frames { height:100%; background:transparent; }
+.app-shell .frame-viewer .outfit-frames img { display:block; }
+.app-shell .frame-viewer .outfit-frames img[hidden] { display:none; }
+.app-shell .landing-rail .photographic-rail { min-height:210px; }
+.app-shell .landing-rail .hanger-track { padding-inline:12px; }
+.app-shell .landing-rail .hanger-button { height:160px; }
+.app-shell .landing-rail .rail-photographs img { left:0; }

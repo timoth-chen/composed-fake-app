@@ -28,7 +28,7 @@ export const looks = {
   note:'Let the henley texture do the work. Keep the trouser front tidy rather than adding another layer.'},
  date:{id:'date',number:3,title:'Dark lines, an open plaid layer',occasion:2,come:'Polished',pieces:['jacket','shirt','black-trousers','tiger'],
   why:'For date night, the navy button-down and black trousers give you an understated base. The plaid Barbour adds structure, and the cream and navy Onitsuka Tigers soften the finish.',
-  steps:['Leave the jacket open so the navy shirt stays visible.','Let the black wide trousers fall straight, with no fabric dragging beneath the shoes.','Finish with the cream and navy Onitsuka Tigers, with the trousers resting just above the soles.'],
+  steps:['Keep the jacket open. Let the navy shirt show to make a cleaner line down the front.','Let the black wide trousers fall straight, with no fabric dragging beneath the shoes.','Finish with the cream and navy Onitsuka Tigers, with the trousers resting just above the soles.'],
   note:'Keep the jacket open. The dark inner line carries the proportions; the plaid and cream shoes add the detail.'},
 };
 export const primaryByOccasion = ['everyday','casual','date'];

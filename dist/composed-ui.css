@@ -251,3 +251,81 @@ body.dark .app-shell .wordmark .brand-dark { display: block; }
 .app-shell .log-collection { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 16px; }
 .app-shell .log-collection .log-row { overflow-wrap: anywhere; }
 .app-shell .stylist-intake button:focus-visible, .app-shell .stylist-pick [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Personal styling pass. Shared styles are reviewed here before the public release. */
+.app-shell #screen { scroll-behavior: auto; scrollbar-gutter: auto; }
+.app-shell.phone > footer, .app-shell .wardrobe-tools { display: none; }
+.app-shell #tabs { padding-bottom: env(safe-area-inset-bottom); }
+.app-shell.phone > header { min-height: 56px; padding: 4px 0; position:relative; z-index:2; }
+.app-shell .wordmark img { width: 44px; height:44px; }
+.settings-menu { position: relative; }
+.settings-menu summary { display: grid; place-items: center; width:44px; height:44px; cursor:pointer; font-size:22px; }
+.settings-menu summary::-webkit-details-marker { display: none; }
+.app-shell .settings-menu .app-header-tools {
+  position:absolute; z-index:4; top:100%; right:0; display:grid;
+  width: min(250px, 82vw); gap:4px; padding:12px; border:1px solid var(--line);
+  border-radius:12px; background:var(--surface); box-shadow:0 8px 24px #0002;
+}
+.app-shell .settings-menu button, .app-shell .settings-menu #record-mode { width:100%; min-height:44px; text-align:left; padding-inline:12px; font:inherit; }
+.app-shell .settings-menu p { margin:8px 4px 4px; color:var(--muted); font-size:12px; }
+.app-shell .stylist-intake { margin:0 auto; padding:16px 0; }
+.app-shell .stylist-intake h2 { margin:8px 0 4px; }
+.stylist-intake > p { margin:0; }
+.app-shell .stylist-intake .today-timing { margin:16px 0; }
+.stylist-form fieldset { min-width:0; border:0; margin:0; padding:8px 0 4px; }
+.stylist-form legend { padding:0; font-weight:600; }
+.choice-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.choice-chip { position:relative; cursor:pointer; }
+.choice-chip input { position:absolute; inset:0; opacity:0; width:100%; height:100%; cursor:pointer; margin:0; }
+.choice-chip span { display:grid; place-items:center; min-height:44px; padding:8px 12px; background:var(--surface); border:1px solid var(--line); border-radius:8px; }
+.choice-chip input:checked + span { background:var(--soft); border-color:var(--accent); color:var(--accent); }
+.choice-chip input:focus-visible + span { outline:2px solid var(--accent); outline-offset:2px; }
+.stylist-form input[type=date] { min-height:44px; padding:8px; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:8px; font:inherit; }
+body.dark .stylist-form input[type=date] { color-scheme:dark; }
+.intake-note { text-align:center; color:var(--muted); margin:0; font-size:13px; }
+.pick-tools { display:flex; align-items:center; gap:8px; }
+.pick-tools button { width:44px; padding:0; font-size:22px; }
+.pick-tools #save-recommendation { margin-inline-start:auto; }
+.app-shell .pick-photo { display:grid; justify-items:center; }
+.app-shell .screen-today .stylist-pick .model-viewer { margin:0; }
+.frame-status { text-align:center; font-size:13px; margin:4px 0 8px; color:var(--muted); }
+.app-shell .screen-today .stylist-pick .model-turn-arrow {
+  display:grid; place-items:center; padding:0; border:0; background:transparent; color:#171819;
+}
+.model-turn-arrow::before { content:""; position:absolute; width:28px; height:28px; background:#fffffff0; border-radius:50%; z-index:-1; }
+.model-turn-arrow { isolation:isolate; }
+.app-shell .stylist-pick .outfit-piece-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:8px 0 12px; }
+.app-shell .stylist-pick .outfit-piece-strip:has(> :last-child:nth-child(3)) { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.app-shell .stylist-pick .outfit-piece-thumb { display:grid; justify-items:center; align-content:start; gap:4px; padding:4px; text-align:center; background:var(--surface); }
+.app-shell .stylist-pick .outfit-piece-thumb img { width:100%; height:64px; object-fit:contain; background:#f2f1ed; border-radius:4px; }
+.app-shell .stylist-pick .outfit-piece-thumb span { font-size:12px; line-height:1.2; }
+.app-shell .stylist-pick :is(.daily-why,.daily-wear,.pick-actions) { margin:12px 0 0; padding:12px; border:0; }
+.app-shell .stylist-pick .daily-why { background:var(--soft); border-radius:10px; }
+.app-shell .stylist-pick .daily-wear { border-inline-start:2px solid var(--accent); padding:4px 12px; }
+.app-shell .stylist-pick .pick-actions { padding-inline:0; }
+.app-shell .pick-actions .pick-secondary { display:grid; grid-template-columns:1fr 1fr; }
+.app-shell .pick-actions .pick-secondary button { padding:6px; font-size:13px; }
+.app-shell .builder button { margin:4px 8px 4px 0; }
+.app-shell .landing-rail .hanger-button,
+.app-shell .landing-rail .hanger-button:is(.face,:focus-visible) { flex:0 0 108px; width:108px; }
+.app-shell .landing-rail .rail-group-label { top:-30px; }
+.app-shell .shoe-drawer { background:var(--surface); }
+.app-shell .shoe-shelf { padding:12px; gap:12px; }
+.app-shell .shoe-shelf article > button:first-child { min-height:0; }
+.app-shell .shoe-shelf article img { height:92px; object-fit:contain; }
+#toast { top:calc(env(safe-area-inset-top) + 60px); bottom:auto; display:none; gap:8px; align-items:center; padding:4px 8px 4px 12px; z-index:5; }
+#toast.show { display:flex; opacity:1; }
+#toast-dismiss { color:inherit; background:transparent; border:0; min-width:44px; min-height:44px; font-size:20px; }
+@media(min-width:900px) {
+ body:not(.record-mode) .app-shell #screen.screen-today > .page:has(.stylist-pick) { max-width:1080px; }
+ body:not(.record-mode) .app-shell .stylist-pick { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:start; }
+ body:not(.record-mode) .pick-details { padding-top:44px; }
+}
+body.record-mode .app-shell #screen > .page { max-width:480px; }
+
+.app-shell .pick-tools button { display:grid; place-items:center; }
+.app-shell #screen.screen-today { overflow-anchor:none; }
+
+#toast.show { pointer-events:auto; }
+
+.photo-note { font-size:13px; color:var(--muted); margin:4px 0 12px; }

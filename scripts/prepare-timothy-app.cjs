@@ -34,10 +34,11 @@ function privateApp() {
   app = app
     .replace("const metadataKey='composed.wardrobe.v1'", "const metadataKey='composed.private.timothy.v1'")
     .replaceAll('Casual afternoon', 'Casual')
+    .replaceAll('Everyday / work', 'Everyday')
     .replace('Faceless mannequin wearing', 'Outfit featuring')
     .replace('21-piece demo wardrobe', '11-piece wardrobe')
     .replace('o.sheet||`assets/turn-${turnSheets[state.index]}.png`', 'o.sheet')
-    .replace('preloadRail();', 'initialisePrivate();\npreloadRail();')
+    .replace('loadPlan();', 'loadPlan();\ninitialisePrivate();')
     .replace('replacement=shoe===5?17:5;', "replacement=items.find(p=>p.cat==='shoes'&&p.id!==shoe).id;");
 
   // Personal items already carry named colours. Keep the existing metadata

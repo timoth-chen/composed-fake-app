@@ -5,9 +5,10 @@ const styleMixColours = privateColours;
 function privateIds(look) {
  return look.pieces.map(id => privateIndex[id]);
 }
+const shortNames={hoodie:'Stüssy hoodie','light-jeans':'Wide jeans',runner:'New Balance',henley:'Cream henley','indigo-trousers':'Indigo trousers',clogs:'BEAMS clogs',jacket:'Barbour',shirt:'Navy shirt','black-trousers':'Black trousers',tiger:'Tigers'};
 function personalItems() {
  return privateItems.map((piece, id) => ({
-  id, privateId: piece.id, name: piece.name, imageKey: piece.name.toLowerCase(), cat: piece.type.toLowerCase(),
+  id, privateId: piece.id, shortName:shortNames[piece.id], name: piece.name, imageKey: piece.name.toLowerCase(), cat: piece.type.toLowerCase(),
   color: privateColours[piece.colour], colour: piece.colour, style: piece.style,
   material: piece.id==='runner'?'Suede and mesh':'Not tagged', fit: ['light-jeans','indigo-trousers','black-trousers'].includes(piece.id)?'Wide leg':'Not tagged', pattern: 'Plain', seasons: [], occasions: [], notes: '',
  }));
@@ -15,13 +16,33 @@ function personalItems() {
 const rackArtwork = new Set(['hoodie','henley','shirt','jacket','light-jeans','indigo-trousers','black-trousers']);
 const portraitNames = {casual:'stussy',everyday:'henley',date:'barbour'};
 
-function availableImpressions(occasion) {
- return [
-  ['Confident','Approachable','Relaxed'],
-  ['Relaxed','Approachable','Confident'],
-  ['Polished','Confident','Low-key'],
- ][occasion];
+function availableImpressions() {
+ return ['Relaxed','Confident','Polished','Approachable','Low-key'];
 }
+
+const advice = {
+ casual:{
+  Relaxed:'The roomy jeans and soft hoodie leave you room to move.',
+  Confident:'The charcoal hoodie gives the wide denim a strong, simple outline.',
+  Polished:'Keep this to informal plans. The muted trainers pull the denim and hoodie together without dressing them up.',
+  Approachable:'The familiar hoodie and trainers take the edge off the wide denim.',
+  'Low-key':'Charcoal and faded denim keep the outfit quiet, even with a roomy shape.',
+ },
+ everyday:{
+  Relaxed:'The henley softens the pleated trousers, and the clogs keep the whole thing easy.',
+  Confident:'The dark pleats give the outfit structure. The cream henley keeps that shape from feeling stiff.',
+  Polished:'The pleats give you a tidy line. Keep the henley neckline and trouser front simple so that line reads.',
+  Approachable:'Cream softens the contrast with the navy, and the textured henley makes the outfit feel easy to wear.',
+  'Low-key':'The texture does the work up close. You can keep the rest simple with the dark trousers and clogs.',
+ },
+ date:{
+  Relaxed:'The open jacket and cream trainers make the dark base feel easygoing.',
+  Confident:'The plaid has enough personality to stand on its own. The black trousers give it a steady base.',
+  Polished:'The plaid adds personality without making the outfit feel dressed up. The navy shirt and black trousers keep it grounded.',
+  Approachable:'The cream trainers soften the dark outfit, and wearing the jacket open keeps the plaid from feeling formal.',
+  'Low-key':'Keep the navy shirt and black trousers as the base. The plaid is the one detail that catches the eye.',
+ },
+};
 
 function privateFrames(look) {
  const name = portraitNames[look.id];
@@ -32,7 +53,16 @@ function privateFrames(look) {
 
 function current() {
  const look = privatePick(state.occasion,state.alternate);
- return {name:look.title,short:look.title,ids:privateIds(look),frames:privateFrames(look),why:look.why,steps:look.steps};
+ const titles={casual:'Stüssy and wide denim',everyday:'Cream henley and pleats',date:'Plaid over navy'};
+ const openings=['For an everyday plan,','For a casual outing,','For date night,'];
+ const contexts={
+  casual:' a hoodie and trainers work best when the dress code is casual.',
+  everyday:' the pleated trousers give you room to dress up or down.',
+  date:' the open jacket gives the outfit just enough shape.',
+ };
+ return {name:titles[look.id],ids:privateIds(look),frames:privateFrames(look),contextual:true,
+  photoNote:look.id==='casual'?'The lookbook photo also shows a white undershirt.':null,
+  why:advice[look.id][state.energy]+ ' '+openings[state.occasion]+contexts[look.id],steps:look.steps};
 }
 
 function garment(piece) {
@@ -57,7 +87,7 @@ function smallChanges(){return [];}
 const privateShopCases = [
  {id:'runner', label:'Grey runners', verdict:'Already covered', why:'Your grey New Balance runners already fill this role. They work with the Stüssy hoodie and light-wash jeans for a soft, casual finish.'},
  {id:'clogs', label:'Black clogs', verdict:'Skip it', why:'You already have black BEAMS clogs. They give the cream henley and pleated trousers an easy finish. A similar pair adds little to that combination.'},
- {id:'tiger', label:'Court sneakers', verdict:'Worth trying on', why:'If you are replacing your current cream and navy pair, check that the low profile still works with your wide black trousers and that the fit is comfortable.'},
+ {id:'tiger', label:'Court sneakers', verdict:'Already covered', why:'You already own the cream and navy Onitsuka Tigers. A similar pair only makes sense as a replacement. Check how the low profile sits under your wide black trousers.'},
 ];
 
 function verdict() {
@@ -70,7 +100,8 @@ function verdict() {
 const privatePreloaded = new Map();
 function preloadTodayModels() {
  if (!window.Image) return;
- for (const src of current().frames) {
+ const frameSets=[0,1,2].map(occasion=>privateFrames(privatePick(occasion,false)));
+ for (const src of [...frameSets.map(frames=>frames[0]),...frameSets.flatMap(frames=>frames.slice(1))]) {
   if (privatePreloaded.has(src)) continue;
   const image = new Image();
   image.src = src;
