@@ -16,16 +16,14 @@ function personalItems() {
 const rackArtwork = new Set(['hoodie','henley','shirt','jacket','light-jeans','indigo-trousers','black-trousers']);
 const portraitNames = {casual:'stussy',everyday:'henley',date:'barbour'};
 
-function availableImpressions() {
- return ['Relaxed','Confident','Polished','Approachable','Low-key'];
-}
-
 const advice = {
  casual:{
   Relaxed:'The roomy jeans and soft hoodie leave you room to move.',
   Confident:'The charcoal hoodie gives the wide denim a strong, simple outline.',
   Polished:'Keep this to informal plans. The muted trainers pull the denim and hoodie together without dressing them up.',
   Approachable:'The familiar hoodie and trainers take the edge off the wide denim.',
+  Sharp:'The ribbed hoodie hem and straight fall of the jeans keep the silhouette clear for a casual setting.',
+  'Not sure':'Start with familiar denim, a soft hoodie and comfortable trainers for casual plans.',
   'Low-key':'Charcoal and faded denim keep the outfit quiet, even with a roomy shape.',
  },
  everyday:{
@@ -33,6 +31,8 @@ const advice = {
   Confident:'The dark pleats give the outfit structure. The cream henley keeps that shape from feeling stiff.',
   Polished:'The pleats give you a tidy line. Keep the henley neckline and trouser front simple so that line reads.',
   Approachable:'Cream softens the contrast with the navy, and the textured henley makes the outfit feel easy to wear.',
+  Sharp:'Keep the front pleats straight and the dark hems clear of the clogs for a clean line.',
+  'Not sure':'The textured henley and dark pleats are an easy starting point for everyday plans.',
   'Low-key':'The texture does the work up close. You can keep the rest simple with the dark trousers and clogs.',
  },
  date:{
@@ -40,6 +40,8 @@ const advice = {
   Confident:'The plaid has enough personality to stand on its own. The black trousers give it a steady base.',
   Polished:'The plaid adds personality without making the outfit feel dressed up. The navy shirt and black trousers keep it grounded.',
   Approachable:'The cream trainers soften the dark outfit, and wearing the jacket open keeps the plaid from feeling formal.',
+  Sharp:'The navy shirt and black trousers make a neat line inside the open jacket.',
+  'Not sure':'Start with the dark shirt and trousers, with the jacket open and cream trainers for an easy finish.',
   'Low-key':'Keep the navy shirt and black trousers as the base. The plaid is the one detail that catches the eye.',
  },
 };

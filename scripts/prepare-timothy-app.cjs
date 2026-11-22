@@ -22,7 +22,6 @@ function privateApp() {
     ['const garmentImages=', 'function btn('],
     ['function current(', '// Small changes'],
     ['function smallChanges(', 'let rackCarousel;'],
-    ['function availableImpressions(', 'function impressionOptions('],
     ['function compatible(', 'function complete('],
     ['const cases=', 'function verdict()'],
     ['const styleMixPieceTags=', 'function mixBreakdown('],
