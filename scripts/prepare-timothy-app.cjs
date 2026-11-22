@@ -24,7 +24,7 @@ function privateApp() {
     ['function smallChanges(', 'let rackCarousel;'],
     ['function availableImpressions(', 'function impressionOptions('],
     ['function compatible(', 'function complete('],
-    ['const cases=', 'const styleMixNames='],
+    ['const cases=', 'function verdict()'],
     ['const styleMixPieceTags=', 'function mixBreakdown('],
     ['// Rack-only photographs', 'function railGarments('],
     ['const preloadedModelSources=', 'function preloadRail('],

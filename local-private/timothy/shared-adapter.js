@@ -52,9 +52,10 @@ function privateFrames(look) {
 }
 
 function current() {
- const look = privatePick(state.occasion,state.alternate);
+ const work=state.occasion===3;
+ const look = privatePick(work?2:state.occasion,state.alternate);
  const titles={casual:'Stüssy and wide denim',everyday:'Cream henley and pleats',date:'Plaid over navy'};
- const openings=['For an everyday plan,','For a casual outing,','For date night,'];
+ const openings=['For an everyday plan,','For a casual outing,','For date night,','For a casual workplace,'];
  const contexts={
   casual:' a hoodie and trainers work best when the dress code is casual.',
   everyday:' the pleated trousers give you room to dress up or down.',
@@ -62,7 +63,7 @@ function current() {
  };
  return {name:titles[look.id],ids:privateIds(look),frames:privateFrames(look),contextual:true,
   photoNote:look.id==='casual'?'The lookbook photo also shows a white undershirt.':null,
-  why:advice[look.id][state.energy]+ ' '+openings[state.occasion]+contexts[look.id],steps:look.steps};
+  why:work?openings[3]+' the navy button-down and black trousers give you a tidy base. The open Barbour and cream trainers suit a relaxed office dress code.':advice[look.id][state.energy]+' '+openings[state.occasion]+contexts[look.id],steps:look.steps};
 }
 
 function garment(piece) {
@@ -84,17 +85,29 @@ function mixMainColour(piece){return piece.colour;}
 function compatible(piece){return state.fit.includes(piece.id)||!state.fit.some(id=>items[id].cat===piece.cat);}
 function smallChanges(){return [];}
 
-const privateShopCases = [
- {id:'runner', label:'Grey runners', verdict:'Already covered', why:'Your grey New Balance runners already fill this role. They work with the Stüssy hoodie and light-wash jeans for a soft, casual finish.'},
- {id:'clogs', label:'Black clogs', verdict:'Skip it', why:'You already have black BEAMS clogs. They give the cream henley and pleated trousers an easy finish. A similar pair adds little to that combination.'},
- {id:'tiger', label:'Court sneakers', verdict:'Already covered', why:'You already own the cream and navy Onitsuka Tigers. A similar pair only makes sense as a replacement. Check how the low profile sits under your wide black trousers.'},
+const cases = [
+ {id:'runner', label:'Grey runners', word:'Already covered', styleFit:84,
+  why:'The low-profile grey suede and mesh fit your casual wardrobe.',
+  adds:'Your grey New Balance runners already fill this role.',
+  alternative:'Wear the New Balance runners you own.',
+  with:'The Stüssy hoodie and light-wash jeans.'},
+ {id:'clogs', label:'Black clogs', word:'Skip it', styleFit:78,
+  why:'A simple dark clog sits comfortably under the wide pleats.',
+  adds:'Your black BEAMS clogs already give you this option.',
+  alternative:'Try your BEAMS clogs before buying a similar pair.',
+  with:'The cream henley and indigo pleated trousers.'},
+ {id:'tiger', label:'Court sneakers', word:'Check the fit', styleFit:81,
+  why:'A cream and navy court sneaker lightens the dark trousers.',
+  adds:'A similar pair makes sense only if you need to replace your Onitsuka Tigers.',
+  alternative:'Compare the pair with your existing Tigers.',
+  with:'The navy button-down, black wide trousers and open Barbour.',
+  check:'Walk a few steps and check that the heel stays secure and the trouser hem clears the sole.'},
 ];
 
-function verdict() {
- const candidate = privateShopCases[state.verdict];
- return `<section class="shopping-workspace"><h2>Nigel’s Buy Verdict</h2><p class="sub">Sample shopping advice using pieces from your wardrobe.</p>
-  <div class="pick-secondary">${privateShopCases.map(({label},index)=>btn(label,`data-purchase="${index}" aria-pressed="${state.verdict===index}"`,state.verdict===index?'active':'')).join('')}</div>
-  <div class="reason-card private-verdict"><h3>${candidate.verdict}</h3><div class="outfit-piece-thumb">${garment(items[privateIndex[candidate.id]])}<span>${escapeHTML(items[privateIndex[candidate.id]].name)}</span></div><p>${candidate.why}</p></div></section>`;
+function shoppingCandidate(index) {
+ const candidate=cases[index];
+ const piece=items[privateIndex[candidate.id]];
+ return {...candidate,name:piece.name,photo:`/wardrobe-timothy/rack/${piece.privateId}-front.webp`};
 }
 
 const privatePreloaded = new Map();

@@ -20,15 +20,6 @@
   transform: scale(.42,.82);
   transform-origin:center top;
 }
-.app-shell .shopping-workspace .private-verdict {
-  display: grid;
-  gap: 12px;
-  min-height: 0;
-  align-content: start;
-  background: var(--surface);
-  border: 1px solid var(--line);
-}
-.app-shell .private-verdict :is(h3,p) { margin: 0; }
 @media (max-width: 650px) {
   .app-shell .screen-today .stylist-pick .frame-viewer {
     --outfit-height: min(62dvh, calc((100vw - 2 * var(--gutter)) * 4 / 3));
