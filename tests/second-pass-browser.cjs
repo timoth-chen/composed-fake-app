@@ -114,7 +114,7 @@ async function exercise(browser,width) {
   assert.equal(await at('[data-plan-date]').count(),2);
   await at('[data-plan-date="2099-04-10"]').click();
   await viewer.waitFor();
-  assert.match(await at('#accept-outfit').innerText(),/Outfit planned/);
+  assert.match(await at('.pick-confirmation').innerText(),/Outfit planned/);
   await tab('Wardrobe');
   await at('.hanger-button').first().tap();
   await at('#rail-like').click();

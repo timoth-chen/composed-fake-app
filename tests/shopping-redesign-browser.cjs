@@ -38,7 +38,7 @@ async function exercise(browser,width,height){
  try{
   await page.goto(site);
   await at('#lock-tomorrow').waitFor();
-  assert.match(await at('.stylist-intake h2').innerText(),/Let’s get you dressed/);
+  assert.match(await at('.stylist-intake h2').innerText(),/What are we dressing for/);
   if(width===320){
    const [action,screen]=await Promise.all([at('#lock-tomorrow').boundingBox(),at('#screen').boundingBox()]);
    assert.ok(action.y+action.height<=screen.y+screen.height);

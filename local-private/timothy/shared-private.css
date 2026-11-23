@@ -20,16 +20,6 @@
   transform: scale(.42,.82);
   transform-origin:center top;
 }
-@media (max-width: 650px) {
-  .app-shell .screen-today .stylist-pick .frame-viewer {
-    --outfit-height: min(62dvh, calc((100vw - 2 * var(--gutter)) * 4 / 3));
-  }
-}
-.app-shell .screen-today .stylist-pick .frame-viewer {
- width:min(100%, 46.5dvh);
- aspect-ratio:3 / 4;
- border:0;
-}
 .app-shell .frame-viewer .outfit-frames { height:100%; background:transparent; }
 .app-shell .frame-viewer .outfit-frames img { display:block; }
 .app-shell .frame-viewer .outfit-frames img[hidden] { display:none; }
