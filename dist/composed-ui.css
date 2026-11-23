@@ -395,3 +395,47 @@ body.record-mode .app-shell #screen > .page { max-width:480px; }
 .app-shell .shop-section meter::-webkit-meter-bar{background:var(--soft);border:0;border-radius:4px}
 .app-shell .shop-section meter::-webkit-meter-optimum-value{background:var(--accent);border-radius:4px}
 .app-shell .shop-section meter::-moz-meter-bar{background:var(--accent);border-radius:4px}
+
+/* Today pairs a compact decision area with an action directly beneath the outfit. */
+.app-shell .stylist-intake .stylist-label{font-size:13px;color:var(--accent)}
+.app-shell .stylist-intake h2{font-size:clamp(25px,6.8vw,42px);line-height:1.12;margin:4px 0 0}
+.app-shell .stylist-intake .today-timing{background:var(--soft);border:1px solid var(--line);padding:3px;gap:4px;border-radius:12px}
+.app-shell .stylist-intake .today-timing button{min-height:44px;margin:0;border:0;background:transparent}
+.app-shell .stylist-intake .today-timing button.active{background:var(--accent);color:var(--surface)}
+.app-shell .stylist-form .occasion-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+.app-shell .stylist-form .occasion-chips .choice-chip span{justify-items:start;padding-inline:12px;border-radius:8px}
+.app-shell .stylist-form :is(.impressions,#extra-impressions) .choice-chip span{border-radius:24px;padding-inline:8px}
+.app-shell .stylist-form :is(.impressions,#extra-impressions) .choice-chip input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.app-shell .today-style-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--soft);padding:0 12px;border-radius:8px;font-size:13px}
+.app-shell .today-style-summary strong{margin-inline-start:4px}
+.app-shell .today-style-summary button{min-width:44px;min-height:44px;margin:0;padding:0;background:transparent;border:0;color:var(--accent)}
+.app-shell .stylist-pick .pick-tools{gap:4px}
+.app-shell .stylist-pick .pick-tools button{min-height:44px;border-color:transparent;background:transparent}
+.app-shell .stylist-pick .pick-tools .stylist-label{font-size:13px;color:var(--accent)}
+.app-shell .screen-today .stylist-pick .daily-outfit h2{font-size:clamp(23px,5.8vw,36px);line-height:1.15;margin:4px 0 10px}
+.app-shell .stylist-pick .pick-context{font-size:13px;color:var(--accent)}
+.app-shell .screen-today .stylist-pick .model-viewer{--outfit-height:clamp(190px,40dvh,460px);width:100%;height:var(--outfit-height);border-radius:12px}
+.app-shell .screen-today .stylist-pick .model-turn-clip{height:100%;max-width:100%}
+.app-shell .stylist-pick .frame-viewer .outfit-frames{height:100%}
+.app-shell .stylist-pick .frame-viewer img{width:100%;height:100%;object-fit:contain}
+.app-shell .stylist-pick .pick-rotation{display:grid;grid-template-columns:44px minmax(92px,auto) 44px;align-items:center;gap:8px;margin:4px 0}
+.app-shell .stylist-pick .pick-rotation button{min-width:44px;min-height:44px;margin:0;padding:0;font-size:22px;background:transparent}
+.app-shell .stylist-pick .pick-rotation p{margin:0}
+.app-shell .stylist-pick .pick-actions{margin:0;padding:0;gap:8px}
+.app-shell .stylist-pick .pick-actions > .primary{width:100%;min-height:44px}
+.app-shell .stylist-pick .wear-confirmation{display:grid;grid-template-columns:1fr auto;gap:8px}
+.app-shell .stylist-pick .wear-confirmation button{min-height:44px;margin:0;padding-inline:10px}
+.app-shell .stylist-pick .pick-confirmation{margin:0;color:var(--muted);font-size:13px}
+.app-shell .stylist-pick .outfit-piece-thumb img{height:54px}
+.app-shell .stylist-pick .daily-why h3{font-size:17px}
+.app-shell .stylist-pick .daily-why p:last-child{margin-bottom:0}
+@media(max-height:650px){
+ .app-shell .screen-today .stylist-pick .model-viewer{--outfit-height:clamp(164px,33dvh,210px)}
+}
+@media(max-width:360px){
+ .app-shell .stylist-intake h2{font-size:22px}
+ .app-shell .stylist-intake .today-timing{margin-block:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .app-shell .stylist-pick *, .app-shell .stylist-intake *{transition:none!important;scroll-behavior:auto!important}
+}

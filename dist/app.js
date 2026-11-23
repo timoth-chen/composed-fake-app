@@ -221,7 +221,7 @@ function impressionOptions() {
  const extra=supported.filter(name=>!primary.includes(name));
  const chips=names=>names.map(name=>choiceChip('impression',name,name,state.energy===name)).join('');
  return `<div class="choice-chips impressions">${chips(primary)}${extra.includes(state.energy)&&!state.moreImpressions?chips([state.energy]):''}</div>
-  <button type="button" id="more-impressions" aria-expanded="${Boolean(state.moreImpressions)}" aria-controls="extra-impressions">${state.moreImpressions?'Fewer options':'More options'}</button>
+  <button type="button" id="more-impressions" aria-expanded="${Boolean(state.moreImpressions)}" aria-controls="extra-impressions">${state.moreImpressions?'Fewer impressions':'More impressions'}</button>
   <div class="choice-chips" id="extra-impressions" ${state.moreImpressions?'':'hidden'}>${state.moreImpressions?chips(extra):''}</div>`;
 }
 function choiceChip(group,value,label,checked) {
@@ -238,12 +238,14 @@ function planDateControls() {
 function today() {
  if (!outfitVisible()) {
   return `<section class="stylist-intake">
-   <h2>Let’s get you dressed.</h2>
+   <p class="stylist-label">Your daily stylist</p>
+   <h2>What are we dressing for?</h2>
    ${todayTiming()}
    <form id="outfit-intake" class="stylist-form">
     ${state.timing==='soon'?planDateControls():''}
     <fieldset><legend>Occasion</legend><div class="choice-chips occasion-chips">${occasions.map((name,i)=>choiceChip('occasion',i,name,state.occasion===i)).join('')}</div></fieldset>
-    <fieldset><legend>How do you want to come across?</legend><div id="impression-options">${impressionOptions()}</div></fieldset>
+    <fieldset><legend>The impression</legend><div id="impression-options">${impressionOptions()}</div></fieldset>
+    ${myStyle===aesthetics[0]?'':`<div class="today-style-summary"><span>Your style <strong>${escapeHTML(myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>`}
     <button class="primary" id="lock-tomorrow">Find my outfit</button>
    </form>
   </section>`;
@@ -262,28 +264,43 @@ function today() {
    <p class="pick-context">${occasions[state.occasion]} · ${state.energy}${planned?' · '+displayDate(outfitDate()):''}</p>
    <h2>${escapeHTML(o.short||o.name)}</h2>
    <div class="pick-photo">${modelViewer(o)}
-   <p class="frame-status" id="model-turn-hint">${['Front','Right side','Back','Left side'][state.modelAngle]} · Four views</p></div></section>
+    <div class="pick-rotation" role="group" aria-label="Outfit angles">
+     ${btn('‹','id="model-prev" aria-label="Previous angle"')}
+     <p class="frame-status" id="model-turn-hint">${['Front','Right side','Back','Left side'][state.modelAngle]} · Four views</p>
+     ${btn('›','id="model-next" aria-label="Next angle"')}
+    </div>
+   </div>
+   <section class="pick-actions" aria-label="Outfit actions">
+    ${!isAccepted?btn(planned?'Plan this outfit':'I’ll wear this','id="accept-outfit"','primary'):
+      planned&&!canLog?btn('View in Log','id="view-plan-log"','primary'):
+      `<div class="wear-confirmation">${btn(wear?.type==='wore'?'Marked as worn':'Mark as worn',`data-log="wore" aria-pressed="${wear?.type==='wore'}"`,'primary')}
+       ${btn('Didn’t wear it',`data-log="skipped" aria-pressed="${wear?.type==='skipped'}"`)}
+       ${wearUndo&&wearUndo.entry===wear?btn('Undo','id="undo-wear" aria-label="Undo wear feedback"'):''}</div>`}
+    ${isAccepted&&planned&&!canLog?'<p class="pick-confirmation" role="status">Outfit planned</p>':''}
+    ${isAccepted&&canLog&&wear?.type==='skipped'?`<label for="skip-reason">Why didn’t you wear it? (Optional)</label><select id="skip-reason"><option value="">Choose a reason</option>${skipReasons.map(reason=>`<option ${wear.reason===reason?'selected':''}>${reason}</option>`).join('')}</select>`:''}
+   <div class="pick-secondary">${btn(state.occasion===3?'No more picks for this plan':state.alternate?'See previous pick':'Another outfit',`id="another-outfit" ${state.occasion===3?'disabled':''}`)}${btn('Change a piece','id="refine-pick"')}</div>
+   </section>
+  </section>
    <div class="pick-details"><section>
    <p class="section-label wardrobe-source">From your wardrobe</p>
    <div class="outfit-piece-strip">${orderPieces(o.ids).map(id=>`<div class="outfit-piece-thumb" title="${escapeHTML(items[id].name)}">${garment(items[id])}<span>${escapeHTML(items[id].shortName||items[id].name)}</span></div>`).join('')}</div>
    ${o.photoNote?`<p class="photo-note">${escapeHTML(o.photoNote)}</p>`:''}
   </section>
-  <section class="daily-why"><p class="stylist-label">Nigel</p><h3>Why I picked this for you</h3><p>${o.contextual?'':lead?lead+' ':''}${escapeHTML(o.why+styleExplanation(o))}</p></section>
+  <section class="daily-why"><h3>Why Nigel picked this for you</h3><p>${o.contextual?'':lead?lead+' ':''}${escapeHTML(o.why+styleExplanation(o))}</p></section>
   <section class="daily-wear"><h3><span aria-hidden="true">↳</span> Wear it like this</h3><p>${escapeHTML(o.steps[0])}</p>
    ${o.steps.length>1?`<details><summary>More styling tips</summary><ul>${o.steps.slice(1).map(step=>`<li>${escapeHTML(step)}</li>`).join('')}</ul></details>`:''}
   </section>
-  <section class="pick-actions" aria-label="Outfit actions">
-   ${btn(isAccepted?(planned?'Outfit planned':'Outfit accepted'):(planned?'Plan this outfit':'I’ll wear this'),`id="accept-outfit" ${isAccepted?'disabled':''}`,'primary')}
-   ${isAccepted&&planned?btn('View in Log','id="view-plan-log"'):''}
-   ${isAccepted&&canLog?`<div class="wear-confirmation">${btn('Wore it',`data-log="wore" aria-pressed="${hasLoggedCurrent('wore')}"`)}${btn('Didn’t wear it',`data-log="skipped" aria-pressed="${hasLoggedCurrent('skipped')}"`)}</div>`:''}
-   ${isAccepted&&canLog&&wear?.type==='skipped'?`<label for="skip-reason">Why didn’t you wear it? (Optional)</label><select id="skip-reason"><option value="">Choose a reason</option>${skipReasons.map(reason=>`<option ${wear.reason===reason?'selected':''}>${reason}</option>`).join('')}</select>`:''}
-   <div class="pick-secondary">${btn(state.occasion===3?'No more picks for this plan':state.alternate?'See previous pick':'Another outfit',`id="another-outfit" ${state.occasion===3?'disabled':''}`)}${btn('Change a piece','id="refine-pick"')}</div>
    ${swaps.length?`<details class="change-piece"><summary>Nigel’s styling alternatives</summary><p>Styling suggestions for the outfit shown.</p>${swaps.map(({from,to,note})=>btn(escapeHTML(items[to].name),`data-swap="${from},${to}" data-note="${escapeHTML(note)}"`)).join(' ')}${state.swap?`<p>${escapeHTML(state.swap.note)}</p>`:''}</details>`:''}
-  </section></div>
+  </div>
  </article>`;
 }
 
 function bindToday() {
+ if($('#edit-today-style'))$('#edit-today-style').onclick=()=>{
+  settingsMenu.open=true;
+  syncSettings();
+  styleSelect.focus();
+ };
  const form=$('#outfit-intake');
  if(form){
   const bindImpressions=()=>{
@@ -356,7 +373,7 @@ function bindToday() {
    }
   }
   persist();
-  render();
+  render().then(()=>($('#view-plan-log')||$('[data-log=wore]'))?.focus({preventScroll:true}));
  };
  if($('#recover-plan'))$('#recover-plan').onclick=()=>{
   Object.assign(state,{tab:'Today',timing:'soon',timingEditing:true,planDate:'',otherDate:true,occasion:undatedPlan.occasion,energy:undatedPlan.energy,recoveringPlan:true});
@@ -392,11 +409,11 @@ function frameViewer(outfit) {
  const angle = state.modelAngle;
  return `<div class="photo-wrap model-viewer frame-viewer" id="model-viewer" role="slider" tabindex="0" aria-label="Turn outfit model" aria-valuemin="0" aria-valuemax="270" aria-valuenow="${angle*90}" aria-valuetext="${labels[angle]}" aria-describedby="model-turn-hint">
   <div class="outfit-frames">${outfit.frames.map((src,i)=>`<img draggable="false" src="${src}" data-frame="${i}" alt="${labels[i]} view of ${escapeHTML(outfit.name)}" ${i===angle?'':'hidden'} width="1086" height="1448">`).join('')}</div>
-  ${btn('‹','id="model-prev" aria-label="Previous angle"','model-turn-arrow model-turn-prev')}${btn('›','id="model-next" aria-label="Next angle"','model-turn-arrow model-turn-next')}
+
 
  </div>`;
 }
-function modelViewer(o){if(o.frames)return frameViewer(o);const sheet=o.sheet||`assets/turn-${turnSheets[state.index]}.png`;const label=['Front','Right side','Back','Left side'][state.modelAngle];const useSheet=o.isSheet||state.modelAngle!==0;return `<div class="photo-wrap model-viewer" id="model-viewer" role="slider" tabindex="0" aria-label="Turn outfit model" aria-valuemin="0" aria-valuemax="270" aria-valuenow="${state.modelAngle*90}" aria-valuetext="${label} view, ${escapeHTML(o.short||o.name)}" aria-describedby="model-turn-hint"><img class="outfit-photo" src="${o.isSheet?sheet:o.image}" alt="Faceless mannequin wearing ${o.ids.map(i=>items[i].name).join(', ')}" style="visibility:${useSheet?'hidden':'visible'}"><div class="model-turn-overlay" ${useSheet?'':'hidden'}><div class="model-turn-clip"><img class="model-turn-sheet" draggable="false" src="${sheet}" alt="${label} view of ${o.ids.map(i=>items[i].name).join(', ')}" style="transform:translateX(-${state.modelAngle*25}%)"></div></div>${btn('‹','id="model-prev" aria-label="Previous angle"','model-turn-arrow model-turn-prev')}${btn('›','id="model-next" aria-label="Next angle"','model-turn-arrow model-turn-next')}</div>`;}
+function modelViewer(o){if(o.frames)return frameViewer(o);const sheet=o.sheet||`assets/turn-${turnSheets[state.index]}.png`;const label=['Front','Right side','Back','Left side'][state.modelAngle];const useSheet=o.isSheet||state.modelAngle!==0;return `<div class="photo-wrap model-viewer" id="model-viewer" role="slider" tabindex="0" aria-label="Turn outfit model" aria-valuemin="0" aria-valuemax="270" aria-valuenow="${state.modelAngle*90}" aria-valuetext="${label} view, ${escapeHTML(o.short||o.name)}" aria-describedby="model-turn-hint"><img class="outfit-photo" src="${o.isSheet?sheet:o.image}" alt="Faceless mannequin wearing ${o.ids.map(i=>items[i].name).join(', ')}" style="visibility:${useSheet?'hidden':'visible'}"><div class="model-turn-overlay" ${useSheet?'':'hidden'}><div class="model-turn-clip"><img class="model-turn-sheet" draggable="false" src="${sheet}" alt="${label} view of ${o.ids.map(i=>items[i].name).join(', ')}" style="transform:translateX(-${state.modelAngle*25}%)"></div></div></div>`;}
 function bindModelViewer(){const viewer=$('#model-viewer');if(!viewer)return;const labels=['Front','Right side','Back','Left side'];const show=angle=>{if($('#screen').getAttribute('aria-busy')==='true')return;state.modelAngle=((angle%labels.length)+labels.length)%labels.length;if(viewer.classList.contains('frame-viewer')){viewer.querySelectorAll('[data-frame]').forEach(frame=>frame.hidden=Number(frame.dataset.frame)!==state.modelAngle);}else{const useSheet=current().isSheet||state.modelAngle!==0;viewer.querySelector('.outfit-photo').style.visibility=useSheet?'hidden':'visible';viewer.querySelector('.model-turn-overlay').hidden=!useSheet;viewer.querySelector('.model-turn-sheet').style.transform=`translateX(-${state.modelAngle*25}%)`;viewer.querySelector('.model-turn-sheet').alt=`${labels[state.modelAngle]} view of ${current().short||current().name}`;}$('#model-turn-hint').textContent=`${labels[state.modelAngle]} · Four views`;viewer.setAttribute('aria-valuenow',String(state.modelAngle*90));viewer.setAttribute('aria-valuetext',`${labels[state.modelAngle]} view, ${current().short||current().name}`);};const image=viewer.querySelector('.model-turn-sheet');image?.decode().then(()=>{viewer.querySelector('.model-turn-clip').style.aspectRatio=String(image.naturalWidth/4/image.naturalHeight);}).catch(()=>{$('#model-turn-hint').textContent='Turn views unavailable. Please reload.';});$('#model-prev').onclick=()=>show(state.modelAngle-1);$('#model-next').onclick=()=>show(state.modelAngle+1);viewer.onkeydown=e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();show(state.modelAngle+(e.key==='ArrowRight'?1:-1));}else if(e.key==='Home'||e.key==='End'){e.preventDefault();show(e.key==='Home'?0:labels.length-1);}};let drag=null;viewer.onpointerdown=e=>{if(!e.isPrimary||e.button!==0||e.target.closest('button'))return;drag={x:e.clientX,y:e.clientY,index:state.modelAngle,id:e.pointerId};};viewer.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>12){drag=null;return;}if(Math.abs(dx)>12){if(!viewer.hasPointerCapture(e.pointerId))viewer.setPointerCapture(e.pointerId);show(drag.index+Math.sign(-dx)*Math.max(1,Math.round(Math.abs(dx)/45)));}};viewer.onlostpointercapture=()=>{drag=null;};viewer.onpointerup=viewer.onpointercancel=e=>{if(viewer.hasPointerCapture(e.pointerId))viewer.releasePointerCapture(e.pointerId);drag=null;};}
 function reasonCards(o){const active=state.reasonIndex%o.reasonGroups.length;return `<div class="reason-cards" role="group" aria-label="Why this outfit works">${o.reasonGroups.map((r,i)=>btn(`<strong>${r.title}</strong><span>${r.text}</span>`,`data-reason="${i}" aria-pressed="${active===i}"`,active===i?'reason-card active':'reason-card')).join('')}</div>`;}
 function wardrobeEditor(){const p=items[state.editing];const input=(key,label)=>`<label>${label}<input name="${key}" value="${escapeHTML(p[key])}" maxlength="${key==='name'?80:100}"></label>`;const select=(key,label,options)=>`<label>${label}<select name="${key}">${options.map(v=>`<option value="${v}" ${p[key]===v?'selected':''}>${v}</option>`).join('')}</select></label>`;return `<section class="wardrobe-edit-panel" aria-labelledby="edit-title"><div class="editor-title"><div><p class="section-label">PIECE ${String(p.id+1).padStart(2,'0')}</p><h3 id="edit-title">The details matter.</h3></div>${btn('×','id="close-editor" aria-label="Close clothing editor"')}</div><div class="editor-preview">${garment(p)}</div><form id="piece-editor"><div class="editor-fields">${input('name','Piece name')}${select('cat','Category',['tops','bottoms','shoes','layers'])}${input('colour','Colour')}${input('material','Material')}${select('fit','Fit',['Not tagged','Slim','Regular','Relaxed','Oversized','Straight','Tapered'])}${select('pattern','Pattern',['Plain','Striped','Checked','Printed','Textured','Other'])}<label>Seasons<input name="seasons" value="${escapeHTML(p.seasons.join(', '))}" placeholder="Spring, summer"></label><label>Occasions<input name="occasions" value="${escapeHTML(p.occasions.join(', '))}" placeholder="Everyday, work"></label><label class="full">Notes<textarea name="notes" rows="3" maxlength="500" placeholder="Fit notes, care, or details to remember">${escapeHTML(p.notes)}</textarea></label></div><p class="editor-message" id="editor-message" role="status">Use commas to separate season and occasion tags.</p><div class="actions">${btn('Save details','type="submit"','primary')}${btn('Cancel','type="button" id="cancel-editor"')}</div></form></section>`;}
@@ -604,11 +621,37 @@ function logDate(){return outfitDate();}
 function currentWearLog(){
  return state.logs.find(log=>log.date===logDate()&&orderPieces(log.ids).join(',')===orderPieces(ids()).join(','));
 }
-function hasLoggedCurrent(type){return currentWearLog()?.type===type;}
+let wearUndo=null;
+function bindWearFeedback(){
+ const ready=()=>outfitVisible()&&outfitDate()<=localDate()&&accepted.has(outfitKey())&&$('#screen').getAttribute('aria-busy')!=='true';
+ for(const button of document.querySelectorAll('[data-log]')){
+  button.onclick=()=>{
+   if(!ready())return;
+   const type=button.dataset.log;
+   const previous=currentWearLog();
+   if(previous?.type===type)return;
+   const entry={type,date:logDate(),ids:ids(),name:occasions[state.occasion]};
+   if(previous)state.logs.splice(state.logs.indexOf(previous),1,entry);
+   else state.logs.push(entry);
+   wearUndo={entry,previous};
+   persist();
+   render().then(()=>$('#undo-wear')?.focus({preventScroll:true}));
+   toast(type==='wore'?'Added to your wear log.':'Logged as not worn.');
+  };
+ }
+ if($('#undo-wear'))$('#undo-wear').onclick=()=>{
+  if(!wearUndo||currentWearLog()!==wearUndo.entry||!ready())return;
+  const index=state.logs.indexOf(wearUndo.entry);
+  state.logs.splice(index,1,...(wearUndo.previous?[wearUndo.previous]:[]));
+  wearUndo=null;
+  persist();
+  render().then(()=>$('[data-log=wore]')?.focus({preventScroll:true}));
+  toast('Wear feedback undone.');
+ };
+}
 const skipReasons = ['Too formal','Too casual','Not my style','Fit or comfort concern','Clothing unavailable','Plans changed','Other'];
-function hasWornCurrent(){return hasLoggedCurrent('wore');}
 function toggleAlternate(){if(state.occasion===3||$('#screen').getAttribute('aria-busy')==='true')return;state.alternate=!state.alternate;state.modelAngle=0;state.swap=null;state.reasonIndex=0;render().then(()=>$('#another-outfit')?.focus({preventScroll:true}));}
-function bind(){if($('.mix-disclosure'))$('.mix-disclosure').ontoggle=e=>{state.mixOpen=e.currentTarget.open;};document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=async()=>{if(state.tab==='Shopping'&&b.dataset.tab!=='Shopping')++shopping.request;dismissToast();state.tab=b.dataset.tab;render({top:true})});document.querySelectorAll('[data-wardrobe-view]').forEach(b=>b.onclick=()=>{state.wardrobeView=b.dataset.wardrobeView;render()});bindShopping();document.querySelectorAll('[data-reason]').forEach(b=>b.onclick=()=>{state.reasonIndex=+b.dataset.reason;render()});document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;render()});if($('#another-outfit'))$('#another-outfit').onclick=()=>{state.todayTouched=true;toggleAlternate();};document.querySelectorAll('[data-log]').forEach(b=>b.onclick=()=>{state.todayTouched=true;const date=logDate(),existing=currentWearLog();if(existing?.type===b.dataset.log)return;if(existing){existing.type=b.dataset.log;delete existing.reason;}else state.logs.push({type:b.dataset.log,ids:[...ids()],name:occasions[state.occasion],date});persist();render();toast(b.dataset.log==='wore'?'Added to your wear log.':'Logged as not worn.');});document.querySelectorAll('[data-swap]').forEach(b=>b.onclick=()=>{let [from,to]=b.dataset.swap.split(',').map(Number);state.swap={from,to,note:b.dataset.note};const scroll=$('#screen').scrollTop;render().then(()=>{const details=$('.change-piece');if(details)details.open=true;$('#screen').scrollTop=scroll;})});document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;render()});document.querySelectorAll('[data-like]').forEach(b=>b.onclick=()=>{let id=+b.dataset.like;toggleLike(id);render()});document.querySelectorAll('[data-piece]').forEach(b=>b.onclick=()=>{selectFitPiece(+b.dataset.piece);render()});if($('#clear-fit'))$('#clear-fit').onclick=()=>{state.anchor=null;state.fit=[];state.savedIndex=null;state.critique=null;persist();render()};if($('#save-fit'))$('#save-fit').onclick=()=>{
+function bind(){if($('.mix-disclosure'))$('.mix-disclosure').ontoggle=e=>{state.mixOpen=e.currentTarget.open;};document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=async()=>{if(state.tab==='Shopping'&&b.dataset.tab!=='Shopping')++shopping.request;dismissToast();state.tab=b.dataset.tab;render({top:true})});document.querySelectorAll('[data-wardrobe-view]').forEach(b=>b.onclick=()=>{state.wardrobeView=b.dataset.wardrobeView;render()});bindShopping();document.querySelectorAll('[data-reason]').forEach(b=>b.onclick=()=>{state.reasonIndex=+b.dataset.reason;render()});document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;render()});if($('#another-outfit'))$('#another-outfit').onclick=()=>{state.todayTouched=true;toggleAlternate();};bindWearFeedback();document.querySelectorAll('[data-swap]').forEach(b=>b.onclick=()=>{let [from,to]=b.dataset.swap.split(',').map(Number);state.swap={from,to,note:b.dataset.note};const scroll=$('#screen').scrollTop;render().then(()=>{const details=$('.change-piece');if(details)details.open=true;$('#screen').scrollTop=scroll;})});document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;render()});document.querySelectorAll('[data-like]').forEach(b=>b.onclick=()=>{let id=+b.dataset.like;toggleLike(id);render()});document.querySelectorAll('[data-piece]').forEach(b=>b.onclick=()=>{selectFitPiece(+b.dataset.piece);render()});if($('#clear-fit'))$('#clear-fit').onclick=()=>{state.anchor=null;state.fit=[];state.savedIndex=null;state.critique=null;persist();render()};if($('#save-fit'))$('#save-fit').onclick=()=>{
  const snapshot=orderPieces(state.fit);
  if(!savedFits.some(fit=>fit.join(',')===snapshot.join(',')))savedFits.push(snapshot);
  persist();render();toast('Fit saved.');
@@ -659,7 +702,7 @@ styleSelect.onchange=()=>{
  myStyle=styleSelect.value;
  let saved=false;
  try{localStorage.setItem(stylePreferenceKey,myStyle);saved=true;}catch{}
- if(state.tab==='Shopping')render();
+ if(state.tab==='Shopping'||(state.tab==='Today'&&!outfitVisible()))render();
  toast(saved?'My Style saved.':'My Style updated for this session.');
 };
 const settingsMenu=$('.settings-menu');
@@ -681,6 +724,7 @@ document.addEventListener('keydown',event=>{
 $('#theme-mobile').onclick=()=>{darkPreference=!darkPreference;theme();persist();};
 $('#toast-dismiss').onclick=dismissToast;
 function resetFlow(){
+ wearUndo=null;
  ++shopping.request;
  removeShoppingPhoto('candidate');
  removeShoppingPhoto('tryOn');
