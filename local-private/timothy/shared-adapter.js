@@ -71,11 +71,13 @@ function current() {
 }
 
 function garment(piece) {
+ if(piece.shoppingPhoto)return purchasedPhoto(piece);
  const src = `/wardrobe-timothy/rack/${piece.privateId}-front.webp`;
  return `<img src="${src}" alt="${escapeHTML(piece.name)}" width="320" height="320">`;
 }
 
 function railPhoto(piece) {
+ if(piece.shoppingPhoto){const src='assets/'+piece.shoppingPhoto;return {front:src,side:src};}
  if (piece.privateId==='polo') {
   const front = '/wardrobe-timothy/rack/polo-front.webp';
   return {front,side:front};

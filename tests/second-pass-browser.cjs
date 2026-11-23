@@ -122,7 +122,7 @@ async function exercise(browser,width) {
   await at('#toast-dismiss').click();
   await shot('wardrobe');
   await tab('Shopping');
-  assert.match(await at('#screen').innerText(),/Should I get this/);
+  assert.match(await at('#screen').innerText(),/Should I consider this/);
   await settings();
   await at('#theme-mobile').click();
   assert.equal(await at('body').evaluate(x=>x.classList.contains('dark')),true);

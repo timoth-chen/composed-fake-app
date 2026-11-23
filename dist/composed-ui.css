@@ -441,17 +441,17 @@ body.record-mode .app-shell #screen > .page { max-width:480px; }
 }
 
 /* Today and Nigel’s pick follow the same compact editorial grid. */
-.app-shell:has(.screen-today) > header .wordmark{
+.app-shell:has(:is(.screen-today,.screen-shopping)) > header .wordmark{
  display:flex;align-items:center;gap:6px;height:44px;
  --lockup:url('/assets/brand/composed-lockup-light.webp');
 }
-body.dark .app-shell:has(.screen-today) > header .wordmark{--lockup:url('/assets/brand/composed-lockup-dark.webp')}
-.app-shell:has(.screen-today) > header .wordmark img,
-body.dark .app-shell:has(.screen-today) > header .wordmark .brand-dark{display:none}
-.app-shell:has(.screen-today) > header .wordmark::after{content:"";display:block;background-image:var(--lockup);background-repeat:no-repeat}
+body.dark .app-shell:has(:is(.screen-today,.screen-shopping)) > header .wordmark{--lockup:url('/assets/brand/composed-lockup-dark.webp')}
+.app-shell:has(:is(.screen-today,.screen-shopping)) > header .wordmark img,
+body.dark .app-shell:has(:is(.screen-today,.screen-shopping)) > header .wordmark .brand-dark{display:none}
+.app-shell:has(:is(.screen-today,.screen-shopping)) > header .wordmark::after{content:"";display:block;background-image:var(--lockup);background-repeat:no-repeat}
 .app-shell .today-brand-mark{display:none}
-.app-shell:has(.screen-today) > header .today-brand-mark{display:block;width:29px;height:32px;flex:none;color:var(--ink)}
-.app-shell:has(.screen-today) > header .wordmark::after{width:98px;height:14px;background-size:158px;background-position:-32px -121px}
+.app-shell:has(:is(.screen-today,.screen-shopping)) > header .today-brand-mark{display:block;width:29px;height:32px;flex:none;color:var(--ink)}
+.app-shell:has(:is(.screen-today,.screen-shopping)) > header .wordmark::after{width:98px;height:14px;background-size:158px;background-position:-32px -121px}
 .app-shell .stylist-intake {padding-block:10px}
 .app-shell .stylist-intake .stylist-label,
 .app-shell .stylist-pick .pick-tools .stylist-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
@@ -532,3 +532,28 @@ body.dark .app-shell:has(.screen-today) > header .wordmark .brand-dark{display:n
 }
 
 body.dark .app-shell .screen-today .stylist-pick .model-viewer{background:#e0d2c5!important}
+
+.app-shell .shop-flow .shop-verdict{padding:12px 14px;background:var(--soft);border-radius:10px}
+.app-shell .shop-flow .shop-verdict h2{margin:0 0 5px;font-size:clamp(27px,7vw,40px)}
+.app-shell .shop-flow .shop-verdict p{margin:0;line-height:1.4}
+.app-shell .shop-flow .shop-verdict p:first-child{margin-bottom:4px}
+.app-shell .shop-product{display:grid;grid-template-columns:minmax(100px,.85fr) minmax(0,1fr);align-items:center;gap:14px;margin-block:14px}
+.app-shell .shop-product .shop-photo{margin:0;padding:4px}
+.app-shell .shop-product .shop-photo img{height:138px;width:100%;object-fit:contain}
+.app-shell .shop-product h3{line-height:1.15}
+.app-shell .shop-product p{font-size:13px;margin:0 0 4px}
+.app-shell .shop-product meter{width:100%;height:12px}
+.app-shell .shop-product meter::-webkit-meter-bar{background:var(--soft);border:0;border-radius:4px}
+.app-shell .shop-product meter::-webkit-meter-optimum-value{background:var(--accent);border-radius:4px}
+.app-shell .shop-product meter::-moz-meter-bar{background:var(--accent);border-radius:4px}
+.app-shell .shop-flow .shop-section{margin-top:12px;padding-top:10px}
+.app-shell .shop-flow .shop-section h3{font-size:15px;margin:0 0 4px}
+.app-shell .shop-flow .shop-section p{font-size:14px;line-height:1.45;margin:0 0 4px}
+.app-shell .shop-flow summary{min-height:44px;display:list-item;cursor:pointer;padding-block:10px;box-sizing:border-box}
+.app-shell .shop-result-actions{display:grid;grid-template-columns:1fr 1fr}
+.app-shell .shop-result-actions .primary{grid-column:1/-1}
+.app-shell .shop-flow .shop-capture{padding-block:20px}
+@media(max-width:360px){
+ .app-shell .today-style-summary{min-height:44px;margin-top:-4px}
+ .app-shell .stylist-form #lock-tomorrow{margin-top:0}
+}

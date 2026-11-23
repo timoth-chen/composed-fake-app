@@ -3,7 +3,25 @@ const items=[
 ['Burgundy knit polo','tops','#722c40','Considered',95],['Dark indigo straight jeans','bottoms','#202c3d','Everyday',120],['Black suede clogs','shoes','#292823','Relaxed',110],['Ink navy heavyweight T-shirt','tops','#202939','Everyday',55],['Black tailored shorts','bottoms','#252724','Considered',85],['White leather sneakers','shoes','#e6e6df','Everyday',130],['White heavyweight T-shirt','tops','#eeece5','Everyday',45],['Stone straight trousers','bottoms','#b8ae97','Considered',115],['Slate pleated trousers','bottoms','#53565a','Considered',140],['Sage cotton shirt','tops','#919b83','Relaxed',90],['Black crewneck knit','tops','#2b2d28','Considered',105],['Oatmeal cardigan','layers','#c2b89f','Relaxed',130],['Washed denim shirt','tops','#70828a','Everyday',95],['Navy chore jacket','layers','#303c46','Everyday',150],['Black bomber','layers','#30332d','Everyday',160],['Olive cotton overshirt','layers','#6d7453','Relaxed',125],['Black leather loafers','shoes','#292823','Considered',165],['Stone suede loafers','shoes','#b2a38a','Considered',145],['Grey cotton sweatshirt','tops','#999a92','Relaxed',75],['Olive fatigue trousers','bottoms','#74785e','Relaxed',110],['Grey New Balance 996 runner','shoes','#82858a','Everyday']
 ].map((a,id)=>({id,name:a[0],cat:a[1],color:a[2],style:a[3],cost:a[4]}));
 const metadataKey='composed.wardrobe.v1';
-items.forEach(p=>{p.imageKey=p.name.toLowerCase();p.colour=p.color;p.material='Not tagged';p.fit='Not tagged';p.pattern='Plain';p.seasons=[];p.occasions=[];p.notes='';});
+const shopCases = [
+ {name:'Black bomber jacket', category:'layers', tone:'Black', aesthetic:'Streetwear', scores:[89,72,43], photo:'shopping/bomber.jpg', colour:'Matte black is easy to repeat with dark denim.', shape:'A cropped, boxy shape adds volume above the waist.', detail:'Ribbing and zip hardware give it a casual finish.', ratings:[['Streetwear','East Asian Minimalist'],['Workwear'],['Classic','Smart Casual']], check:'Close the zip and reach forward. Check whether the hem lifts or the shoulders pull.'},
+ {name:'Olive cotton overshirt', category:'layers', tone:'Olive', aesthetic:'Workwear', scores:[92,73,46], photo:'shopping/overshirt.jpg', colour:'Muted olive works with cream, indigo and charcoal.', shape:'A straight body leaves room for a light layer underneath.', detail:'Work-shirt pockets and buttons keep it informal.', ratings:[['Workwear','East Asian Minimalist'],['Classic','Streetwear'],['Smart Casual']], check:'Button it over the top you would wear. Check across the shoulders and see where the hem lands.'},
+ {name:'Stone straight trousers', category:'bottoms', tone:'Stone', aesthetic:'Classic', scores:[87,70,48], photo:'shopping/trousers.png', colour:'Stone makes a gentle contrast with navy and black.', shape:'A straight leg keeps a continuous line from hip to hem.', detail:'Light cloth and a clean front make it easier to dress up.', ratings:[['Classic','Smart Casual','East Asian Minimalist'],['Workwear'],['Streetwear']], check:'Sit, stand and walk. Look for horizontal pulling at the hips and check the hem with your usual shoes.'},
+ {name:'Light grey canvas slip-ons', category:'shoes', tone:'Grey', aesthetic:'East Asian Minimalist', scores:[85,69,41], photo:'shopping/slip-ons.jpg', colour:'Light grey pairs with navy, black and indigo.', shape:'The low profile keeps the shoe quiet under a straight hem.', detail:'Canvas and an unstructured vamp keep the finish casual.', ratings:[['East Asian Minimalist','Streetwear'],['Classic'],['Workwear','Smart Casual']], check:'Walk a few steps. Notice if your heel slips and whether the canvas presses across your toes.'},
+];
+const shoppingKey=metadataKey+'.shopping.v1';
+let shoppingRecords={};
+try{
+ const records=JSON.parse(localStorage.getItem(shoppingKey)||'{}');
+ if(records&&typeof records==='object'){
+  shoppingRecords=Object.fromEntries(shopCases.flatMap((_,index)=>records[index]&&typeof records[index]==='object'?[[index,records[index]]]:[]));
+  Object.entries(shoppingRecords)
+   .filter(([,record])=>Number.isInteger(record.ownedId))
+   .sort((a,b)=>a[1].ownedId-b[1].ownedId)
+   .forEach(([index,record])=>{if(record.ownedId===items.length)items.push(purchasedPiece(Number(index),record.ownedId));});
+ }
+}catch{}
+items.forEach(p=>{if(p.shoppingPhoto)return;p.imageKey=p.name.toLowerCase();p.colour=p.color;p.material='Not tagged';p.fit='Not tagged';p.pattern='Plain';p.seasons=[];p.occasions=[];p.notes='';});
 try{const saved=JSON.parse(localStorage.getItem(metadataKey)||'[]');if(Array.isArray(saved))saved.forEach(row=>{const p=items.find(p=>p.id===row.id);if(!p)return;for(const key of ['material','fit','pattern','notes','colour'])if(typeof row[key]==='string'&&!(p.id===20&&key==='colour'&&row[key]==='#e4dfd3'))p[key]=row[key].slice(0,500);if(!(p.id===20&&row.name==='Off-white minimal runner')&&typeof row.name==='string'&&/^[^<>"&`]{1,80}$/.test(row.name))p.name=row.name;if(['tops','bottoms','shoes','layers'].includes(row.cat))p.cat=row.cat;for(const key of ['seasons','occasions'])if(Array.isArray(row[key]))p[key]=row[key].filter(x=>typeof x==='string').slice(0,12);});}catch{}
 function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function wardrobeData(){return {schemaVersion:1,pieces:items.map(({id,name,cat,colour,material,fit,pattern,seasons,occasions,notes})=>({id,name,category:cat,colour,material,fit,pattern,seasons,occasions,notes}))};}
@@ -78,7 +96,7 @@ const state={tab:'Today',todayTouched:false,timing:'now',planDate:'',morning:fal
 const icons={Today:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',Wardrobe:'<path d="m8 3-5 3 2 6 3-1v10h8V11l3 1 2-6-5-3c0 4-8 4-8 0Z"/>',Shopping:'<path d="M6 3h12v18H6zM9 8h6m-6 4h6m-6 4 2 2 4-4"/>',Log:'<path d="M5 3h14v18H5zM9 7h6m-6 5h6m-6 5h4"/>'};
 const garmentImages={"black bomber jacket": "assets/wardrobe/outer-01-front-320.webp", "olive cotton overshirt": "assets/wardrobe/outer-02-front-320.webp", "navy unstructured blazer": "assets/wardrobe/outer-03-front-320.webp", "charcoal wool coat": "assets/wardrobe/outer-04-front-320.webp", "white heavyweight t-shirt": "assets/wardrobe/top-01-front-320.webp", "washed black t-shirt": "assets/wardrobe/top-02-front-320.webp", "navy and ecru striped t-shirt": "assets/wardrobe/top-03-front-320.webp", "white oxford shirt": "assets/wardrobe/top-04-front-320.webp", "pale blue relaxed shirt": "assets/wardrobe/top-05-front-320.webp", "heather grey hoodie": "assets/wardrobe/top-06-front-320.webp", "charcoal crewneck sweater": "assets/wardrobe/top-07-front-320.webp", "beige pleated trousers": "assets/wardrobe/bottom-01-front-320.webp", "black wide straight trousers": "assets/wardrobe/bottom-02-front-320.webp", "dark indigo straight jeans": "assets/wardrobe/bottom-03-front-320.webp", "olive fatigue trousers": "assets/wardrobe/bottom-04-front-320.webp", "white leather sneakers": "assets/wardrobe/shoe-01-front-320.webp", "grey suede sneakers": "assets/wardrobe/shoe-02-front-320.webp", "black leather loafers": "assets/wardrobe/shoe-03-front-320.webp", "cobalt merino sweater": "assets/wardrobe/top-08-front-320.webp", "burgundy knit polo": "assets/wardrobe/top-09-front-320.webp", "emerald overshirt": "assets/wardrobe/top-10-front-320.webp", "black denim jacket": "assets/wardrobe/outer-05-front-320.webp", "slate pleated trousers": "assets/wardrobe/bottom-05-front-320.webp", "black suede clogs": "assets/wardrobe/shoe-04-front-320.webp", "black chelsea boots": "assets/wardrobe/shoe-05-front-320.webp", "black canvas sneakers": "assets/wardrobe/shoe-06-front-320.webp", "black tailored shorts": "assets/wardrobe/bottom-06-front-320.webp", "ink navy heavyweight t-shirt": "assets/wardrobe/top-11-front-320.webp", "charcoal tapered ankle trousers": "assets/wardrobe/bottom-07-front-320.webp", "midnight navy cargo trousers": "assets/wardrobe/bottom-08-front-320.webp"};
 function stoneLoaferThumbnail(p){return `<img src="assets/stone-loafers-owned.png" alt="${escapeHTML(p.name)}" loading="lazy" width="640" height="640">`;}
-function garment(p){if(p.id===20)return `<img src="assets/grey-nb-996-runner.png" alt="${escapeHTML(p.name)}" loading="lazy" width="640" height="640">`;if(p.id===11)return `<img src="assets/rack/oatmeal-cardigan.png" alt="${escapeHTML(p.name)}" width="320" height="320" loading="eager">`;if(p.id===17)return stoneLoaferThumbnail(p);if(garmentImages[p.imageKey||p.name.toLowerCase()])return `<img src="${garmentImages[p.imageKey||p.name.toLowerCase()]}" alt="${p.name}" loading="lazy" width="320" height="320">`;let shape=p.cat==='tops'||p.cat==='layers'?'<path d="m33 15-21 11 10 27 13-5v66h60V48l13 5 10-27-21-11-17-5c-5 12-16 12-21 0Z"/>':p.cat==='bottoms'?'<path d="M33 12h64l5 101H76L65 48 54 113H28Z"/>':'<path d="M21 61c4-17 9-28 18-28 13 0 10 22 26 28l38 14c12 5 13 19 0 22H24c-17 0-19-24-3-36Z"/><path d="m44 42 37 17c14 6 21-2 21-13l-4-23c-4-10-17-10-22-2L64 34Z"/>';return `<svg viewBox="0 0 130 130" role="img" aria-label="${p.name}"><g fill="${p.color}" stroke="#000" stroke-opacity=".13" stroke-width="1.5">${shape}</g><path d="M43 24v74m43-74v74" stroke="#fff" stroke-opacity=".12" fill="none"/></svg>`}
+function garment(p){if(p.shoppingPhoto)return purchasedPhoto(p);if(p.id===20)return `<img src="assets/grey-nb-996-runner.png" alt="${escapeHTML(p.name)}" loading="lazy" width="640" height="640">`;if(p.id===11)return `<img src="assets/rack/oatmeal-cardigan.png" alt="${escapeHTML(p.name)}" width="320" height="320" loading="eager">`;if(p.id===17)return stoneLoaferThumbnail(p);if(garmentImages[p.imageKey||p.name.toLowerCase()])return `<img src="${garmentImages[p.imageKey||p.name.toLowerCase()]}" alt="${p.name}" loading="lazy" width="320" height="320">`;let shape=p.cat==='tops'||p.cat==='layers'?'<path d="m33 15-21 11 10 27 13-5v66h60V48l13 5 10-27-21-11-17-5c-5 12-16 12-21 0Z"/>':p.cat==='bottoms'?'<path d="M33 12h64l5 101H76L65 48 54 113H28Z"/>':'<path d="M21 61c4-17 9-28 18-28 13 0 10 22 26 28l38 14c12 5 13 19 0 22H24c-17 0-19-24-3-36Z"/><path d="m44 42 37 17c14 6 21-2 21-13l-4-23c-4-10-17-10-22-2L64 34Z"/>';return `<svg viewBox="0 0 130 130" role="img" aria-label="${p.name}"><g fill="${p.color}" stroke="#000" stroke-opacity=".13" stroke-width="1.5">${shape}</g><path d="M43 24v74m43-74v74" stroke="#fff" stroke-opacity=".12" fill="none"/></svg>`}
 function btn(t,a,cls=''){return `<button class="${cls}" ${a}>${t}</button>`}function dismissToast(){
  clearTimeout(window.toastTimer);
  $('#toast').classList.remove('show');
@@ -264,7 +282,7 @@ function today() {
     ${state.timing==='soon'?planDateControls():''}
     <fieldset><legend>Occasion</legend><div class="choice-chips occasion-chips">${occasions.map((name,i)=>choiceChip('occasion',i,name,state.occasion===i)).join('')}</div></fieldset>
     <fieldset><legend>The impression</legend><div id="impression-options">${impressionOptions()}</div></fieldset>
-    ${myStyle===aesthetics[0]?'':`<div class="today-style-summary">${todayIcon('hanger')}<span>Your style: <strong>${escapeHTML(myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>`}
+    <div class="today-style-summary">${todayIcon('hanger')}<span>Your style: <strong>${escapeHTML(myStyle===aesthetics[0]?'Not set':myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>
     <button class="primary" id="lock-tomorrow">Find my outfit ${todayIcon('right')}</button>
    </form>
   </section>`;
@@ -490,12 +508,6 @@ function compatible(p){if(p.id===20){if(state.fit.includes(p.id))return true;if(
 function complete(){return ['tops','bottoms','shoes'].every(c=>state.fit.some(i=>items[i].cat===c))}
 function wardrobe(){let shown=items.filter(p=>(state.filter==='All'||p.cat===state.filter.toLowerCase()));return `<div class="topline"><span>YOUR CLOSET</span><span>${items.length} PIECES</span></div><h2>Your wardrobe</h2><p class="sub">Browse your pieces or build an outfit from the rack.</p><div class="wardrobe-tools">${btn('Export wardrobe','id="export-wardrobe"')}<span>Wardrobe edits stay in this browser.</span></div><div class="wardrobe-view-toggle" role="group" aria-label="Wardrobe display">${['Rack','List'].map(v=>btn(v,`data-wardrobe-view="${v}" aria-pressed="${state.wardrobeView===v}"`,state.wardrobeView===v?'active':'')).join('')}</div>${state.editing!==null?wardrobeEditor():''}${state.anchor!==null?`<div class="builder"><strong>Build around ${escapeHTML(items[state.anchor].name)}</strong><p>Clothing-only preview</p><div class="outfit-piece-strip">${state.fit.map(id=>`<div class="outfit-piece-thumb" data-piece-category="${items[id].cat}">${garment(items[id])}<span>${escapeHTML(items[id].name)}</span></div>`).join('')}</div><p>${complete()?('Your outfit is ready to review.'):'Choose '+['tops','bottoms','shoes'].filter(c=>!state.fit.some(i=>items[i].cat===c)).join(', ')+'. Choose a piece for each missing slot.'}</p>${complete()?btn('Save fit','id="save-fit"','primary')+btn('Ask Nigel','id="critique"'):''}${btn('Start over','id="clear-fit"','text-button')}<p>Choose another piece in the list to replace a piece in the same category.</p>${state.critique?`<section class="nigel-critique" aria-label="Nigel critique"><strong>Nigel’s Look Check</strong><p>Sample feedback based on the selected pieces.</p><p>${state.critique}</p>${btn('Dismiss','id="dismiss-critique"')}</section>`:''}</div>`:'<div class="hint">BUILD A FIT · Tap a piece to make it your starting point. Tap ♡ to keep it in your rotation.</div>'}<div class="filters">${['All','Tops','Bottoms','Shoes','Layers'].map(f=>btn(f,`data-filter="${f}" aria-pressed="${state.filter===f}"`,state.filter===f?'active':'')).join('')}</div><p class="rack-instruction">${state.wardrobeView==='Rack'?'Swipe to browse. Select a garment, then choose Build an outfit.':state.anchor===null?'Choose a piece to start a fit.':'Choose a piece to add it or replace one in the same category.'}</p>${state.wardrobeView==='Rack'?landingRail(shown):`<div class="wardrobe-display ${state.wardrobeView==='Rack'?'rack-display':'list-display'}" aria-label="${state.wardrobeView==='Rack'?'Clothing rack':'Wardrobe list'}"><div class="rack-track">${shown.map(p=>`<article class="item ${p.cat==='shoes'?'shelf-item':'hanging-item'} ${state.fit.includes(p.id)?'selected':''}">${btn(`<div class="garment">${p.cat!=='shoes'?'<svg class="rack-hanger" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg>':''}${garment(p)}</div><span class="item-name">${p.name}</span><small>${escapeHTML(mixPrimaryStyle(p))}${state.fit.includes(p.id)?' · Selected':state.anchor!==null&&compatible(p)?' · Compatible':''}</small>`,`data-piece="${p.id}" aria-label="Build a fit with ${p.name}"`)}${btn(state.liked.has(p.id)?'♥':'♡',`data-like="${p.id}" aria-label="${state.liked.has(p.id)?'Unlike':'Like'} ${p.name}" aria-pressed="${state.liked.has(p.id)}"`,'like')}${btn('Edit details',`data-edit-piece="${p.id}" aria-label="Edit ${p.name}"`,'edit-piece')}</article>`).join('')}</div></div>${state.wardrobeView==='Rack'?`<div class="rack-navigation">${btn('←','data-rack-step="-1" aria-label="Previous garment"')}<span id="rack-position">Swipe or drag to browse</span>${btn('→','data-rack-step="1" aria-label="Next garment"')}</div>`:''}`}${savedFits.length?`<p class="section-label">Saved fits · ${savedFits.length}</p>${savedFits.map((f,i)=>`<p class="note">Fit ${i+1} · ${f.map(id=>items[id].name).join(', ')}</p>`).join('')}`:''}`}
 // Candidate photos are shared. Wardrobe advice is specific to the active catalogue.
-const shopCases = [
- {name:'Black bomber jacket', photo:'shopping/bomber.jpg', colour:'Matte black is easy to repeat with dark denim.', shape:'A cropped, boxy shape adds volume above the waist.', detail:'Ribbing and zip hardware give it a casual finish.', ratings:[['Streetwear','East Asian Minimalist'],['Workwear'],['Classic','Smart Casual']], check:'Close the zip and reach forward. Check whether the hem lifts or the shoulders pull.'},
- {name:'Olive cotton overshirt', photo:'shopping/overshirt.jpg', colour:'Muted olive works with cream, indigo and charcoal.', shape:'A straight body leaves room for a light layer underneath.', detail:'Work-shirt pockets and buttons keep it informal.', ratings:[['Workwear','East Asian Minimalist'],['Classic','Streetwear'],['Smart Casual']], check:'Button it over the top you would wear. Check across the shoulders and see where the hem lands.'},
- {name:'Stone straight trousers', photo:'shopping/trousers.png', colour:'Stone makes a gentle contrast with navy and black.', shape:'A straight leg keeps a continuous line from hip to hem.', detail:'Light cloth and a clean front make it easier to dress up.', ratings:[['Classic','Smart Casual','East Asian Minimalist'],['Workwear'],['Streetwear']], check:'Sit, stand and walk. Look for horizontal pulling at the hips and check the hem with your usual shoes.'},
- {name:'Light grey canvas slip-ons', photo:'shopping/slip-ons.jpg', colour:'Light grey pairs with navy, black and indigo.', shape:'The low profile keeps the shoe quiet under a straight hem.', detail:'Canvas and an unstructured vamp keep the finish casual.', ratings:[['East Asian Minimalist','Streetwear'],['Classic'],['Workwear','Smart Casual']], check:'Walk a few steps. Notice if your heel slips and whether the canvas presses across your toes.'},
-];
 function shoppingWardrobe(index) {
  return [
   {duplicate:true, value:'Your black bomber already gives you the same short, dark layer.', pairing:'Wear your bomber with the white heavyweight T-shirt and dark indigo jeans.'},
@@ -508,7 +520,47 @@ function shopStyle(candidate) {
  const target=myStyle===aesthetics[0]?'Your wardrobe':myStyle;
  // A coarse demonstration rubric: close match, partial match, or weak match.
  const grade=myStyle===aesthetics[0]?1:candidate.ratings.findIndex(group=>group.includes(myStyle));
- return {target,score:[88,72,44][grade]??null};
+ return {target,score:candidate.scores[grade]??null};
+}
+function purchasedPiece(index,id){
+ const candidate=shopCases[index];
+ return {id,name:candidate.name,cat:candidate.category,colour:candidate.tone,color:candidate.tone,
+  style:candidate.aesthetic,shoppingPhoto:candidate.photo,imageKey:candidate.name.toLowerCase(),
+  material:'Not tagged',fit:'Not tagged',pattern:'Plain',seasons:[],occasions:[],notes:''};
+}
+function purchasedPhoto(piece){
+ return `<img src="assets/${piece.shoppingPhoto}" alt="${escapeHTML(piece.name)}" width="320" height="320">`;
+}
+function shoppingAssessment(index){
+ const candidate=shopCases[index];
+ const wardrobe=shoppingWardrobe(index);
+ const style=shopStyle(candidate);
+ const weak=style.score!==null&&style.score<55;
+ return {style,wardrobe,label:wardrobe.duplicate||weak?'I’d skip it':'Worth trying on',
+  reason:wardrobe.duplicate?wardrobe.value:weak?`This design is a weak match for ${style.target}.`:wardrobe.reason};
+}
+function updateShoppingRecord(action){
+ const index=shopping.example;
+ const previous=shoppingRecords[index]||{};
+ const {label,reason,style}=shoppingAssessment(index);
+ const snapshot={label,reason,style};
+ const record={...previous};
+ if(action==='save')record.saved=previous.saved||snapshot;
+ if(action==='buy')record.purchase=previous.purchase||snapshot;
+ if(action==='add'&&previous.purchase&&!Number.isInteger(previous.ownedId))record.ownedId=items.length;
+ const updated={...shoppingRecords,[index]:record};
+ try{localStorage.setItem(shoppingKey,JSON.stringify(updated));}
+ catch{shopping.error='Couldn’t save this change in your browser.';$('.shop-error').textContent=shopping.error;return;}
+ shoppingRecords=updated;
+ if(record.ownedId===items.length)items.push(purchasedPiece(index,record.ownedId));
+ changeShopping(record.purchase?'owned':'result');
+}
+function savedShopping(){
+ const entries=Object.entries(shoppingRecords).filter(([,record])=>record.saved||record.purchase);
+ if(!entries.length)return '';
+ return `<section class="shop-section"><h3>Saved items and purchases</h3><div class="shop-actions">
+ ${entries.map(([index,record])=>btn(`${shopCases[index].name} · ${Number.isInteger(record.ownedId)?'In wardrobe':record.purchase?'Bought':'Saved'}`,`data-purchase="${index}"`)).join('')}
+ </div></section>`;
 }
 const shopping = {view:'entry', example:null, candidate:null, tryOn:null, error:'', request:0};
 const acceptedPhotoTypes = 'image/jpeg,image/png,image/webp,image/gif,image/avif,image/heic,image/heif';
@@ -534,35 +586,47 @@ function verdict() {
  const back=btn('‹ Shopping','id="shop-back"','shop-back');
  let content;
  if(shopping.view==='entry'){
-  content=`<div class="shop-intro"><h2 id="shop-heading">Should I get this?</h2><p>Show Nigel what caught your eye. He’ll tell you if it’s worth adding to your wardrobe.</p>
+  content=`<div class="shop-intro"><h2 id="shop-heading">Should I consider this?</h2><p>Show Nigel something you’re thinking about. Get advice for your wardrobe and style.</p>
    <div class="shop-capture"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
    ${photoActions('candidate')}</div>
-   <p class="sub">Photos stay on this device. Nigel’s assessments are available for the examples below.</p></div>${notice}${exampleChoices()}`;
+   <p class="sub">Photos stay on this device. Nigel’s assessments are available for the examples below.</p></div>${notice}${exampleChoices()}${savedShopping()}`;
  }else if(shopping.view==='preview'){
   content=`${back}<h2 id="shop-heading">Your item</h2>${preview(shopping.candidate)}
    <p>Live photo assessment is unavailable. Try an example to see how Nigel would assess an item.</p>
    ${photoActions('candidate','Retake photo','Choose another photo')}${btn('Remove photo','data-shop-remove="candidate"')}${notice}${exampleChoices()}`;
  }else if(shopping.view==='tryOn'){
   content=`${btn('‹ Back to verdict','id="shop-result"','shop-back')}<h2 id="shop-heading">Check the fit</h2>
-   <p>${candidate.name} · Example item</p><p>${candidate.check}</p>
+   <p>${candidate.name} · Example item</p><p>Original recommendation: ${escapeHTML(shopping.tryOnAssessment.label)}</p><p>${candidate.check}</p>
    ${preview(shopping.tryOn)}<p class="sub">Fit is unresolved. This demo can preview a try-on photo, but it cannot assess fit, sizing or comfort.</p>
    ${photoActions('tryOn',shopping.tryOn?'Retake try-on photo':'Take try-on photo','Upload try-on photo')}
    ${shopping.tryOn?btn('Remove photo','data-shop-remove="tryOn"'):''}${notice}`;
+ }else if(shopping.view==='owned'){
+  const record=shoppingRecords[shopping.example];
+  content=`${back}<h2 id="shop-heading">${Number.isInteger(record.ownedId)?'Added to your wardrobe':'Purchase recorded'}</h2>
+   <p>${candidate.name}</p><p>${escapeHTML(shoppingWardrobe(shopping.example).pairing)}</p>
+   ${Number.isInteger(record.ownedId)?btn('View in Wardrobe','id="shop-view-wardrobe"','primary'):btn('Add to wardrobe','data-shopping-record="add"','primary')}
+   <details class="shop-section"><summary>Original recommendation</summary><p>${escapeHTML(record.purchase.label)}. ${escapeHTML(record.purchase.reason)}</p></details>${notice}`;
  }else{
-  const wardrobe=shoppingWardrobe(shopping.example);
-  const style=shopStyle(candidate);
-  const weak=style.score!==null&&style.score<55;
-  const skip=wardrobe.duplicate||weak;
-  const reason=wardrobe.duplicate?wardrobe.value:weak?`This design is a weak match for ${style.target}.`:wardrobe.reason;
-  content=`${back}<div class="shop-verdict"><p>Nigel’s verdict · Example</p><h2 id="shop-heading">${skip?'Skip it':'Worth trying on'}</h2><p>${escapeHTML(reason)}</p></div>
-   <figure class="shop-photo"><img src="assets/${candidate.photo}" alt="${candidate.name}"><figcaption>${candidate.name}</figcaption></figure>
-   <section class="shop-section"><h3>Style match</h3><p>${escapeHTML(style.target)} · ${style.score===null?'No scored example':style.score+'% illustrative match'}</p>
-    ${style.score===null?'':`<meter min="0" max="100" value="${style.score}" aria-label="Illustrative style match">${style.score}%</meter>`}
-    <dl><div><dt>Colour</dt><dd>${candidate.colour}</dd></div><div><dt>Silhouette</dt><dd>${candidate.shape}</dd></div><div><dt>Design</dt><dd>${candidate.detail}</dd></div></dl>
+  const {wardrobe,style,label,reason}=shoppingAssessment(shopping.example);
+  const recorded=shoppingRecords[shopping.example];
+  content=`${back}<div class="shop-verdict"><p>Nigel’s recommendation · Example</p><h2 id="shop-heading">${label}</h2><p>${escapeHTML(reason)}</p></div>
+   <div class="shop-product">
+    <figure class="shop-photo"><img src="assets/${candidate.photo}" alt="${candidate.name}"></figure>
+    <section aria-label="Style match"><h3>${candidate.name}</h3><p>${escapeHTML(style.target)} · ${style.score===null?'No scored example':style.score+'% illustrative match'}</p>
+     ${style.score===null?'':`<meter min="0" max="100" value="${style.score}" aria-label="Illustrative style match">${style.score}%</meter>`}
+    </section>
+   </div>
+   <section class="shop-section"><h3>Wardrobe value</h3><p>${escapeHTML(wardrobe.value)}</p></section>
+   <section class="shop-section"><h3>Personal fit</h3><p>Unknown from a product photo. ${candidate.check}</p></section>
+   <section class="shop-section"><h3>How to style it</h3><p>${escapeHTML(wardrobe.pairing)}</p>
+
    </section>
-   <section class="shop-section"><h3>Wardrobe value</h3><p>${escapeHTML(wardrobe.value)}</p><p>${escapeHTML(wardrobe.pairing)}</p></section>
-   <section class="shop-section"><h3>Fit to check</h3><p>${candidate.check}</p><p class="sub">Personal fit is still unverified.</p></section>
-   <div class="shop-actions">${btn('I’ve tried it on — check the fit','id="shop-try-on"',skip?'':'primary')}</div>`;
+   <div class="shop-actions shop-result-actions">
+    ${btn('I’ve tried it on — check the fit','id="shop-try-on"','primary')}
+    ${btn(recorded?.saved?'Saved for later':'Save for later','data-shopping-record="save"'+(recorded?.saved?' disabled':''))}
+    ${recorded?.purchase?btn('View purchase','id="shop-open-purchase"'):btn(label==='I’d skip it'?'Bought it anyway':'I bought it','data-shopping-record="buy"')}
+   </div>
+   <section class="shop-section shop-style-details"><details><summary>Style details</summary><dl><div><dt>Colour</dt><dd>${candidate.colour}</dd></div><div><dt>Silhouette</dt><dd>${candidate.shape}</dd></div><div><dt>Design</dt><dd>${candidate.detail}</dd></div></dl></details></section>${notice}`;
  }
  return `<section class="shopping-workspace shop-flow" aria-labelledby="shop-heading">${content}${shoppingInputs()}</section>`;
 }
@@ -614,7 +678,7 @@ function bindShopping() {
   button.onclick=()=>{
    removeShoppingPhoto('tryOn');
    shopping.example=Number(button.dataset.purchase);
-   changeShopping('result');
+   changeShopping(shoppingRecords[shopping.example]?.purchase?'owned':'result');
   };
  }
  for(const button of document.querySelectorAll('[data-shop-remove]')){
@@ -625,9 +689,13 @@ function bindShopping() {
    changeShopping(slot==='candidate'?'entry':'tryOn');
   };
  }
+ for(const button of document.querySelectorAll('[data-shopping-record]'))button.onclick=()=>updateShoppingRecord(button.dataset.shoppingRecord);
+ if($('#shop-open-purchase'))$('#shop-open-purchase').onclick=()=>changeShopping('owned');
+ if($('#shop-view-wardrobe'))$('#shop-view-wardrobe').onclick=()=>{state.tab='Wardrobe';state.filter='All';state.wardrobeView='List';render({top:true});};
  if($('#shop-back'))$('#shop-back').onclick=()=>changeShopping(shopping.candidate?'preview':'entry');
  if($('#shop-result'))$('#shop-result').onclick=()=>changeShopping('result');
  if($('#shop-try-on'))$('#shop-try-on').onclick=()=>{
+  shopping.tryOnAssessment=shoppingAssessment(shopping.example);
   changeShopping('tryOn');
   $('#shop-tryOn-camera').click();
  };
@@ -664,7 +732,7 @@ function choose(){state.index=state.occasion;state.alternate=false;state.swap=nu
 // Adapted from composed-landing-page/scripts/components/wardrobe-rail.js.
 // Rack-only photographs; the shared wardrobe/list thumbnails remain unchanged.
 const rackOnlyPhotos={7:'stone-trousers',9:'sage-shirt',10:'black-knit',11:'oatmeal-cardigan',12:'denim-shirt',13:'navy-chore',18:'grey-sweatshirt'};
-function railPhoto(p){if(rackOnlyPhotos[p.id])return {front:`assets/rack/${rackOnlyPhotos[p.id]}.png`,side:`assets/rack/side/${rackOnlyPhotos[p.id]}.png`};if(p.id===14)return {front:'assets/wardrobe/outer-01-front-960.webp',side:'assets/wardrobe/outer-01-side-640.webp'};const source=garmentImages[p.imageKey]||garmentImages[p.name.toLowerCase()];return source?{front:source.replace('-front-320','-front-960'),side:source.replace('-front-320','-side-640')}:null;}
+function railPhoto(p){if(p.shoppingPhoto){const src='assets/'+p.shoppingPhoto;return {front:src,side:src};}if(rackOnlyPhotos[p.id])return {front:`assets/rack/${rackOnlyPhotos[p.id]}.png`,side:`assets/rack/side/${rackOnlyPhotos[p.id]}.png`};if(p.id===14)return {front:'assets/wardrobe/outer-01-front-960.webp',side:'assets/wardrobe/outer-01-side-640.webp'};const source=garmentImages[p.imageKey]||garmentImages[p.name.toLowerCase()];return source?{front:source.replace('-front-320','-front-960'),side:source.replace('-front-320','-side-640')}:null;}
 function railGarments(shown){const rank=id=>{const i=outfits.flatMap(o=>o.ids).indexOf(id);return i<0?999:i;};return shown.filter(p=>p.cat!=='shoes').sort((a,b)=>['tops','layers','bottoms'].indexOf(a.cat)-['tops','layers','bottoms'].indexOf(b.cat)||rank(a.id)-rank(b.id));}
 function railActions(p){return `<div><h3 id="rail-name">${p.name}</h3><p>${[p.cat,p.colour,p.material,p.fit].filter(value=>value&&value!=='Not tagged').map(escapeHTML).join(' · ')}</p></div><div class="rail-controls">${btn('←','id="rail-prev" aria-label="Previous garment"')}<span id="rail-counter"></span>${btn('→','id="rail-next" aria-label="Next garment"')}</div><div class="rail-piece-actions">${btn('Build an outfit','id="rail-build"','primary')}${btn('Edit details','id="rail-edit"')}${btn(state.liked.has(p.id)?'♥ Liked':'♡ Like','id="rail-like"')}</div>`;}
 function landingRail(shown){const garments=railGarments(shown);if(!garments.some(p=>p.id===state.railSelected))state.railSelected=null;const selected=garments.find(p=>p.id===state.railSelected);return `<div class="landing-rail">${garments.length?`<div class="photographic-rail" aria-label="Clothing rail"><div class="hanger-track"><div class="photographic-rail-bar" aria-hidden="true"></div>${garments.map((p,i)=>{const photo=railPhoto(p),front=photo?.front,side=photo?.side,detail=front;const group=i===0||p.cat!==garments[i-1].cat;return btn(`<span class="rail-photographs">${front?`<img class="rail-product-front" src="${detail}" alt="${p.name}" width="320" height="320"><img class="rail-product-side" src="${side}" alt="" aria-hidden="true" width="640" height="640" loading="eager">`:`<span class="rail-product-front">${garment(p)}</span><span class="rail-product-side drawn-side">${garment(p)}</span>`}</span>${group?`<span class="rail-group-label" aria-hidden="true">${p.cat}</span>`:''}`,`data-rail="${p.id}" data-category="${p.cat==='bottoms'?(p.imageKey.includes('jeans')?'jeans':p.imageKey.includes('shorts')?'shorts':'trousers'):'outerwear'}" aria-label="Face forward: ${p.name}" aria-pressed="${p.id===state.railSelected}"`,'hanger-button'+(p.id===state.railSelected?' face':'')+(group&&i?' rail-group-start':''));}).join('')}</div></div><div class="rail-caption" id="rail-caption">${selected?railActions(selected):'<p>Select a garment to see its details.</p>'}</div>`:''}${shown.some(p=>p.cat==='shoes')?`<details class="landing-shoe-shelf shoe-drawer" open><summary>Shoe drawer <small>${shown.filter(p=>p.cat==='shoes').length} pairs</small></summary><div class="shoe-shelf">${shown.filter(p=>p.cat==='shoes').map(p=>`<article class="shelf-item">${btn(`${garment(p)}<span>${p.name}</span>`,`data-piece="${p.id}" aria-label="Build a fit with ${p.name}"`)}${btn('Edit details',`data-edit-piece="${p.id}"`,'edit-piece')}${btn(state.liked.has(p.id)?'♥':'♡',`data-like="${p.id}" aria-label="Like ${p.name}"`)}</article>`).join('')}</div></details>`:''}</div>`;}
