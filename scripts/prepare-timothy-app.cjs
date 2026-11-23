@@ -31,6 +31,7 @@ function privateApp() {
   for (const [from, to, replacement] of sections) app = replaceSection(app, from, to, replacement);
   app = app
     .replace("const metadataKey='composed.wardrobe.v1'", "const metadataKey='composed.private.timothy.v1'")
+    .replace('let myStyle = aesthetics[0];', "let myStyle = 'East Asian Minimalist';")
     .replaceAll('Casual afternoon', 'Casual')
     .replaceAll('Everyday / work', 'Everyday')
     .replace('Faceless mannequin wearing', 'Outfit featuring')

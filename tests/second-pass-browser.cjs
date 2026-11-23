@@ -9,6 +9,11 @@ const delay = ms => new Promise(resolve=>setTimeout(resolve,ms));
 
 async function exercise(browser,width) {
  const page=await browser.newPage({viewport:{width,height:844},hasTouch:true,acceptDownloads:true});
+ await page.addInitScript(()=>{
+  for(const key of ['composed.wardrobe.v1.my-style','composed.private.timothy.v1.my-style']){
+   if(localStorage.getItem(key)===null)localStorage.setItem(key,'No preference');
+  }
+ });
  const errors=[];
  page.on('pageerror',error=>errors.push(error.message));
  page.on('response',response=>{if(response.status()>=400)errors.push(response.url());});
@@ -27,7 +32,7 @@ async function exercise(browser,width) {
   await at('#model-viewer').waitFor();
  };
  const front=()=>at(personal?'[data-frame="0"]':'.model-turn-sheet').getAttribute('src');
- const settings=async()=>{if(!await at('.settings-menu').evaluate(x=>x.open))await at('.settings-menu summary').click();};
+ const settings=async()=>{if(!await at('.settings-menu').evaluate(x=>x.open))await at('.settings-menu > summary').click();};
  try {
   await page.goto(site);
   await at('#outfit-intake').waitFor();
@@ -126,7 +131,7 @@ async function exercise(browser,width) {
   await settings();
   await at('#theme-mobile').click();
   assert.equal(await at('body').evaluate(x=>x.classList.contains('dark')),true);
-  await at('.settings-menu summary').click();
+  await at('.settings-menu > summary').click();
   await shot('shopping-dark');
   await settings();
   const download=page.waitForEvent('download');

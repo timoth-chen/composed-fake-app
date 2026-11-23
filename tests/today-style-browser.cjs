@@ -11,6 +11,11 @@ const capture = process.env.CAPTURE_DIR;
 async function exercise(browser, width, height) {
  const page = await browser.newPage({viewport:{width,height},timezoneId:'America/Toronto'});
  page.setDefaultTimeout(7000);
+ await page.addInitScript(()=>{
+  for(const key of ['composed.wardrobe.v1.my-style','composed.private.timothy.v1.my-style']){
+   if(localStorage.getItem(key)===null)localStorage.setItem(key,'No preference');
+  }
+ });
  const errors = [];
  const failed = [];
  page.on('pageerror',error=>errors.push(error.message));
@@ -20,6 +25,10 @@ async function exercise(browser, width, height) {
   return route.fulfill({path:path.join(root,pathname==='/'?'index.html':pathname)});
  });
  const at=selector=>page.locator(selector);
+ const chooseStyle=async style=>{
+  if(!await at('#my-style').evaluate(panel=>panel.open))await at('#my-style summary').click();
+  await at('#my-style').getByRole('radio',{name:style,exact:true}).check();
+ };
  const choose=(name,value)=>at(`input[name="${name}"][value="${value}"]`).check();
  const shot=async(name)=>{if(capture)await page.screenshot({path:path.join(capture,`${personal?'personal':'public'}-${width}-${name}.png`),animations:'disabled'});};
  const leapCases=[
@@ -41,7 +50,7 @@ async function exercise(browser, width, height) {
   }
   await page.clock.setFixedTime(new Date('2026-11-22T12:00:00-05:00'));
   await page.goto(site);
-  const settings=at('.settings-menu summary');
+  const settings=at('.settings-menu > summary');
   assert.equal(await at('[data-timing=now]').getAttribute('aria-pressed'),'true');
   assert.deepEqual(await at('input[name=impression]').evaluateAll(nodes=>nodes.map(node=>node.value)),['Confident','Relaxed','Polished']);
   assert.equal(await at('input[name=occasion]').count(),4);
@@ -69,7 +78,7 @@ async function exercise(browser, width, height) {
   await settings.focus();
   await page.keyboard.press('Enter');
   assert.equal(await settings.getAttribute('aria-expanded'),'true');
-  await at('#my-style').selectOption('Streetwear');
+  await chooseStyle('Streetwear');
   await shot('my-style-light');
   await page.keyboard.press('Escape');
   await at('.settings-menu:not([open])').waitFor();
@@ -86,9 +95,9 @@ async function exercise(browser, width, height) {
   }
   await at('[data-tab=Shopping]').click();
   await at(`[data-purchase="${personal?3:0}"]`).click();
-  assert.match(await at('.shop-flow').innerText(),new RegExp('Streetwear · '+(personal?85:89)+'% illustrative match'));
+  assert.match(await at('.shop-score').innerText(),new RegExp((personal?85:89)+'% illustrative match'));
   assert.match(await at('.shop-flow').innerText(),/I’d skip it/);
-  assert.match(await at('.shop-flow').innerText(),/Personal fit/);
+  assert.match(await at('.shop-flow').innerText(),/Personal fit is unknown/);
   await settings.click();
   await at('#theme-mobile').click();
   await page.keyboard.press('Escape');
@@ -96,7 +105,7 @@ async function exercise(browser, width, height) {
   await shot('shopping-dark');
   await page.reload();
   await settings.click();
-  assert.equal(await at('#my-style').inputValue(),'Streetwear');
+  assert.equal(await at('#my-style input:checked').inputValue(),'Streetwear');
   await page.keyboard.press('Escape');
   await at('[data-timing=soon]').click();
   assert.match(await at('[name=day]:checked + span').innerText(),/Tomorrow.*Nov 23, 2026/);
