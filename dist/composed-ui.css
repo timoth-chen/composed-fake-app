@@ -355,3 +355,43 @@ body.record-mode .app-shell #screen > .page { max-width:480px; }
  .app-shell .stylist-form{gap:4px}
  .app-shell .stylist-form #more-impressions{margin-block:0}
 }
+
+/* Shopping keeps the photograph and verdict on the same editorial grid. */
+.app-shell .shop-flow{max-width:680px;margin:0 auto;padding-block:12px 32px}
+.app-shell .shop-flow h2{font-size:clamp(28px,7vw,44px);line-height:1.08;margin:0 0 12px}
+.app-shell .shop-flow h3{font-size:18px;margin:0 0 8px}
+.app-shell .shop-flow p{margin:0 0 12px;max-width:56ch}
+.app-shell .shop-intro>p,.app-shell .shop-verdict>p{font-size:15px;line-height:1.5}
+.app-shell .shop-intro>.sub{font-size:13px}
+.app-shell .shop-capture{margin-block:20px 12px;padding:24px 16px;background:var(--soft);border-radius:8px;color:var(--ink);display:grid;justify-items:center;gap:16px}
+.app-shell .shop-capture svg{color:var(--accent)}
+.app-shell .shop-actions{display:flex;gap:8px;flex-wrap:wrap;margin-block:12px}
+.app-shell .shop-capture .shop-actions{margin:0;justify-content:center}
+.app-shell .shop-flow button{min-height:44px}
+.app-shell .shop-flow .shop-back{padding-inline:0;border-color:transparent;background:transparent;color:var(--accent);margin-bottom:8px}
+.app-shell .shop-examples,.app-shell .shop-section{border-top:1px solid var(--line);padding-top:16px;margin-top:20px}
+.app-shell .shop-examples>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.app-shell .shop-examples button{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;gap:8px;padding:6px;text-align:left;line-height:1.25;font-size:13px}
+.app-shell .shop-examples img{width:44px;height:52px;object-fit:contain;background:var(--soft);border-radius:4px}
+.app-shell .shop-verdict>p:first-child{font-size:13px;font-weight:600;color:var(--accent)}
+.app-shell .shop-photo{margin:16px 0 0;display:grid;justify-items:center;background:var(--soft);padding:12px;border-radius:8px}
+.app-shell .shop-photo img,.app-shell .shop-user-photo{display:block;max-width:100%;max-height:232px;object-fit:contain}
+.app-shell .shop-photo figcaption{font-size:13px;margin-top:8px;color:var(--muted)}
+.app-shell .shop-user-photo{margin:0 0 16px}
+.app-shell .shop-section meter{width:100%;height:12px;accent-color:var(--accent)}
+.app-shell .shop-section dl{display:grid;gap:8px;margin:12px 0 0}
+.app-shell .shop-section dl div{display:grid;grid-template-columns:84px 1fr;gap:8px}
+.app-shell .shop-section dt{font-weight:600}
+.app-shell .shop-section dd{margin:0;color:var(--muted)}
+.app-shell .shop-error:empty{margin:0}
+.app-shell .shop-error:not(:empty){border-inline-start:2px solid var(--accent);padding-inline-start:8px}
+@media(min-width:768px){
+ .app-shell .shop-examples button{grid-template-columns:60px minmax(0,1fr);font-size:15px}
+ .app-shell .shop-examples img{width:60px;height:64px}
+}
+@media(max-width:360px){
+ .app-shell .stylist-intake h2{font-size:25px}
+}
+.app-shell .shop-section meter::-webkit-meter-bar{background:var(--soft);border:0;border-radius:4px}
+.app-shell .shop-section meter::-webkit-meter-optimum-value{background:var(--accent);border-radius:4px}
+.app-shell .shop-section meter::-moz-meter-bar{background:var(--accent);border-radius:4px}

@@ -85,9 +85,10 @@ async function exercise(browser, width, height) {
    assert.match(await at('.daily-why').innerText(),/Streetwear preference/);
   }
   await at('[data-tab=Shopping]').click();
-  assert.match(await at('.shopping-answer').innerText(),/sample style match · Streetwear/);
-  assert.match(await at('.shopping-answer').innerText(),/Skip it/);
-  assert.match(await at('.shopping-answer').innerText(),/Observed fit/);
+  await at(`[data-purchase="${personal?3:0}"]`).click();
+  assert.match(await at('.shop-flow').innerText(),/Streetwear · 88% illustrative match/);
+  assert.match(await at('.shop-flow').innerText(),/Skip it/);
+  assert.match(await at('.shop-flow').innerText(),/Fit to check/);
   await settings.click();
   await at('#theme-mobile').click();
   await page.keyboard.press('Escape');
