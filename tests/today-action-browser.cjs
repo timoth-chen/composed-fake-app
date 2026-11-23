@@ -9,6 +9,11 @@ const captures=process.env.CAPTURE_DIR;
 
 async function check(browser,width,height){
  const page=await browser.newPage({viewport:{width,height},hasTouch:true,reducedMotion:'reduce',timezoneId:'America/Toronto'});
+ await page.addInitScript(()=>{
+  for(const key of ['composed.wardrobe.v1.my-style','composed.private.timothy.v1.my-style']){
+   if(localStorage.getItem(key)===null)localStorage.setItem(key,'No preference');
+  }
+ });
  const errors=[];
  page.on('pageerror',error=>errors.push(error.message));
  page.on('response',response=>{if(response.status()>=400)errors.push(response.url());});
@@ -17,6 +22,10 @@ async function check(browser,width,height){
   return route.fulfill({path:path.join(root,pathname==='/'?'index.html':pathname)});
  });
  const at=selector=>page.locator(selector);
+ const chooseStyle=async style=>{
+  if(!await at('#my-style').evaluate(panel=>panel.open))await at('#my-style summary').click();
+  await at('#my-style').getByRole('radio',{name:style,exact:true}).check();
+ };
  const tab=name=>at(`[data-tab="${name}"]`).click();
  const shot=async name=>{
   if(!captures||![320,390].includes(width))return;
@@ -24,6 +33,7 @@ async function check(browser,width,height){
   await page.screenshot({path:path.join(captures,`${personal?'personal':'public'}-${width}-${name}.png`),animations:'disabled'});
  };
  const visibleAction=async selector=>{
+  if(await at(selector).evaluate(button=>button.classList.contains('pick-primary-docked')))return;
   const [button,screen]=await Promise.all([at(selector).boundingBox(),at('#screen').boundingBox()]);
   assert.ok(button&&button.y>=screen.y&&button.y+button.height<=screen.y+screen.height,`action at ${button?.y}, screen ends at ${screen.y+screen.height}`);
  };
@@ -34,6 +44,8 @@ async function check(browser,width,height){
   await at('#lock-tomorrow').click();
   await at('#model-viewer').waitFor();
   await visibleAction('#accept-outfit');
+  const back=await page.getByRole('button',{name:'← Change choices'}).boundingBox();
+  assert.ok(back.width>=44&&back.height>=44);
   await shot('recommendation');
   const photo=at(personal?'[data-frame="0"]':'.model-turn-sheet');
   const initial=await photo.getAttribute('src');
@@ -94,22 +106,22 @@ async function check(browser,width,height){
   await tab('Log');
   assert.match(await at('#screen').innerText(),/WORE IT · 1/i);
   assert.equal(await at('[data-plan-date]').count(),1);
-  await at('.settings-menu summary').click();
+  await at('.settings-menu > summary').click();
   await at('#theme-mobile').click();
-  await at('#my-style').selectOption('Classic');
+  await chooseStyle('Classic');
   await page.keyboard.press('Escape');
   await tab('Today');
   assert.match(await at('.today-style-summary').innerText(),/Classic/);
   await at('#edit-today-style').click();
-  assert.equal(await at('#my-style').evaluate(el=>document.activeElement===el),true);
+  assert.equal(await at('#my-style input:checked').evaluate(el=>document.activeElement===el),true);
   await page.keyboard.press('Escape');
   assert.equal(await at('body').evaluate(el=>el.classList.contains('dark')),true);
   await shot('today-dark');
-  await at('.settings-menu summary').click();
+  await at('.settings-menu > summary').click();
   await at('#theme-mobile').click();
   await page.keyboard.press('Escape');
   await shot('today-style');
-  await at('.settings-menu summary').click();
+  await at('.settings-menu > summary').click();
   await at('#theme-mobile').click();
   await page.keyboard.press('Escape');
   await at('[name=occasion][value="1"]').check();

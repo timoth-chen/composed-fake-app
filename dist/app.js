@@ -4,10 +4,10 @@ const items=[
 ].map((a,id)=>({id,name:a[0],cat:a[1],color:a[2],style:a[3],cost:a[4]}));
 const metadataKey='composed.wardrobe.v1';
 const shopCases = [
- {name:'Black bomber jacket', category:'layers', tone:'Black', aesthetic:'Streetwear', scores:[89,72,43], photo:'shopping/bomber.jpg', colour:'Matte black is easy to repeat with dark denim.', shape:'A cropped, boxy shape adds volume above the waist.', detail:'Ribbing and zip hardware give it a casual finish.', ratings:[['Streetwear','East Asian Minimalist'],['Workwear'],['Classic','Smart Casual']], check:'Close the zip and reach forward. Check whether the hem lifts or the shoulders pull.'},
- {name:'Olive cotton overshirt', category:'layers', tone:'Olive', aesthetic:'Workwear', scores:[92,73,46], photo:'shopping/overshirt.jpg', colour:'Muted olive works with cream, indigo and charcoal.', shape:'A straight body leaves room for a light layer underneath.', detail:'Work-shirt pockets and buttons keep it informal.', ratings:[['Workwear','East Asian Minimalist'],['Classic','Streetwear'],['Smart Casual']], check:'Button it over the top you would wear. Check across the shoulders and see where the hem lands.'},
- {name:'Stone straight trousers', category:'bottoms', tone:'Stone', aesthetic:'Classic', scores:[87,70,48], photo:'shopping/trousers.png', colour:'Stone makes a gentle contrast with navy and black.', shape:'A straight leg keeps a continuous line from hip to hem.', detail:'Light cloth and a clean front make it easier to dress up.', ratings:[['Classic','Smart Casual','East Asian Minimalist'],['Workwear'],['Streetwear']], check:'Sit, stand and walk. Look for horizontal pulling at the hips and check the hem with your usual shoes.'},
- {name:'Light grey canvas slip-ons', category:'shoes', tone:'Grey', aesthetic:'East Asian Minimalist', scores:[85,69,41], photo:'shopping/slip-ons.jpg', colour:'Light grey pairs with navy, black and indigo.', shape:'The low profile keeps the shoe quiet under a straight hem.', detail:'Canvas and an unstructured vamp keep the finish casual.', ratings:[['East Asian Minimalist','Streetwear'],['Classic'],['Workwear','Smart Casual']], check:'Walk a few steps. Notice if your heel slips and whether the canvas presses across your toes.'},
+ {name:'Black bomber jacket', category:'layers', tone:'Black', aesthetic:'Streetwear', scores:[89,72,43], photo:'shopping/bomber.jpg', colour:'Matte black is easy to repeat with dark denim.', shape:'A cropped, boxy shape adds volume above the waist.', detail:'Ribbing and zip hardware give it a casual finish.', ratings:[['Streetwear','East Asian Minimalist','Minimalist'],['Workwear'],['Classic','Smart Casual']], check:'Close the zip and reach forward. Check whether the hem lifts or the shoulders pull.'},
+ {name:'Olive cotton overshirt', category:'layers', tone:'Olive', aesthetic:'Workwear', scores:[92,73,46], photo:'shopping/overshirt.jpg', colour:'Muted olive works with cream, indigo and charcoal.', shape:'A straight body leaves room for a light layer underneath.', detail:'Work-shirt pockets and buttons keep it informal.', ratings:[['Workwear','East Asian Minimalist','Minimalist'],['Classic','Streetwear'],['Smart Casual']], check:'Button it over the top you would wear. Check across the shoulders and see where the hem lands.'},
+ {name:'Stone straight trousers', category:'bottoms', tone:'Stone', aesthetic:'Classic', scores:[87,70,48], photo:'shopping/trousers.png', colour:'Stone makes a gentle contrast with navy and black.', shape:'A straight leg keeps a continuous line from hip to hem.', detail:'Light cloth and a clean front make it easier to dress up.', ratings:[['Classic','Smart Casual','East Asian Minimalist','Minimalist'],['Workwear'],['Streetwear']], check:'Sit, stand and walk. Look for horizontal pulling at the hips and check the hem with your usual shoes.'},
+ {name:'Light grey canvas slip-ons', category:'shoes', tone:'Grey', aesthetic:'East Asian Minimalist', scores:[85,69,41], photo:'shopping/slip-ons.jpg', colour:'Light grey pairs with navy, black and indigo.', shape:'The low profile keeps the shoe quiet under a straight hem.', detail:'Canvas and an unstructured vamp keep the finish casual.', ratings:[['East Asian Minimalist','Streetwear','Minimalist'],['Classic'],['Workwear','Smart Casual']], check:'Walk a few steps. Notice if your heel slips and whether the canvas presses across your toes.'},
 ];
 const shoppingKey=metadataKey+'.shopping.v1';
 let shoppingRecords={};
@@ -93,7 +93,7 @@ function workOutfit() {
 function selectedProfile(selection=state){return outfitPool.get(`${selection.occasion}:${selection.energy}:${+selection.alternate}`)?.source?.profile||null;}
 const turnSheets=['denim','casual','date'];
 const state={tab:'Today',todayTouched:false,timing:'now',planDate:'',morning:false,timingEditing:true,view:'Outfit',occasion:0,energy:'Confident',index:0,alternate:false,swap:null,filter:'All',liked:new Set(),anchor:null,fit:[],saved:[],logs:[],verdict:0,mix:'Owned',mixOpen:true,wardrobeView:'Rack',reasonIndex:0,editing:null,critique:null,savedIndex:null,railSelected:null,modelAngle:0};
-const icons={Today:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',Wardrobe:'<path d="m8 3-5 3 2 6 3-1v10h8V11l3 1 2-6-5-3c0 4-8 4-8 0Z"/>',Shopping:'<path d="M6 3h12v18H6zM9 8h6m-6 4h6m-6 4 2 2 4-4"/>',Log:'<path d="M5 3h14v18H5zM9 7h6m-6 5h6m-6 5h4"/>'};
+const icons={Today:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',Wardrobe:'<rect x="4" y="3" width="16" height="17" rx="1.5"/><path d="M12 3v17M9 11v2m6-2v2M6 20v2m12-2v2"/>',Shopping:'<path d="M6 3h12v18H6zM9 8h6m-6 4h6m-6 4 2 2 4-4"/>',Log:'<path d="M5 3h14v18H5zM9 7h6m-6 5h6m-6 5h4"/>'};
 const garmentImages={"black bomber jacket": "assets/wardrobe/outer-01-front-320.webp", "olive cotton overshirt": "assets/wardrobe/outer-02-front-320.webp", "navy unstructured blazer": "assets/wardrobe/outer-03-front-320.webp", "charcoal wool coat": "assets/wardrobe/outer-04-front-320.webp", "white heavyweight t-shirt": "assets/wardrobe/top-01-front-320.webp", "washed black t-shirt": "assets/wardrobe/top-02-front-320.webp", "navy and ecru striped t-shirt": "assets/wardrobe/top-03-front-320.webp", "white oxford shirt": "assets/wardrobe/top-04-front-320.webp", "pale blue relaxed shirt": "assets/wardrobe/top-05-front-320.webp", "heather grey hoodie": "assets/wardrobe/top-06-front-320.webp", "charcoal crewneck sweater": "assets/wardrobe/top-07-front-320.webp", "beige pleated trousers": "assets/wardrobe/bottom-01-front-320.webp", "black wide straight trousers": "assets/wardrobe/bottom-02-front-320.webp", "dark indigo straight jeans": "assets/wardrobe/bottom-03-front-320.webp", "olive fatigue trousers": "assets/wardrobe/bottom-04-front-320.webp", "white leather sneakers": "assets/wardrobe/shoe-01-front-320.webp", "grey suede sneakers": "assets/wardrobe/shoe-02-front-320.webp", "black leather loafers": "assets/wardrobe/shoe-03-front-320.webp", "cobalt merino sweater": "assets/wardrobe/top-08-front-320.webp", "burgundy knit polo": "assets/wardrobe/top-09-front-320.webp", "emerald overshirt": "assets/wardrobe/top-10-front-320.webp", "black denim jacket": "assets/wardrobe/outer-05-front-320.webp", "slate pleated trousers": "assets/wardrobe/bottom-05-front-320.webp", "black suede clogs": "assets/wardrobe/shoe-04-front-320.webp", "black chelsea boots": "assets/wardrobe/shoe-05-front-320.webp", "black canvas sneakers": "assets/wardrobe/shoe-06-front-320.webp", "black tailored shorts": "assets/wardrobe/bottom-06-front-320.webp", "ink navy heavyweight t-shirt": "assets/wardrobe/top-11-front-320.webp", "charcoal tapered ankle trousers": "assets/wardrobe/bottom-07-front-320.webp", "midnight navy cargo trousers": "assets/wardrobe/bottom-08-front-320.webp"};
 function stoneLoaferThumbnail(p){return `<img src="assets/stone-loafers-owned.png" alt="${escapeHTML(p.name)}" loading="lazy" width="640" height="640">`;}
 function garment(p){if(p.shoppingPhoto)return purchasedPhoto(p);if(p.id===20)return `<img src="assets/grey-nb-996-runner.png" alt="${escapeHTML(p.name)}" loading="lazy" width="640" height="640">`;if(p.id===11)return `<img src="assets/rack/oatmeal-cardigan.png" alt="${escapeHTML(p.name)}" width="320" height="320" loading="eager">`;if(p.id===17)return stoneLoaferThumbnail(p);if(garmentImages[p.imageKey||p.name.toLowerCase()])return `<img src="${garmentImages[p.imageKey||p.name.toLowerCase()]}" alt="${p.name}" loading="lazy" width="320" height="320">`;let shape=p.cat==='tops'||p.cat==='layers'?'<path d="m33 15-21 11 10 27 13-5v66h60V48l13 5 10-27-21-11-17-5c-5 12-16 12-21 0Z"/>':p.cat==='bottoms'?'<path d="M33 12h64l5 101H76L65 48 54 113H28Z"/>':'<path d="M21 61c4-17 9-28 18-28 13 0 10 22 26 28l38 14c12 5 13 19 0 22H24c-17 0-19-24-3-36Z"/><path d="m44 42 37 17c14 6 21-2 21-13l-4-23c-4-10-17-10-22-2L64 34Z"/>';return `<svg viewBox="0 0 130 130" role="img" aria-label="${p.name}"><g fill="${p.color}" stroke="#000" stroke-opacity=".13" stroke-width="1.5">${shape}</g><path d="M43 24v74m43-74v74" stroke="#fff" stroke-opacity=".12" fill="none"/></svg>`}
@@ -127,8 +127,11 @@ let plans = [];
 let undatedPlan = null;
 let savedFits = [];
 let darkPreference = false;
-const aesthetics = ['No preference','East Asian Minimalist','Streetwear','Smart Casual','Classic','Workwear'];
+const aesthetics = ['No preference','East Asian Minimalist','Streetwear','Smart Casual','Classic','Workwear','Minimalist'];
 let myStyle = aesthetics[0];
+let customStyle='';
+let editingStyle=false;
+const validStyleLabel=value=>typeof value==='string'&&/^[\p{L}\p{N}][\p{L}\p{N} .’'&/-]{1,38}[\p{L}\p{N}]$/u.test(value)&&!aesthetics.some(style=>style.toLowerCase()===value.toLowerCase());
 const primaryImpressions = ['Confident','Relaxed','Polished'];
 function fitStyleScore(ids, aesthetic) {
  return ids.reduce((score,id)=>score+(pieceStyles(items[id]).includes(aesthetic)?1:0),0);
@@ -146,6 +149,7 @@ function rankedAlternate(first, second) {
 function styleExplanation(outfit) {
  const style=state.rankStyle;
  if(!style||style===aesthetics[0])return '';
+ if(!aesthetics.includes(style))return ' Tailored picks for '+style+' aren’t available in this demo.';
  const match=outfit.ids.map(id=>items[id]).find(piece=>pieceStyles(piece).includes(style));
  return match?` The ${match.name.toLowerCase()} brings in your ${style} preference.`:
   ` The photographed options for this occasion are limited. This pick answers the occasion, with no clear ${style} match in the outfit shown.`;
@@ -185,7 +189,9 @@ function validPlanChoices(plan) {
 function loadPlan() {
  try {
   const storedStyle=localStorage.getItem(stylePreferenceKey);
-  if(aesthetics.includes(storedStyle))myStyle=storedStyle;
+  const storedCustom=localStorage.getItem(stylePreferenceKey+'.custom');
+  if(validStyleLabel(storedCustom))customStyle=storedCustom;
+  if(aesthetics.includes(storedStyle)||(customStyle&&storedStyle===customStyle))myStyle=storedStyle;
  } catch {}
  try {
   const previous=JSON.parse(localStorage.getItem(legacyPlanKey));
@@ -282,7 +288,7 @@ function today() {
     ${state.timing==='soon'?planDateControls():''}
     <fieldset><legend>Occasion</legend><div class="choice-chips occasion-chips">${occasions.map((name,i)=>choiceChip('occasion',i,name,state.occasion===i)).join('')}</div></fieldset>
     <fieldset><legend>The impression</legend><div id="impression-options">${impressionOptions()}</div></fieldset>
-    <div class="today-style-summary">${todayIcon('hanger')}<span>Your style: <strong>${escapeHTML(myStyle===aesthetics[0]?'Not set':myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>
+    <div class="today-style-summary">${todayIcon('hanger')}<span>Your style: <strong>${escapeHTML(myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>
     <button class="primary" id="lock-tomorrow">Find my outfit ${todayIcon('right')}</button>
    </form>
   </section>`;
@@ -297,7 +303,7 @@ function today() {
  const wear = currentWearLog();
  return `<article class="today-flow stylist-pick">
   <section class="daily-outfit" aria-label="Nigel’s pick">
-   <div class="pick-tools"><span class="stylist-label">Nigel’s pick</span>${btn('‹','id="change-choices" aria-label="Change styling choices"')}</div>
+   ${btn('← Change choices','id="change-choices"','pick-back')}<div class="pick-tools"><span class="stylist-label">Nigel’s pick</span></div>
    <h2>${escapeHTML(o.short||o.name)}</h2>
    <p class="pick-context">${occasions[state.occasion]} · ${state.energy}${planned?' · '+displayDate(outfitDate()):''}</p>
    <div class="pick-photo">${modelViewer(o)}
@@ -383,7 +389,8 @@ function bindToday() {
  if($('#edit-today-style'))$('#edit-today-style').onclick=()=>{
   settingsMenu.open=true;
   syncSettings();
-  styleSelect.focus();
+  $('#my-style').open=true;
+  $('#my-style input:checked')?.focus();
  };
  const form=$('#outfit-intake');
  if(form){
@@ -510,16 +517,16 @@ function wardrobe(){let shown=items.filter(p=>(state.filter==='All'||p.cat===sta
 // Candidate photos are shared. Wardrobe advice is specific to the active catalogue.
 function shoppingWardrobe(index) {
  return [
-  {duplicate:true, value:'Your black bomber already gives you the same short, dark layer.', pairing:'Wear your bomber with the white heavyweight T-shirt and dark indigo jeans.'},
-  {duplicate:true, value:'Your olive cotton overshirt already fills this role.', pairing:'Wear it open over your white heavyweight T-shirt with slate pleated trousers.'},
-  {duplicate:true, value:'Your stone straight trousers already give you this light, straight-leg option.', pairing:'Try the pair you own with the black crewneck knit and black loafers.'},
+  {duplicate:true, reason:'I’d keep the cropped jacket you already own.', value:'Your black bomber already gives you the same short, dark layer.', pairing:'Layer the candidate over a white heavyweight T-shirt and dark indigo jeans.', alternative:'Use your existing black bomber for the same cropped finish.'},
+  {duplicate:true, reason:'A second olive overshirt would add little.', value:'Your olive cotton overshirt already fills this role.', pairing:'Wear the candidate open over your white heavyweight T-shirt with slate pleated trousers.', alternative:'Use your existing olive cotton overshirt in the same outfit.'},
+  {duplicate:true, reason:'This repeats a cut and colour you already wear.', value:'Your stone straight trousers already give you this light, straight-leg option.', pairing:'Pair the candidate with the black crewneck knit and black loafers.', alternative:'Wear your existing stone straight trousers for the same effect.'},
   {reason:'Canvas adds an easy casual shoe alongside your smarter suede loafers, if the heel feels secure.', value:'Your stone suede loafers cover a smarter role. Canvas adds a more casual option, though your white sneakers are worth trying first.', pairing:'Try them with your ink navy heavyweight T-shirt and black tailored shorts.'},
  ][index];
 }
 function shopStyle(candidate) {
- const target=myStyle===aesthetics[0]?'Your wardrobe':myStyle;
+ const target=myStyle;
  // A coarse demonstration rubric: close match, partial match, or weak match.
- const grade=myStyle===aesthetics[0]?1:candidate.ratings.findIndex(group=>group.includes(myStyle));
+ const grade=myStyle===aesthetics[0]?-1:candidate.ratings.findIndex(group=>group.includes(myStyle));
  return {target,score:candidate.scores[grade]??null};
 }
 function purchasedPiece(index,id){
@@ -537,7 +544,7 @@ function shoppingAssessment(index){
  const style=shopStyle(candidate);
  const weak=style.score!==null&&style.score<55;
  return {style,wardrobe,label:wardrobe.duplicate||weak?'I’d skip it':'Worth trying on',
-  reason:wardrobe.duplicate?wardrobe.value:weak?`This design is a weak match for ${style.target}.`:wardrobe.reason};
+  reason:wardrobe.duplicate?wardrobe.reason:weak?`This design is a weak match for ${style.target}.`:wardrobe.reason};
 }
 function updateShoppingRecord(action){
  const index=shopping.example;
@@ -609,24 +616,24 @@ function verdict() {
  }else{
   const {wardrobe,style,label,reason}=shoppingAssessment(shopping.example);
   const recorded=shoppingRecords[shopping.example];
-  content=`${back}<div class="shop-verdict"><p>Nigel’s recommendation · Example</p><h2 id="shop-heading">${label}</h2><p>${escapeHTML(reason)}</p></div>
-   <div class="shop-product">
+  const advice=[['check',label==='I’d skip it'?'Why I’d pass':'Why it works',wardrobe.value],
+   ['hanger','How to style it',wardrobe.pairing],['right','Fit to check',candidate.check]];
+  content=`${back}<div class="shop-product">
     <figure class="shop-photo"><img src="assets/${candidate.photo}" alt="${candidate.name}"></figure>
-    <section aria-label="Style match"><h3>${candidate.name}</h3><p>${escapeHTML(style.target)} · ${style.score===null?'No scored example':style.score+'% illustrative match'}</p>
-     ${style.score===null?'':`<meter min="0" max="100" value="${style.score}" aria-label="Illustrative style match">${style.score}%</meter>`}
-    </section>
+    <div><h3>${candidate.name}</h3><p>Your style: ${escapeHTML(style.target)}</p></div>
    </div>
-   <section class="shop-section"><h3>Wardrobe value</h3><p>${escapeHTML(wardrobe.value)}</p></section>
-   <section class="shop-section"><h3>Personal fit</h3><p>Unknown from a product photo. ${candidate.check}</p></section>
-   <section class="shop-section"><h3>How to style it</h3><p>${escapeHTML(wardrobe.pairing)}</p>
-
+   <div class="shop-verdict"><p>Nigel’s recommendation · Example</p><h2 id="shop-heading">${label}</h2><p>${escapeHTML(reason)}</p></div>
+   <section class="shop-score" aria-label="Style match">
+    <p><strong>Style match</strong> · ${escapeHTML(style.target)}</p>
+    ${style.score===null?`<p>${style.target===aesthetics[0]?'Choose a style to see a score.':'This aesthetic doesn’t have a supported score in the demo.'}</p>`:`<span>${style.score}% illustrative match</span><div class="shop-score-track" role="meter" aria-label="Illustrative style match" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${style.score}"><span style="width:${style.score}%"></span></div>`}
    </section>
+   <dl class="shop-advice">${advice.map(([icon,title,copy])=>`<div>${todayIcon(icon)}<div><dt>${title}</dt><dd>${escapeHTML(copy)}</dd>${title==='Fit to check'?'<dd class="sub">Personal fit is unknown from a product photo.</dd>':''}</div></div>`).join('')}</dl>
    <div class="shop-actions shop-result-actions">
     ${btn('I’ve tried it on — check the fit','id="shop-try-on"','primary')}
     ${btn(recorded?.saved?'Saved for later':'Save for later','data-shopping-record="save"'+(recorded?.saved?' disabled':''))}
     ${recorded?.purchase?btn('View purchase','id="shop-open-purchase"'):btn(label==='I’d skip it'?'Bought it anyway':'I bought it','data-shopping-record="buy"')}
    </div>
-   <section class="shop-section shop-style-details"><details><summary>Style details</summary><dl><div><dt>Colour</dt><dd>${candidate.colour}</dd></div><div><dt>Silhouette</dt><dd>${candidate.shape}</dd></div><div><dt>Design</dt><dd>${candidate.detail}</dd></div></dl></details></section>${notice}`;
+   <section class="shop-section shop-style-details"><details><summary>Style details</summary>${wardrobe.alternative?`<p><strong>Alternative from your wardrobe</strong> ${escapeHTML(wardrobe.alternative)}</p>`:''}<dl><div><dt>Colour</dt><dd>${candidate.colour}</dd></div><div><dt>Silhouette</dt><dd>${candidate.shape}</dd></div><div><dt>Design</dt><dd>${candidate.detail}</dd></div></dl></details></section>${notice}`;
  }
  return `<section class="shopping-workspace shop-flow" aria-labelledby="shop-heading">${content}${shoppingInputs()}</section>`;
 }
@@ -830,16 +837,48 @@ function theme(){
  $('#theme-mobile').setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
  $('link[rel="icon"]').href=`assets/brand/composed-icon-${dark?'dark':'light'}.webp`;
 }
-const styleSelect=$('#my-style');
-styleSelect.replaceChildren(...aesthetics.map(style=>new Option(style,style)));
-styleSelect.value=myStyle;
-styleSelect.onchange=()=>{
- myStyle=styleSelect.value;
- let saved=false;
- try{localStorage.setItem(stylePreferenceKey,myStyle);saved=true;}catch{}
+function paintStyleEditor(){
+ const panel=$('#style-editor');
+ const choices=[...aesthetics,...(customStyle?[customStyle]:[])];
+ panel.innerHTML=`<fieldset><legend>Preferred aesthetic</legend><div class="style-choice-grid">${choices.map(style=>choiceChip('aesthetic',escapeHTML(style),escapeHTML(style),myStyle===style)).join('')}</div></fieldset>
+ <p class="style-support" role="status">${aesthetics.includes(myStyle)?'':'Tailored picks and scores aren’t available for this custom style yet.'}</p>
+ <div class="style-editor-actions">
+ ${btn(customStyle?'Edit your style':'Add your own style','id="custom-style-edit" type="button"')}
+ ${customStyle?btn('Remove custom style','id="custom-style-remove" type="button"'):''}</div>
+ ${editingStyle?`<form id="custom-style-form"><label for="custom-style-input">Custom aesthetic</label>
+ <input id="custom-style-input" maxlength="40" value="${escapeHTML(customStyle)}" required>
+ <button type="submit">Save style</button><p id="custom-style-error" role="status"></p></form>`:''}`;
+ for(const input of panel.querySelectorAll('[name=aesthetic]'))input.onchange=()=>saveMyStyle(input.value);
+ $('#custom-style-edit').onclick=()=>{editingStyle=!editingStyle;paintStyleEditor();($('#custom-style-input')||$('#custom-style-edit')).focus();};
+ if($('#custom-style-remove'))$('#custom-style-remove').onclick=()=>{
+  const next=myStyle===customStyle?aesthetics[0]:myStyle;
+  customStyle='';editingStyle=false;
+  saveMyStyle(next,true);
+ };
+ if($('#custom-style-form'))$('#custom-style-form').onsubmit=event=>{
+  event.preventDefault();
+  const value=$('#custom-style-input').value.trim().replace(/\s+/g,' ');
+  if(!validStyleLabel(value)){
+   $('#custom-style-error').textContent='Enter a unique style name with 3–40 letters or numbers, spaces, or punctuation.';
+   return;
+  }
+  if(customStyle.toLowerCase()!==value.toLowerCase())customStyle=value;
+  editingStyle=false;
+  saveMyStyle(customStyle,true);
+ };
+ $('#my-style-current').textContent=myStyle;
+}
+function saveMyStyle(style,refreshEditor=false){
+ myStyle=style;
+ try{localStorage.setItem(stylePreferenceKey+'.custom',customStyle);localStorage.setItem(stylePreferenceKey,myStyle);}catch{}
+ if(refreshEditor){paintStyleEditor();$('#my-style input:checked')?.focus();}
+ else{
+  $('#my-style-current').textContent=myStyle;
+  $('.style-support').textContent=aesthetics.includes(myStyle)?'':'Tailored picks and scores aren’t available for this custom style yet.';
+ }
  if(state.tab==='Shopping'||(state.tab==='Today'&&!outfitVisible()))render();
- toast(saved?'My Style saved.':'My Style updated for this session.');
-};
+}
+paintStyleEditor();
 const settingsMenu=$('.settings-menu');
 const settingsButton=settingsMenu.querySelector('summary');
 const syncSettings=()=>settingsButton.setAttribute('aria-expanded',String(settingsMenu.open));
