@@ -89,18 +89,19 @@ function toast(message, persistent=false){
  $('#toast').classList.add('show');
  if(!persistent)window.toastTimer=setTimeout(dismissToast,2500);
 }
-function current(){if(state.occasion===3)return workOutfit();const entry=outfitPool.get(`${state.occasion}:${state.energy}:${+state.alternate}`);const base=outfits[state.occasion];let o;if(entry.source?.base!==undefined)o={...outfits[entry.source.base]};else if(entry.source?.profile){const key=entry.source.profile,p=lookProfiles[key];o={...base,stylistNote:undefined,line:p.why,short:profileTags[key],ids:p.ids,image:p.sheet,sheet:p.sheet,isSheet:true,why:p.why,steps:p.steps,reasonGroups:p.reasons.map((text,i)=>({title:['The top','The lower line','The finish'][i],text}))};}else {const [top,bottom,shoe]=entry.ids.map(id=>items[id]);const texts=[`${top.name} sets a ${state.energy.toLowerCase()} tone for ${occasions[state.occasion].toLowerCase()}.`,`${bottom.name} keep a straight, comfortable line below the top.`,`${shoe.name} finish the outfit in a ${shoe.style.toLowerCase()} way.`];o={...base,stylistNote:undefined,ids:entry.ids,short:`${top.name} & ${bottom.name}`,composed:true,isSheet:false,why:texts.join(' '),line:texts[1],steps:[`Wear the ${top.name.toLowerCase()} untucked, with the hem sitting neatly at the hip.`,`Add the ${bottom.name.toLowerCase()}; let the fabric fall naturally.`,`Finish with the ${shoe.name.toLowerCase()}, keeping the hems clear of the shoes.`],reasonGroups:texts.map((text,i)=>({title:['The top','The lower line','The finish'][i],text}))};}if(entry.copy)o={...o,...entry.copy};return {...o,composed:false,isSheet:true,sheet:entry.sheet,weather:weatherLabel(),requireLayer:false};}
+function current(){if(state.occasion===3)return workOutfit();const key=`${state.occasion}:${state.energy}:`;const first=outfitPool.get(key+0),second=outfitPool.get(key+1);const entry=rankedAlternate(first.ids,second.ids)?second:first;const base=outfits[state.occasion];let o;if(entry.source?.base!==undefined)o={...outfits[entry.source.base]};else if(entry.source?.profile){const key=entry.source.profile,p=lookProfiles[key];o={...base,stylistNote:undefined,line:p.why,short:profileTags[key],ids:p.ids,image:p.sheet,sheet:p.sheet,isSheet:true,why:p.why,steps:p.steps,reasonGroups:p.reasons.map((text,i)=>({title:['The top','The lower line','The finish'][i],text}))};}else {const [top,bottom,shoe]=entry.ids.map(id=>items[id]);const texts=[`${top.name} sets a ${state.energy.toLowerCase()} tone for ${occasions[state.occasion].toLowerCase()}.`,`${bottom.name} keep a straight, comfortable line below the top.`,`${shoe.name} finish the outfit in a ${shoe.style.toLowerCase()} way.`];o={...base,stylistNote:undefined,ids:entry.ids,short:`${top.name} & ${bottom.name}`,composed:true,isSheet:false,why:texts.join(' '),line:texts[1],steps:[`Wear the ${top.name.toLowerCase()} untucked, with the hem sitting neatly at the hip.`,`Add the ${bottom.name.toLowerCase()}; let the fabric fall naturally.`,`Finish with the ${shoe.name.toLowerCase()}, keeping the hems clear of the shoes.`],reasonGroups:texts.map((text,i)=>({title:['The top','The lower line','The finish'][i],text}))};}if(entry.copy)o={...o,...entry.copy};return {...o,composed:false,isSheet:true,sheet:entry.sheet,weather:weatherLabel(),requireLayer:false};}
 // Small changes are suggestions only, never a hidden mutation of the worn outfit.
 function ids(){return [...current().ids];}
 function smallChanges(){const shown=ids();return shown.filter(from=>items[from].cat!=='bottoms').map(from=>{const preferred=items[from].cat==='tops'?6:items[from].cat==='shoes'?(from===5?2:5):items[from].cat==='layers'?13:7;const replacement=(!shown.includes(preferred)&&items[preferred].cat===items[from].cat?items[preferred]:items.find(p=>p.cat===items[from].cat&&!shown.includes(p.id)));return replacement?{from,to:replacement.id,note:`Consider ${replacement.name} instead of ${items[from].name}. This is a note only; the displayed outfit and wear log stay as shown.`}:null;}).filter(Boolean).slice(0,2);}
 let rackCarousel;
 let modelRenderRevision=0;
 let committedTodayState=null;
-const todayRenderKeys=['occasion','energy','index','alternate','swap','modelAngle','reasonIndex','timing','timingEditing','planDate'];
+const todayRenderKeys=['rankStyle','occasion','energy','index','alternate','swap','modelAngle','reasonIndex','timing','timingEditing','planDate'];
 async function render({top=false}={}){const previousTab=$('#screen').className;const revision=++modelRenderRevision;if(state.tab==='Today'&&outfitVisible())preloadTodayModels();let content=({Today:today,Wardrobe:wardrobe,Shopping:verdict,Log:log})[state.tab]();let views=state.tab==='Today'?content.match(/<div class="segmented" aria-label="Today views">[\s\S]*?<\/div>/)?.[0]:'';if(views)content=content.replace(views,'');let page=null;
 if(state.tab==='Today'&&outfitVisible()&&window.Image){page=document.createElement('div');page.className='page';page.innerHTML=content;const viewer=page.querySelector('#model-viewer');if(viewer){const screen=$('#screen'),bar=$('#today-wear-bar');screen.setAttribute('aria-busy','true');const enabled=[...screen.querySelectorAll('.stylist-pick button:not(:disabled), #outfit-intake button:not(:disabled)')];enabled.forEach(button=>button.disabled=true);if(committedTodayState){if($('#occasion'))$('#occasion').value=String(committedTodayState.occasion);if($('#energy'))$('#energy').value=committedTodayState.energy;}try{await Promise.all([...viewer.querySelectorAll('img')].map(image=>image.decode()));const sheet=viewer.querySelector('.model-turn-sheet');if(sheet?.naturalWidth)viewer.querySelector('.model-turn-clip').style.aspectRatio=String(sheet.naturalWidth/4/sheet.naturalHeight);}catch(error){if(revision===modelRenderRevision){if(committedTodayState)Object.assign(state,committedTodayState);screen.removeAttribute('aria-busy');enabled.forEach(button=>button.disabled=false);toast('Outfit image could not load. Please try again.');}return;}if(revision!==modelRenderRevision)return;}}
 if(revision!==modelRenderRevision)return;if(rackCarousel){rackCarousel.destroy();rackCarousel=null;}$('#tabs').innerHTML=Object.keys(icons).map(t=>btn(`<svg viewBox="0 0 24 24" aria-hidden="true">${icons[t]}</svg>${t}`,`data-tab="${t}" aria-current="${t===state.tab?'page':'false'}"`,t===state.tab?'active':'')).join('');$('#screen').className='screen-'+state.tab.toLowerCase();$('#screen').classList.toggle('today-has-wear-bar',state.tab==='Today'&&wearBarVisible());if(page)$('#screen').replaceChildren(page);else $('#screen').innerHTML=`<div class="page">${content}</div>`;$('#screen').removeAttribute('aria-busy');if(top||previousTab!==$('#screen').className){$('#screen').scrollTo({top:0,behavior:'instant'});dismissToast();}$('#today-views').innerHTML=views||'';$('#today-views').hidden=!views;const footer=document.querySelector('.app-shell>footer');if(footer)footer.textContent=state.tab==='Wardrobe'?'Wardrobe edits stay in this browser.':state.tab==='Log'?'Activity is stored in this browser.':'Wardrobe edits stay in this browser. Demo log resets on reload.';let wearBar=$('#today-wear-bar');if(state.tab==='Today'&&wearBarVisible()){if(!wearBar){wearBar=document.createElement('div');wearBar.id='today-wear-bar';$('#tabs').before(wearBar);}wearBar.innerHTML=todayWearBar();wearBar.inert=false;}else if(wearBar)wearBar.remove();if(state.tab==='Today')committedTodayState=Object.fromEntries(todayRenderKeys.map(key=>[key,state[key]]));applyRecordingPresentation();bind();bindToday();bindEditor();mountRack();if(window.requestAnimationFrame)bindModelViewer();}
 const historyKey = metadataKey + '.history.v2';
+const stylePreferenceKey = metadataKey + '.my-style';
 const legacyPlanKey = metadataKey + '.planned-outfit';
 const categories = ['tops','layers','bottoms','shoes'];
 let accepted = new Set();
@@ -108,6 +109,34 @@ let plans = [];
 let undatedPlan = null;
 let savedFits = [];
 let darkPreference = false;
+const aesthetics = ['No preference','East Asian Minimalist','Streetwear','Smart Casual','Classic','Workwear'];
+let myStyle = aesthetics[0];
+const primaryImpressions = ['Confident','Relaxed','Polished'];
+function fitStyleScore(ids, aesthetic) {
+ return ids.reduce((score,id)=>score+(pieceStyles(items[id]).includes(aesthetic)?1:0),0);
+}
+function pieceStyles(piece) {
+ const label=mixPrimaryStyle(piece).toLowerCase();
+ const extra=/chore|barbour|overshirt|work jacket/i.test(piece.name)?['Workwear']:[];
+ return [...aesthetics.filter(style=>style.toLowerCase()===label),...extra];
+}
+function rankedAlternate(first, second) {
+ const style=state.rankStyle||aesthetics[0];
+ const preferSecond=style!==aesthetics[0]&&fitStyleScore(second,style)>fitStyleScore(first,style);
+ return Boolean(state.alternate)!==preferSecond;
+}
+function styleExplanation(outfit) {
+ const style=state.rankStyle;
+ if(!style||style===aesthetics[0])return '';
+ const match=outfit.ids.map(id=>items[id]).find(piece=>pieceStyles(piece).includes(style));
+ return match?` The ${match.name.toLowerCase()} brings in your ${style} preference.`:
+  ` The photographed options for this occasion are limited. This pick answers the occasion, with no clear ${style} match in the outfit shown.`;
+}
+function tomorrowDate(now = new Date()) {
+ const tomorrow=new Date(now);
+ tomorrow.setDate(tomorrow.getDate()+1);
+ return localDate(tomorrow);
+}
 let recordingActivity = null;
 
 function localDate(date = new Date()) {
@@ -136,6 +165,10 @@ function validPlanChoices(plan) {
  return plan&&Number.isInteger(plan.occasion)&&occasions[plan.occasion]&&availableImpressions(plan.occasion).includes(plan.energy)&&typeof plan.alternate==='boolean';
 }
 function loadPlan() {
+ try {
+  const storedStyle=localStorage.getItem(stylePreferenceKey);
+  if(aesthetics.includes(storedStyle))myStyle=storedStyle;
+ } catch {}
  try {
   const previous=JSON.parse(localStorage.getItem(legacyPlanKey));
   if(validPlanChoices(previous))undatedPlan=previous;
@@ -183,24 +216,35 @@ function availableImpressions(occasion) {
 }
 
 function impressionOptions() {
- return availableImpressions(state.occasion).map(name=>choiceChip('impression',name,name,state.energy===name)).join('');
+ const supported=availableImpressions(state.occasion);
+ const primary=primaryImpressions.filter(name=>supported.includes(name));
+ const extra=supported.filter(name=>!primary.includes(name));
+ const chips=names=>names.map(name=>choiceChip('impression',name,name,state.energy===name)).join('');
+ return `<div class="choice-chips impressions">${chips(primary)}${extra.includes(state.energy)&&!state.moreImpressions?chips([state.energy]):''}</div>
+  <button type="button" id="more-impressions" aria-expanded="${Boolean(state.moreImpressions)}" aria-controls="extra-impressions">${state.moreImpressions?'Fewer options':'More options'}</button>
+  <div class="choice-chips" id="extra-impressions" ${state.moreImpressions?'':'hidden'}>${state.moreImpressions?chips(extra):''}</div>`;
 }
 function choiceChip(group,value,label,checked) {
  return `<label class="choice-chip"><input type="radio" name="${group}" value="${value}" ${checked?'checked':''}><span>${label}</span></label>`;
 }
+function planDateControls() {
+ const tomorrow=tomorrowDate();
+ const other=state.otherDate||state.recoveringPlan||state.planDate!==tomorrow;
+ return `<fieldset><legend>Outfit date</legend><div class="choice-chips date-chips">
+  ${choiceChip('day','tomorrow','Tomorrow · '+displayDate(tomorrow),!other)}
+  ${choiceChip('day','other','Other date',other)}
+ </div>${other?`<label for="plan-date">Choose a date</label><input id="plan-date" type="date" required min="${localDate()}" value="${state.planDate}">`:''}</fieldset>`;
+}
 function today() {
  if (!outfitVisible()) {
   return `<section class="stylist-intake">
-   <p class="stylist-label">Nigel · Your personal stylist</p>
-   <h2>Let’s get you dressed.</h2>
-   <p>What’s the plan?</p>
+   <h2>Let’s get dressed.</h2>
    ${todayTiming()}
    <form id="outfit-intake" class="stylist-form">
-    ${state.timing==='soon'?`<label for="plan-date">Outfit date</label><input id="plan-date" type="date" required min="${localDate()}" value="${state.planDate||(state.recoveringPlan?'':localDate())}">`:''}
-    <fieldset><legend>Occasion</legend><div class="choice-chips">${occasions.map((name,i)=>choiceChip('occasion',i,name,state.occasion===i)).join('')}</div></fieldset>
-    <fieldset><legend>How do you want to come across?</legend><div class="choice-chips">${impressionOptions()}</div></fieldset>
+    ${state.timing==='soon'?planDateControls():''}
+    <fieldset><legend>Occasion</legend><div class="choice-chips occasion-chips">${occasions.map((name,i)=>choiceChip('occasion',i,name,state.occasion===i)).join('')}</div></fieldset>
+    <fieldset><legend>How do you want to come across?</legend><div id="impression-options">${impressionOptions()}</div></fieldset>
     <button class="primary" id="lock-tomorrow">Find my outfit</button>
-    <p class="intake-note">Put together from clothes you already own.</p>
    </form>
   </section>`;
  }
@@ -224,12 +268,13 @@ function today() {
    <div class="outfit-piece-strip">${orderPieces(o.ids).map(id=>`<div class="outfit-piece-thumb" title="${escapeHTML(items[id].name)}">${garment(items[id])}<span>${escapeHTML(items[id].shortName||items[id].name)}</span></div>`).join('')}</div>
    ${o.photoNote?`<p class="photo-note">${escapeHTML(o.photoNote)}</p>`:''}
   </section>
-  <section class="daily-why"><p class="stylist-label">Nigel</p><h3>Why I picked this for you</h3><p>${o.contextual?'':lead?lead+' ':''}${escapeHTML(o.why)}</p></section>
+  <section class="daily-why"><p class="stylist-label">Nigel</p><h3>Why I picked this for you</h3><p>${o.contextual?'':lead?lead+' ':''}${escapeHTML(o.why+styleExplanation(o))}</p></section>
   <section class="daily-wear"><h3><span aria-hidden="true">↳</span> Wear it like this</h3><p>${escapeHTML(o.steps[0])}</p>
    ${o.steps.length>1?`<details><summary>More styling tips</summary><ul>${o.steps.slice(1).map(step=>`<li>${escapeHTML(step)}</li>`).join('')}</ul></details>`:''}
   </section>
   <section class="pick-actions" aria-label="Outfit actions">
    ${btn(isAccepted?(planned?'Outfit planned':'Outfit accepted'):(planned?'Plan this outfit':'I’ll wear this'),`id="accept-outfit" ${isAccepted?'disabled':''}`,'primary')}
+   ${isAccepted&&planned?btn('View in Log','id="view-plan-log"'):''}
    ${isAccepted&&canLog?`<div class="wear-confirmation">${btn('Wore it',`data-log="wore" aria-pressed="${hasLoggedCurrent('wore')}"`)}${btn('Didn’t wear it',`data-log="skipped" aria-pressed="${hasLoggedCurrent('skipped')}"`)}</div>`:''}
    ${isAccepted&&canLog&&wear?.type==='skipped'?`<label for="skip-reason">Why didn’t you wear it? (Optional)</label><select id="skip-reason"><option value="">Choose a reason</option>${skipReasons.map(reason=>`<option ${wear.reason===reason?'selected':''}>${reason}</option>`).join('')}</select>`:''}
    <div class="pick-secondary">${btn(state.alternate||state.occasion===3?'No more picks for this plan':'Another outfit',`id="another-outfit" ${state.alternate||state.occasion===3?'disabled':''}`)}${btn('Change a piece','id="refine-pick"')}</div>
@@ -241,29 +286,55 @@ function today() {
 function bindToday() {
  const form=$('#outfit-intake');
  if(form){
+  const bindImpressions=()=>{
+   $('#more-impressions').onclick=()=>{
+    state.moreImpressions=!state.moreImpressions;
+    $('#impression-options').innerHTML=impressionOptions();
+    bindImpressions();
+    $('#more-impressions').focus();
+   };
+  };
+  bindImpressions();
   form.onchange=event=>{
    const fields=new FormData(form);
    state.occasion=Number(fields.get('occasion'));
    state.energy=fields.get('impression');
-   if(!availableImpressions(state.occasion).includes(state.energy)) state.energy=availableImpressions(state.occasion)[0];
+   if(!availableImpressions(state.occasion).includes(state.energy))state.energy=availableImpressions(state.occasion)[0];
    if(event.target.name==='occasion'){
-    const impressionGroup=form.querySelector('input[name=impression]').closest('.choice-chips');
-    impressionGroup.innerHTML=impressionOptions();
+    $('#impression-options').innerHTML=impressionOptions();
+    bindImpressions();
    }
-   if($('#plan-date'))state.planDate=$('#plan-date').value;
+   if(event.target.name==='impression'&&!state.moreImpressions&&$('#impression-options .impressions').children.length>primaryImpressions.length){
+    $('#impression-options').innerHTML=impressionOptions();
+    bindImpressions();
+    form.querySelector('input[name="impression"]:checked')?.focus();
+   }
+   if(event.target.name==='day'){
+    state.otherDate=fields.get('day')==='other';
+    state.planDate=state.otherDate?'':tomorrowDate();
+    render().then(()=>($('[name="day"]:checked'))?.focus({preventScroll:true}));
+   }
+   if(event.target.id==='plan-date')state.planDate=event.target.value;
   };
   form.onsubmit=event=>{
    event.preventDefault();
-   if($('#plan-date'))state.planDate=$('#plan-date').value;
+   const fields=new FormData(form);
+   state.occasion=Number(fields.get('occasion'));
+   state.energy=fields.get('impression');
+   if(state.timing==='soon')state.planDate=$('#plan-date')?.value||tomorrowDate();
+   state.rankStyle=myStyle;
    state.timingEditing=false;
    choose();
    render({top:true});
   };
  }
  document.querySelectorAll('[data-timing]').forEach(button=>button.onclick=()=>{
+  if(state.timing===button.dataset.timing)return;
   state.timing=button.dataset.timing;
-  render();
+  if(state.timing==='soon'&&!state.planDate){state.planDate=tomorrowDate();state.otherDate=false;}
+  render().then(()=>$('[data-timing][aria-pressed="true"]')?.focus({preventScroll:true}));
  });
+ if($('#view-plan-log'))$('#view-plan-log').onclick=()=>{state.tab='Log';render({top:true}).then(()=>$('#tabs [data-tab="Log"]').focus());};
  if($('#change-choices'))$('#change-choices').onclick=()=>{
   state.timingEditing=true;
   render({top:true}).then(()=>$('#outfit-intake input')?.focus({preventScroll:true}));
@@ -275,7 +346,7 @@ function bindToday() {
  if($('#accept-outfit'))$('#accept-outfit').onclick=()=>{
   accepted.add(outfitKey());
   if(state.timing==='soon'){
-   const plan={date:outfitDate(),occasion:state.occasion,energy:state.energy,alternate:state.alternate};
+   const plan={date:outfitDate(),occasion:state.occasion,energy:state.energy,alternate:state.alternate,rankStyle:state.rankStyle};
    plans=plans.filter(row=>row.date!==plan.date);
    plans.push(plan);
    if(state.recoveringPlan&&!recordingActivity&&persist()){
@@ -288,12 +359,12 @@ function bindToday() {
   render();
  };
  if($('#recover-plan'))$('#recover-plan').onclick=()=>{
-  Object.assign(state,{tab:'Today',timing:'soon',timingEditing:true,planDate:'',occasion:undatedPlan.occasion,energy:undatedPlan.energy,recoveringPlan:true});
+  Object.assign(state,{tab:'Today',timing:'soon',timingEditing:true,planDate:'',otherDate:true,occasion:undatedPlan.occasion,energy:undatedPlan.energy,recoveringPlan:true});
   render({top:true}).then(()=>$('#plan-date')?.focus({preventScroll:true}));
  };
  document.querySelectorAll('[data-plan-date]').forEach(button=>button.onclick=()=>{
   const plan=plans.find(row=>row.date===button.dataset.planDate);
-  Object.assign(state,plan,{tab:'Today',timing:'soon',planDate:plan.date,index:plan.occasion,modelAngle:0,timingEditing:false});
+  Object.assign(state,plan,{tab:'Today',timing:'soon',planDate:plan.date,otherDate:plan.date!==tomorrowDate(),rankStyle:aesthetics.includes(plan.rankStyle)?plan.rankStyle:aesthetics[0],index:plan.occasion,modelAngle:0,timingEditing:false});
   render({top:true});
  });
  if ($('#refine-pick')) $('#refine-pick').onclick = ()=>{
@@ -343,15 +414,21 @@ function shoppingCandidate(index) {
  return {...c,label:labels[index],why:index===0?'The short hem and clean shape work with straight denim, and black pairs easily with the rest of this wardrobe.':c.why,name:c.name||items[c.id].name,photo:c.image||`assets/purchase-${index}.webp`,
   alternative:alternatives[index],with:c.with||pairings[index]};
 }
+function suggestedShoppingStyles(index) {
+ return [{Streetwear:90,Workwear:72,'East Asian Minimalist':82},{Workwear:88,Classic:64},{Classic:78,'East Asian Minimalist':87,'Smart Casual':67}][index];
+}
 function verdict(){
  const candidate=shoppingCandidate(state.verdict);
- const sections=[['Why',candidate.why],['What it adds',candidate.adds],['Try instead',candidate.alternative],['Wear it with',candidate.with]];
+ const profile=candidate.styles||suggestedShoppingStyles(state.verdict);
+ const target=myStyle===aesthetics[0]?'your wardrobe':myStyle;
+ const score=myStyle===aesthetics[0]?candidate.styleFit:profile[myStyle];
+ const sections=[['Style compatibility',candidate.why],['Observed fit','Fit has not been assessed. Check the garment in person.'],['Wardrobe value',candidate.adds],['Try instead',candidate.alternative],['Wear it with',candidate.with]];
  return `<section class="shopping-workspace"><h2>Nigel’s Buy Verdict</h2>
   <p class="sub">Sample shopping advice based on this wardrobe. The style-match score is illustrative.</p>
   <div class="shopping-options" role="group" aria-label="Possible purchase">${cases.map((_,index)=>btn(escapeHTML(shoppingCandidate(index).label),`data-purchase="${index}" aria-pressed="${state.verdict===index}"`,state.verdict===index?'active':'')).join('')}</div>
   <div class="shopping-body"><div class="verdict-image purchase-photo"><img src="${candidate.photo}" alt="${escapeHTML(candidate.name)}"></div>
   <div class="shopping-answer"><h3 class="verdict-word">${escapeHTML(candidate.word)}</h3><h4>${escapeHTML(candidate.name)}</h4>
-  <p class="match">${candidate.styleFit}% sample style match</p>
+  <p class="match">${score===undefined?`No scored ${escapeHTML(target)} example for this item.`:`${score}% sample style match · ${escapeHTML(target)}`}</p>
   ${sections.map(([title,copy])=>`<div class="detail"><strong>${title}</strong>${escapeHTML(copy)}</div>`).join('')}
   ${candidate.check?`<details class="detail"><summary>Try-on demonstration</summary><ol><li>Try it in store with the outfit above.</li><li>${escapeHTML(candidate.check)}</li></ol></details>`:''}
   </div></div></section>`;
@@ -460,10 +537,36 @@ function theme(){
  $('#theme-mobile').setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
  $('link[rel="icon"]').href=`assets/brand/composed-icon-${dark?'dark':'light'}.webp`;
 }
+const styleSelect=$('#my-style');
+styleSelect.replaceChildren(...aesthetics.map(style=>new Option(style,style)));
+styleSelect.value=myStyle;
+styleSelect.onchange=()=>{
+ myStyle=styleSelect.value;
+ let saved=false;
+ try{localStorage.setItem(stylePreferenceKey,myStyle);saved=true;}catch{}
+ if(state.tab==='Shopping')render();
+ toast(saved?'My Style saved.':'My Style updated for this session.');
+};
+const settingsMenu=$('.settings-menu');
+const settingsButton=settingsMenu.querySelector('summary');
+const syncSettings=()=>settingsButton.setAttribute('aria-expanded',String(settingsMenu.open));
+settingsMenu.ontoggle=syncSettings;
+settingsButton.onclick=event=>{
+ event.preventDefault();
+ settingsMenu.open=!settingsMenu.open;
+ syncSettings();
+};
+document.addEventListener('keydown',event=>{
+ if(event.key!=='Escape'||!settingsMenu.open)return;
+ event.preventDefault();
+ settingsMenu.open=false;
+ syncSettings();
+ settingsButton.focus();
+});
 $('#theme-mobile').onclick=()=>{darkPreference=!darkPreference;theme();persist();};
 $('#toast-dismiss').onclick=dismissToast;
 function resetFlow(){
- Object.assign(state,{tab:'Today',timing:'now',planDate:'',timingEditing:true,recoveringPlan:false,occasion:0,energy:availableImpressions(0)[0],alternate:false,modelAngle:0,fit:[],anchor:null,critique:null});
+ Object.assign(state,{tab:'Today',timing:'now',planDate:'',otherDate:false,moreImpressions:false,rankStyle:aesthetics[0],timingEditing:true,recoveringPlan:false,occasion:0,energy:availableImpressions(0)[0],alternate:false,modelAngle:0,fit:[],anchor:null,critique:null});
  $('.settings-menu').open=false;
  dismissToast();
  render({top:true});

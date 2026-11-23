@@ -329,3 +329,23 @@ body.record-mode .app-shell #screen > .page { max-width:480px; }
 #toast.show { pointer-events:auto; }
 
 .photo-note { font-size:13px; color:var(--muted); margin:4px 0 12px; }
+
+.app-shell .stylist-form .occasion-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.app-shell .stylist-form .date-chips{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.app-shell .stylist-form .date-chips .choice-chip span{height:100%}
+.app-shell .stylist-form .impressions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.app-shell .stylist-form .choice-chip span{text-align:center;padding-inline:6px}
+.app-shell .stylist-form [hidden]{display:none}
+.app-shell .stylist-form #more-impressions{min-height:44px;margin-block:4px;background:transparent;border-color:transparent;color:var(--accent)}
+.app-shell .stylist-form #lock-tomorrow{width:100%;margin-top:4px}
+.app-shell .settings-menu>summary{display:flex;align-items:center;justify-content:center;gap:6px;width:auto;min-width:44px;padding-inline:6px;font-size:13px}
+.app-shell .settings-menu>summary span{font-size:20px}
+.app-shell .my-style{display:grid;gap:4px;padding:4px;font-weight:600}
+.app-shell .my-style select{width:100%;min-height:44px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.app-shell .settings-menu .app-header-tools{max-height:calc(100dvh - 74px);overflow:auto}
+@media(max-width:440px){
+ .app-shell .stylist-form .occasion-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .app-shell .stylist-intake{padding-block:8px}
+ .app-shell .stylist-intake h2{font-size:28px}
+ .app-shell .stylist-intake .today-timing{margin-block:12px}
+}

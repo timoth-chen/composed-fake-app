@@ -101,6 +101,7 @@ async function exercise(browser,width) {
   await tab('Today');
   await at('[data-timing=soon]').click();
   for(const date of ['2099-04-10','2099-04-15']){
+   if(!await at('#plan-date').count())await at('[name=day][value=other]').check();
    await at('#plan-date').fill(date);
    await pick(2,'Polished');
    assert.match(await at('.pick-context').innerText(),new RegExp(date.endsWith('10')?'Apr 10':'Apr 15'));
