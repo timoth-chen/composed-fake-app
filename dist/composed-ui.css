@@ -587,3 +587,11 @@ body.dark .app-shell .screen-today .stylist-pick .model-viewer{background:#e0d2c
 .app-shell .shop-advice dd{margin:0;font-size:13px;line-height:1.35}
 .app-shell .shop-advice dd.sub{color:var(--muted);font-size:12px}
 .app-shell .shop-flow .shop-intro h2{letter-spacing:-.035em}
+
+.app-shell .stylist-pick .pick-tools{height:auto;min-height:44px;justify-content:space-between}
+.app-shell .stylist-pick .pick-tools .pick-back{width:auto;display:inline-flex;align-items:center;margin:0;padding:0;transform:none;font-size:13px;font-weight:600}
+.app-shell .shop-flow .shop-back{display:inline-flex;align-items:center;min-height:44px;padding:0;margin:0 0 6px;color:var(--accent);font-size:13px;font-weight:600}
+.app-shell .shop-result-actions button:not(.primary){display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px 8px;font-size:13px;font-weight:500;line-height:1.2;color:var(--ink);background:transparent;border:1px solid var(--line)}
+.app-shell .shop-result-actions button:not(.primary) svg{width:15px;height:15px;flex:none}
+.app-shell .shop-result-actions button:focus-visible,.app-shell .pick-tools .pick-back:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app-shell .shop-flow #shop-not-now{min-height:44px;margin-inline-start:8px}

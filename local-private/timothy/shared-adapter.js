@@ -95,7 +95,7 @@ function shoppingWardrobe(index) {
  return [
   {reason:'The cropped bomber gives your wide jeans a shorter layer than your open Barbour.', value:'Your open Barbour is a longer plaid layer. This short, plain bomber adds a different shape over denim.', pairing:'Try it over your cream henley with your light-wash wide jeans or black wide trousers.'},
   {duplicate:true, reason:'You already have this casual layering role covered.', value:'Your plaid Barbour already does the job of a casual olive layer. A plain overshirt would add little to that rotation.', pairing:'Wear the olive overshirt open over your cream henley with dark indigo pleats.', alternative:'Wear your Barbour open over the navy button-down and black wide trousers.'},
-  {reason:'The stone trousers give your navy shirt a lighter daytime pairing.', value:'Your dark indigo pleats and black trousers cover darker looks. Stone gives your navy shirt a lighter daytime option.', pairing:'Try them with your navy button-down and white On Roger sneakers.'},
+  {reason:'The tailored shape is a step from relaxed minimalism, but stone adds a light option for your navy shirt.', value:'Your dark indigo pleats and black trousers cover darker looks. Stone gives your navy shirt a lighter daytime option.', pairing:'Try them with your navy button-down and white On Roger sneakers.'},
   {duplicate:true, reason:'I’d keep wearing the light sneakers you already own.', value:'The light canvas would overlap with your white On Roger sneakers and cream Onitsuka Tigers.', pairing:'Try the canvas slip-ons with your cream henley and dark indigo trousers.', alternative:'Wear your white On Roger sneakers with the same outfit.'},
  ][index];
 }

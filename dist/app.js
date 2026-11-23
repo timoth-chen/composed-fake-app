@@ -4,10 +4,10 @@ const items=[
 ].map((a,id)=>({id,name:a[0],cat:a[1],color:a[2],style:a[3],cost:a[4]}));
 const metadataKey='composed.wardrobe.v1';
 const shopCases = [
- {name:'Black bomber jacket', category:'layers', tone:'Black', aesthetic:'Streetwear', scores:[89,72,43], photo:'shopping/bomber.jpg', colour:'Matte black is easy to repeat with dark denim.', shape:'A cropped, boxy shape adds volume above the waist.', detail:'Ribbing and zip hardware give it a casual finish.', ratings:[['Streetwear','East Asian Minimalist','Minimalist'],['Workwear'],['Classic','Smart Casual']], check:'Close the zip and reach forward. Check whether the hem lifts or the shoulders pull.'},
- {name:'Olive cotton overshirt', category:'layers', tone:'Olive', aesthetic:'Workwear', scores:[92,73,46], photo:'shopping/overshirt.jpg', colour:'Muted olive works with cream, indigo and charcoal.', shape:'A straight body leaves room for a light layer underneath.', detail:'Work-shirt pockets and buttons keep it informal.', ratings:[['Workwear','East Asian Minimalist','Minimalist'],['Classic','Streetwear'],['Smart Casual']], check:'Button it over the top you would wear. Check across the shoulders and see where the hem lands.'},
- {name:'Stone straight trousers', category:'bottoms', tone:'Stone', aesthetic:'Classic', scores:[87,70,48], photo:'shopping/trousers.png', colour:'Stone makes a gentle contrast with navy and black.', shape:'A straight leg keeps a continuous line from hip to hem.', detail:'Light cloth and a clean front make it easier to dress up.', ratings:[['Classic','Smart Casual','East Asian Minimalist','Minimalist'],['Workwear'],['Streetwear']], check:'Sit, stand and walk. Look for horizontal pulling at the hips and check the hem with your usual shoes.'},
- {name:'Light grey canvas slip-ons', category:'shoes', tone:'Grey', aesthetic:'East Asian Minimalist', scores:[85,69,41], photo:'shopping/slip-ons.jpg', colour:'Light grey pairs with navy, black and indigo.', shape:'The low profile keeps the shoe quiet under a straight hem.', detail:'Canvas and an unstructured vamp keep the finish casual.', ratings:[['East Asian Minimalist','Streetwear','Minimalist'],['Classic'],['Workwear','Smart Casual']], check:'Walk a few steps. Notice if your heel slips and whether the canvas presses across your toes.'},
+ {name:'Black bomber jacket', category:'layers', tone:'Black', aesthetic:'Streetwear', scores:[89,72,43], weakNote:'The cropped cut, ribbed edges and exposed zip read more casual than a tailored layer.', photo:'shopping/bomber.jpg', colour:'Matte black is easy to repeat with dark denim.', shape:'A cropped, boxy shape adds volume above the waist.', detail:'Ribbing and zip hardware give it a casual finish.', ratings:[['Streetwear','East Asian Minimalist','Minimalist'],['Workwear'],['Classic','Smart Casual']], check:'Close the zip and reach forward. Check whether the hem lifts or the shoulders pull.'},
+ {name:'Olive cotton overshirt', category:'layers', tone:'Olive', aesthetic:'Workwear', scores:[92,73,46], weakNote:'The patch pockets and cotton work-shirt cut lean utility rather than tailored.', photo:'shopping/overshirt.jpg', colour:'Muted olive works with cream, indigo and charcoal.', shape:'A straight body leaves room for a light layer underneath.', detail:'Work-shirt pockets and buttons keep it informal.', ratings:[['Workwear','East Asian Minimalist','Minimalist'],['Classic','Streetwear'],['Smart Casual']], check:'Button it over the top you would wear. Check across the shoulders and see where the hem lands.'},
+ {name:'Stone straight trousers', category:'bottoms', tone:'Stone', aesthetic:'Classic', scores:[87,70,48], weakNote:'The neat straight leg and clean front are closer to traditional tailoring than streetwear.', photo:'shopping/trousers.png', colour:'Stone makes a gentle contrast with navy and black.', shape:'A straight leg keeps a continuous line from hip to hem.', detail:'Light cloth and a clean front make it easier to dress up.', ratings:[['Classic','Smart Casual'],['East Asian Minimalist','Minimalist','Workwear'],['Streetwear']], check:'Sit, stand and walk. Look for horizontal pulling at the hips and check the hem with your usual shoes.'},
+ {name:'Light grey canvas slip-ons', category:'shoes', tone:'Grey', aesthetic:'East Asian Minimalist', scores:[85,69,41], weakNote:'The low, unstructured canvas shape lacks the sturdy finish of a workwear shoe or the polish of a smart-casual one.', photo:'shopping/slip-ons.jpg', colour:'Light grey pairs with navy, black and indigo.', shape:'The low profile keeps the shoe quiet under a straight hem.', detail:'Canvas and an unstructured vamp keep the finish casual.', ratings:[['East Asian Minimalist','Streetwear','Minimalist'],['Classic'],['Workwear','Smart Casual']], check:'Walk a few steps. Notice if your heel slips and whether the canvas presses across your toes.'},
 ];
 const shoppingKey=metadataKey+'.shopping.v1';
 let shoppingRecords={};
@@ -259,6 +259,8 @@ const todayIcons={
  swap:'<path d="M4 8h15l-3-3m4 11H5l3 3M19 8l-3 3M5 16l3-3"/>',
  shirt:'<path d="m8 4-5 3 2 5 3-1v9h8v-9l3 1 2-5-5-3a4 4 0 0 1-8 0z"/>',
  check:'<path d="m5 12 4 4L19 6"/>',
+ bookmark:'<path d="M6 4h12v16l-6-4-6 4z"/>',
+ bag:'<path d="M5 8h14l1 12H4zM9 9V6a3 3 0 0 1 6 0v3"/>',
 };
 function todayIcon(name){
  return `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${todayIcons[name]}</svg>`;
@@ -303,7 +305,7 @@ function today() {
  const wear = currentWearLog();
  return `<article class="today-flow stylist-pick">
   <section class="daily-outfit" aria-label="Nigel’s pick">
-   ${btn('← Change choices','id="change-choices"','pick-back')}<div class="pick-tools"><span class="stylist-label">Nigel’s pick</span></div>
+   <div class="pick-tools">${btn('← Change choices','id="change-choices"','pick-back')}<span class="stylist-label">Nigel’s pick</span></div>
    <h2>${escapeHTML(o.short||o.name)}</h2>
    <p class="pick-context">${occasions[state.occasion]} · ${state.energy}${planned?' · '+displayDate(outfitDate()):''}</p>
    <div class="pick-photo">${modelViewer(o)}
@@ -544,7 +546,7 @@ function shoppingAssessment(index){
  const style=shopStyle(candidate);
  const weak=style.score!==null&&style.score<55;
  return {style,wardrobe,label:wardrobe.duplicate||weak?'I’d skip it':'Worth trying on',
-  reason:wardrobe.duplicate?wardrobe.reason:weak?`This design is a weak match for ${style.target}.`:wardrobe.reason};
+  reason:weak?shopCases[index].weakNote:wardrobe.reason};
 }
 function updateShoppingRecord(action){
  const index=shopping.example;
@@ -590,7 +592,7 @@ function verdict() {
  const candidate=shopCases[shopping.example??-1];
  const notice=`<p class="shop-error" role="status">${escapeHTML(shopping.error)}</p>`;
  const preview=photo=>photo?`<img class="shop-user-photo" src="${photo}" alt="Your photo preview">`:'';
- const back=btn('‹ Shopping','id="shop-back"','shop-back');
+ const back=btn('← Shopping','id="shop-back"','shop-back');
  let content;
  if(shopping.view==='entry'){
   content=`<div class="shop-intro"><h2 id="shop-heading">Should I consider this?</h2><p>Show Nigel something you’re thinking about. Get advice for your wardrobe and style.</p>
@@ -611,7 +613,7 @@ function verdict() {
   const record=shoppingRecords[shopping.example];
   content=`${back}<h2 id="shop-heading">${Number.isInteger(record.ownedId)?'Added to your wardrobe':'Purchase recorded'}</h2>
    <p>${candidate.name}</p><p>${escapeHTML(shoppingWardrobe(shopping.example).pairing)}</p>
-   ${Number.isInteger(record.ownedId)?btn('View in Wardrobe','id="shop-view-wardrobe"','primary'):btn('Add to wardrobe','data-shopping-record="add"','primary')}
+   ${Number.isInteger(record.ownedId)?btn('View in Wardrobe','id="shop-view-wardrobe"','primary'):btn('Add to wardrobe','data-shopping-record="add"','primary')+btn('Not now','id="shop-not-now"')}
    <details class="shop-section"><summary>Original recommendation</summary><p>${escapeHTML(record.purchase.label)}. ${escapeHTML(record.purchase.reason)}</p></details>${notice}`;
  }else{
   const {wardrobe,style,label,reason}=shoppingAssessment(shopping.example);
@@ -630,8 +632,8 @@ function verdict() {
    <dl class="shop-advice">${advice.map(([icon,title,copy])=>`<div>${todayIcon(icon)}<div><dt>${title}</dt><dd>${escapeHTML(copy)}</dd>${title==='Fit to check'?'<dd class="sub">Personal fit is unknown from a product photo.</dd>':''}</div></div>`).join('')}</dl>
    <div class="shop-actions shop-result-actions">
     ${btn('I’ve tried it on — check the fit','id="shop-try-on"','primary')}
-    ${btn(recorded?.saved?'Saved for later':'Save for later','data-shopping-record="save"'+(recorded?.saved?' disabled':''))}
-    ${recorded?.purchase?btn('View purchase','id="shop-open-purchase"'):btn(label==='I’d skip it'?'Bought it anyway':'I bought it','data-shopping-record="buy"')}
+    ${btn(todayIcon('bookmark')+(recorded?.saved?'Saved for later':'Save for later'),'data-shopping-record="save"'+(recorded?.saved?' disabled':''))}
+    ${recorded?.purchase?btn(todayIcon('bag')+'View purchase','id="shop-open-purchase"'):btn(todayIcon('bag')+'I bought this','data-shopping-record="buy"')}
    </div>
    <section class="shop-section shop-style-details"><details><summary>Style details</summary>${wardrobe.alternative?`<p><strong>Alternative from your wardrobe</strong> ${escapeHTML(wardrobe.alternative)}</p>`:''}<dl><div><dt>Colour</dt><dd>${candidate.colour}</dd></div><div><dt>Silhouette</dt><dd>${candidate.shape}</dd></div><div><dt>Design</dt><dd>${candidate.detail}</dd></div></dl></details></section>${notice}`;
  }
@@ -699,6 +701,7 @@ function bindShopping() {
  for(const button of document.querySelectorAll('[data-shopping-record]'))button.onclick=()=>updateShoppingRecord(button.dataset.shoppingRecord);
  if($('#shop-open-purchase'))$('#shop-open-purchase').onclick=()=>changeShopping('owned');
  if($('#shop-view-wardrobe'))$('#shop-view-wardrobe').onclick=()=>{state.tab='Wardrobe';state.filter='All';state.wardrobeView='List';render({top:true});};
+ if($('#shop-not-now'))$('#shop-not-now').onclick=()=>changeShopping('entry');
  if($('#shop-back'))$('#shop-back').onclick=()=>changeShopping(shopping.candidate?'preview':'entry');
  if($('#shop-result'))$('#shop-result').onclick=()=>changeShopping('result');
  if($('#shop-try-on'))$('#shop-try-on').onclick=()=>{
