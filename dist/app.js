@@ -221,11 +221,29 @@ function impressionOptions() {
  const extra=supported.filter(name=>!primary.includes(name));
  const chips=names=>names.map(name=>choiceChip('impression',name,name,state.energy===name)).join('');
  return `<div class="choice-chips impressions">${chips(primary)}${extra.includes(state.energy)&&!state.moreImpressions?chips([state.energy]):''}</div>
-  <button type="button" id="more-impressions" aria-expanded="${Boolean(state.moreImpressions)}" aria-controls="extra-impressions">${state.moreImpressions?'Fewer impressions':'More impressions'}</button>
+  <button type="button" id="more-impressions" aria-expanded="${Boolean(state.moreImpressions)}" aria-controls="extra-impressions">${state.moreImpressions?'Fewer impressions':'More impressions'} ${todayIcon('down')}</button>
   <div class="choice-chips" id="extra-impressions" ${state.moreImpressions?'':'hidden'}>${state.moreImpressions?chips(extra):''}</div>`;
 }
+const todayIcons={
+ everyday:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19m0-14-1.5 1.5m-11 11L5 19"/>',
+ casual:'<path d="M4 5h13v6a6.5 6.5 0 0 1-13 0zM17 6h2a2.5 2.5 0 0 1 0 5h-2M3 19h17"/>',
+ date:'<path d="M12 20 4.5 12.5a4.5 4.5 0 0 1 6.4-6.4L12 7.2l1.1-1.1a4.5 4.5 0 0 1 6.4 6.4z"/>',
+ work:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M3 12h18m-11 0v2h4v-2"/>',
+ hanger:'<path d="M10 6a2 2 0 1 1 3 1.7c-.8.5-1 1-1 2l8.5 5.2a1.5 1.5 0 0 1-.8 2.8H4.3a1.5 1.5 0 0 1-.8-2.8L12 9.7"/>',
+ down:'<path d="m6 9 6 6 6-6"/>',
+ right:'<path d="m9 6 6 6-6 6"/>',
+ swap:'<path d="M4 8h15l-3-3m4 11H5l3 3M19 8l-3 3M5 16l3-3"/>',
+ shirt:'<path d="m8 4-5 3 2 5 3-1v9h8v-9l3 1 2-5-5-3a4 4 0 0 1-8 0z"/>',
+ check:'<path d="m5 12 4 4L19 6"/>',
+};
+function todayIcon(name){
+ return `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${todayIcons[name]}</svg>`;
+}
+function angleStatus(angle){
+ return `${['Front','Right side','Back','Left side'][angle]} ${angle+1} / 4`;
+}
 function choiceChip(group,value,label,checked) {
- return `<label class="choice-chip"><input type="radio" name="${group}" value="${value}" ${checked?'checked':''}><span>${label}</span></label>`;
+ return `<label class="choice-chip"><input type="radio" name="${group}" value="${value}" ${checked?'checked':''}><span>${group==='occasion'?todayIcon(['everyday','casual','date','work'][value]):''}${label}</span></label>`;
 }
 function planDateControls() {
  const tomorrow=tomorrowDate();
@@ -240,13 +258,14 @@ function today() {
   return `<section class="stylist-intake">
    <p class="stylist-label">Your daily stylist</p>
    <h2>What are we dressing for?</h2>
+   <p class="today-intro">Nigel has your wardrobe ready.</p>
    ${todayTiming()}
    <form id="outfit-intake" class="stylist-form">
     ${state.timing==='soon'?planDateControls():''}
     <fieldset><legend>Occasion</legend><div class="choice-chips occasion-chips">${occasions.map((name,i)=>choiceChip('occasion',i,name,state.occasion===i)).join('')}</div></fieldset>
     <fieldset><legend>The impression</legend><div id="impression-options">${impressionOptions()}</div></fieldset>
-    ${myStyle===aesthetics[0]?'':`<div class="today-style-summary"><span>Your style <strong>${escapeHTML(myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>`}
-    <button class="primary" id="lock-tomorrow">Find my outfit</button>
+    ${myStyle===aesthetics[0]?'':`<div class="today-style-summary">${todayIcon('hanger')}<span>Your style: <strong>${escapeHTML(myStyle)}</strong></span>${btn('Edit','type="button" id="edit-today-style" aria-label="Edit My Style"')}</div>`}
+    <button class="primary" id="lock-tomorrow">Find my outfit ${todayIcon('right')}</button>
    </form>
   </section>`;
  }
@@ -260,25 +279,29 @@ function today() {
  const wear = currentWearLog();
  return `<article class="today-flow stylist-pick">
   <section class="daily-outfit" aria-label="Nigel’s pick">
-   <div class="pick-tools">${btn('‹','id="change-choices" aria-label="Change styling choices"')}<span class="stylist-label">Nigel’s pick</span>${btn(`<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" fill="${saved?'currentColor':'none'}" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`,`id="save-recommendation" aria-label="${saved?'Outfit saved':'Save outfit'}" ${saved?'disabled':''}`)}</div>
-   <p class="pick-context">${occasions[state.occasion]} · ${state.energy}${planned?' · '+displayDate(outfitDate()):''}</p>
+   <div class="pick-tools"><span class="stylist-label">Nigel’s pick</span>${btn('‹','id="change-choices" aria-label="Change styling choices"')}</div>
    <h2>${escapeHTML(o.short||o.name)}</h2>
+   <p class="pick-context">${occasions[state.occasion]} · ${state.energy}${planned?' · '+displayDate(outfitDate()):''}</p>
    <div class="pick-photo">${modelViewer(o)}
+    ${btn(`<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" fill="${saved?'currentColor':'none'}" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`,`id="save-recommendation" aria-label="${saved?'Outfit saved':'Save outfit'}" ${saved?'disabled':''}`)}
     <div class="pick-rotation" role="group" aria-label="Outfit angles">
      ${btn('‹','id="model-prev" aria-label="Previous angle"')}
-     <p class="frame-status" id="model-turn-hint">${['Front','Right side','Back','Left side'][state.modelAngle]} · Four views</p>
+     <p class="frame-status" id="model-turn-hint">${angleStatus(state.modelAngle)}</p>
      ${btn('›','id="model-next" aria-label="Next angle"')}
     </div>
    </div>
    <section class="pick-actions" aria-label="Outfit actions">
-    ${!isAccepted?btn(planned?'Plan this outfit':'I’ll wear this','id="accept-outfit"','primary'):
-      planned&&!canLog?btn('View in Log','id="view-plan-log"','primary'):
-      `<div class="wear-confirmation">${btn(wear?.type==='wore'?'Marked as worn':'Mark as worn',`data-log="wore" aria-pressed="${wear?.type==='wore'}"`,'primary')}
+    <div class="pick-primary-slot">
+     ${!isAccepted?btn((planned?'Plan this outfit':'I’ll wear this')+todayIcon('check'),'id="accept-outfit"','primary'):
+       planned&&!canLog?btn('View in Log'+todayIcon('right'),'id="view-plan-log"','primary'):
+       btn(wear?.type==='wore'?'Marked as worn':'Mark as worn',`data-log="wore" aria-pressed="${wear?.type==='wore'}"`,'primary')}
+    </div>
+    ${isAccepted&&canLog?`<div class="wear-confirmation">
        ${btn('Didn’t wear it',`data-log="skipped" aria-pressed="${wear?.type==='skipped'}"`)}
-       ${wearUndo&&wearUndo.entry===wear?btn('Undo','id="undo-wear" aria-label="Undo wear feedback"'):''}</div>`}
+       ${wearUndo&&wearUndo.entry===wear?btn('Undo','id="undo-wear" aria-label="Undo wear feedback"'):''}</div>`:''}
     ${isAccepted&&planned&&!canLog?'<p class="pick-confirmation" role="status">Outfit planned</p>':''}
     ${isAccepted&&canLog&&wear?.type==='skipped'?`<label for="skip-reason">Why didn’t you wear it? (Optional)</label><select id="skip-reason"><option value="">Choose a reason</option>${skipReasons.map(reason=>`<option ${wear.reason===reason?'selected':''}>${reason}</option>`).join('')}</select>`:''}
-   <div class="pick-secondary">${btn(state.occasion===3?'No more picks for this plan':state.alternate?'See previous pick':'Another outfit',`id="another-outfit" ${state.occasion===3?'disabled':''}`)}${btn('Change a piece','id="refine-pick"')}</div>
+   <div class="pick-secondary">${btn(todayIcon('swap')+(state.occasion===3?'No more picks':state.alternate?'See previous pick':'Another outfit'),`id="another-outfit" ${state.occasion===3?'disabled':''}`)}${btn(todayIcon('shirt')+'Change a piece','id="refine-pick"')}</div>
    </section>
   </section>
    <div class="pick-details"><section>
@@ -286,7 +309,7 @@ function today() {
    <div class="outfit-piece-strip">${orderPieces(o.ids).map(id=>`<div class="outfit-piece-thumb" title="${escapeHTML(items[id].name)}">${garment(items[id])}<span>${escapeHTML(items[id].shortName||items[id].name)}</span></div>`).join('')}</div>
    ${o.photoNote?`<p class="photo-note">${escapeHTML(o.photoNote)}</p>`:''}
   </section>
-  <section class="daily-why"><h3>Why Nigel picked this for you</h3><p>${o.contextual?'':lead?lead+' ':''}${escapeHTML(o.why+styleExplanation(o))}</p></section>
+  <details class="daily-why" open><summary>Why Nigel picked this for you ${todayIcon('down')}</summary><p>${o.contextual?'':lead?lead+' ':''}${escapeHTML(o.why+styleExplanation(o))}</p></details>
   <section class="daily-wear"><h3><span aria-hidden="true">↳</span> Wear it like this</h3><p>${escapeHTML(o.steps[0])}</p>
    ${o.steps.length>1?`<details><summary>More styling tips</summary><ul>${o.steps.slice(1).map(step=>`<li>${escapeHTML(step)}</li>`).join('')}</ul></details>`:''}
   </section>
@@ -295,7 +318,50 @@ function today() {
  </article>`;
 }
 
+let stopPrimaryDock;
+function bindPrimaryDock(){
+ stopPrimaryDock?.();
+ stopPrimaryDock=null;
+ const slot=$('.pick-primary-slot');
+ const screen=$('#screen');
+ if(!slot)return;
+ const button=slot.querySelector('button');
+ const navigation=$('#tabs');
+ const short=matchMedia('(max-width: 650px) and (max-height: 740px)');
+ const dock=document.createElement('div');
+ dock.id='today-primary-dock';
+ const sync=()=>{
+  const inline=slot.getBoundingClientRect();
+  const pinned=short.matches&&(inline.bottom>navigation.getBoundingClientRect().top || inline.top<screen.getBoundingClientRect().top);
+  if(pinned===dock.isConnected)return;
+  const focused=document.activeElement===button;
+  if(pinned){
+   dock.style.setProperty('--action-width',`${inline.width}px`);
+   navigation.before(dock);
+   dock.append(button);
+   button.classList.add('pick-primary-docked');
+  }else{
+   slot.append(button);
+   dock.remove();
+   button.classList.remove('pick-primary-docked');
+  }
+  if(focused)button.focus({preventScroll:true});
+ };
+ const resize=new ResizeObserver(sync);
+ resize.observe(slot);
+ resize.observe(screen);
+ screen.addEventListener('scroll',sync,{passive:true});
+ short.addEventListener('change',sync);
+ stopPrimaryDock=()=>{
+  resize.disconnect();
+  screen.removeEventListener('scroll',sync);
+  short.removeEventListener('change',sync);
+  dock.remove();
+ };
+ sync();
+}
 function bindToday() {
+ bindPrimaryDock();
  if($('#edit-today-style'))$('#edit-today-style').onclick=()=>{
   settingsMenu.open=true;
   syncSettings();
@@ -361,6 +427,7 @@ function bindToday() {
   persist();
  };
  if($('#accept-outfit'))$('#accept-outfit').onclick=()=>{
+  if($('#screen').getAttribute('aria-busy')==='true')return;
   accepted.add(outfitKey());
   if(state.timing==='soon'){
    const plan={date:outfitDate(),occasion:state.occasion,energy:state.energy,alternate:state.alternate,rankStyle:state.rankStyle};
@@ -414,7 +481,7 @@ function frameViewer(outfit) {
  </div>`;
 }
 function modelViewer(o){if(o.frames)return frameViewer(o);const sheet=o.sheet||`assets/turn-${turnSheets[state.index]}.png`;const label=['Front','Right side','Back','Left side'][state.modelAngle];const useSheet=o.isSheet||state.modelAngle!==0;return `<div class="photo-wrap model-viewer" id="model-viewer" role="slider" tabindex="0" aria-label="Turn outfit model" aria-valuemin="0" aria-valuemax="270" aria-valuenow="${state.modelAngle*90}" aria-valuetext="${label} view, ${escapeHTML(o.short||o.name)}" aria-describedby="model-turn-hint"><img class="outfit-photo" src="${o.isSheet?sheet:o.image}" alt="Faceless mannequin wearing ${o.ids.map(i=>items[i].name).join(', ')}" style="visibility:${useSheet?'hidden':'visible'}"><div class="model-turn-overlay" ${useSheet?'':'hidden'}><div class="model-turn-clip"><img class="model-turn-sheet" draggable="false" src="${sheet}" alt="${label} view of ${o.ids.map(i=>items[i].name).join(', ')}" style="transform:translateX(-${state.modelAngle*25}%)"></div></div></div>`;}
-function bindModelViewer(){const viewer=$('#model-viewer');if(!viewer)return;const labels=['Front','Right side','Back','Left side'];const show=angle=>{if($('#screen').getAttribute('aria-busy')==='true')return;state.modelAngle=((angle%labels.length)+labels.length)%labels.length;if(viewer.classList.contains('frame-viewer')){viewer.querySelectorAll('[data-frame]').forEach(frame=>frame.hidden=Number(frame.dataset.frame)!==state.modelAngle);}else{const useSheet=current().isSheet||state.modelAngle!==0;viewer.querySelector('.outfit-photo').style.visibility=useSheet?'hidden':'visible';viewer.querySelector('.model-turn-overlay').hidden=!useSheet;viewer.querySelector('.model-turn-sheet').style.transform=`translateX(-${state.modelAngle*25}%)`;viewer.querySelector('.model-turn-sheet').alt=`${labels[state.modelAngle]} view of ${current().short||current().name}`;}$('#model-turn-hint').textContent=`${labels[state.modelAngle]} · Four views`;viewer.setAttribute('aria-valuenow',String(state.modelAngle*90));viewer.setAttribute('aria-valuetext',`${labels[state.modelAngle]} view, ${current().short||current().name}`);};const image=viewer.querySelector('.model-turn-sheet');image?.decode().then(()=>{viewer.querySelector('.model-turn-clip').style.aspectRatio=String(image.naturalWidth/4/image.naturalHeight);}).catch(()=>{$('#model-turn-hint').textContent='Turn views unavailable. Please reload.';});$('#model-prev').onclick=()=>show(state.modelAngle-1);$('#model-next').onclick=()=>show(state.modelAngle+1);viewer.onkeydown=e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();show(state.modelAngle+(e.key==='ArrowRight'?1:-1));}else if(e.key==='Home'||e.key==='End'){e.preventDefault();show(e.key==='Home'?0:labels.length-1);}};let drag=null;viewer.onpointerdown=e=>{if(!e.isPrimary||e.button!==0||e.target.closest('button'))return;drag={x:e.clientX,y:e.clientY,index:state.modelAngle,id:e.pointerId};};viewer.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>12){drag=null;return;}if(Math.abs(dx)>12){if(!viewer.hasPointerCapture(e.pointerId))viewer.setPointerCapture(e.pointerId);show(drag.index+Math.sign(-dx)*Math.max(1,Math.round(Math.abs(dx)/45)));}};viewer.onlostpointercapture=()=>{drag=null;};viewer.onpointerup=viewer.onpointercancel=e=>{if(viewer.hasPointerCapture(e.pointerId))viewer.releasePointerCapture(e.pointerId);drag=null;};}
+function bindModelViewer(){const viewer=$('#model-viewer');if(!viewer)return;const labels=['Front','Right side','Back','Left side'];const show=angle=>{if($('#screen').getAttribute('aria-busy')==='true')return;state.modelAngle=((angle%labels.length)+labels.length)%labels.length;if(viewer.classList.contains('frame-viewer')){viewer.querySelectorAll('[data-frame]').forEach(frame=>frame.hidden=Number(frame.dataset.frame)!==state.modelAngle);}else{const useSheet=current().isSheet||state.modelAngle!==0;viewer.querySelector('.outfit-photo').style.visibility=useSheet?'hidden':'visible';viewer.querySelector('.model-turn-overlay').hidden=!useSheet;viewer.querySelector('.model-turn-sheet').style.transform=`translateX(-${state.modelAngle*25}%)`;viewer.querySelector('.model-turn-sheet').alt=`${labels[state.modelAngle]} view of ${current().short||current().name}`;}$('#model-turn-hint').textContent=`${angleStatus(state.modelAngle)}`;viewer.setAttribute('aria-valuenow',String(state.modelAngle*90));viewer.setAttribute('aria-valuetext',`${labels[state.modelAngle]} view, ${current().short||current().name}`);};const image=viewer.querySelector('.model-turn-sheet');image?.decode().then(()=>{viewer.querySelector('.model-turn-clip').style.aspectRatio=String(image.naturalWidth/4/image.naturalHeight);}).catch(()=>{$('#model-turn-hint').textContent='Turn views unavailable. Please reload.';});$('#model-prev').onclick=()=>show(state.modelAngle-1);$('#model-next').onclick=()=>show(state.modelAngle+1);viewer.onkeydown=e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();show(state.modelAngle+(e.key==='ArrowRight'?1:-1));}else if(e.key==='Home'||e.key==='End'){e.preventDefault();show(e.key==='Home'?0:labels.length-1);}};let drag=null;viewer.onpointerdown=e=>{if(!e.isPrimary||e.button!==0||e.target.closest('button'))return;drag={x:e.clientX,y:e.clientY,index:state.modelAngle,id:e.pointerId};};viewer.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>12){drag=null;return;}if(Math.abs(dx)>12){if(!viewer.hasPointerCapture(e.pointerId))viewer.setPointerCapture(e.pointerId);show(drag.index+Math.sign(-dx)*Math.max(1,Math.round(Math.abs(dx)/45)));}};viewer.onlostpointercapture=()=>{drag=null;};viewer.onpointerup=viewer.onpointercancel=e=>{if(viewer.hasPointerCapture(e.pointerId))viewer.releasePointerCapture(e.pointerId);drag=null;};}
 function reasonCards(o){const active=state.reasonIndex%o.reasonGroups.length;return `<div class="reason-cards" role="group" aria-label="Why this outfit works">${o.reasonGroups.map((r,i)=>btn(`<strong>${r.title}</strong><span>${r.text}</span>`,`data-reason="${i}" aria-pressed="${active===i}"`,active===i?'reason-card active':'reason-card')).join('')}</div>`;}
 function wardrobeEditor(){const p=items[state.editing];const input=(key,label)=>`<label>${label}<input name="${key}" value="${escapeHTML(p[key])}" maxlength="${key==='name'?80:100}"></label>`;const select=(key,label,options)=>`<label>${label}<select name="${key}">${options.map(v=>`<option value="${v}" ${p[key]===v?'selected':''}>${v}</option>`).join('')}</select></label>`;return `<section class="wardrobe-edit-panel" aria-labelledby="edit-title"><div class="editor-title"><div><p class="section-label">PIECE ${String(p.id+1).padStart(2,'0')}</p><h3 id="edit-title">The details matter.</h3></div>${btn('×','id="close-editor" aria-label="Close clothing editor"')}</div><div class="editor-preview">${garment(p)}</div><form id="piece-editor"><div class="editor-fields">${input('name','Piece name')}${select('cat','Category',['tops','bottoms','shoes','layers'])}${input('colour','Colour')}${input('material','Material')}${select('fit','Fit',['Not tagged','Slim','Regular','Relaxed','Oversized','Straight','Tapered'])}${select('pattern','Pattern',['Plain','Striped','Checked','Printed','Textured','Other'])}<label>Seasons<input name="seasons" value="${escapeHTML(p.seasons.join(', '))}" placeholder="Spring, summer"></label><label>Occasions<input name="occasions" value="${escapeHTML(p.occasions.join(', '))}" placeholder="Everyday, work"></label><label class="full">Notes<textarea name="notes" rows="3" maxlength="500" placeholder="Fit notes, care, or details to remember">${escapeHTML(p.notes)}</textarea></label></div><p class="editor-message" id="editor-message" role="status">Use commas to separate season and occasion tags.</p><div class="actions">${btn('Save details','type="submit"','primary')}${btn('Cancel','type="button" id="cancel-editor"')}</div></form></section>`;}
 function applyPieceEdits(id,values){if(!/^[^<>"&`]{1,80}$/.test(values.name?.trim()||''))throw Error('Use a piece name of 1–80 characters without markup.');if(!['tops','bottoms','shoes','layers'].includes(values.cat))throw Error('Choose a valid category.');const p=items[id];p.name=values.name.trim();p.cat=values.cat;for(const key of ['colour','material','fit','pattern','notes'])p[key]=String(values[key]||'').trim().slice(0,key==='notes'?500:100);for(const key of ['seasons','occasions'])p[key]=String(values[key]||'').split(',').map(x=>x.trim()).filter(Boolean).slice(0,12);return saveWardrobe();}
