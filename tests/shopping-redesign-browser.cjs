@@ -125,6 +125,39 @@ async function exercise(browser,width,height){
   await page.getByRole('button',{name:'Remove photo'}).click();
   assert.equal(await at('.shop-user-photo').count(),0);
 
+  const examples=personal?[
+   [0,'East Asian Minimalist',89,'Worth trying on','Black bomber jacket','bomber.jpg',/Barbour/],
+   [1,'East Asian Minimalist',92,'I’d skip it','Olive cotton overshirt','overshirt.jpg',/Barbour/],
+   [2,'East Asian Minimalist',70,'Worth trying on','Stone straight trousers','trousers.png',/indigo pleats/],
+   [3,'Workwear',41,'I’d skip it','Light grey canvas slip-ons','slip-ons.jpg',/On Roger/],
+  ]:[
+   [0,'Streetwear',89,'I’d skip it','Black bomber jacket','bomber.jpg',/black bomber/],
+   [1,'Workwear',92,'I’d skip it','Olive cotton overshirt','overshirt.jpg',/olive cotton overshirt/],
+   [2,'Classic',87,'I’d skip it','Stone straight trousers','trousers.png',/stone straight trousers/],
+   [3,'Classic',69,'Worth trying on','Light grey canvas slip-ons','slip-ons.jpg',/stone suede loafers/],
+  ];
+  for(const [index,style,score,label,name,image,wardrobe]of examples){
+   await at('.settings-menu > summary').click();
+   await chooseStyle(style);
+   await page.keyboard.press('Escape');
+   await at(`[data-purchase="${index}"]`).click();
+   assert.equal(await at('#shop-heading').innerText(),label);
+   assert.equal(await at('[role=meter]').getAttribute('aria-valuenow'),String(score));
+   assert.match(await at('.shop-score').innerText(),new RegExp(style));
+   assert.equal(await at('.shop-product h3').innerText(),name);
+   assert.ok((await at('.shop-photo img').getAttribute('src')).endsWith(image));
+   assert.match(await at('.shop-advice dd').first().innerText(),wardrobe);
+   const pair=await Promise.all(['save','buy'].map(action=>at(`[data-shopping-record="${action}"]`).boundingBox()));
+   assert.ok(pair.every(rect=>rect.height>=44)&&Math.abs(pair[0].width-pair[1].width)<1&&pair[0].y===pair[1].y);
+   await shot('example-'+index);
+   if(index===1){
+    await theme();
+    await shot('example-buttons-dark');
+    await theme();
+   }
+   await at('#shop-back').click();
+  }
+
   await at('.settings-menu > summary').click();
   await chooseStyle('Workwear');
   await page.keyboard.press('Escape');
@@ -140,6 +173,7 @@ async function exercise(browser,width,height){
   await at(`[data-purchase="${personal?0:3}"]`).click();
   assert.equal(await at('#shop-heading').innerText(),'Worth trying on');
   assert.equal(await at('[role=meter]').getAttribute('aria-valuenow'),personal?'89':'85');
+  assert.equal(await page.getByRole('button',{name:'I bought this',exact:true}).count(),1);
   await shot('worth-trying-on');
   await photo('I’ve tried it on — check the fit');
   await at('.shop-user-photo').waitFor();
@@ -161,7 +195,7 @@ async function exercise(browser,width,height){
   await page.keyboard.press('Escape');
   assert.equal(await at('#shop-heading').innerText(),'I’d skip it');
   assert.equal(await at('[role=meter]').getAttribute('aria-valuenow'),personal?'43':'41');
-  assert.match(await at('.shop-verdict').innerText(),/weak match/);
+  assert.match(await at('.shop-verdict').innerText(),/cropped cut|unstructured canvas/);
   await page.getByRole('button',{name:'Save for later',exact:true}).click();
   assert.equal(await page.getByRole('button',{name:'Saved for later',exact:true}).isDisabled(),true);
   await at('#shop-back').click();
@@ -170,9 +204,15 @@ async function exercise(browser,width,height){
   await page.reload();
   await tab('Shopping');
   await page.getByRole('button',{name:boughtName+' · Saved',exact:true}).click();
-  await page.getByRole('button',{name:'Bought it anyway',exact:true}).click();
+  await page.getByRole('button',{name:'I bought this',exact:true}).click();
   assert.equal(await at('#shop-heading').innerText(),'Purchase recorded');
-  await shot('bought-it-anyway');
+  await shot('purchase-recorded');
+  await page.getByRole('button',{name:'Not now',exact:true}).click();
+  assert.equal(await at('#shop-heading').innerText(),'Should I consider this?');
+  await page.reload();
+  await tab('Shopping');
+  await page.getByRole('button',{name:boughtName+' · Bought',exact:true}).click();
+  assert.equal(await at('#shop-heading').innerText(),'Purchase recorded');
   await tab('Wardrobe');
   assert.match(await at('.topline').innerText(),new RegExp(total+' PIECES'));
   await tab('Shopping');
