@@ -1,0 +1,351 @@
+/* Composed UI. Interface polish follows unslop by Damir Sokolovsky, CC BY 4.0. */
+:root {
+  --paper: #f7f8f6;
+  --surface: #fff;
+  --ink: #202522;
+  --muted: #57635d;
+  --line: #dce3dd;
+  --soft: #e6efe9;
+  --accent: #416b5b;
+  --action: #416b5b;
+  --action-text: #fff;
+  --preview: #eaf0eb;
+  --blue: #a8b8d3;
+  --coral: #db9478;
+  --gutter: 20px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body.dark {
+  --paper: #202723;
+  --surface: #26302a;
+  --ink: #edf3ee;
+  --muted: #bac8bf;
+  --line: #45544b;
+  --soft: #303f36;
+  --accent: #a9d0bc;
+  --action: #a9d0bc;
+  --action-text: #182720;
+  --preview: #303c34;
+}
+body.record-mode, body.dark.record-mode { background: var(--paper); }
+.app-shell { font: 400 15px/1.5 var(--font); }
+.app-shell :is(button, input, select, textarea) { font-family: var(--font); }
+.app-shell.phone > header { width: calc(100% - 2 * var(--gutter)); }
+.app-shell .demo-label { display: none; }
+.app-shell #screen.screen-today,
+body.dark .app-shell #screen.screen-today { background: var(--paper); color: var(--ink); }
+.app-shell #screen.screen-today > .page,
+body.dark .app-shell #screen.screen-today > .page {
+  --paper: inherit;
+  --ink: inherit;
+  --muted: inherit;
+  --line: inherit;
+  --accent: inherit;
+}
+.app-shell #screen > .page,
+.app-shell #screen.screen-today > .page,
+.app-shell #screen.screen-shopping > .page { padding: 16px var(--gutter) 24px; }
+.app-shell #screen.today-has-wear-bar > .page { padding-bottom: 24px; }
+.app-shell .page :is(h2, h3),
+.app-shell .screen-today .daily-outfit h2 {
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 650;
+  letter-spacing: -.025em;
+}
+.app-shell .page h2,
+.app-shell .screen-today .daily-outfit h2 { font-size: 26px; line-height: 1.2; }
+.app-shell .page :is(.sub, .note, .step p) { font-size: 15px; line-height: 1.5; }
+.app-shell .page :is(.topline, .section-label, label) { letter-spacing: 0; text-transform: none; }
+.app-shell .page button:not(.hanger-button), .app-shell #today-wear-bar button {
+  min-height: 44px;
+  border-radius: 12px;
+  font-weight: 550;
+  line-height: 1.3;
+}
+.app-shell .page :is(button, summary, select):focus-visible,
+.app-shell #tabs button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.app-shell .page button.primary,
+.app-shell .screen-today button.primary,
+.app-shell .screen-today .today-first-actions .another-outfit,
+body.dark .app-shell .screen-today .today-first-actions .another-outfit,
+.app-shell #today-wear-bar button.primary {
+  color: var(--action-text);
+  background: var(--action);
+  border-color: var(--action);
+  box-shadow: none;
+}
+.app-shell .screen-today button.active,
+.app-shell .screen-today button[aria-pressed="true"]:not(.primary) {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--soft);
+}
+.app-shell .screen-today .daily-outfit {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.app-shell .screen-today .daily-outfit > :is(.topline, h2, .purpose-weather, .outfit-day-label) { margin: 0; }
+.app-shell .screen-today .daily-outfit .topline { font-size: 12px; color: var(--muted); }
+.app-shell .screen-today .purpose-weather { color: var(--muted); align-items: center; }
+.app-shell .screen-today .dot { background: var(--accent); }
+.app-shell .screen-today .energy-pill { color: var(--accent); background: var(--soft); }
+.app-shell .screen-today .daily-outfit .controls { gap: 12px; margin: 12px 0 0; }
+.app-shell .screen-today .daily-outfit .controls select {
+  min-height: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface);
+  padding-block: 8px;
+}
+.app-shell .screen-today .daily-outfit .controls label::after { bottom: 20px; }
+.app-shell .screen-today .daily-outfit .today-timing { margin: 0; }
+.app-shell .screen-today .daily-outfit .today-timing button { min-height: 44px; padding: 8px 6px; }
+.app-shell .screen-today .daily-outfit .model-viewer,
+body.dark .app-shell .screen-today .daily-outfit .model-viewer {
+  --outfit-height: clamp(240px, 44dvh, 520px);
+  background: var(--preview) !important;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 4px 0 0;
+}
+.app-shell .screen-today .daily-outfit .outfit-photo,
+body.dark .app-shell .screen-today .daily-outfit .outfit-photo {
+  height: var(--outfit-height) !important;
+  background: transparent !important;
+}
+.app-shell .screen-today .daily-outfit .model-turn-overlay {
+  height: var(--outfit-height);
+  background: transparent;
+}
+.app-shell .screen-today .model-turn-hint { background: var(--preview); color: var(--muted); }
+.app-shell .screen-today .model-turn-arrow {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  top: calc(50% - 22px);
+  background: var(--surface);
+  color: var(--ink);
+}
+.app-shell .screen-today .preview-caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.app-shell .screen-today .today-first-actions { padding-top: 0; }
+.app-shell .screen-today .today-first-actions .another-outfit { min-height: 44px; height: auto; font-size: 15px; }
+.app-shell .screen-today .daily-outfit .pick-heading { margin: 8px 0 0; }
+.app-shell .screen-today .daily-outfit .wardrobe-source { margin: 0; color: var(--muted); }
+.app-shell .screen-today .daily-wear, .app-shell .screen-today .daily-why { margin-top: 24px; padding-top: 20px; }
+.app-shell .page .why-summary { border-inline-start: 3px solid var(--blue); padding-inline-start: 12px; }
+.app-shell :is(.why-details, .recording-choices) > summary { min-height: 44px; padding-block: 10px; color: var(--accent); cursor: pointer; }
+.app-shell #today-wear-bar,
+body.dark .app-shell #today-wear-bar {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--line);
+  padding-inline: max(var(--gutter), calc((100% - 640px)/2));
+}
+.app-shell #today-wear-bar button,
+body.dark .app-shell #today-wear-bar button {
+  --paper: inherit;
+  --ink: inherit;
+  --line: inherit;
+  flex: 1;
+  height: auto;
+  padding-block: 8px;
+}
+.app-shell #today-wear-bar .actions { display: flex; gap: 8px; }
+.app-shell .page :is(.stat, .reason-card, .shoe-drawer, .mix-disclosure, .mix-breakdown, .wardrobe-edit-panel, .tomorrow-lock) {
+  border-radius: 16px;
+}
+.app-shell #tabs { padding-bottom: env(safe-area-inset-bottom); }
+.app-shell #tabs button { min-height: 48px; }
+.app-shell #tabs button.active { color: var(--accent); }
+.app-shell .page button, .app-shell #tabs button {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+@media (max-width: 650px) {
+  :root { --gutter: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .page button, .app-shell #tabs button { transition: none; }
+}
+
+:root {
+  --paper: #f5f3ee;
+  --surface: #ffffff;
+  --ink: #171819;
+  --muted: #62676a;
+  --line: #dad8d2;
+  --soft: #e3e9ec;
+  --accent: #476578;
+  --action: #202426;
+  --preview: #e3e9ec;
+  --blue: #607e92;
+}
+body.dark {
+  --paper: #171819;
+  --surface: #202426;
+  --ink: #f5f3ee;
+  --muted: #b7c0c5;
+  --line: #454b4e;
+  --soft: #2d3b44;
+  --accent: #a8c3d6;
+  --action: #e3e9ec;
+  --action-text: #171819;
+  --preview: #262c30;
+}
+.app-shell .wordmark img { display: block; width: 52px; height: 52px; object-fit: contain; }
+.app-shell .wordmark .brand-dark, body.dark .app-shell .wordmark .brand-light { display: none; }
+body.dark .app-shell .wordmark .brand-dark { display: block; }
+.app-shell #theme-mobile { min-width: 44px; min-height: 44px; }
+.app-shell .stylist-intake { max-width: 520px; margin: 12px auto; padding: 24px 0; }
+.app-shell .stylist-intake h2 { font-size: clamp(34px, 8vw, 50px); margin: 8px 0; }
+.stylist-label, .pick-context, .stylist-tagline { color: var(--muted); margin: 0; }
+.stylist-label { font-weight: 600; }
+.app-shell .stylist-intake .today-timing { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0; }
+.stylist-form { display: grid; gap: 8px; }
+.app-shell .stylist-form > select { width: 100%; min-height: 48px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 16px; }
+.stylist-form > select + label { margin-top: 8px; }
+.stylist-form > button { margin-top: 12px; }
+.stylist-tagline { margin-top: 32px; }
+.app-shell .stylist-pick .pick-context { font-size: 14px; }
+.app-shell .screen-today .stylist-pick .model-viewer { --outfit-height: clamp(320px, 54dvh, 560px); touch-action: pan-y; }
+.app-shell .stylist-pick .wardrobe-source { margin-top: 12px; font-weight: 600; }
+.app-shell .stylist-pick :is(.daily-why,.daily-wear,.pick-actions) { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 16px; }
+.app-shell .stylist-pick :is(h3,p) { overflow-wrap: anywhere; }
+.app-shell .stylist-pick h3 { margin: 0 0 8px; font-size: 20px; }
+.app-shell .stylist-pick details summary { min-height: 44px; padding: 10px 0; cursor: pointer; color: var(--accent); }
+.pick-actions { display: grid; gap: 8px; }
+.pick-secondary, .wear-confirmation { display: flex; flex-wrap: wrap; gap: 8px; }
+.wear-confirmation button { flex: 1; }
+.app-shell .wear-confirmation button[aria-pressed=true] { background: var(--soft); color: var(--accent); border-color: var(--accent); }
+.app-shell .rail-group-label { text-transform: capitalize; }
+@media (prefers-reduced-motion: reduce) {
+  .app-shell *, .app-shell *::before, .app-shell *::after { scroll-behavior: auto !important; }
+}
+.app-shell .app-header-tools #record-mode {
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  font: 500 12px/1.25 var(--font);
+}
+.app-shell .wordmark img { border-radius: 12px; }
+.app-shell .pick-actions > select { min-height: 44px; padding: 8px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.app-shell .stylist-pick .outfit-piece-thumb { min-width: 0; }
+.app-shell .stylist-pick .outfit-piece-thumb img { width: 42px; height: 42px; }
+.app-shell .stylist-pick .outfit-piece-thumb span { min-width: 0; overflow-wrap: anywhere; }
+.app-shell .stylist-pick :is(.daily-why,.daily-wear) p { margin: 0 0 8px; }
+.app-shell .stylist-pick .pick-actions button:disabled { opacity: .72; cursor: default; }
+.app-shell .shopping-workspace > .reason-card { margin-top: 16px; padding: 16px; }
+.app-shell .log-collection { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 16px; }
+.app-shell .log-collection .log-row { overflow-wrap: anywhere; }
+.app-shell .stylist-intake button:focus-visible, .app-shell .stylist-pick [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Personal styling pass. Shared styles are reviewed here before the public release. */
+.app-shell #screen { scroll-behavior: auto; scrollbar-gutter: auto; }
+.app-shell.phone > footer, .app-shell .wardrobe-tools { display: none; }
+.app-shell #tabs { padding-bottom: env(safe-area-inset-bottom); }
+.app-shell.phone > header { min-height: 56px; padding: 4px 0; position:relative; z-index:2; }
+.app-shell .wordmark img { width: 44px; height:44px; }
+.settings-menu { position: relative; }
+.settings-menu summary { display: grid; place-items: center; width:44px; height:44px; cursor:pointer; font-size:22px; }
+.settings-menu summary::-webkit-details-marker { display: none; }
+.app-shell .settings-menu .app-header-tools {
+  position:absolute; z-index:4; top:100%; right:0; display:grid;
+  width: min(250px, 82vw); gap:4px; padding:12px; border:1px solid var(--line);
+  border-radius:12px; background:var(--surface); box-shadow:0 8px 24px #0002;
+}
+.app-shell .settings-menu button, .app-shell .settings-menu #record-mode { width:100%; min-height:44px; text-align:left; padding-inline:12px; font:inherit; }
+.app-shell .settings-menu p { margin:8px 4px 4px; color:var(--muted); font-size:12px; }
+.app-shell .stylist-intake { margin:0 auto; padding:16px 0; }
+.app-shell .stylist-intake h2 { margin:8px 0 4px; }
+.stylist-intake > p { margin:0; }
+.app-shell .stylist-intake .today-timing { margin:16px 0; }
+.stylist-form fieldset { min-width:0; border:0; margin:0; padding:8px 0 4px; }
+.stylist-form legend { padding:0; font-weight:600; }
+.choice-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.choice-chip { position:relative; cursor:pointer; }
+.choice-chip input { position:absolute; inset:0; opacity:0; width:100%; height:100%; cursor:pointer; margin:0; }
+.choice-chip span { display:grid; place-items:center; min-height:44px; padding:8px 12px; background:var(--surface); border:1px solid var(--line); border-radius:8px; }
+.choice-chip input:checked + span { background:var(--soft); border-color:var(--accent); color:var(--accent); }
+.choice-chip input:focus-visible + span { outline:2px solid var(--accent); outline-offset:2px; }
+.stylist-form input[type=date] { min-height:44px; padding:8px; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:8px; font:inherit; }
+body.dark .stylist-form input[type=date] { color-scheme:dark; }
+.intake-note { text-align:center; color:var(--muted); margin:0; font-size:13px; }
+.pick-tools { display:flex; align-items:center; gap:8px; }
+.pick-tools button { width:44px; padding:0; font-size:22px; }
+.pick-tools #save-recommendation { margin-inline-start:auto; }
+.app-shell .pick-photo { display:grid; justify-items:center; }
+.app-shell .screen-today .stylist-pick .model-viewer { margin:0; }
+.frame-status { text-align:center; font-size:13px; margin:4px 0 8px; color:var(--muted); }
+.app-shell .screen-today .stylist-pick .model-turn-arrow {
+  display:grid; place-items:center; padding:0; border:0; background:transparent; color:#171819;
+}
+.model-turn-arrow::before { content:""; position:absolute; width:28px; height:28px; background:#fffffff0; border-radius:50%; z-index:-1; }
+.model-turn-arrow { isolation:isolate; }
+.app-shell .stylist-pick .outfit-piece-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:8px 0 12px; }
+.app-shell .stylist-pick .outfit-piece-strip:has(> :last-child:nth-child(3)) { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.app-shell .stylist-pick .outfit-piece-thumb { display:grid; justify-items:center; align-content:start; gap:4px; padding:4px; text-align:center; background:var(--surface); }
+.app-shell .stylist-pick .outfit-piece-thumb img { width:100%; height:64px; object-fit:contain; background:#f2f1ed; border-radius:4px; }
+.app-shell .stylist-pick .outfit-piece-thumb span { font-size:12px; line-height:1.2; }
+.app-shell .stylist-pick :is(.daily-why,.daily-wear,.pick-actions) { margin:12px 0 0; padding:12px; border:0; }
+.app-shell .stylist-pick .daily-why { background:var(--soft); border-radius:10px; }
+.app-shell .stylist-pick .daily-wear { border-inline-start:2px solid var(--accent); padding:4px 12px; }
+.app-shell .stylist-pick .pick-actions { padding-inline:0; }
+.app-shell .pick-actions .pick-secondary { display:grid; grid-template-columns:1fr 1fr; }
+.app-shell .pick-actions .pick-secondary button { padding:6px; font-size:13px; }
+.app-shell .builder button { margin:4px 8px 4px 0; }
+.app-shell .landing-rail .hanger-button,
+.app-shell .landing-rail .hanger-button:is(.face,:focus-visible) { flex:0 0 108px; width:108px; }
+.app-shell .landing-rail .rail-group-label { top:-30px; }
+.app-shell .shoe-drawer { background:var(--surface); }
+.app-shell .shoe-shelf { padding:12px; gap:12px; }
+.app-shell .shoe-shelf article > button:first-child { min-height:0; }
+.app-shell .shoe-shelf article img { height:92px; object-fit:contain; }
+#toast { top:calc(env(safe-area-inset-top) + 60px); bottom:auto; display:none; gap:8px; align-items:center; padding:4px 8px 4px 12px; z-index:5; }
+#toast.show { display:flex; opacity:1; }
+#toast-dismiss { color:inherit; background:transparent; border:0; min-width:44px; min-height:44px; font-size:20px; }
+@media(min-width:900px) {
+ body:not(.record-mode) .app-shell #screen.screen-today > .page:has(.stylist-pick) { max-width:1080px; }
+ body:not(.record-mode) .app-shell .stylist-pick { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:start; }
+ body:not(.record-mode) .pick-details { padding-top:44px; }
+}
+body.record-mode .app-shell #screen > .page { max-width:480px; }
+
+.app-shell .pick-tools button { display:grid; place-items:center; }
+.app-shell #screen.screen-today { overflow-anchor:none; }
+
+#toast.show { pointer-events:auto; }
+
+.photo-note { font-size:13px; color:var(--muted); margin:4px 0 12px; }
+
+.app-shell .stylist-form .occasion-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.app-shell .stylist-form .date-chips{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.app-shell .stylist-form .date-chips .choice-chip span{height:100%}
+.app-shell .stylist-form .impressions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.app-shell .stylist-form .choice-chip span{text-align:center;padding-inline:6px}
+.app-shell .stylist-form [hidden]{display:none}
+.app-shell .stylist-form #more-impressions{min-height:44px;margin-block:4px;background:transparent;border-color:transparent;color:var(--accent)}
+.app-shell .stylist-form #lock-tomorrow{width:100%;margin-top:4px}
+.app-shell .settings-menu>summary{display:flex;align-items:center;justify-content:center;gap:6px;width:auto;min-width:44px;padding-inline:6px;font-size:13px}
+.app-shell .settings-menu>summary span{font-size:20px}
+.app-shell .my-style{display:grid;gap:4px;padding:4px;font-weight:600}
+.app-shell .my-style select{width:100%;min-height:44px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.app-shell .settings-menu .app-header-tools{max-height:calc(100dvh - 74px);overflow:auto}
+@media(max-width:440px){
+ .app-shell .stylist-form .occasion-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .app-shell .stylist-intake{padding-block:8px}
+ .app-shell .stylist-intake h2{font-size:28px}
+ .app-shell .stylist-intake .today-timing{margin-block:12px}
+}

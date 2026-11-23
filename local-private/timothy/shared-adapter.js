@@ -55,7 +55,9 @@ function privateFrames(look) {
 
 function current() {
  const work=state.occasion===3;
- const look = privatePick(work?2:state.occasion,state.alternate);
+ const occasion=work?2:state.occasion;
+ const first=privatePick(occasion,false), second=privatePick(occasion,true);
+ const look=(!work&&rankedAlternate(privateIds(first),privateIds(second)))?second:first;
  const titles={casual:'Stüssy and wide denim',everyday:'Cream henley and pleats',date:'Plaid over navy'};
  const openings=['For an everyday plan,','For a casual outing,','For date night,','For a casual workplace,'];
  const contexts={
@@ -88,17 +90,17 @@ function compatible(piece){return state.fit.includes(piece.id)||!state.fit.some(
 function smallChanges(){return [];}
 
 const cases = [
- {id:'runner', label:'Grey runners', word:'Already covered', styleFit:84,
+ {id:'runner', label:'Grey runners', word:'Skip it', styleFit:84, styles:{Streetwear:91,'East Asian Minimalist':79},
   why:'The low-profile grey suede and mesh fit your casual wardrobe.',
   adds:'Your grey New Balance runners already fill this role.',
   alternative:'Wear the New Balance runners you own.',
   with:'The Stüssy hoodie and light-wash jeans.'},
- {id:'clogs', label:'Black clogs', word:'Skip it', styleFit:78,
+ {id:'clogs', label:'Black clogs', word:'Skip it', styleFit:78, styles:{'East Asian Minimalist':90,Classic:68},
   why:'A simple dark clog sits comfortably under the wide pleats.',
   adds:'Your black BEAMS clogs already give you this option.',
   alternative:'Try your BEAMS clogs before buying a similar pair.',
   with:'The cream henley and indigo pleated trousers.'},
- {id:'tiger', label:'Court sneakers', word:'Check the fit', styleFit:81,
+ {id:'tiger', label:'Court sneakers', word:'Worth trying on', styleFit:81, styles:{Classic:85,'Smart Casual':76},
   why:'A cream and navy court sneaker lightens the dark trousers.',
   adds:'A similar pair makes sense only if you need to replace your Onitsuka Tigers.',
   alternative:'Compare the pair with your existing Tigers.',

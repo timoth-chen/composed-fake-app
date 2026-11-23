@@ -23,7 +23,7 @@ function privateApp() {
     ['function current(', '// Small changes'],
     ['function smallChanges(', 'let rackCarousel;'],
     ['function compatible(', 'function complete('],
-    ['const cases=', 'function verdict()'],
+    ['const cases=', 'function suggestedShoppingStyles('],
     ['const styleMixPieceTags=', 'function mixBreakdown('],
     ['// Rack-only photographs', 'function railGarments('],
     ['const preloadedModelSources=', 'function preloadRail('],
