@@ -23,11 +23,10 @@ function privateApp() {
     ['function current(', '// Small changes'],
     ['function smallChanges(', 'let rackCarousel;'],
     ['function compatible(', 'function complete('],
-    ['const cases=', 'function suggestedShoppingStyles('],
+    ['function shoppingWardrobe(', 'function shopStyle('],
     ['const styleMixPieceTags=', 'function mixBreakdown('],
     ['// Rack-only photographs', 'function railGarments('],
     ['const preloadedModelSources=', 'function preloadRail('],
-    ['let shoppingImagesReady;', '\npreloadShoppingImages();'],
   ];
   for (const [from, to, replacement] of sections) app = replaceSection(app, from, to, replacement);
   app = app

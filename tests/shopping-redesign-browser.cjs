@@ -1,0 +1,141 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+
+const personal=process.env.DEMO!=='public';
+const site=process.env.APP_URL||'http://composed.test';
+const root=path.resolve(personal?'timothy-dist':'dist');
+const capture=process.env.CAPTURE_DIR;
+const sample=path.resolve('dist/assets/purchase-0.webp');
+
+async function exercise(browser,width,height){
+ const page=await browser.newPage({viewport:{width,height},hasTouch:true,reducedMotion:'reduce'});
+ page.setDefaultTimeout(9000);
+ const errors=[];
+ page.on('pageerror',error=>errors.push(error.message));
+ page.on('response',res=>{if(res.status()>=400)errors.push(res.url());});
+ if(!process.env.APP_URL)await page.route(site+'/**',route=>{
+  const pathname=new URL(route.request().url()).pathname;
+  return route.fulfill({path:path.join(root,pathname==='/'?'index.html':pathname)});
+ });
+ const at=selector=>page.locator(selector);
+ const tab=name=>at(`[data-tab="${name}"]`).click();
+ const shot=async name=>{
+  if(!capture||width!==390)return;
+  await at('.shop-flow img').evaluateAll(images=>Promise.all(images.map(image=>image.decode())));
+  await page.screenshot({path:path.join(capture,`${personal?'personal':'public'}-${name}.png`),animations:'disabled'});
+ };
+ const photo=async(name,file=sample)=>{
+  const [chooser]=await Promise.all([page.waitForEvent('filechooser'),page.getByRole('button',{name,exact:true}).click()]);
+  await chooser.setFiles(file);
+ };
+ const theme=async()=>{
+  await at('.settings-menu summary').click();
+  await at('#theme-mobile').click();
+  await page.keyboard.press('Escape');
+ };
+ try{
+  await page.goto(site);
+  await at('#lock-tomorrow').waitFor();
+  assert.match(await at('.stylist-intake h2').innerText(),/Let’s get you dressed/);
+  if(width===320){
+   const [action,screen]=await Promise.all([at('#lock-tomorrow').boundingBox(),at('#screen').boundingBox()]);
+   assert.ok(action.y+action.height<=screen.y+screen.height);
+  }
+  await shot('after-today');
+  await at('#lock-tomorrow').click();
+  const model=at('#model-viewer');
+  await model.waitFor();
+  await model.focus();
+  await page.keyboard.press('End');
+  assert.equal(await model.getAttribute('aria-valuenow'),'270');
+  assert.match(await model.getAttribute('aria-valuetext'),/Left side view/);
+  assert.doesNotMatch(await model.getAttribute('aria-valuetext'),/undefined/);
+  await page.keyboard.press('Home');
+  assert.equal(await model.getAttribute('aria-valuenow'),'0');
+  const image=at(personal?'[data-frame="0"]':'.model-turn-sheet');
+  const initial=await image.getAttribute('src');
+  assert.match(initial,personal?/wardrobe-timothy/:/^assets\//);
+  await at('#another-outfit').click();
+  await page.getByRole('button',{name:'See previous pick'}).waitFor();
+  assert.notEqual(await image.getAttribute('src'),initial);
+  await at('#another-outfit').click();
+  await page.getByRole('button',{name:'Another outfit'}).waitFor();
+  assert.equal(await image.getAttribute('src'),initial);
+
+  await tab('Shopping');
+  assert.equal(await at('#shop-heading').innerText(),'Should I get this?');
+  await shot('after-shopping');
+  await photo('Take photo',{name:'wrong.txt',mimeType:'text/plain',buffer:Buffer.from('text')});
+  assert.match(await at('.shop-error').innerText(),/supported photo/);
+  await photo('Upload photo',{name:'oversize.png',mimeType:'image/png',buffer:Buffer.alloc(15*1024*1024+1)});
+  assert.match(await at('.shop-error').innerText(),/15 MB/);
+  await photo('Upload photo',{name:'corrupt.jpg',mimeType:'image/jpeg',buffer:Buffer.from('bad jpeg')});
+  await at('.shop-error').getByText(/couldn’t be opened/).waitFor();
+  await photo('Upload photo');
+  await at('.shop-user-photo').waitFor();
+  assert.match(await at('.shop-flow').innerText(),/Live photo assessment is unavailable/);
+  await shot('photo-intake');
+  await photo('Choose another photo',path.resolve('dist/assets/purchase-1.webp'));
+  await at('.shop-user-photo').waitFor();
+  await page.getByRole('button',{name:'Remove photo'}).click();
+  assert.equal(await at('.shop-user-photo').count(),0);
+
+  await at('.settings-menu summary').click();
+  await at('#my-style').selectOption('Workwear');
+  await page.keyboard.press('Escape');
+  await at('[data-purchase="1"]').click();
+  assert.equal(await at('#shop-heading').innerText(),'Skip it');
+  assert.equal(await at('meter').getAttribute('value'),'88');
+  assert.match(await at('.shop-verdict').innerText(),personal?/Barbour/:/already fills/);
+  await shot('skip-it');
+  await at('#shop-back').click();
+  await at('.settings-menu summary').click();
+  await at('#my-style').selectOption(personal?'Streetwear':'East Asian Minimalist');
+  await page.keyboard.press('Escape');
+  await at(`[data-purchase="${personal?0:3}"]`).click();
+  assert.equal(await at('#shop-heading').innerText(),'Worth trying on');
+  assert.equal(await at('meter').getAttribute('value'),'88');
+  await shot('worth-trying-on');
+  await photo('I’ve tried it on — check the fit');
+  await at('.shop-user-photo').waitFor();
+  assert.equal(await at('#shop-heading').innerText(),'Check the fit');
+  assert.match(await at('.shop-flow').innerText(),/Fit is unresolved/);
+  assert.match(await at('.shop-flow').innerText(),personal?/Black bomber jacket/:/Light grey canvas slip-ons/);
+  await page.getByRole('button',{name:'Remove photo'}).click();
+  assert.equal(await at('.shop-user-photo').count(),0);
+  await shot('try-on');
+  await theme();
+  await shot('try-on-dark');
+  await tab('Log');
+  await tab('Shopping');
+  assert.equal(await at('#shop-heading').innerText(),'Check the fit');
+  await at('#shop-result').click();
+  assert.equal(await at('#shop-heading').innerText(),'Worth trying on');
+  await at('.settings-menu summary').click();
+  await at('#my-style').selectOption(personal?'Classic':'Workwear');
+  await page.keyboard.press('Escape');
+  assert.equal(await at('#shop-heading').innerText(),'Skip it');
+  assert.equal(await at('meter').getAttribute('value'),'44');
+  assert.match(await at('.shop-verdict').innerText(),/weak match/);
+  await tab('Wardrobe');
+  await at('[data-filter=Tops]').click();
+  assert.equal(await at('[data-filter=Tops]').getAttribute('aria-pressed'),'true');
+  await at('[data-rail]').first().tap();
+  assert.equal(await at('[data-rail]').first().getAttribute('aria-pressed'),'true');
+  await at('#rail-build').click();
+  assert.equal(await at('.builder').count(),1);
+  assert.equal(await page.evaluate(()=>document.querySelector('#screen').scrollWidth<=document.querySelector('#screen').clientWidth),true);
+  assert.deepEqual(errors,[]);
+  console.log(`PASS ${personal?'personal':'public'} ${width}×${height}, camera/chooser, two verdicts, try-on, rotation, rack, light/dark`);
+ }finally{await page.close();}
+}
+
+(async()=>{
+ if(capture)fs.mkdirSync(capture,{recursive:true});
+ const browser=await chromium.launch({channel:'chrome'});
+ try{
+  for(const viewport of [[320,568],[375,667],[390,844],[402,874],[768,1024],[1280,900]])await exercise(browser,...viewport);
+ }finally{await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

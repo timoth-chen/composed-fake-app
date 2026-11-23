@@ -89,29 +89,13 @@ function mixMainColour(piece){return piece.colour;}
 function compatible(piece){return state.fit.includes(piece.id)||!state.fit.some(id=>items[id].cat===piece.cat);}
 function smallChanges(){return [];}
 
-const cases = [
- {id:'runner', label:'Grey runners', word:'Skip it', styleFit:84, styles:{Streetwear:91,'East Asian Minimalist':79},
-  why:'The low-profile grey suede and mesh fit your casual wardrobe.',
-  adds:'Your grey New Balance runners already fill this role.',
-  alternative:'Wear the New Balance runners you own.',
-  with:'The Stüssy hoodie and light-wash jeans.'},
- {id:'clogs', label:'Black clogs', word:'Skip it', styleFit:78, styles:{'East Asian Minimalist':90,Classic:68},
-  why:'A simple dark clog sits comfortably under the wide pleats.',
-  adds:'Your black BEAMS clogs already give you this option.',
-  alternative:'Try your BEAMS clogs before buying a similar pair.',
-  with:'The cream henley and indigo pleated trousers.'},
- {id:'tiger', label:'Court sneakers', word:'Worth trying on', styleFit:81, styles:{Classic:85,'Smart Casual':76},
-  why:'A cream and navy court sneaker lightens the dark trousers.',
-  adds:'A similar pair makes sense only if you need to replace your Onitsuka Tigers.',
-  alternative:'Compare the pair with your existing Tigers.',
-  with:'The navy button-down, black wide trousers and open Barbour.',
-  check:'Walk a few steps and check that the heel stays secure and the trouser hem clears the sole.'},
-];
-
-function shoppingCandidate(index) {
- const candidate=cases[index];
- const piece=items[privateIndex[candidate.id]];
- return {...candidate,name:piece.name,photo:`/wardrobe-timothy/rack/${piece.privateId}-front.webp`};
+function shoppingWardrobe(index) {
+ return [
+  {reason:'The cropped bomber gives your wide jeans a shorter layer than your open Barbour.', value:'Your open Barbour is a longer plaid layer. This short, plain bomber adds a different shape over denim.', pairing:'Try it over your cream henley with your light-wash wide jeans or black wide trousers.'},
+  {duplicate:true, value:'Your plaid Barbour already does the job of a casual olive layer. A plain overshirt would add little to that rotation.', pairing:'Wear the Barbour open over your navy button-down and black wide trousers.'},
+  {reason:'The stone trousers give your navy shirt a lighter daytime pairing.', value:'Your dark indigo pleats and black trousers cover darker looks. Stone gives your navy shirt a lighter daytime option.', pairing:'Try them with your navy button-down and white On Roger sneakers.'},
+  {duplicate:true, value:'The light canvas would overlap with your white On Roger sneakers and cream Onitsuka Tigers.', pairing:'Try your white On Roger sneakers with your cream henley and dark indigo trousers first.'},
+ ][index];
 }
 
 const privatePreloaded = new Map();
@@ -137,5 +121,3 @@ function initialisePrivate() {
  }
  if (query.get('recording')==='1') $('#record-mode')?.click();
 }
-
-async function preloadShoppingImages(){}

@@ -82,10 +82,10 @@ async function exercise(browser,width) {
    return screen.scrollTop;
   });
   assert.ok(scrollSamples>=scrollTop-120,'alternate does not scroll to the top');
-  await page.waitForFunction(()=>document.querySelector('#another-outfit')?.disabled);
+  await page.waitForFunction(()=>document.querySelector('#another-outfit')?.textContent==='See previous pick');
   if(personal)assert.match(await front(),/henley/);
   assert.match(await at('.pick-context').innerText(),/Date night · Polished/);
-  assert.equal(await at('#another-outfit').isDisabled(),true);
+  assert.equal(await at('#another-outfit').isEnabled(),true);
   await at('#refine-pick').click();
   await at('#save-fit').click();
   await at('[data-filter=Tops]').click();
@@ -122,7 +122,7 @@ async function exercise(browser,width) {
   await at('#toast-dismiss').click();
   await shot('wardrobe');
   await tab('Shopping');
-  assert.match(await at('#screen').innerText(),/Buy Verdict/);
+  assert.match(await at('#screen').innerText(),/Should I get this/);
   await settings();
   await at('#theme-mobile').click();
   assert.equal(await at('body').evaluate(x=>x.classList.contains('dark')),true);
