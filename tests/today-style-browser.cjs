@@ -86,9 +86,9 @@ async function exercise(browser, width, height) {
   }
   await at('[data-tab=Shopping]').click();
   await at(`[data-purchase="${personal?3:0}"]`).click();
-  assert.match(await at('.shop-flow').innerText(),/Streetwear · 88% illustrative match/);
-  assert.match(await at('.shop-flow').innerText(),/Skip it/);
-  assert.match(await at('.shop-flow').innerText(),/Fit to check/);
+  assert.match(await at('.shop-flow').innerText(),new RegExp('Streetwear · '+(personal?85:89)+'% illustrative match'));
+  assert.match(await at('.shop-flow').innerText(),/I’d skip it/);
+  assert.match(await at('.shop-flow').innerText(),/Personal fit/);
   await settings.click();
   await at('#theme-mobile').click();
   await page.keyboard.press('Escape');
