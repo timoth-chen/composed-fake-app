@@ -349,3 +349,9 @@ body.record-mode .app-shell #screen > .page { max-width:480px; }
  .app-shell .stylist-intake h2{font-size:28px}
  .app-shell .stylist-intake .today-timing{margin-block:12px}
 }
+@media(max-width:360px){
+ .app-shell #screen.screen-today>.page:has(.stylist-intake){padding-top:4px}
+ .app-shell .stylist-intake{padding-top:0}
+ .app-shell .stylist-form{gap:4px}
+ .app-shell .stylist-form #more-impressions{margin-block:0}
+}
