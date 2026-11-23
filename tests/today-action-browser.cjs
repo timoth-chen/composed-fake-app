@@ -28,7 +28,7 @@ async function check(browser,width,height){
  };
  const tab=name=>at(`[data-tab="${name}"]`).click();
  const shot=async name=>{
-  if(!captures||![320,390].includes(width))return;
+  if(!captures||![320,360,390,1280].includes(width))return;
   await at('#screen img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
   await page.screenshot({path:path.join(captures,`${personal?'personal':'public'}-${width}-${name}.png`),animations:'disabled'});
  };
@@ -40,6 +40,13 @@ async function check(browser,width,height){
  try{
   await page.goto(url);
   assert.match(await at('.stylist-intake h2').innerText(),/What are we dressing for/);
+  if(width===390)await visibleAction('#lock-tomorrow');
+  await at('#lock-tomorrow').scrollIntoViewIfNeeded();
+  await visibleAction('#lock-tomorrow');
+  const radioColours=await at('.occasion-chips input:checked + span, .impressions input:checked + span').evaluateAll(chips=>chips.map(chip=>{
+   const style=getComputedStyle(chip);return [style.backgroundColor,style.color,style.borderColor];
+  }));
+  assert.deepEqual(radioColours[0],radioColours[1]);
   await shot('today');
   await at('#lock-tomorrow').click();
   await at('#model-viewer').waitFor();
@@ -116,6 +123,8 @@ async function check(browser,width,height){
   assert.equal(await at('#my-style input:checked').evaluate(el=>document.activeElement===el),true);
   await page.keyboard.press('Escape');
   assert.equal(await at('body').evaluate(el=>el.classList.contains('dark')),true);
+  await at('#lock-tomorrow').scrollIntoViewIfNeeded();
+  await visibleAction('#lock-tomorrow');
   await shot('today-dark');
   await at('.settings-menu > summary').click();
   await at('#theme-mobile').click();
@@ -140,6 +149,6 @@ async function check(browser,width,height){
  if(captures)fs.mkdirSync(captures,{recursive:true});
  const browser=await chromium.launch({channel:'chrome'});
  try{
-  for(const [width,height] of [[320,568],[375,667],[390,844],[402,874],[768,1024],[1280,900]])await check(browser,width,height);
+  for(const [width,height] of [[390,844],[360,800],[402,874],[412,915],[440,956],[375,667],[320,568],[1280,900]])await check(browser,width,height);
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

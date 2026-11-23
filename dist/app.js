@@ -519,10 +519,10 @@ function wardrobe(){let shown=items.filter(p=>(state.filter==='All'||p.cat===sta
 // Candidate photos are shared. Wardrobe advice is specific to the active catalogue.
 function shoppingWardrobe(index) {
  return [
-  {duplicate:true, reason:'I’d keep the cropped jacket you already own.', value:'Your black bomber already gives you the same short, dark layer.', pairing:'Layer the candidate over a white heavyweight T-shirt and dark indigo jeans.', alternative:'Use your existing black bomber for the same cropped finish.'},
-  {duplicate:true, reason:'A second olive overshirt would add little.', value:'Your olive cotton overshirt already fills this role.', pairing:'Wear the candidate open over your white heavyweight T-shirt with slate pleated trousers.', alternative:'Use your existing olive cotton overshirt in the same outfit.'},
-  {duplicate:true, reason:'This repeats a cut and colour you already wear.', value:'Your stone straight trousers already give you this light, straight-leg option.', pairing:'Pair the candidate with the black crewneck knit and black loafers.', alternative:'Wear your existing stone straight trousers for the same effect.'},
-  {reason:'Canvas adds an easy casual shoe alongside your smarter suede loafers, if the heel feels secure.', value:'Your stone suede loafers cover a smarter role. Canvas adds a more casual option, though your white sneakers are worth trying first.', pairing:'Try them with your ink navy heavyweight T-shirt and black tailored shorts.'},
+  {ownedId:14, sameProduct:true, duplicate:true, reason:'I’d keep the cropped jacket you already own.', value:'Your black bomber already gives you the same short, dark layer.', pairing:'Layer the candidate over a white heavyweight T-shirt and dark indigo jeans.', alternative:'Use your existing black bomber for the same cropped finish.'},
+  {ownedId:15, sameProduct:true, duplicate:true, reason:'A second olive overshirt would add little.', value:'Your olive cotton overshirt already fills this role.', pairing:'Wear the candidate open over your white heavyweight T-shirt with slate pleated trousers.', alternative:'Use your existing olive cotton overshirt in the same outfit.'},
+  {ownedId:7, sameProduct:true, duplicate:true, reason:'This repeats a cut and colour you already wear.', value:'Your stone straight trousers already give you this light, straight-leg option.', pairing:'Pair the candidate with the black crewneck knit and black loafers.', alternative:'Wear your existing stone straight trousers for the same effect.'},
+  {ownedId:5, alternative:'Try your white leather sneakers with the ink navy T-shirt and black tailored shorts.', reason:'Canvas adds an easy casual shoe alongside your smarter suede loafers, if the heel feels secure.', value:'Your stone suede loafers cover a smarter role. Canvas adds a more casual option, though your white sneakers are worth trying first.', pairing:'Try them with your ink navy heavyweight T-shirt and black tailored shorts.'},
  ][index];
 }
 function shopStyle(candidate) {
@@ -545,7 +545,7 @@ function shoppingAssessment(index){
  const wardrobe=shoppingWardrobe(index);
  const style=shopStyle(candidate);
  const weak=style.score!==null&&style.score<55;
- return {style,wardrobe,label:wardrobe.duplicate||weak?'I’d skip it':'Worth trying on',
+ return {style,wardrobe,weak,label:wardrobe.duplicate||weak?'I’d skip it':'Worth trying on',
   reason:weak?shopCases[index].weakNote:wardrobe.reason};
 }
 function updateShoppingRecord(action){
@@ -596,15 +596,24 @@ function verdict() {
  let content;
  if(shopping.view==='entry'){
   content=`<div class="shop-intro"><h2 id="shop-heading">Should I consider this?</h2><p>Show Nigel something you’re thinking about. Get advice for your wardrobe and style.</p>
+   <p class="sub">Your photos stay on this device and open as previews only. Guided examples show illustrative advice.</p>
    <div class="shop-capture"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
    ${photoActions('candidate')}</div>
-   <p class="sub">Photos stay on this device. Nigel’s assessments are available for the examples below.</p></div>${notice}${exampleChoices()}${savedShopping()}`;
+   </div>${notice}${exampleChoices()}${savedShopping()}`;
  }else if(shopping.view==='preview'){
   content=`${back}<h2 id="shop-heading">Your item</h2>${preview(shopping.candidate)}
    <p>Live photo assessment is unavailable. Try an example to see how Nigel would assess an item.</p>
    ${photoActions('candidate','Retake photo','Choose another photo')}${btn('Remove photo','data-shop-remove="candidate"')}${notice}${exampleChoices()}`;
+ }else if(shopping.view==='alternative'){
+  const wardrobe=shoppingWardrobe(shopping.example);
+  const piece=items[wardrobe.ownedId];
+  const photo=railPhoto(piece)?.front || (wardrobe.sameProduct?'assets/'+candidate.photo:null);
+  content=`${btn('← Back to recommendation','id="shop-result"','shop-back')}
+   <h2 id="shop-heading">${shoppingAssessment(shopping.example).weak?'An alternative from your wardrobe':'What you already own'}</h2>
+   <figure class="shop-photo">${photo?`<img src="${photo}" alt="${escapeHTML(piece.name)}">`:garment(piece)}<figcaption>${escapeHTML(piece.name)}</figcaption></figure>
+   <p>${escapeHTML(wardrobe.alternative)}</p>`;
  }else if(shopping.view==='tryOn'){
-  content=`${btn('‹ Back to verdict','id="shop-result"','shop-back')}<h2 id="shop-heading">Check the fit</h2>
+  content=`${btn('‹ Back to verdict','id="shop-result"','shop-back')}<h2 id="shop-heading">Preview a try-on photo</h2>
    <p>${candidate.name} · Example item</p><p>Original recommendation: ${escapeHTML(shopping.tryOnAssessment.label)}</p><p>${candidate.check}</p>
    ${preview(shopping.tryOn)}<p class="sub">Fit is unresolved. This demo can preview a try-on photo, but it cannot assess fit, sizing or comfort.</p>
    ${photoActions('tryOn',shopping.tryOn?'Retake try-on photo':'Take try-on photo','Upload try-on photo')}
@@ -616,7 +625,8 @@ function verdict() {
    ${Number.isInteger(record.ownedId)?btn('View in Wardrobe','id="shop-view-wardrobe"','primary'):btn('Add to wardrobe','data-shopping-record="add"','primary')+btn('Not now','id="shop-not-now"')}
    <details class="shop-section"><summary>Original recommendation</summary><p>${escapeHTML(record.purchase.label)}. ${escapeHTML(record.purchase.reason)}</p></details>${notice}`;
  }else{
-  const {wardrobe,style,label,reason}=shoppingAssessment(shopping.example);
+  const {wardrobe,style,label,reason,weak}=shoppingAssessment(shopping.example);
+  const alternative=weak||wardrobe.duplicate;
   const recorded=shoppingRecords[shopping.example];
   const advice=[['check',label==='I’d skip it'?'Why I’d pass':'Why it works',wardrobe.value],
    ['hanger','How to style it',wardrobe.pairing],['right','Fit to check',candidate.check]];
@@ -627,11 +637,13 @@ function verdict() {
    <div class="shop-verdict"><p>Nigel’s recommendation · Example</p><h2 id="shop-heading">${label}</h2><p>${escapeHTML(reason)}</p></div>
    <section class="shop-score" aria-label="Style match">
     <p><strong>Style match</strong> · ${escapeHTML(style.target)}</p>
-    ${style.score===null?`<p>${style.target===aesthetics[0]?'Choose a style to see a score.':'This aesthetic doesn’t have a supported score in the demo.'}</p>`:`<span>${style.score}% illustrative match</span><div class="shop-score-track" role="meter" aria-label="Illustrative style match" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${style.score}"><span style="width:${style.score}%"></span></div>`}
+    ${style.score===null?`<p>${style.target===aesthetics[0]?'Choose a style to see a score.':'This aesthetic doesn’t have a supported score in the demo.'}</p>`:`<span>${style.score}% illustrative match</span><p class="sub">Example score based on colour, silhouette and design.</p><div class="shop-score-track" role="meter" aria-label="Illustrative style match" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${style.score}"><span style="width:${style.score}%"></span></div>`}
    </section>
    <dl class="shop-advice">${advice.map(([icon,title,copy])=>`<div>${todayIcon(icon)}<div><dt>${title}</dt><dd>${escapeHTML(copy)}</dd>${title==='Fit to check'?'<dd class="sub">Personal fit is unknown from a product photo.</dd>':''}</div></div>`).join('')}</dl>
    <div class="shop-actions shop-result-actions">
-    ${btn('I’ve tried it on — check the fit','id="shop-try-on"','primary')}
+    ${alternative?btn(weak?'See a styling alternative':'See what you already own','id="shop-alternative"','primary'):''}
+    <p class="shop-preview-note sub" id="shop-preview-note">Photo preview only. Automatic fit assessment isn’t available.</p>
+    ${btn('Preview a try-on photo','id="shop-try-on" aria-describedby="shop-preview-note"',alternative?'':'primary')}
     ${btn(todayIcon('bookmark')+(recorded?.saved?'Saved for later':'Save for later'),'data-shopping-record="save"'+(recorded?.saved?' disabled':''))}
     ${recorded?.purchase?btn(todayIcon('bag')+'View purchase','id="shop-open-purchase"'):btn(todayIcon('bag')+'I bought this','data-shopping-record="buy"')}
    </div>
@@ -703,6 +715,7 @@ function bindShopping() {
  if($('#shop-view-wardrobe'))$('#shop-view-wardrobe').onclick=()=>{state.tab='Wardrobe';state.filter='All';state.wardrobeView='List';render({top:true});};
  if($('#shop-not-now'))$('#shop-not-now').onclick=()=>changeShopping('entry');
  if($('#shop-back'))$('#shop-back').onclick=()=>changeShopping(shopping.candidate?'preview':'entry');
+ if($('#shop-alternative'))$('#shop-alternative').onclick=()=>changeShopping('alternative');
  if($('#shop-result'))$('#shop-result').onclick=()=>changeShopping('result');
  if($('#shop-try-on'))$('#shop-try-on').onclick=()=>{
   shopping.tryOnAssessment=shoppingAssessment(shopping.example);

@@ -26,9 +26,9 @@ async function exercise(browser,width,height){
  };
  const tab=name=>at(`[data-tab="${name}"]`).click();
  const shot=async name=>{
-  if(!capture||width!==390)return;
+  if(!capture||!(width===390||width===402||width===1280))return;
   await at('.shop-flow img').evaluateAll(images=>Promise.all(images.map(image=>image.decode())));
-  await page.screenshot({path:path.join(capture,`${personal?'personal':'public'}-${name}.png`),animations:'disabled'});
+  await page.screenshot({path:path.join(capture,`${personal?'personal':'public'}-${width}-${name}.png`),animations:'disabled'});
  };
  const photo=async(name,file=sample)=>{
   const [chooser]=await Promise.all([page.waitForEvent('filechooser'),page.getByRole('button',{name,exact:true}).click()]);
@@ -42,6 +42,13 @@ async function exercise(browser,width,height){
  try{
   await page.goto(site);
   await at('#lock-tomorrow').waitFor();
+  const cta=async()=>{
+   const [button,nav]=await Promise.all([at('#lock-tomorrow').boundingBox(),at('#tabs').boundingBox()]);
+   assert.ok(button.y>=0&&button.y+button.height<=nav.y+1);
+  };
+  if(width===390)await cta();
+  await at('#lock-tomorrow').scrollIntoViewIfNeeded();
+  await cta();
   assert.match(await at('.stylist-intake h2').innerText(),/What are we dressing for/);
   assert.match(await at('.today-style-summary').innerText(),personal?/Your style: East Asian Minimalist/:/Your style: No preference/);
   assert.equal(await at('.today-style-summary + #lock-tomorrow').count(),1);
@@ -110,6 +117,7 @@ async function exercise(browser,width,height){
   await tab('Shopping');
   assert.equal(await at('#shop-heading').innerText(),'Should I consider this?');
   await shot('after-shopping');
+  assert.match(await at('.shop-intro').innerText(),/previews only/);
   await photo('Take photo',{name:'wrong.txt',mimeType:'text/plain',buffer:Buffer.from('text')});
   assert.match(await at('.shop-error').innerText(),/supported photo/);
   await photo('Upload photo',{name:'oversize.png',mimeType:'image/png',buffer:Buffer.alloc(15*1024*1024+1)});
@@ -150,6 +158,19 @@ async function exercise(browser,width,height){
    const pair=await Promise.all(['save','buy'].map(action=>at(`[data-shopping-record="${action}"]`).boundingBox()));
    assert.ok(pair.every(rect=>rect.height>=44)&&Math.abs(pair[0].width-pair[1].width)<1&&pair[0].y===pair[1].y);
    await shot('example-'+index);
+   const primary=at('.shop-result-actions .primary');
+   assert.equal(await primary.count(),1);
+   if(label==='I’d skip it'){
+    assert.match(await primary.innerText(),score<55?/See a styling alternative/:/See what you already own/);
+    await primary.click();
+    assert.match(await at('#shop-heading').innerText(),score<55?/alternative/:/already own/);
+    assert.ok(await at('.shop-photo img').evaluate(async img=>{await img.decode();return img.naturalWidth>0;}));
+    await at('#shop-result').click();
+    assert.equal(await at('#shop-heading').innerText(),label);
+   }else{
+    assert.equal(await primary.innerText(),'Preview a try-on photo');
+    assert.match(await at('#shop-preview-note').innerText(),/Automatic fit assessment isn’t available/);
+   }
    if(index===1){
     await theme();
     await shot('example-buttons-dark');
@@ -175,9 +196,9 @@ async function exercise(browser,width,height){
   assert.equal(await at('[role=meter]').getAttribute('aria-valuenow'),personal?'89':'85');
   assert.equal(await page.getByRole('button',{name:'I bought this',exact:true}).count(),1);
   await shot('worth-trying-on');
-  await photo('I’ve tried it on — check the fit');
+  await photo('Preview a try-on photo');
   await at('.shop-user-photo').waitFor();
-  assert.equal(await at('#shop-heading').innerText(),'Check the fit');
+  assert.equal(await at('#shop-heading').innerText(),'Preview a try-on photo');
   assert.match(await at('.shop-flow').innerText(),/Fit is unresolved/);
   assert.match(await at('.shop-flow').innerText(),personal?/Black bomber jacket/:/Light grey canvas slip-ons/);
   await page.getByRole('button',{name:'Remove photo'}).click();
@@ -187,7 +208,7 @@ async function exercise(browser,width,height){
   await shot('try-on-dark');
   await tab('Log');
   await tab('Shopping');
-  assert.equal(await at('#shop-heading').innerText(),'Check the fit');
+  assert.equal(await at('#shop-heading').innerText(),'Preview a try-on photo');
   await at('#shop-result').click();
   assert.equal(await at('#shop-heading').innerText(),'Worth trying on');
   await at('.settings-menu > summary').click();
@@ -196,6 +217,7 @@ async function exercise(browser,width,height){
   assert.equal(await at('#shop-heading').innerText(),'I’d skip it');
   assert.equal(await at('[role=meter]').getAttribute('aria-valuenow'),personal?'43':'41');
   assert.match(await at('.shop-verdict').innerText(),/cropped cut|unstructured canvas/);
+  assert.equal(await at('.shop-result-actions .primary').innerText(),'See a styling alternative');
   await page.getByRole('button',{name:'Save for later',exact:true}).click();
   assert.equal(await page.getByRole('button',{name:'Saved for later',exact:true}).isDisabled(),true);
   await at('#shop-back').click();
@@ -243,6 +265,6 @@ async function exercise(browser,width,height){
  if(capture)fs.mkdirSync(capture,{recursive:true});
  const browser=await chromium.launch({channel:'chrome'});
  try{
-  for(const viewport of [[320,568],[375,667],[390,844],[402,874],[768,1024],[1280,900]])await exercise(browser,...viewport);
+  for(const viewport of [[390,844],[360,800],[402,874],[412,915],[440,956],[375,667],[320,568],[1280,900]])await exercise(browser,...viewport);
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
