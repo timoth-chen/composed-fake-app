@@ -52,6 +52,15 @@ async function check(browser,width,height){
   assert.equal(await at('#screen').evaluate(screen=>screen.scrollTop),0);
   await visibleAction('[data-log=wore]');
   await shot('accepted');
+  if(width===320){
+   await at('#screen').evaluate(screen=>screen.scrollTop=screen.scrollHeight);
+   await at('.pick-primary-docked[data-log=wore]').waitFor();
+   assert.equal(await at('[data-log=wore]').count(),1);
+   const [pinned,screen,nav]=await Promise.all([at('#today-primary-dock').boundingBox(),at('#screen').boundingBox(),at('#tabs').boundingBox()]);
+   assert.ok(pinned.y>=screen.y+screen.height-1 && pinned.y+pinned.height<=nav.y+1);
+   await at('#screen').evaluate(screen=>screen.scrollTop=0);
+   await at('[data-log=wore]:not(.pick-primary-docked)').waitFor();
+  }
   assert.equal(await at('#undo-wear').count(),0);
   await tab('Log');
   assert.match(await at('#screen').innerText(),/WORE IT · 0/i);
@@ -96,13 +105,20 @@ async function check(browser,width,height){
   await page.keyboard.press('Escape');
   assert.equal(await at('body').evaluate(el=>el.classList.contains('dark')),true);
   await shot('today-dark');
+  await at('.settings-menu summary').click();
+  await at('#theme-mobile').click();
+  await page.keyboard.press('Escape');
+  await shot('today-style');
+  await at('.settings-menu summary').click();
+  await at('#theme-mobile').click();
+  await page.keyboard.press('Escape');
   await at('[name=occasion][value="1"]').check();
   await at('#lock-tomorrow').click();
   await at('#model-viewer').waitFor();
   const [action,screen]=await Promise.all([at('#accept-outfit').boundingBox(),at('#screen').boundingBox()]);
   assert.ok(action.y+action.height<=screen.y+screen.height+90,'long titles require at most a short scroll');
   await at('#accept-outfit').scrollIntoViewIfNeeded();
-  await visibleAction('#accept-outfit');
+  if(!await at('.pick-primary-docked').count())await visibleAction('#accept-outfit');
   await shot('recommendation-dark');
   assert.deepEqual(errors,[]);
   console.log(`PASS ${personal?'personal':'public'} ${width}×${height}, visible actions, acceptance, correction, plans and persistence`);

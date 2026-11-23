@@ -42,7 +42,7 @@ async function exercise(browser,width) {
   const checkFrame=async()=>assert.equal(await at(personal?'[data-frame]:visible':'.model-turn-sheet:visible').count(),1);
   for(const text of ['Right side','Back','Left side','Front']){
    await at('#model-next').click();
-   assert.equal(await angle(),text+' · Four views');
+   assert.equal(await angle(),`${text} ${['Front','Right side','Back','Left side'].indexOf(text)+1} / 4`);
    await checkFrame();
   }
   await viewer.scrollIntoViewIfNeeded();
@@ -84,7 +84,7 @@ async function exercise(browser,width) {
   assert.ok(scrollSamples>=scrollTop-120,'alternate does not scroll to the top');
   await page.waitForFunction(()=>document.querySelector('#another-outfit')?.textContent==='See previous pick');
   if(personal)assert.match(await front(),/henley/);
-  assert.match(await at('.pick-context').innerText(),/Date night · Polished/);
+  assert.match(await at('.pick-context').textContent(),/Date night · Polished/);
   assert.equal(await at('#another-outfit').isEnabled(),true);
   await at('#refine-pick').click();
   await at('#save-fit').click();
@@ -104,7 +104,7 @@ async function exercise(browser,width) {
    if(!await at('#plan-date').count())await at('[name=day][value=other]').check();
    await at('#plan-date').fill(date);
    await pick(2,'Polished');
-   assert.match(await at('.pick-context').innerText(),new RegExp(date.endsWith('10')?'Apr 10':'Apr 15'));
+   assert.match(await at('.pick-context').textContent(),new RegExp(date.endsWith('10')?'Apr 10':'Apr 15'));
    await at('#accept-outfit').click();
    assert.equal(await at('[data-log]').count(),0);
    assert.equal(await at('#wear-plan').count(),0);
@@ -161,7 +161,7 @@ async function exercise(browser,width) {
   }
   await at('#change-choices').click();
   await pick(3,'Polished');
-  assert.match(await at('.pick-context').innerText(),/Work · Polished/);
+  assert.match(await at('.pick-context').textContent(),/Work · Polished/);
   assert.match(await at('.daily-why').innerText(),/office dress code/);
   assert.equal(await at('#another-outfit').isDisabled(),true);
   assert.match(await front(),personal?/barbour-front/:/turn-date/);

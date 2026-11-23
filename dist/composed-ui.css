@@ -439,3 +439,96 @@ body.record-mode .app-shell #screen > .page { max-width:480px; }
 @media(prefers-reduced-motion:reduce){
  .app-shell .stylist-pick *, .app-shell .stylist-intake *{transition:none!important;scroll-behavior:auto!important}
 }
+
+/* Today and Nigel’s pick follow the same compact editorial grid. */
+.app-shell:has(.screen-today) > header .wordmark{
+ display:flex;align-items:center;gap:6px;height:44px;
+ --lockup:url('/assets/brand/composed-lockup-light.webp');
+}
+body.dark .app-shell:has(.screen-today) > header .wordmark{--lockup:url('/assets/brand/composed-lockup-dark.webp')}
+.app-shell:has(.screen-today) > header .wordmark img,
+body.dark .app-shell:has(.screen-today) > header .wordmark .brand-dark{display:none}
+.app-shell:has(.screen-today) > header .wordmark::after{content:"";display:block;background-image:var(--lockup);background-repeat:no-repeat}
+.app-shell .today-brand-mark{display:none}
+.app-shell:has(.screen-today) > header .today-brand-mark{display:block;width:29px;height:32px;flex:none;color:var(--ink)}
+.app-shell:has(.screen-today) > header .wordmark::after{width:98px;height:14px;background-size:158px;background-position:-32px -121px}
+.app-shell .stylist-intake {padding-block:10px}
+.app-shell .stylist-intake .stylist-label,
+.app-shell .stylist-pick .pick-tools .stylist-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.app-shell .stylist-intake h2{font-size:clamp(23px,6.55vw,36px);margin-block:5px 4px;letter-spacing:-.035em}
+.app-shell .stylist-intake .today-intro{font-size:14px;color:var(--muted);line-height:1.4}
+.app-shell .stylist-intake .today-timing{background:var(--paper);margin-block:16px 12px}
+.app-shell .stylist-intake .today-timing button{border-radius:14px}
+.app-shell .stylist-form .occasion-chips .choice-chip span{display:flex;align-items:center;gap:10px;min-height:52px;text-align:start}
+.app-shell :is(.stylist-intake,.stylist-pick) button svg,
+.app-shell .occasion-chips svg,.app-shell .today-style-summary svg,.app-shell .daily-why svg{
+ width:18px;height:18px;flex:none;vertical-align:middle;
+}
+.app-shell .stylist-form #more-impressions{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;margin:0;font-size:13px}
+.app-shell #more-impressions svg{width:14px;height:14px}
+.app-shell #more-impressions[aria-expanded=true] svg,.app-shell .daily-why:not([open]) svg{transform:rotate(180deg)}
+.app-shell .today-style-summary{justify-content:initial;gap:8px}
+.app-shell .today-style-summary button{margin-inline-start:auto}
+.app-shell .today-style-summary>svg{color:var(--accent)}
+.app-shell .today-style-summary strong{margin:0}
+.app-shell .stylist-form #lock-tomorrow{min-height:48px;margin-top:8px}
+.app-shell #screen.screen-today>.page:has(.stylist-pick){padding-top:10px}
+.app-shell .stylist-pick .pick-tools{height:20px;justify-content:space-between}
+.app-shell .stylist-pick .pick-tools button{min-height:44px;transform:translateY(3px)}
+.app-shell .screen-today .stylist-pick .daily-outfit h2{margin:3px 0 4px}
+.app-shell .stylist-pick .pick-context{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+.app-shell .stylist-pick .pick-photo{position:relative;display:block;margin-bottom:8px}
+.app-shell .screen-today .stylist-pick .model-viewer{--outfit-height:clamp(210px,39dvh,450px);border:0;background:#e0d2c5!important}
+.app-shell .screen-today .stylist-pick .frame-viewer{background:#e0d2c5!important}
+.app-shell .stylist-pick #save-recommendation{
+ position:absolute;right:8px;top:8px;width:44px;height:44px;padding:0;margin:0;display:grid;place-items:center;
+ background:var(--surface);color:var(--ink);border:0;border-radius:8px;
+}
+.app-shell .stylist-pick .pick-rotation{
+ position:absolute;bottom:6px;left:50%;transform:translateX(-50%);margin:0;gap:8px;white-space:nowrap;
+}
+.app-shell .stylist-pick .pick-rotation button,.app-shell .stylist-pick .pick-rotation p{
+ background:var(--surface);color:var(--ink);border:0;border-radius:24px;
+}
+.app-shell .stylist-pick .pick-rotation p{padding:5px 10px;font-size:12px;font-weight:600}
+.app-shell .stylist-pick .pick-primary-slot{min-height:46px}
+.app-shell .stylist-pick .pick-primary-slot button{width:100%;height:46px;margin:0;position:relative;border-radius:14px}
+.app-shell .stylist-pick .pick-primary-slot button svg{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+#today-primary-dock{display:flex;justify-content:center;flex:none;padding:4px 0 6px;background:var(--paper)}
+#today-primary-dock button{position:relative;width:var(--action-width);max-width:calc(100% - 32px);height:46px;margin:0;border-radius:14px}
+#today-primary-dock svg{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px}
+.app-shell .stylist-pick .pick-secondary button{
+ display:flex;align-items:center;justify-content:center;gap:6px;margin:0;min-height:44px;border-radius:14px;
+}
+.app-shell .stylist-pick .wear-confirmation{display:flex}
+.app-shell .stylist-pick .outfit-piece-strip{margin-block:8px}
+.app-shell .stylist-pick .outfit-piece-thumb{border:1px solid var(--line);border-radius:8px;background:transparent}
+.app-shell .stylist-pick .outfit-piece-thumb img{background:transparent;height:46px}
+.app-shell .stylist-pick .outfit-piece-thumb span{font-size:11px;line-height:1.15}
+.app-shell .stylist-pick .daily-why{margin-top:8px;padding:8px 12px}
+.app-shell .stylist-pick .daily-why summary{
+ list-style:none;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0;min-height:44px;
+ font-size:15px;color:var(--ink);font-weight:700;
+}
+.app-shell .stylist-pick .daily-why summary::-webkit-details-marker{display:none}
+.app-shell .stylist-pick .daily-why p{font-size:13px;line-height:1.5}
+@media(max-width:480px){
+ .app-shell .stylist-pick .wardrobe-source{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+}
+@media(max-height:740px) and (max-width:650px){
+ .app-shell .screen-today .stylist-pick .model-viewer{--outfit-height:clamp(190px,38dvh,285px)}
+}
+@media(max-width:360px){
+ .app-shell .stylist-intake{padding-block:0}
+ .app-shell .stylist-intake .today-timing{margin-block:8px 6px}
+ .app-shell .stylist-intake h2{font-size:22px}
+ .app-shell .stylist-form .occasion-chips .choice-chip span{min-height:44px}
+ .app-shell .stylist-form #lock-tomorrow{margin-top:4px}
+}
+.app-shell .stylist-pick .pick-photo{padding-bottom:34px;background:#e0d2c5;border-radius:12px}
+.app-shell .screen-today .stylist-pick .model-viewer{--outfit-height:clamp(192px,34dvh,420px)}
+@media(max-height:740px) and (max-width:650px){
+ .app-shell .screen-today .stylist-pick .model-viewer{--outfit-height:clamp(172px,33dvh,254px)}
+}
+
+body.dark .app-shell .screen-today .stylist-pick .model-viewer{background:#e0d2c5!important}
