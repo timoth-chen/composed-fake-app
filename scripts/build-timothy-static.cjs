@@ -19,4 +19,5 @@ for (const weight of ['400','500','600','700']) {
 fs.cpSync(path.join(root,'dist/assets/brand'),path.join(output,'assets/brand'),{recursive:true});
 // These public product photos are shared shopping candidates, never owned pieces.
 fs.cpSync(path.join(root,'dist/assets/shopping'),path.join(output,'assets/shopping'),{recursive:true});
+write('assets/today/morning-knit.jpg',fs.readFileSync(path.join(root,'dist/assets/today/morning-knit.jpg')));
 console.log('Timothy static site built in timothy-dist: approved personal portraits and four-angle views.');
