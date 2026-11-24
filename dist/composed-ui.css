@@ -189,6 +189,9 @@ body.dark .app-shell #today-wear-bar button {
   --action: #202426;
   --preview: #e3e9ec;
   --blue: #607e92;
+  --style-match-strong: var(--blue);
+  --style-match-moderate: #a18d70;
+  --style-match-weak: #b47c72;
 }
 body.dark {
   --paper: #171819;
@@ -586,9 +589,15 @@ body.dark .app-shell .screen-today .stylist-pick .model-viewer{background:#e0d2c
 .app-shell .shop-flow .shop-verdict{padding:10px 12px}
 .app-shell .shop-flow .shop-verdict h2{font-size:clamp(24px,6vw,32px)}
 .app-shell .shop-score{margin-block:10px 12px}
-.app-shell .shop-score p,.app-shell .shop-score>span{font-size:13px;margin:0 0 3px}
-.app-shell .shop-score-track{height:7px;background:var(--soft);border-radius:6px;margin-top:4px;overflow:hidden}
-.app-shell .shop-score-track span{display:block;height:100%;background:var(--accent);border-radius:inherit}
+.app-shell .shop-score p{font-size:13px;margin:0 0 3px}
+.app-shell .shop-score-track{
+ height:10px;background:var(--surface);border:1px solid var(--muted);
+ border-radius:6px;margin:4px 0 6px;overflow:hidden
+}
+.app-shell .shop-score-track[data-band="strong"]{--style-match-fill:var(--style-match-strong)}
+.app-shell .shop-score-track[data-band="moderate"]{--style-match-fill:var(--style-match-moderate)}
+.app-shell .shop-score-track[data-band="weak"]{--style-match-fill:var(--style-match-weak)}
+.app-shell .shop-score-track span{display:block;height:100%;background:var(--style-match-fill);border-radius:inherit}
 .app-shell .shop-advice{display:grid;gap:9px;margin:0}
 .app-shell .shop-advice>div{display:grid;grid-template-columns:22px 1fr;gap:8px}
 .app-shell .shop-advice svg{width:19px;height:19px;color:var(--accent)}

@@ -533,6 +533,17 @@ function shopStyle(candidate) {
  const grade=myStyle===aesthetics[0]?-1:candidate.ratings.findIndex(group=>group.includes(myStyle));
  return {target,score:candidate.scores[grade]??null};
 }
+function styleMatchDisplay(style,candidate) {
+ const {score}=style;
+ if(score===null){
+  const note=style.target===aesthetics[0]?'Choose a style to see a score.':'This aesthetic doesn’t have a supported score in the demo.';
+  return `<p class="sub">${note}</p><p>${escapeHTML(candidate.aesthetic)} in character. ${escapeHTML(candidate.shape)} ${escapeHTML(candidate.detail)}</p>`;
+ }
+ // Match bands describe aesthetics only. Shopping verdicts use their own rules.
+ const band=score>=80?'Strong':score>=60?'Moderate':'Weak';
+ return `<p><strong>${score}% · ${band}</strong></p>
+  <div class="shop-score-track" data-band="${band.toLowerCase()}" role="meter" aria-label="Illustrative style match" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${score}" aria-valuetext="${score}% · ${band}"><span style="width:${score}%"></span></div>`;
+}
 function purchasedPiece(index,id){
  const candidate=shopCases[index];
  return {id,name:candidate.name,cat:candidate.category,colour:candidate.tone,color:candidate.tone,
@@ -639,7 +650,8 @@ function verdict() {
    <div class="shop-verdict"><p>Nigel’s recommendation · Example</p><h2 id="shop-heading">${label}</h2><p>${escapeHTML(reason)}</p></div>
    <section class="shop-score" aria-label="Style match">
     <p><strong>Style match</strong> · ${escapeHTML(style.target)}</p>
-    ${style.score===null?`<p>${style.target===aesthetics[0]?'Choose a style to see a score.':'This aesthetic doesn’t have a supported score in the demo.'}</p>`:`<span>${style.score}% illustrative match</span><p class="sub">Example score based on colour, silhouette and design.</p><div class="shop-score-track" role="meter" aria-label="Illustrative style match" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${style.score}"><span style="width:${style.score}%"></span></div>`}
+    ${styleMatchDisplay(style,candidate)}
+    <p class="sub">Aesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own.</p>
    </section>
    <dl class="shop-advice">${advice.map(([icon,title,copy])=>`<div>${todayIcon(icon)}<div><dt>${title}</dt><dd>${escapeHTML(copy)}</dd>${title==='Fit to check'?'<dd class="sub">Personal fit is unknown from a product photo.</dd>':''}</div></div>`).join('')}</dl>
    <div class="shop-actions shop-result-actions">
