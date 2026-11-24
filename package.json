@@ -7,6 +7,7 @@
     "build": "node scripts/prepare-static.cjs",
     "test": "node --check dist/app.js && node tests/today-timing-scope.cjs",
     "test:browser": "node tests/demo-final-browser.cjs",
+    "test:public-navigation-shopping": "node tests/public-navigation-shopping.cjs",
     "test:browser:legacy": "node tests/today-sync-browser.cjs && node tests/clean-start-browser.cjs && node tests/rack-complete-browser.cjs"
   },
   "devDependencies": {
