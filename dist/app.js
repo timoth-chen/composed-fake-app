@@ -305,7 +305,7 @@ function today() {
  return `<article class="today-flow stylist-pick">
   <section class="daily-outfit" aria-label="Nigel’s pick">
    <div class="pick-tools">${btn('← Change choices','id="change-choices"','pick-back')}<span class="stylist-label">Nigel’s pick</span></div>
-   <h2>${escapeHTML(o.short||o.name)}</h2>
+   <h2>${escapeHTML(occasions[state.occasion])} outfit</h2>
    <p class="pick-context">${occasions[state.occasion]} · ${state.energy}${planned?' · '+displayDate(outfitDate()):''}</p>
    <div class="pick-photo">${modelViewer(o)}
     ${btn(`<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" fill="${saved?'currentColor':'none'}" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`,`id="save-recommendation" aria-label="${saved?'Outfit saved':'Save outfit'}" ${saved?'disabled':''}`)}
@@ -520,16 +520,17 @@ function complete(){return ['tops','bottoms','shoes'].every(c=>state.fit.some(i=
 function wardrobe(){let shown=items.filter(p=>(state.filter==='All'||p.cat===state.filter.toLowerCase()));return `<div class="topline"><span>YOUR CLOSET</span><span>${items.length} PIECES</span></div><h2>Your wardrobe</h2><p class="sub">Browse your pieces or build an outfit from the rack.</p><div class="wardrobe-tools">${btn('Export wardrobe','id="export-wardrobe"')}<span>Wardrobe edits stay in this browser.</span></div><div class="wardrobe-view-toggle" role="group" aria-label="Wardrobe display">${['Rack','List'].map(v=>btn(v,`data-wardrobe-view="${v}" aria-pressed="${state.wardrobeView===v}"`,state.wardrobeView===v?'active':'')).join('')}</div>${state.editing!==null?wardrobeEditor():''}${state.anchor!==null?`<div class="builder"><strong>Build around ${escapeHTML(items[state.anchor].name)}</strong><p>Clothing-only preview</p><div class="outfit-piece-strip">${state.fit.map(id=>`<div class="outfit-piece-thumb" data-piece-category="${items[id].cat}">${garment(items[id])}<span>${escapeHTML(items[id].name)}</span></div>`).join('')}</div><p>${complete()?('Your outfit is ready to review.'):'Choose '+['tops','bottoms','shoes'].filter(c=>!state.fit.some(i=>items[i].cat===c)).join(', ')+'. Choose a piece for each missing slot.'}</p>${complete()?btn('Save fit','id="save-fit"','primary')+btn('Ask Nigel','id="critique"'):''}${btn('Start over','id="clear-fit"','text-button')}<p>Choose another piece in the list to replace a piece in the same category.</p>${state.critique?`<section class="nigel-critique" aria-label="Nigel critique"><strong>Nigel’s Look Check</strong><p>Sample feedback based on the selected pieces.</p><p>${state.critique}</p>${btn('Dismiss','id="dismiss-critique"')}</section>`:''}</div>`:'<div class="hint">BUILD A FIT · Tap a piece to make it your starting point. Tap ♡ to keep it in your rotation.</div>'}<div class="filters">${['All','Tops','Bottoms','Shoes','Layers'].map(f=>btn(f,`data-filter="${f}" aria-pressed="${state.filter===f}"`,state.filter===f?'active':'')).join('')}</div><p class="rack-instruction">${state.wardrobeView==='Rack'?'Swipe to browse. Select a garment, then choose Build an outfit.':state.anchor===null?'Choose a piece to start a fit.':'Choose a piece to add it or replace one in the same category.'}</p>${state.wardrobeView==='Rack'?landingRail(shown):`<div class="wardrobe-display ${state.wardrobeView==='Rack'?'rack-display':'list-display'}" aria-label="${state.wardrobeView==='Rack'?'Clothing rack':'Wardrobe list'}"><div class="rack-track">${shown.map(p=>`<article class="item ${p.cat==='shoes'?'shelf-item':'hanging-item'} ${state.fit.includes(p.id)?'selected':''}">${btn(`<div class="garment">${p.cat!=='shoes'?'<svg class="rack-hanger" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg>':''}${garment(p)}</div><span class="item-name">${p.name}</span><small>${escapeHTML(mixPrimaryStyle(p))}${state.fit.includes(p.id)?' · Selected':state.anchor!==null&&compatible(p)?' · Compatible':''}</small>`,`data-piece="${p.id}" aria-label="Build a fit with ${p.name}"`)}${btn(state.liked.has(p.id)?'♥':'♡',`data-like="${p.id}" aria-label="${state.liked.has(p.id)?'Unlike':'Like'} ${p.name}" aria-pressed="${state.liked.has(p.id)}"`,'like')}${btn('Edit details',`data-edit-piece="${p.id}" aria-label="Edit ${p.name}"`,'edit-piece')}</article>`).join('')}</div></div>${state.wardrobeView==='Rack'?`<div class="rack-navigation">${btn('←','data-rack-step="-1" aria-label="Previous garment"')}<span id="rack-position">Swipe or drag to browse</span>${btn('→','data-rack-step="1" aria-label="Next garment"')}</div>`:''}`}${savedFits.length?`<p class="section-label">Saved fits · ${savedFits.length}</p>${savedFits.map((f,i)=>`<p class="note">Fit ${i+1} · ${f.map(id=>items[id].name).join(', ')}</p>`).join('')}`:''}`}
 // Candidate photos are shared. Wardrobe advice is specific to the active catalogue.
 function shoppingWardrobe(index) {
+ const owned = id => items[id].name;
  return [
-  {ownedId:14, sameProduct:true, duplicate:true, reason:'I’d keep the cropped jacket you already own.', value:'Your black bomber already gives you the same short, dark layer.', pairing:'Layer the candidate over a white heavyweight T-shirt and dark indigo jeans.', alternative:'Use your existing black bomber for the same cropped finish.'},
-  {ownedId:15, sameProduct:true, duplicate:true, reason:'The straight cut works over a tee, but a second olive overshirt would add little.', value:'Your olive cotton overshirt already fills this role.', pairing:'Wear the candidate open over your white heavyweight T-shirt with slate pleated trousers.', alternative:'Use your existing olive cotton overshirt in the same outfit.'},
-  {ownedId:7, sameProduct:true, duplicate:true, reason:'This repeats a cut and colour you already wear.', value:'Your stone straight trousers already give you this light, straight-leg option.', pairing:'Pair the candidate with the black crewneck knit and black loafers.', alternative:'Wear your existing stone straight trousers for the same effect.'},
-  {ownedId:5, alternative:'Try your white leather sneakers with the ink navy T-shirt and black tailored shorts.', reason:'The canvas slip-ons make sense for casual days. Check that your heel stays put as you walk.', value:'Your stone suede loafers cover a smarter role. Canvas adds a more casual option, though your white sneakers are worth trying first.', pairing:'Try them with your ink navy heavyweight T-shirt and black tailored shorts.'},
+  {ownedId:14, sameProduct:true, duplicate:true, reason:'I’d keep the cropped jacket you already own.', value:`You already have this role covered with ${owned(14)}.`, pairing:`Layer it over ${owned(6)} with ${owned(1)}.`, alternative:`Use ${owned(14)} for the same cropped finish.`},
+  {ownedId:15, sameProduct:true, duplicate:true, reason:'The straight cut works over a tee, but a second olive overshirt would add little.', value:`You already have this role covered with ${owned(15)}.`, pairing:`Wear it open over ${owned(6)} with ${owned(8)}.`, alternative:`Use ${owned(15)} in the same outfit.`},
+  {ownedId:7, sameProduct:true, duplicate:true, reason:'This repeats a cut and colour you already wear.', value:`You already have this role covered with ${owned(7)}.`, pairing:`Pair it with ${owned(10)} and ${owned(16)}.`, alternative:`Wear ${owned(7)} for the same effect.`},
+  {ownedId:5, alternative:`Try ${owned(5)} with ${owned(3)} and ${owned(4)}.`, reason:'The canvas slip-ons make sense for casual days. Check that your heel stays put as you walk.', value:`Canvas adds a casual option alongside ${owned(17)}. Try ${owned(5)} first if you already have a casual outfit in mind.`, pairing:`Try them with ${owned(3)} and ${owned(4)}.`},
  ][index];
 }
 function shopStyle(candidate) {
  const target=myStyle;
- // A coarse demonstration rubric: close match, partial match, or weak match.
+ // Each candidate has three illustrative scores, shared by the styles explicitly grouped in each tier.
  const grade=myStyle===aesthetics[0]?-1:candidate.ratings.findIndex(group=>group.includes(myStyle));
  return {target,score:candidate.scores[grade]??null};
 }
@@ -558,8 +559,13 @@ function shoppingAssessment(index){
  const wardrobe=shoppingWardrobe(index);
  const style=shopStyle(candidate);
  const weak=style.score!==null&&style.score<55;
+ const weakReason=index===3&&style.target==='Workwear'
+  ? 'The low, unstructured canvas shape lacks the sturdy finish of a workwear shoe.'
+  : index===3&&style.target==='Smart Casual'
+   ? 'The unstructured canvas reads too casual for a polished smart-casual outfit.'
+   : candidate.weakNote;
  return {style,wardrobe,weak,label:wardrobe.duplicate||weak?'I’d skip it':'Worth trying on',
-  reason:weak?shopCases[index].weakNote:wardrobe.reason};
+  reason:weak?weakReason:wardrobe.reason};
 }
 function updateShoppingRecord(action){
  const index=shopping.example;
@@ -641,7 +647,8 @@ function verdict() {
   const {wardrobe,style,label,reason,weak}=shoppingAssessment(shopping.example);
   const alternative=weak||wardrobe.duplicate;
   const recorded=shoppingRecords[shopping.example];
-  const advice=[['check',label==='I’d skip it'?'Why I’d pass':'Why it works',wardrobe.value],
+  const why=weak?`${reason} ${wardrobe.duplicate?wardrobe.value:wardrobe.alternative}`:wardrobe.value;
+  const advice=[['check',label==='I’d skip it'?'Why I’d pass':'Why it works',why],
    ['hanger','How to style it',wardrobe.pairing],['right','Fit to check',candidate.check]];
   content=`${back}<div class="shop-product">
     <figure class="shop-photo"><img src="assets/${candidate.photo}" alt="${candidate.name}"></figure>
