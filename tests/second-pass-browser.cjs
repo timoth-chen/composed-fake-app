@@ -43,11 +43,20 @@ async function exercise(browser,width) {
   if(personal)assert.deepEqual(await at('.outfit-piece-thumb span').allTextContents(),['Navy shirt','Barbour','Black trousers','Tigers']);
   await shot('pick');
   const viewer=at('#model-viewer');
-  const angle=()=>at('#model-turn-hint').innerText();
+  const angle=()=>at('#model-turn-hint').textContent();
   const checkFrame=async()=>assert.equal(await at(personal?'[data-frame]:visible':'.model-turn-sheet:visible').count(),1);
-  for(const text of ['Right side','Back','Left side','Front']){
+  const labels=['Front','Right profile','Back','Left profile'];
+  const checkAngle=async index=>{
+   assert.equal(await angle(),`${labels[index]}, view ${index+1} of 4`);
+   assert.deepEqual(await at('.angle-dot').evaluateAll(dots=>dots.map(dot=>dot.classList.contains('is-active'))),
+    labels.map((_,position)=>position===index));
+  };
+  assert.equal(await at('#model-turn-hint').getAttribute('role'),'status');
+  assert.equal(await at('.angle-indicators').getAttribute('aria-hidden'),'true');
+  await checkAngle(0);
+  for(const index of [1,2,3,0]){
    await at('#model-next').click();
-   assert.equal(await angle(),`${text} ${['Front','Right side','Back','Left side'].indexOf(text)+1} / 4`);
+   await checkAngle(index);
    await checkFrame();
   }
   await viewer.scrollIntoViewIfNeeded();
@@ -67,7 +76,7 @@ async function exercise(browser,width) {
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...point,x:point.x-60}]});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-  assert.match(await angle(),/Right side/);
+  await checkAngle(1);
   await at('.daily-why').scrollIntoViewIfNeeded();
   await shot('nigel-and-wear');
   await at('#accept-outfit').click();
