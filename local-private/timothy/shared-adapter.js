@@ -53,6 +53,14 @@ function privateFrames(look) {
  );
 }
 
+const workAdvice = {
+ Confident:'Let the plaid be the strongest detail and leave the jacket open.',
+ Approachable:'Leave the jacket open so the softer plaid and cream trainers feel easygoing.',
+ Polished:'Straighten the shirt front and keep the trouser hems clear of the trainers.',
+ Relaxed:'Keep the jacket open and let the wide trousers fall naturally.',
+ 'Low-key':'Keep the navy shirt and black trousers as the focus and leave the plaid open.',
+};
+
 function current() {
  const work=state.occasion===3;
  const occasion=work?2:state.occasion;
@@ -67,7 +75,7 @@ function current() {
  };
  return {name:titles[look.id],ids:privateIds(look),frames:privateFrames(look),contextual:true,
   photoNote:look.id==='casual'?'The lookbook photo also shows a white undershirt.':null,
-  why:look.id==='everyday'&&state.occasion===0&&state.energy==='Confident'?advice.everyday.Confident+' It feels deliberate enough for the day without dressing up.':work?openings[3]+' the navy button-down and black trousers give you a tidy base. The open Barbour and cream trainers suit a relaxed office dress code.':advice[look.id][state.energy]+' '+openings[state.occasion]+contexts[look.id],steps:look.steps};
+  why:look.id==='everyday'&&state.occasion===0&&state.energy==='Confident'?advice.everyday.Confident+' It feels deliberate enough for the day without dressing up.':work?'The navy button-down and black trousers suit a relaxed office dress code. '+workAdvice[state.energy]:advice[look.id][state.energy]+' '+openings[state.occasion]+contexts[look.id],steps:look.steps};
 }
 
 function garment(piece) {

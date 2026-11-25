@@ -8,7 +8,7 @@ const capture = process.env.CAPTURE_DIR;
 const delay = ms => new Promise(resolve=>setTimeout(resolve,ms));
 
 async function exercise(browser,width) {
- const page=await browser.newPage({viewport:{width,height:844},hasTouch:true,acceptDownloads:true});
+ const page=await browser.newPage({viewport:{width,height:({1440:900,768:1024,390:844,360:800})[width]},hasTouch:true,acceptDownloads:true});
  await page.addInitScript(()=>{
   for(const key of ['composed.wardrobe.v1.my-style','composed.private.timothy.v1.my-style']){
    if(localStorage.getItem(key)===null)localStorage.setItem(key,'No preference');
@@ -101,6 +101,12 @@ async function exercise(browser,width) {
   assert.match(await at('.pick-context').textContent(),/Date night · Polished/);
   assert.equal(await at('#another-outfit').isEnabled(),true);
   await at('#refine-pick').click();
+  await at('#cancel-piece-swap').click();
+  await at('.piece-swap-panel').waitFor({state:'detached'});
+  await at('#refine-pick').click();
+  await at('[data-swap-from]').last().click();
+  await at('[data-swap-to]').first().click();
+  await at('#apply-piece-swap').click();
   await at('#save-fit').click();
   await at('[data-filter=Tops]').click();
   await at('.list-display [data-piece]').first().click();
@@ -205,6 +211,6 @@ async function exercise(browser,width) {
 }
 (async()=>{
  const browser=await chromium.launch({channel:'chrome'});
- try {for(const width of [375,390,430,1280])await exercise(browser,width);}
+ try {for(const width of [1440,768,390,360])await exercise(browser,width);}
  finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
