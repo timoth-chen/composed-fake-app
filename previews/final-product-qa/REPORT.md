@@ -13,3 +13,9 @@
 See [the full matrix](qa-matrix.json), [Work side view](occasion-impression-alt-text.png), [Shopping result](shopping-all-aesthetics.png), and the swap previews for [desktop](desktop-swap-preview.png), [tablet](tablet-swap-preview.png), [390 px](mobile-390-swap-preview.png) and [360 px](mobile-360-swap-preview.png). The navigation captures show Log selected after cycling through the tabs.
 
 Work fixtures come from the existing catalogue and are intended for relaxed office dress codes.
+
+## Production follow-up
+
+The live browser suite passed against `app.a6d48300a76e.js` from public release `5425688`. The separate `tests/public-visitor-regression.cjs` suite passed at 390 × 844 in a fresh touch-enabled browser context. It verified the Back to Composed destination and the pilot application dialog without submitting the form. It also verified the alternate outfit, all four image angle labels, swap cancellation and draft persistence, wear and undo, Rack and List, shoe filtering, saving a fit, JSON export from Settings, Shopping save and purchase recording, adding a purchase to Wardrobe, dark mode persistence, and planning and reopening an outfit from Log.
+
+The demo supports local outfit drafts and purchase records. Garment replacements use a clothing-only preview. Shopping example scores use fixture data, and photo upload and try-on provide a preview. The run checked accessible DOM labels and used browser touch emulation. Real-device and assistive-technology sessions were outside this run.
