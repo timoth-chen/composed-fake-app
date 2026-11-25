@@ -1,0 +1,468 @@
+{
+  "viewports": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "touch": false,
+      "status": "PASS"
+    },
+    {
+      "name": "tablet",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "touch": true,
+      "status": "PASS"
+    },
+    {
+      "name": "mobile-390",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "status": "PASS"
+    },
+    {
+      "name": "mobile-360",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "touch": true,
+      "status": "PASS"
+    }
+  ],
+  "looks": [
+    {
+      "occasion": 0,
+      "impression": "Confident",
+      "garments": [
+        "Burgundy knit polo",
+        "Dark indigo straight jeans",
+        "Black suede clogs"
+      ],
+      "src": "assets/turn-denim.png"
+    },
+    {
+      "occasion": 0,
+      "impression": "Approachable",
+      "garments": [
+        "White heavyweight T-shirt",
+        "Navy chore jacket",
+        "Stone straight trousers",
+        "Black suede clogs"
+      ],
+      "src": "assets/clean-outfits/0-approachable-0.png"
+    },
+    {
+      "occasion": 0,
+      "impression": "Polished",
+      "garments": [
+        "Burgundy knit polo",
+        "Slate pleated trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/look-polished.png"
+    },
+    {
+      "occasion": 0,
+      "impression": "Relaxed",
+      "garments": [
+        "Sage cotton shirt",
+        "Olive fatigue trousers",
+        "White leather sneakers"
+      ],
+      "src": "assets/look-relaxed.png"
+    },
+    {
+      "occasion": 0,
+      "impression": "Sharp",
+      "garments": [
+        "Black crewneck knit",
+        "Stone straight trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/look-sharp.png"
+    },
+    {
+      "occasion": 0,
+      "impression": "Low-key",
+      "garments": [
+        "Ink navy heavyweight T-shirt",
+        "Navy chore jacket",
+        "Dark indigo straight jeans",
+        "Black suede clogs"
+      ],
+      "src": "assets/clean-outfits/0-low-key-0.png"
+    },
+    {
+      "occasion": 0,
+      "impression": "Not sure",
+      "garments": [
+        "Washed denim shirt",
+        "Slate pleated trousers",
+        "White leather sneakers"
+      ],
+      "src": "assets/look-not-sure.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Confident",
+      "garments": [
+        "Ink navy heavyweight T-shirt",
+        "Oatmeal cardigan",
+        "Olive fatigue trousers",
+        "White leather sneakers"
+      ],
+      "src": "assets/clean-outfits/1-confident-0.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Approachable",
+      "garments": [
+        "Ink navy heavyweight T-shirt",
+        "Oatmeal cardigan",
+        "Stone straight trousers",
+        "Black leather loafers"
+      ],
+      "src": "assets/clean-outfits/1-approachable-0.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Polished",
+      "garments": [
+        "White heavyweight T-shirt",
+        "Oatmeal cardigan",
+        "Slate pleated trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/clean-outfits/1-polished-0.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Relaxed",
+      "garments": [
+        "Black crewneck knit",
+        "Dark indigo straight jeans",
+        "Grey New Balance 996 runner"
+      ],
+      "src": "assets/look-grey-runner-casual.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Sharp",
+      "garments": [
+        "Black crewneck knit",
+        "Dark indigo straight jeans",
+        "White leather sneakers"
+      ],
+      "src": "assets/clean-outfits/1-sharp-0.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Low-key",
+      "garments": [
+        "Washed denim shirt",
+        "Olive fatigue trousers",
+        "Black leather loafers"
+      ],
+      "src": "assets/clean-outfits/1-low-key-0.png"
+    },
+    {
+      "occasion": 1,
+      "impression": "Not sure",
+      "garments": [
+        "Burgundy knit polo",
+        "Stone straight trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/clean-outfits/1-not-sure-0.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Confident",
+      "garments": [
+        "White heavyweight T-shirt",
+        "Olive cotton overshirt",
+        "Slate pleated trousers",
+        "Black leather loafers"
+      ],
+      "src": "assets/turn-date.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Approachable",
+      "garments": [
+        "Ink navy heavyweight T-shirt",
+        "Olive cotton overshirt",
+        "Slate pleated trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/clean-outfits/2-approachable-0.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Polished",
+      "garments": [
+        "White heavyweight T-shirt",
+        "Olive cotton overshirt",
+        "Olive fatigue trousers",
+        "Black suede clogs"
+      ],
+      "src": "assets/clean-outfits/2-polished-0.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Relaxed",
+      "garments": [
+        "Sage cotton shirt",
+        "Dark indigo straight jeans",
+        "White leather sneakers"
+      ],
+      "src": "assets/clean-outfits/2-relaxed-0.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Sharp",
+      "garments": [
+        "Black crewneck knit",
+        "Stone straight trousers",
+        "Black leather loafers"
+      ],
+      "src": "assets/clean-outfits/2-sharp-0.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Low-key",
+      "garments": [
+        "Washed denim shirt",
+        "Stone straight trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/clean-outfits/2-low-key-0.png"
+    },
+    {
+      "occasion": 2,
+      "impression": "Not sure",
+      "garments": [
+        "Burgundy knit polo",
+        "Slate pleated trousers",
+        "Black suede clogs"
+      ],
+      "src": "assets/clean-outfits/2-not-sure-0.png"
+    },
+    {
+      "occasion": 3,
+      "impression": "Confident",
+      "garments": [
+        "Burgundy knit polo",
+        "Dark indigo straight jeans",
+        "Black suede clogs"
+      ],
+      "src": "assets/turn-denim.png"
+    },
+    {
+      "occasion": 3,
+      "impression": "Approachable",
+      "garments": [
+        "White heavyweight T-shirt",
+        "Navy chore jacket",
+        "Stone straight trousers",
+        "Black suede clogs"
+      ],
+      "src": "assets/clean-outfits/0-approachable-0.png"
+    },
+    {
+      "occasion": 3,
+      "impression": "Polished",
+      "garments": [
+        "Burgundy knit polo",
+        "Slate pleated trousers",
+        "Stone suede loafers"
+      ],
+      "src": "assets/look-polished.png"
+    },
+    {
+      "occasion": 3,
+      "impression": "Relaxed",
+      "garments": [
+        "Black crewneck knit",
+        "Dark indigo straight jeans",
+        "Grey New Balance 996 runner"
+      ],
+      "src": "assets/look-grey-runner-casual.png"
+    },
+    {
+      "occasion": 3,
+      "impression": "Low-key",
+      "garments": [
+        "Ink navy heavyweight T-shirt",
+        "Navy chore jacket",
+        "Dark indigo straight jeans",
+        "Black suede clogs"
+      ],
+      "src": "assets/clean-outfits/0-low-key-0.png"
+    }
+  ],
+  "scores": {
+    "No preference": [
+      {
+        "score": null,
+        "label": "I’d skip it",
+        "explanation": "Style match · No preference\n\nChoose a style to see a score.\n\nStreetwear in character. A cropped, boxy shape adds volume above the waist. Ribbing and zip hardware give it a casual finish.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": null,
+        "label": "I’d skip it",
+        "explanation": "Style match · No preference\n\nChoose a style to see a score.\n\nWorkwear in character. A straight body leaves room for a light layer underneath. Work-shirt pockets and buttons keep it informal.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": null,
+        "label": "I’d skip it",
+        "explanation": "Style match · No preference\n\nChoose a style to see a score.\n\nClassic in character. A straight leg keeps a continuous line from hip to hem. Light cloth and a clean front make it easier to dress up.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": null,
+        "label": "Worth trying on",
+        "explanation": "Style match · No preference\n\nChoose a style to see a score.\n\nEast Asian Minimalist in character. The low profile keeps the shoe quiet under a straight hem. Canvas and an unstructured vamp keep the finish casual.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ],
+    "East Asian Minimalist": [
+      {
+        "score": "89",
+        "label": "I’d skip it",
+        "explanation": "Style match · East Asian Minimalist\n\n89% · Strong\n\nA cropped, boxy shape adds volume above the waist. Ribbing and zip hardware give it a casual finish. Those characteristics directly support East Asian Minimalist.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "92",
+        "label": "I’d skip it",
+        "explanation": "Style match · East Asian Minimalist\n\n92% · Strong\n\nA straight body leaves room for a light layer underneath. Work-shirt pockets and buttons keep it informal. Those characteristics directly support East Asian Minimalist.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "70",
+        "label": "I’d skip it",
+        "explanation": "Style match · East Asian Minimalist\n\n70% · Moderate\n\nA straight leg keeps a continuous line from hip to hem. The piece has some characteristics associated with East Asian Minimalist, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "85",
+        "label": "Worth trying on",
+        "explanation": "Style match · East Asian Minimalist\n\n85% · Strong\n\nThe low profile keeps the shoe quiet under a straight hem. Canvas and an unstructured vamp keep the finish casual. Those characteristics directly support East Asian Minimalist.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ],
+    "Streetwear": [
+      {
+        "score": "89",
+        "label": "I’d skip it",
+        "explanation": "Style match · Streetwear\n\n89% · Strong\n\nA cropped, boxy shape adds volume above the waist. Ribbing and zip hardware give it a casual finish. Those characteristics directly support Streetwear.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "73",
+        "label": "I’d skip it",
+        "explanation": "Style match · Streetwear\n\n73% · Moderate\n\nA straight body leaves room for a light layer underneath. The piece has some characteristics associated with Streetwear, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "48",
+        "label": "I’d skip it",
+        "explanation": "Style match · Streetwear\n\n48% · Weak\n\nThe neat straight leg and clean front are closer to traditional tailoring than streetwear.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "85",
+        "label": "Worth trying on",
+        "explanation": "Style match · Streetwear\n\n85% · Strong\n\nThe low profile keeps the shoe quiet under a straight hem. Canvas and an unstructured vamp keep the finish casual. Those characteristics directly support Streetwear.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ],
+    "Smart Casual": [
+      {
+        "score": "43",
+        "label": "I’d skip it",
+        "explanation": "Style match · Smart Casual\n\n43% · Weak\n\nThe cropped cut, ribbed edges and exposed zip read more casual than a tailored layer.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "46",
+        "label": "I’d skip it",
+        "explanation": "Style match · Smart Casual\n\n46% · Weak\n\nThe patch pockets and cotton work-shirt cut lean utility rather than tailored.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "87",
+        "label": "I’d skip it",
+        "explanation": "Style match · Smart Casual\n\n87% · Strong\n\nA straight leg keeps a continuous line from hip to hem. Light cloth and a clean front make it easier to dress up. Those characteristics directly support Smart Casual.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "41",
+        "label": "I’d skip it",
+        "explanation": "Style match · Smart Casual\n\n41% · Weak\n\nThe low, unstructured canvas shape lacks the sturdy finish of a workwear shoe or the polish of a smart-casual one.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ],
+    "Classic": [
+      {
+        "score": "43",
+        "label": "I’d skip it",
+        "explanation": "Style match · Classic\n\n43% · Weak\n\nThe cropped cut, ribbed edges and exposed zip read more casual than a tailored layer.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "73",
+        "label": "I’d skip it",
+        "explanation": "Style match · Classic\n\n73% · Moderate\n\nA straight body leaves room for a light layer underneath. The piece has some characteristics associated with Classic, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "87",
+        "label": "I’d skip it",
+        "explanation": "Style match · Classic\n\n87% · Strong\n\nA straight leg keeps a continuous line from hip to hem. Light cloth and a clean front make it easier to dress up. Those characteristics directly support Classic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "69",
+        "label": "Worth trying on",
+        "explanation": "Style match · Classic\n\n69% · Moderate\n\nThe low profile keeps the shoe quiet under a straight hem. The piece has some characteristics associated with Classic, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ],
+    "Workwear": [
+      {
+        "score": "72",
+        "label": "I’d skip it",
+        "explanation": "Style match · Workwear\n\n72% · Moderate\n\nA cropped, boxy shape adds volume above the waist. The piece has some characteristics associated with Workwear, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "92",
+        "label": "I’d skip it",
+        "explanation": "Style match · Workwear\n\n92% · Strong\n\nA straight body leaves room for a light layer underneath. Work-shirt pockets and buttons keep it informal. Those characteristics directly support Workwear.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "70",
+        "label": "I’d skip it",
+        "explanation": "Style match · Workwear\n\n70% · Moderate\n\nA straight leg keeps a continuous line from hip to hem. The piece has some characteristics associated with Workwear, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "41",
+        "label": "I’d skip it",
+        "explanation": "Style match · Workwear\n\n41% · Weak\n\nThe low, unstructured canvas shape lacks the sturdy finish of a workwear shoe or the polish of a smart-casual one.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ],
+    "Minimalist": [
+      {
+        "score": "89",
+        "label": "I’d skip it",
+        "explanation": "Style match · Minimalist\n\n89% · Strong\n\nA cropped, boxy shape adds volume above the waist. Ribbing and zip hardware give it a casual finish. Those characteristics directly support Minimalist.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "92",
+        "label": "I’d skip it",
+        "explanation": "Style match · Minimalist\n\n92% · Strong\n\nA straight body leaves room for a light layer underneath. Work-shirt pockets and buttons keep it informal. Those characteristics directly support Minimalist.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "70",
+        "label": "I’d skip it",
+        "explanation": "Style match · Minimalist\n\n70% · Moderate\n\nA straight leg keeps a continuous line from hip to hem. The piece has some characteristics associated with Minimalist, but it is not its clearest aesthetic.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      },
+      {
+        "score": "85",
+        "label": "Worth trying on",
+        "explanation": "Style match · Minimalist\n\n85% · Strong\n\nThe low profile keeps the shoe quiet under a straight hem. Canvas and an unstructured vamp keep the finish casual. Those characteristics directly support Minimalist.\n\nAesthetic compatibility based on colour, silhouette and design. Nigel’s recommendation also considers what you already own."
+      }
+    ]
+  }
+}

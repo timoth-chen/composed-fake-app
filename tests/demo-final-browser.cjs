@@ -164,6 +164,7 @@ async function run(browser, width) {
   await at('#wear-plan').click();
   await at('[data-log="wore"]').waitFor();
   await at('#refine-pick').click();
+  await at('#apply-piece-swap').click();
   assert.match(await at('.builder').innerText(),/Clothing-only preview/);
   assert.equal(await at('#model-viewer').count(),0);
   const oldShoes = await at('.builder [data-piece-category="shoes"] span').innerText();
